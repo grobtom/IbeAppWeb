@@ -1,0 +1,29 @@
+﻿@page "/umsatz"
+@using IbeAppWeb.Views
+@inject Services.DummyService Service
+
+<h3>Umsatz</h3>
+
+<SfGrid Width="1200px" DataSource="@masterDaten">
+    <GridColumns>
+        <GridColumn Field="Ausfuehrungsdatum" HeaderText="Datum" Type="ColumnType.Date" Format="d" Width="120" />
+        <GridColumn Field="Kolonnenfuehrer" HeaderText="Kolonnenführer" Width="150" />
+    </GridColumns>
+</SfGrid>
+
+@code {
+    private List<KolonneMasterView> masterDaten;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var flat = await Service.GetUmsatzdatenAsync();
+        masterDaten = flat
+            .GroupBy(x => new { x.Ausfuehrungsdatum, x.Kolonnenfuehrer })
+            .Select(g => new KolonneMasterView
+            {
+                Ausfuehrungsdatum = g.Key.Ausfuehrungsdatum,
+                Kolonnenfuehrer = g.Key.Kolonnenfuehrer,
+                Details = g.ToList()
+            }).ToList();
+    }
+}

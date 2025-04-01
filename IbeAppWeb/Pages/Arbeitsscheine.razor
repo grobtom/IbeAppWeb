@@ -1,0 +1,202 @@
+﻿@page "/arbeitsscheine"
+@using IbeAppWeb.DTOs
+@inject ArbeitsscheinService ArbeitsscheinService
+@inject ProjectService ProjectService
+@using System.ComponentModel.DataAnnotations
+
+<h3>Arbeitsscheine</h3>
+
+<EditForm Model="@formModel" OnValidSubmit="LoadArbeitsscheine">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="container mt-4">
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="projectDb" class="form-label">Project DB:</label>
+                <InputSelect id="projectDb" class="form-control" @bind-Value="formModel.SelectedProjectId">
+                    <option value="">Select a project</option>
+                    @foreach (var project in projects)
+                    {
+                        <option value="@project.ID">@project.ProjectName</option>
+                    }
+                </InputSelect>
+            </div>
+            <div class="col-md-4">
+                <label for="saniertAmVon" class="form-label">Saniert Am Von:</label>
+                <InputDate id="saniertAmVon" class="form-control" @bind-Value="formModel.SaniertAmVon" disabled="@IsSaniertAmUsed" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="saniertAmBis" class="form-label">Saniert Am Bis:</label>
+                <InputDate id="saniertAmBis" class="form-control" @bind-Value="formModel.SaniertAmBis" disabled="@IsSaniertAmUsed" />
+            </div>
+            <div class="col-md-4">
+                <label for="saniertAm" class="form-label">Saniert Am:</label>
+                <InputDate id="saniertAm" class="form-control" @bind-Value="formModel.SaniertAm" @onchange="OnSaniertAmChanged" />
+            </div>
+            <div class="col-md-4">
+                <label for="abschlagsrechnung" class="form-label">Abschlagsrechnung:</label>
+                <InputText id="abschlagsrechnung" class="form-control" @bind-Value="formModel.Abschlagsrechnung" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="kolonnenfuehrer" class="form-label">Kolonnenführer:</label>
+                <InputText id="kolonnenfuehrer" class="form-control" @bind-Value="formModel.Kolonnenfuehrer" />
+            </div>
+            <div class="col-md-4">
+                <label for="fahrzeug" class="form-label">Fahrzeug:</label>
+                <InputText id="fahrzeug" class="form-control" @bind-Value="formModel.Fahrzeug" />
+            </div>
+            <div class="col-md-4 d-flex align-items-end">
+                <button class="btn btn-primary me-2" type="submit" disabled="@isLoading">Load Arbeitsscheine</button>
+                <button class="btn btn-secondary" type="button" @onclick="ResetForm">Reset</button>
+            </div>
+        </div>
+
+        @if (isLoading)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else if (errorOccurred)
+        {
+            <div class="alert alert-danger" role="alert">
+                An error occurred. Please reload the page.
+            </div>
+        }
+        else if (arbeitsscheine == null || arbeitsscheine.Count == 0)
+        {
+            <div class="alert alert-warning" role="alert">
+                No Arbeitsscheine found.
+            </div>
+        }
+        else
+        {
+            <SfGrid DataSource="@arbeitsscheine" AllowReordering="true" AllowGrouping="true">
+                <GridColumns>
+                    <GridColumn Field=@nameof(ArbeitsscheinDto.HALTUNG) HeaderText="Haltung" Width="40"></GridColumn>
+                    <GridColumn Field=@nameof(ArbeitsscheinDto.LVPosition) HeaderText="LV-Position" Width="40"></GridColumn>
+                    <GridColumn Field=@nameof(ArbeitsscheinDto.Menge) HeaderText="Menge" Width="80"></GridColumn>
+                    <GridColumn Field=@nameof(ArbeitsscheinDto.SaniertAm) HeaderText="Saniert am" Width="80" Format="dd.MM.yyyy"></GridColumn>
+                    <GridColumn Field=@nameof(ArbeitsscheinDto.Abschlagsrechnung) HeaderText="AR" Width="30"></GridColumn>
+                    <GridColumn Field=@nameof(ArbeitsscheinDto.Kolonnenfuehrer) HeaderText="Kolonnenführer" Width="80"></GridColumn>
+                    <GridColumn Field=@nameof(ArbeitsscheinDto.Fahrzeug) HeaderText="Fahrzeug" Width="80"></GridColumn>
+                </GridColumns>
+            </SfGrid>
+        }
+    </div>
+</EditForm>
+
+@code {
+    private ArbeitsscheinFormModel formModel = new();
+    private List<ArbeitsscheinDto> arbeitsscheine;
+    private List<Project> projects = new();
+    private bool isLoading = false;
+    private bool errorOccurred = false;
+
+    private bool IsSaniertAmUsed => formModel.SaniertAm.HasValue;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadProjects();
+    }
+
+    private void OnSaniertAmChanged(ChangeEventArgs e)
+    {
+        if (DateTime.TryParse(e.Value?.ToString(), out var date))
+        {
+            formModel.SaniertAm = date;
+            formModel.SaniertAmVon = null;
+            formModel.SaniertAmBis = null;
+        }
+        else
+        {
+            formModel.SaniertAm = null;
+        }
+    }
+
+    private async Task LoadProjects()
+    {
+        try
+        {
+            projects = await ProjectService.GetActiveProjectsAsync();
+        }
+        catch
+        {
+            errorOccurred = true;
+        }
+    }
+
+    private async Task LoadArbeitsscheine()
+    {
+        isLoading = true;
+        errorOccurred = false;
+
+        try
+        {
+            var selectedProject = projects.FirstOrDefault(p => p.ID == formModel.SelectedProjectId);
+            var projectDb = selectedProject?.ProjectName ?? "defaultDb";
+
+            arbeitsscheine = await ArbeitsscheinService.GetArbeitsscheineAsync(
+                firma: formModel.Firma,
+                saniertAmVon: formModel.SaniertAmVon,
+                saniertAmBis: formModel.SaniertAmBis,
+                saniertAm: formModel.SaniertAm,
+                abschlagsrechnung: formModel.Abschlagsrechnung,
+                kolonnenfuehrer: formModel.Kolonnenfuehrer,
+                fahrzeug: formModel.Fahrzeug,
+                projectDb: projectDb
+            );
+        }
+        catch
+        {
+            errorOccurred = true;
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private void ResetForm()
+    {
+        formModel = new();
+        arbeitsscheine = null;
+    }
+
+    public class ArbeitsscheinFormModel : IValidatableObject
+    {
+        [Required]
+        public int? SelectedProjectId { get; set; }
+
+        public string? Firma { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime? SaniertAmVon { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime? SaniertAmBis { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime? SaniertAm { get; set; }
+
+        public string? Abschlagsrechnung { get; set; }
+
+        public string? Kolonnenfuehrer { get; set; }
+
+        public string? Fahrzeug { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (SaniertAmVon.HasValue && SaniertAmBis.HasValue && SaniertAmVon > SaniertAmBis)
+            {
+                yield return new ValidationResult(
+                    "Saniert Am Von darf nicht nach Saniert Am Bis liegen.",
+                    new[] { nameof(SaniertAmVon), nameof(SaniertAmBis) });
+            }
+        }
+    }
+}
+
