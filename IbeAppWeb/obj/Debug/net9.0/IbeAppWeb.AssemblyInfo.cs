@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IbeAppWeb")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+94b0ac729477564f3950ffed0eb60fd7657f4d71")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b85cb22ead5a9149be95127ef740fb3cc3a05430")]
 [assembly: System.Reflection.AssemblyProductAttribute("IbeAppWeb")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IbeAppWeb")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
