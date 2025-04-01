@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "IbeAppWeb",
   "resources": {
-    "hash": "sha256-OhT2bBHUyBjqAYSpnxka3K41Sa4UZPUG1qhZLzab0nE=",
+    "hash": "sha256-y4wpG1J/bAeVHjWkHXdOV6IFE1IpSsXycwoI2cfRCUc=",
     "fingerprinting": {
       "Microsoft.AspNetCore.Authorization.da83xzpz5r.wasm": "Microsoft.AspNetCore.Authorization.wasm",
       "Microsoft.AspNetCore.Components.vmzb2angnn.wasm": "Microsoft.AspNetCore.Components.wasm",
@@ -221,8 +221,8 @@
       "icudt_CJK.tjcz0u77k5.dat": "icudt_CJK.dat",
       "icudt_EFIGS.tptq2av103.dat": "icudt_EFIGS.dat",
       "icudt_no_CJK.lfu7j35m59.dat": "icudt_no_CJK.dat",
-      "IbeAppWeb.vash288tix.wasm": "IbeAppWeb.wasm",
-      "IbeAppWeb.1iqgsk3fp2.pdb": "IbeAppWeb.pdb"
+      "IbeAppWeb.z5520kesod.wasm": "IbeAppWeb.wasm",
+      "IbeAppWeb.jil9a58co4.pdb": "IbeAppWeb.pdb"
     },
     "jsModuleNative": {
       "dotnet.native.1p93gcv9fh.js": "sha256-1UPiprzN3JhPftx3be7XEMaYlUN+chRF41CuttiWVtQ="
@@ -452,10 +452,10 @@
       "WindowsBase.ag32297siy.wasm": "sha256-BgyZxTgdU9rIYlNC9ZMiMjnvBAJSL0eQH8Y87o1M+q4=",
       "mscorlib.vt9pwshhot.wasm": "sha256-/aFxOaPc1iTNlJw0z4/RGEMD0nzl4qVE3SF4wMsLgp0=",
       "netstandard.or41gtprh3.wasm": "sha256-nD1KqAI5YYz+YohqHaZ5EmXi7Eq9Uy9sUknnI8sj1AM=",
-      "IbeAppWeb.vash288tix.wasm": "sha256-h8twkFITfxQpwfllxpufwFvbdszw6Hbgq83GdYTWauo="
+      "IbeAppWeb.z5520kesod.wasm": "sha256-pzaUc0wap2kI+tvMPLQI3vlqdZlk8zRaW7Amxh+i6bM="
     },
     "pdb": {
-      "IbeAppWeb.1iqgsk3fp2.pdb": "sha256-17kNDSoTEoKdcpwZzeOFz8kV4MhzQsp9engSq3vgMtk="
+      "IbeAppWeb.jil9a58co4.pdb": "sha256-K9MnyiMTwssYjkzAEm3Pk35byhKDABjOxLUYy4XNgeM="
     }
   },
   "cacheBootResources": true,

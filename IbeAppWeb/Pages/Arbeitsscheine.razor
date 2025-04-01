@@ -2,6 +2,7 @@
 @using IbeAppWeb.DTOs
 @inject ArbeitsscheinService ArbeitsscheinService
 @inject ProjectService ProjectService
+@inject IJSRuntime JS
 @using System.ComponentModel.DataAnnotations
 
 <h3>Arbeitsscheine</h3>
@@ -55,52 +56,218 @@
                 <button class="btn btn-secondary" type="button" @onclick="ResetForm">Reset</button>
             </div>
         </div>
-
-        @if (isLoading)
-        {
-            <p><em>Loading...</em></p>
-        }
-        else if (errorOccurred)
-        {
-            <div class="alert alert-danger" role="alert">
-                An error occurred. Please reload the page.
-            </div>
-        }
-        else if (arbeitsscheine == null || arbeitsscheine.Count == 0)
-        {
-            <div class="alert alert-warning" role="alert">
-                No Arbeitsscheine found.
-            </div>
-        }
-        else
-        {
-            <SfGrid DataSource="@arbeitsscheine" AllowReordering="true" AllowGrouping="true">
-                <GridColumns>
-                    <GridColumn Field=@nameof(ArbeitsscheinDto.HALTUNG) HeaderText="Haltung" Width="40"></GridColumn>
-                    <GridColumn Field=@nameof(ArbeitsscheinDto.LVPosition) HeaderText="LV-Position" Width="40"></GridColumn>
-                    <GridColumn Field=@nameof(ArbeitsscheinDto.Menge) HeaderText="Menge" Width="80"></GridColumn>
-                    <GridColumn Field=@nameof(ArbeitsscheinDto.SaniertAm) HeaderText="Saniert am" Width="80" Format="dd.MM.yyyy"></GridColumn>
-                    <GridColumn Field=@nameof(ArbeitsscheinDto.Abschlagsrechnung) HeaderText="AR" Width="30"></GridColumn>
-                    <GridColumn Field=@nameof(ArbeitsscheinDto.Kolonnenfuehrer) HeaderText="Kolonnenführer" Width="80"></GridColumn>
-                    <GridColumn Field=@nameof(ArbeitsscheinDto.Fahrzeug) HeaderText="Fahrzeug" Width="80"></GridColumn>
-                </GridColumns>
-            </SfGrid>
-        }
     </div>
 </EditForm>
+<div>
+    @if (isLoading)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else if (errorOccurred)
+    {
+        <div class="alert alert-danger" role="alert">
+            An error occurred. Please reload the page.
+        </div>
+    }
+    else if (arbeitsscheine == null || arbeitsscheine.Count == 0)
+    {
+        <div class="alert alert-warning" role="alert">
+            No Arbeitsscheine found.
+        </div>
+    }
+    else
+    {
+        <SfGrid ID="Grid" @ref="grid" DataSource="@arbeitsscheine" AllowReordering="true" AllowGrouping="true" Toolbar="@ToolbarItems" AllowPdfExport="true">
+            <GridTemplates>
+                <DetailTemplate Context="ascontext">
+                    @{
+                        var arbeitsschein = (ascontext as ArbeitsscheinDto);
+                        <table class="detailtable" width="100%">
+                            <colgroup>
+                                <col width="40%" />
+                                <col width="60%" />
+                            </colgroup>
+                            <thead>
+                                <th colspan="2" style="font-weight: 500;text-align: center; background-color: #ADD8E6;">
+                                    Details
+                                </th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="text-align: center;">
+                                        <strong style="color: #0a76ff;">Monteure:</strong><br>
+                                        <span>@arbeitsschein?.Monteur</span>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <strong style="color: #0a76ff;">Kurztext:</strong><br>
+                                        <span> @arbeitsschein?.Kurztext</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;">
+                                        <strong style="color: #0a76ff;">Preis:</strong><br>
+                                        <span>@(arbeitsschein?.Preis.ToString("N3", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</span>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <strong style="color: #0a76ff;">Positionspreis:</strong><br>
+                                        <span>@(arbeitsschein.Positionssumme.ToString("N3", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;">
+                                        <strong style="color: #0a76ff;">Anzahl Monteure:</strong><br>
+                                        <span>@(arbeitsschein?.MonteurList.Count + 1)</span>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <strong style="color: #0a76ff;">Anteil pro Monteur:</strong><br>
+                                        <span>@((arbeitsschein.Positionssumme/(arbeitsschein.MonteurList.Count+1)).ToString("N3", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</span>                                        </td>
+                                </tr>
+                            </tbody>
+                        </table>                            
+                    }
+                </DetailTemplate>
+            </GridTemplates>
+            <GridEvents OnToolbarClick="ToolbarClickHandler" PdfDetailTemplateExporting="PDFDetailTemplateHandler" TValue="ArbeitsscheinDto" />
+            <GridColumns>
+                <GridColumn Field=@nameof(ArbeitsscheinDto.HALTUNG) HeaderText="Haltung" Width="40"></GridColumn>
+                <GridColumn Field=@nameof(ArbeitsscheinDto.LVPosition) HeaderText="LV-Position" Width="40"></GridColumn>
+                <GridColumn Field=@nameof(ArbeitsscheinDto.Menge) HeaderText="Menge" Width="80"></GridColumn>
+                <GridColumn Field=@nameof(ArbeitsscheinDto.SaniertAm) HeaderText="Saniert am" Width="80" Format="dd.MM.yyyy"></GridColumn>
+                <GridColumn Field=@nameof(ArbeitsscheinDto.Abschlagsrechnung) HeaderText="AR" Width="30"></GridColumn>
+                <GridColumn Field=@nameof(ArbeitsscheinDto.Kolonnenfuehrer) HeaderText="Kolonnenführer" Width="80"></GridColumn>
+                <GridColumn Field=@nameof(ArbeitsscheinDto.Fahrzeug) HeaderText="Fahrzeug" Width="80"></GridColumn>
+            </GridColumns>
+        </SfGrid>
+    }
+</div>
+<style type="text/css" class="cssStyles">
+    .deatailTable td {
+    font-size: 13px;
+    padding: 4px;
+    max-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: normal;
+    }
+</style>
 
 @code {
+    private SfGrid<ArbeitsscheinDto> grid;
+
     private ArbeitsscheinFormModel formModel = new();
+
     private List<ArbeitsscheinDto> arbeitsscheine;
+
     private List<Project> projects = new();
+
+    private List<string> ToolbarItems = new List<string>() { "PdfExport" };
     private bool isLoading = false;
     private bool errorOccurred = false;
+    private string base64Image;
+    private string projectDb;
 
     private bool IsSaniertAmUsed => formModel.SaniertAm.HasValue;
 
     protected override async Task OnInitializedAsync()
     {
         await LoadProjects();
+        await LoadImage();
+    }
+
+    private async Task LoadImage()
+    {
+        // JS-Modul laden
+        var module = await JS.InvokeAsync<IJSObjectReference>("import", "./js/imageHelper.js");
+
+        // Funktion aufrufen
+        base64Image = await module.InvokeAsync<string>("getImageAsBase64", "images/logos/logo_oxid.png");
+    }
+
+    public async Task ToolbarClickHandler(Syncfusion.Blazor.Navigations.ClickEventArgs args)
+    {
+        if (string.IsNullOrWhiteSpace(base64Image))
+        {
+            await LoadImage(); 
+        }
+        if (!string.IsNullOrWhiteSpace(base64Image))
+        {
+            string pureBase64 = base64Image.Split(',')[1];
+
+            if (args.Item.Id == "Grid_pdfexport" && grid != null)
+            {
+                PdfExportProperties ExportProperties = new PdfExportProperties();
+                ExportProperties.PdfDetailRowMode = PdfDetailRowMode.Expand;
+
+                List<PdfHeaderFooterContent> HeaderContent = new List<PdfHeaderFooterContent>
+                {
+                    new PdfHeaderFooterContent() 
+                    { 
+                        Type = ContentType.Image, Src=pureBase64,
+                         Position = new PdfPosition() {X=0, Y = 0 }
+                    },
+                    new PdfHeaderFooterContent()
+                    {
+                        Type = ContentType.Text,
+                        Value = "Arbeitsschein",
+                        Position = new PdfPosition() {X=300, Y = 0 },
+                        Style = new PdfContentStyle() { FontSize = 18, TextBrushColor="#C67878" }
+                    },
+                    new PdfHeaderFooterContent()
+                    {
+                        Type = ContentType.Text,
+                        Value = "Projekt: " + projectDb,
+                        Position = new PdfPosition() {X=300, Y = 30 },
+                        Style = new PdfContentStyle() { FontSize = 14, TextBrushColor="#0a76ff" }
+                    },
+
+                };
+                PdfHeader Header = new PdfHeader() { FromTop = 0, Height = 80, Contents = HeaderContent };
+                ExportProperties.Header = Header;
+
+                await grid.PdfExport(ExportProperties);
+            }
+        }
+    }
+
+    public void PDFDetailTemplateHandler(PdfDetailTemplateEventArgs<ArbeitsscheinDto> args)
+    {
+        var pdfRows = new List<PdfDetailTemplateRow>();
+        var data = args.ParentRow.Data;
+        args.RowInfo.ColumnCount = 2;
+        args.RowInfo.Headers = new List<PdfDetailTemplateRow>()
+        {
+            new PdfDetailTemplateRow() 
+            { 
+                Cells = new List<PdfDetailTemplateCell>() 
+                { new PdfDetailTemplateCell() 
+                    { 
+                        Index = 0,
+                        CellValue = "Details",
+                        ColumnSpan = 2,
+                        Style = new PdfThemeStyle() 
+                        { 
+                            Bold = true,
+                            FontColor = "#0A76FF",
+                            FontSize = 12
+                        }
+                    } 
+                }
+            }
+        };
+        pdfRows.Add(ProcessPdfRow("Monteure", data.Monteur, "Kurztext", data.Kurztext));
+        pdfRows.Add(ProcessPdfRow("Preis", $"{data.Preis.ToString("N3", System.Globalization.CultureInfo.GetCultureInfo("de-DE"))} €", "Positionspreis", $"{data.Positionssumme.ToString("N3", System.Globalization.CultureInfo.GetCultureInfo("de-DE"))} €"));
+        pdfRows.Add(ProcessPdfRow("Anzahl Monteure", $"{data.MonteurList.Count + 1}", "Anteil pro Monteur", $"{(data.Positionssumme / (data.MonteurList.Count + 1)).ToString("N3", System.Globalization.CultureInfo.GetCultureInfo("de-DE"))} €"));
+
+        args.RowInfo.Rows = pdfRows;
+    }
+
+    PdfDetailTemplateRow ProcessPdfRow(string label1, string value1, string label2, string value2)
+    {
+        var cells = new List<PdfDetailTemplateCell>();
+        cells.Add(new PdfDetailTemplateCell() { CellValue = $"{label1}: {value1}" });
+        cells.Add(new PdfDetailTemplateCell() { CellValue = $"{label2}: {value2}" });
+        return new PdfDetailTemplateRow() { Cells = cells };            
     }
 
     private void OnSaniertAmChanged(ChangeEventArgs e)
@@ -137,7 +304,7 @@
         try
         {
             var selectedProject = projects.FirstOrDefault(p => p.ID == formModel.SelectedProjectId);
-            var projectDb = selectedProject?.ProjectName ?? "defaultDb";
+            projectDb = selectedProject?.ProjectName ?? "defaultDb";
 
             arbeitsscheine = await ArbeitsscheinService.GetArbeitsscheineAsync(
                 firma: formModel.Firma,

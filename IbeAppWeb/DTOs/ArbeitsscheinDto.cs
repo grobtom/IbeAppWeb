@@ -1,4 +1,7 @@
-﻿namespace IbeAppWeb.DTOs;
+﻿using System.ComponentModel;
+using System.Text.Json.Serialization;
+
+namespace IbeAppWeb.DTOs;
 
 public class ArbeitsscheinDto
 {
@@ -6,6 +9,8 @@ public class ArbeitsscheinDto
     public string? LVPosition { get; set; }
     public string? Firma { get; set; }
     public string? Kolonnenfuehrer { get; set; }
+    public string Monteur { get; set; }
+    public List<MonteurDto> MonteurList { get; set; } = new();
     public string? Fahrzeug { get; set; }
     public decimal Menge { get; set; }
     public DateTime SaniertAm { get; set; }
@@ -16,6 +21,7 @@ public class ArbeitsscheinDto
     public string? Kurztext { get; set; }
     public decimal Preis { get; set; }
     public string? Einheit { get; set; }
+    public decimal Positionssumme { get; set; }
 }
 
 

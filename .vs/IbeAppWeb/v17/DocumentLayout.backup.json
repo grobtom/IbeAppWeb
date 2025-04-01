@@ -1,34 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "I:\\IbeAppWeb\\",
+  "WorkspaceRootPath": "C:\\Projects\\IbeAppWeb\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CA399536-8E48-4CCA-8588-DE69E2BEF1B1}|IbeAppWeb\\IbeAppWeb.csproj|i:\\ibeappweb\\ibeappweb\\pages\\arbeitsscheine.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{CA399536-8E48-4CCA-8588-DE69E2BEF1B1}|IbeAppWeb\\IbeAppWeb.csproj|c:\\projects\\ibeappweb\\ibeappweb\\pages\\arbeitsscheine.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{CA399536-8E48-4CCA-8588-DE69E2BEF1B1}|IbeAppWeb\\IbeAppWeb.csproj|solutionrelative:ibeappweb\\pages\\arbeitsscheine.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA399536-8E48-4CCA-8588-DE69E2BEF1B1}|IbeAppWeb\\IbeAppWeb.csproj|i:\\ibeappweb\\ibeappweb\\services\\arbeitsscheinservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA399536-8E48-4CCA-8588-DE69E2BEF1B1}|IbeAppWeb\\IbeAppWeb.csproj|solutionrelative:ibeappweb\\services\\arbeitsscheinservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CA399536-8E48-4CCA-8588-DE69E2BEF1B1}|IbeAppWeb\\IbeAppWeb.csproj|c:\\projects\\ibeappweb\\ibeappweb\\wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CA399536-8E48-4CCA-8588-DE69E2BEF1B1}|IbeAppWeb\\IbeAppWeb.csproj|solutionrelative:ibeappweb\\wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA399536-8E48-4CCA-8588-DE69E2BEF1B1}|IbeAppWeb\\IbeAppWeb.csproj|i:\\ibeappweb\\ibeappweb\\pages\\umsatz.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{CA399536-8E48-4CCA-8588-DE69E2BEF1B1}|IbeAppWeb\\IbeAppWeb.csproj|solutionrelative:ibeappweb\\pages\\umsatz.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{CA399536-8E48-4CCA-8588-DE69E2BEF1B1}|IbeAppWeb\\IbeAppWeb.csproj|c:\\projects\\ibeappweb\\ibeappweb\\wwwroot\\js\\imagehelper.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{CA399536-8E48-4CCA-8588-DE69E2BEF1B1}|IbeAppWeb\\IbeAppWeb.csproj|solutionrelative:ibeappweb\\wwwroot\\js\\imagehelper.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA399536-8E48-4CCA-8588-DE69E2BEF1B1}|IbeAppWeb\\IbeAppWeb.csproj|i:\\ibeappweb\\ibeappweb\\views\\kolonnemasterview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA399536-8E48-4CCA-8588-DE69E2BEF1B1}|IbeAppWeb\\IbeAppWeb.csproj|solutionrelative:ibeappweb\\views\\kolonnemasterview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA399536-8E48-4CCA-8588-DE69E2BEF1B1}|IbeAppWeb\\IbeAppWeb.csproj|i:\\ibeappweb\\ibeappweb\\services\\dummyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA399536-8E48-4CCA-8588-DE69E2BEF1B1}|IbeAppWeb\\IbeAppWeb.csproj|solutionrelative:ibeappweb\\services\\dummyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA399536-8E48-4CCA-8588-DE69E2BEF1B1}|IbeAppWeb\\IbeAppWeb.csproj|i:\\ibeappweb\\ibeappweb\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{CA399536-8E48-4CCA-8588-DE69E2BEF1B1}|IbeAppWeb\\IbeAppWeb.csproj|solutionrelative:ibeappweb\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA399536-8E48-4CCA-8588-DE69E2BEF1B1}|IbeAppWeb\\IbeAppWeb.csproj|i:\\ibeappweb\\ibeappweb\\pages\\test.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{CA399536-8E48-4CCA-8588-DE69E2BEF1B1}|IbeAppWeb\\IbeAppWeb.csproj|solutionrelative:ibeappweb\\pages\\test.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{CA399536-8E48-4CCA-8588-DE69E2BEF1B1}|IbeAppWeb\\IbeAppWeb.csproj|c:\\projects\\ibeappweb\\ibeappweb\\dtos\\arbeitsscheindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA399536-8E48-4CCA-8588-DE69E2BEF1B1}|IbeAppWeb\\IbeAppWeb.csproj|solutionrelative:ibeappweb\\dtos\\arbeitsscheindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 18,
+          "SelectedChildIndex": 21,
           "Children": [
             {
               "$type": "Bookmark",
@@ -55,6 +43,26 @@
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Bookmark",
@@ -86,90 +94,60 @@
             },
             {
               "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ArbeitsscheinService.cs",
-              "DocumentMoniker": "I:\\IbeAppWeb\\IbeAppWeb\\Services\\ArbeitsscheinService.cs",
-              "RelativeDocumentMoniker": "IbeAppWeb\\Services\\ArbeitsscheinService.cs",
-              "ToolTip": "I:\\IbeAppWeb\\IbeAppWeb\\Services\\ArbeitsscheinService.cs",
-              "RelativeToolTip": "IbeAppWeb\\Services\\ArbeitsscheinService.cs",
+              "DocumentIndex": 2,
+              "Title": "imageHelper.js",
+              "DocumentMoniker": "C:\\Projects\\IbeAppWeb\\IbeAppWeb\\wwwroot\\js\\imageHelper.js",
+              "RelativeDocumentMoniker": "IbeAppWeb\\wwwroot\\js\\imageHelper.js",
+              "ToolTip": "C:\\Projects\\IbeAppWeb\\IbeAppWeb\\wwwroot\\js\\imageHelper.js",
+              "RelativeToolTip": "IbeAppWeb\\wwwroot\\js\\imageHelper.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-31T09:39:57.043Z",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-04-01T13:07:14.932Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "index.html",
+              "DocumentMoniker": "C:\\Projects\\IbeAppWeb\\IbeAppWeb\\wwwroot\\index.html",
+              "RelativeDocumentMoniker": "IbeAppWeb\\wwwroot\\index.html",
+              "ToolTip": "C:\\Projects\\IbeAppWeb\\IbeAppWeb\\wwwroot\\index.html",
+              "RelativeToolTip": "IbeAppWeb\\wwwroot\\index.html",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-04-01T12:53:45.684Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "KolonneMasterView.cs",
-              "DocumentMoniker": "I:\\IbeAppWeb\\IbeAppWeb\\Views\\KolonneMasterView.cs",
-              "RelativeDocumentMoniker": "IbeAppWeb\\Views\\KolonneMasterView.cs",
-              "ToolTip": "I:\\IbeAppWeb\\IbeAppWeb\\Views\\KolonneMasterView.cs",
-              "RelativeToolTip": "IbeAppWeb\\Views\\KolonneMasterView.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Title": "ArbeitsscheinDto.cs",
+              "DocumentMoniker": "C:\\Projects\\IbeAppWeb\\IbeAppWeb\\DTOs\\ArbeitsscheinDto.cs",
+              "RelativeDocumentMoniker": "IbeAppWeb\\DTOs\\ArbeitsscheinDto.cs",
+              "ToolTip": "C:\\Projects\\IbeAppWeb\\IbeAppWeb\\DTOs\\ArbeitsscheinDto.cs",
+              "RelativeToolTip": "IbeAppWeb\\DTOs\\ArbeitsscheinDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-26T14:35:56.44Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DummyService.cs",
-              "DocumentMoniker": "I:\\IbeAppWeb\\IbeAppWeb\\Services\\DummyService.cs",
-              "RelativeDocumentMoniker": "IbeAppWeb\\Services\\DummyService.cs",
-              "ToolTip": "I:\\IbeAppWeb\\IbeAppWeb\\Services\\DummyService.cs",
-              "RelativeToolTip": "IbeAppWeb\\Services\\DummyService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-26T14:33:57.839Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Umsatz.razor",
-              "DocumentMoniker": "I:\\IbeAppWeb\\IbeAppWeb\\Pages\\Umsatz.razor",
-              "RelativeDocumentMoniker": "IbeAppWeb\\Pages\\Umsatz.razor",
-              "ToolTip": "I:\\IbeAppWeb\\IbeAppWeb\\Pages\\Umsatz.razor",
-              "RelativeToolTip": "IbeAppWeb\\Pages\\Umsatz.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-26T14:11:53.223Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Test.razor",
-              "DocumentMoniker": "I:\\IbeAppWeb\\IbeAppWeb\\Pages\\Test.razor",
-              "RelativeDocumentMoniker": "IbeAppWeb\\Pages\\Test.razor",
-              "ToolTip": "I:\\IbeAppWeb\\IbeAppWeb\\Pages\\Test.razor",
-              "RelativeToolTip": "IbeAppWeb\\Pages\\Test.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-26T14:09:28.037Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "NavMenu.razor",
-              "DocumentMoniker": "I:\\IbeAppWeb\\IbeAppWeb\\Layout\\NavMenu.razor",
-              "RelativeDocumentMoniker": "IbeAppWeb\\Layout\\NavMenu.razor",
-              "ToolTip": "I:\\IbeAppWeb\\IbeAppWeb\\Layout\\NavMenu.razor",
-              "RelativeToolTip": "IbeAppWeb\\Layout\\NavMenu.razor",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAIwBoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-26T13:01:13.254Z"
+              "WhenOpened": "2025-04-01T09:39:53.784Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Arbeitsscheine.razor",
-              "DocumentMoniker": "I:\\IbeAppWeb\\IbeAppWeb\\Pages\\Arbeitsscheine.razor",
+              "DocumentMoniker": "C:\\Projects\\IbeAppWeb\\IbeAppWeb\\Pages\\Arbeitsscheine.razor",
               "RelativeDocumentMoniker": "IbeAppWeb\\Pages\\Arbeitsscheine.razor",
-              "ToolTip": "I:\\IbeAppWeb\\IbeAppWeb\\Pages\\Arbeitsscheine.razor",
+              "ToolTip": "C:\\Projects\\IbeAppWeb\\IbeAppWeb\\Pages\\Arbeitsscheine.razor",
               "RelativeToolTip": "IbeAppWeb\\Pages\\Arbeitsscheine.razor",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAAAEwAAABbAAAAAAAAAA==",
+              "ViewState": "AgIAAMgAAAAAAAAAAAAUwNwAAABYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-03-26T08:58:56.224Z",
               "EditorCaption": ""
