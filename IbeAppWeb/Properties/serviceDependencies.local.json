@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "identityapp1": {
+      "connectionInfo": "App registration: IbeWebAppAAD, Tenant: GT-informatik (gt-informatik.de - Microsoft Entra ID)",
+      "type": "identityapp.default"
+    }
+  }
+}
