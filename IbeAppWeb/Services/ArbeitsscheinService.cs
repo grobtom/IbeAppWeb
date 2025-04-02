@@ -46,6 +46,54 @@ public class ArbeitsscheinService
         }
     }
 
+    public async Task<List<ArbeitsberichtKanalDbSummeDto>> GetArbeitsberichtKanalMonteur (string monteurName, string projectDb = "defaultDb", DateTime? saniertAmVon = null, DateTime? saniertAmBis = null, DateTime? saniertAm = null)
+    {
+        try
+        {
+            var queryParameters = new List<string>();
+            if (saniertAmVon.HasValue) queryParameters.Add($"SaniertAmVon={saniertAmVon.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
+            if (saniertAmBis.HasValue) queryParameters.Add($"SaniertAmBis={saniertAmBis.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
+            if (saniertAm.HasValue) queryParameters.Add($"SaniertAm={saniertAm.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
+            if (!string.IsNullOrEmpty(monteurName)) queryParameters.Add($"MonteurName={monteurName}");
+
+            var queryString = string.Join("&", queryParameters);
+            var request = new HttpRequestMessage(HttpMethod.Get, $"api/askanal/monteur?{queryString}");
+            request.Headers.Add("X-IbeProjectDB", projectDb);
+            var response = await _httpClient.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadFromJsonAsync<List<ArbeitsberichtKanalDbSummeDto>>();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error fetching Arbeitsbericht Kanal Monteur");
+            return new List<ArbeitsberichtKanalDbSummeDto>();
+        }
+    }
+
+    public async Task<List<ArbeitsberichtKanalDbSummeDto>> GetArbeitsberichtKanalAnlage(string fahrzeug, string projectDb = "defaultDb", DateTime? saniertAmVon = null, DateTime? saniertAmBis = null, DateTime? saniertAm = null)
+    {
+        try
+        {
+            var queryParameters = new List<string>();
+            if (saniertAmVon.HasValue) queryParameters.Add($"SaniertAmVon={saniertAmVon.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
+            if (saniertAmBis.HasValue) queryParameters.Add($"SaniertAmBis={saniertAmBis.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
+            if (saniertAm.HasValue) queryParameters.Add($"SaniertAm={saniertAm.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
+            if (!string.IsNullOrEmpty(fahrzeug)) queryParameters.Add($"Fahrzeug={fahrzeug}");
+
+            var queryString = string.Join("&", queryParameters);
+            var request = new HttpRequestMessage(HttpMethod.Get, $"api/askanal/anlage?{queryString}");
+            request.Headers.Add("X-IbeProjectDB", projectDb);
+            var response = await _httpClient.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadFromJsonAsync<List<ArbeitsberichtKanalDbSummeDto>>();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error fetching Arbeitsbericht Kanal Anlage");
+            return new List<ArbeitsberichtKanalDbSummeDto>();
+        }
+    }
+
     public async Task<List<ArbeitsscheinDto>> GetArbeitsscheineSchachtAsync(string? firma = null, DateTime? saniertAmVon = null, DateTime? saniertAmBis = null, DateTime? saniertAm = null, string? abschlagsrechnung = null, string? kolonnenfuehrer = null, string? fahrzeug = null, string projectDb = "defaultDb")
     {
         try

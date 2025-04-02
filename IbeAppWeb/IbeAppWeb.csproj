@@ -12,6 +12,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.3" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" Version="9.0.3" />
     <PackageReference Include="Syncfusion.Blazor.Grid" Version="29.1.33" />
+    <PackageReference Include="Syncfusion.Blazor.Navigations" Version="29.1.35" />
     <PackageReference Include="Syncfusion.Blazor.Themes" Version="29.1.33" />
   </ItemGroup>
 

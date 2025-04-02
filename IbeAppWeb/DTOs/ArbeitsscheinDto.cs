@@ -12,6 +12,7 @@ public class ArbeitsscheinDto
     public string Monteur { get; set; }
     public List<MonteurDto> MonteurList { get; set; } = new();
     public string? Fahrzeug { get; set; }
+    public List<FahrzeugDto> FahrzeugList { get; set; } = new();
     public decimal Menge { get; set; }
     public DateTime SaniertAm { get; set; }
     public string? Abschlagsrechnung { get; set; }
