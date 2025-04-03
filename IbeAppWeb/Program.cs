@@ -1,4 +1,5 @@
 using IbeAppWeb;
+using IbeAppWeb.Services;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Syncfusion.Blazor;
@@ -18,6 +19,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 builder.Services.AddScoped<ArbeitsscheinService>();
 builder.Services.AddScoped<ProjectService>();
+builder.Services.AddScoped<UmsatzService>();
 
 builder.Services.AddSyncfusionBlazor();
 

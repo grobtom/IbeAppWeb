@@ -1,29 +1,142 @@
 ﻿@page "/umsatz"
-@using IbeAppWeb.Views
-@inject Services.DummyService Service
+@using IbeAppWeb.DTOs
+@using System.ComponentModel.DataAnnotations
+@using IbeAppWeb.Services
+@inject ProjectService ProjectService
+@inject UmsatzService UmsatzService
+
 
 <h3>Umsatz</h3>
 
-<SfGrid Width="1200px" DataSource="@masterDaten">
-    <GridColumns>
-        <GridColumn Field="Ausfuehrungsdatum" HeaderText="Datum" Type="ColumnType.Date" Format="d" Width="120" />
-        <GridColumn Field="Kolonnenfuehrer" HeaderText="Kolonnenführer" Width="150" />
-    </GridColumns>
-</SfGrid>
+<EditForm Model="@formModel" OnValidSubmit="LoadUmsatz">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="container mt-4">
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="projectDb" class="form-label">Project DB:</label>
+                <InputSelect id="projectDb" class="form-control" @bind-Value="formModel.SelectedProjectId">
+                    <option value="">Select a project</option>
+                    @foreach (var project in projects)
+                    {
+                        <option value="@project.ID">@project.ProjectName</option>
+                    }
+                </InputSelect>
+            </div>
+            <div class="col-md-4">
+                <label for="saniertAm" class="form-label">Saniert Am:</label>
+                <InputDate id="saniertAm" class="form-control" @bind-Value="formModel.SaniertAm" />
+            </div>            
+        </div>
+        <div class="row mb-3">            
+            <div class="col-md-4 d-flex align-items-end">
+                <button class="btn btn-primary me-2" type="submit" disabled="@isLoading">Lade Umsatz</button>
+                <button class="btn btn-secondary" type="button" @onclick="ResetForm">Reset</button>
+            </div>
+        </div>
+    </div>
+</EditForm>
+<div>
+    @if (isLoading)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else if (errorOccurred)
+    {
+        <div class="alert alert-danger" role="alert">
+            An error occurred. Please reload the page.
+        </div>
+    }
+    else if (masterDaten == null || masterDaten.Count == 0)
+    {
+        <div class="alert alert-warning" role="alert">
+            Keine Umsatzdaten gefunden.
+        </div>
+    }
+    else
+    {
+        <SfGrid ID="Grid" @ref="grid" DataSource="@masterDaten" AllowReordering="true" AllowGrouping="true" AllowPdfExport="true">           
+            <GridColumns>
+                <GridColumn Field=@nameof(UmsatzDto.SaniertAm) HeaderText="Saniert am" Width="80" Format="dd.MM.yyyy"></GridColumn>
+                <GridColumn Field=@nameof(UmsatzDto.Fahrzeug) HeaderText="Fahrzeug" Width="40"></GridColumn>
+                <GridColumn Field=@nameof(UmsatzDto.Kolonnenfuehrer) HeaderText="Kolonnenführer" Width="80"></GridColumn>
+                <GridColumn Field=@nameof(UmsatzDto.Umsatz) HeaderText="Umsatz" Width="80"></GridColumn>
+            </GridColumns>
+        </SfGrid>
+    }
+</div>
+
 
 @code {
-    private List<KolonneMasterView> masterDaten;
+    private SfGrid<UmsatzDto> grid;
+    private List<UmsatzDto> masterDaten;
+    private List<Project> projects = new();
+    private UmsatzFormModel formModel = new();
+
+    private bool isLoading = false;
+    private bool errorOccurred = false;
+    private string base64Image;
+    private string projectDb;
 
     protected override async Task OnInitializedAsync()
     {
-        var flat = await Service.GetUmsatzdatenAsync();
-        masterDaten = flat
-            .GroupBy(x => new { x.Ausfuehrungsdatum, x.Kolonnenfuehrer })
-            .Select(g => new KolonneMasterView
-            {
-                Ausfuehrungsdatum = g.Key.Ausfuehrungsdatum,
-                Kolonnenfuehrer = g.Key.Kolonnenfuehrer,
-                Details = g.ToList()
-            }).ToList();
+        await LoadProjects();
     }
+
+    private async Task LoadProjects()
+    {
+        try
+        {
+            projects = await ProjectService.GetActiveProjectsAsync();
+        }
+        catch
+        {
+            errorOccurred = true;
+        }
+    }
+
+    private void ResetForm()
+    {
+        formModel = new();
+        masterDaten = null;
+    }
+
+    public class UmsatzFormModel
+    {
+        [Required]
+        public int? SelectedProjectId { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime? SaniertAm { get; set; }
+
+        public string? Fahrzeug { get; set; }
+    }
+
+    private async Task LoadUmsatz()
+    {
+        isLoading = true;
+        errorOccurred = false;
+
+        try
+        {
+            var selectedProject = projects.FirstOrDefault(p => p.ID == formModel.SelectedProjectId);
+            projectDb = selectedProject?.ProjectName ?? "defaultDb";
+
+            masterDaten = await UmsatzService.GetUmsatzByFahrzeugAndDateKanalAsync(
+                saniertAm: formModel.SaniertAm,
+                fahrzeug: formModel.Fahrzeug,
+                projectDb: projectDb
+            );
+        }
+        catch
+        {
+            errorOccurred = true;
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
 }
