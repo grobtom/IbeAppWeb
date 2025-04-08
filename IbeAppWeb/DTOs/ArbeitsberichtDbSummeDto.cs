@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace IbeAppWeb.DTOs
 {
-    public class ArbeitsberichtKanalDbSummeDto
+    public class ArbeitsberichtDbSummeDto
     {
         public string? Projektname { get; set; }
         public List<ArbeitsscheinDto> Arbeitsscheine { get; set; } = new();

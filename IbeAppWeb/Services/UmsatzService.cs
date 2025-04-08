@@ -15,10 +15,9 @@ public class UmsatzService
         _logger = logger;
     }
 
-    public async Task<List<UmsatzDto>> GetUmsatzByFahrzeugAndDateKanalAsync
+    public async Task<UmsatzResultDto> GetUmsatzByFahrzeugAndDateKanalAsync
     (
-        DateTime? saniertAm = null, 
-        string? fahrzeug = null, 
+        DateTime? saniertAm = null,
         string projectDb = "defaultDb"
     )
     {
@@ -34,12 +33,18 @@ public class UmsatzService
             var response = await _httpClient.SendAsync(request);
             response.EnsureSuccessStatusCode();
 
-            return await response.Content.ReadFromJsonAsync<List<UmsatzDto>>();
+            var result = await response.Content.ReadFromJsonAsync<UmsatzResultDto>();
+            if (result == null)
+            {
+                throw new InvalidOperationException("Response content is null.");
+            }
+
+            return result;
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error fetching Umsatzdatá");
-            return new List<UmsatzDto>();
+            return new UmsatzResultDto();
         }
     }
 }

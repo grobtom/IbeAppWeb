@@ -73,6 +73,7 @@
     private List<UmsatzDto> masterDaten;
     private List<Project> projects = new();
     private UmsatzFormModel formModel = new();
+    private UmsatzResultDto umsatzData;
 
     private bool isLoading = false;
     private bool errorOccurred = false;
@@ -110,7 +111,6 @@
         [DataType(DataType.Date)]
         public DateTime? SaniertAm { get; set; }
 
-        public string? Fahrzeug { get; set; }
     }
 
     private async Task LoadUmsatz()
@@ -123,11 +123,11 @@
             var selectedProject = projects.FirstOrDefault(p => p.ID == formModel.SelectedProjectId);
             projectDb = selectedProject?.ProjectName ?? "defaultDb";
 
-            masterDaten = await UmsatzService.GetUmsatzByFahrzeugAndDateKanalAsync(
+            umsatzData = await UmsatzService.GetUmsatzByFahrzeugAndDateKanalAsync(
                 saniertAm: formModel.SaniertAm,
-                fahrzeug: formModel.Fahrzeug,
                 projectDb: projectDb
             );
+            masterDaten = umsatzData.UmsatzFahrzeugDatum;    
         }
         catch
         {

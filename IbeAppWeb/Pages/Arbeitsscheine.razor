@@ -159,6 +159,8 @@
 
     private List<ArbeitsscheinDto> arbeitsscheine;
 
+    private ArbeitsscheinResultDto arbeitsscheinResultDto;
+
     private List<Project> projects = new();
 
     private List<string> ToolbarItems = new List<string>() { "PdfExport" };
@@ -306,7 +308,7 @@
             var selectedProject = projects.FirstOrDefault(p => p.ID == formModel.SelectedProjectId);
             projectDb = selectedProject?.ProjectName ?? "defaultDb";
 
-            arbeitsscheine = await ArbeitsscheinService.GetArbeitsscheineAsync(
+            arbeitsscheinResultDto = await ArbeitsscheinService.GetArbeitsscheineAsync(
                 firma: formModel.Firma,
                 saniertAmVon: formModel.SaniertAmVon,
                 saniertAmBis: formModel.SaniertAmBis,
@@ -316,6 +318,7 @@
                 fahrzeug: formModel.Fahrzeug,
                 projectDb: projectDb
             );
+            arbeitsscheine = arbeitsscheinResultDto.Arbeitsscheine;
         }
         catch
         {

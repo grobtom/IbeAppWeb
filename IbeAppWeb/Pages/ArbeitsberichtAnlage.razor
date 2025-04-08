@@ -24,6 +24,10 @@
                 </InputSelect>
             </div>
             <div class="col-md-4">
+                <label class="form-label">Schacht/Fettabscheider:</label>
+                <InputCheckbox @bind-Value="isSchachtEnabled" />
+            </div>
+            <div class="col-md-4">
                 <label for="saniertAmVon" class="form-label">Saniert Am Von:</label>
                 <InputDate id="saniertAmVon" class="form-control" @bind-Value="formModel.SaniertAmVon" disabled="@IsSaniertAmUsed" />
             </div>
@@ -159,7 +163,9 @@
 
     private ArbeitsscheinFormModel formModel = new();
 
-    private List<ArbeitsberichtKanalDbSummeDto> berichtDbSumme;
+    private List<ArbeitsberichtDbSummeDto> berichtDbSumme;
+
+    private ArbeitsberichtDbSummeResultDto arbeitsberichtResultDto;
 
     private List<ArbeitsscheinDto> arbeitsscheine;
 
@@ -170,6 +176,8 @@
     private bool errorOccurred = false;
     private string base64Image;
     private string projectDb;
+
+    private bool isSchachtEnabled = false;
 
     private bool IsSaniertAmUsed => formModel.SaniertAm.HasValue;
 
@@ -310,14 +318,29 @@
         {
             var selectedProject = projects.FirstOrDefault(p => p.ID == formModel.SelectedProjectId);
             projectDb = selectedProject?.ProjectName ?? "defaultDb";
-
-            berichtDbSumme = await ArbeitsscheinService.GetArbeitsberichtKanalAnlage(
-                saniertAmVon: formModel.SaniertAmVon,
-                saniertAmBis: formModel.SaniertAmBis,
-                saniertAm: formModel.SaniertAm,
-                fahrzeug: formModel.Fahrzeug,
-                projectDb: projectDb
-            );
+            if (!isSchachtEnabled)
+            { 
+                arbeitsberichtResultDto = await ArbeitsscheinService.GetArbeitsberichtAnlage(
+                    schacht: false,
+                    saniertAmVon: formModel.SaniertAmVon,
+                    saniertAmBis: formModel.SaniertAmBis,
+                    saniertAm: formModel.SaniertAm,
+                    fahrzeug: formModel.Fahrzeug,
+                    projectDb: projectDb
+                );
+            }
+            else
+            {
+                arbeitsberichtResultDto = await ArbeitsscheinService.GetArbeitsberichtAnlage(
+                    schacht: true,
+                    saniertAmVon: formModel.SaniertAmVon,
+                    saniertAmBis: formModel.SaniertAmBis,
+                    saniertAm: formModel.SaniertAm,
+                    fahrzeug: formModel.Fahrzeug,
+                    projectDb: projectDb
+                );
+            }
+            berichtDbSumme = arbeitsberichtResultDto.Arbeitsberichte;
             arbeitsscheine = berichtDbSumme.SelectMany(b => b.Arbeitsscheine).ToList();
         }
         catch

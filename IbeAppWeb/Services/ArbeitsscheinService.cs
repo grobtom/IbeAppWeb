@@ -17,7 +17,7 @@ public class ArbeitsscheinService
         _logger = logger;
     }
 
-    public async Task<List<ArbeitsscheinDto>> GetArbeitsscheineAsync(string? firma = null, DateTime? saniertAmVon = null, DateTime? saniertAmBis = null, DateTime? saniertAm = null, string? abschlagsrechnung = null, string? kolonnenfuehrer = null, string? fahrzeug = null, string projectDb = "defaultDb")
+    public async Task<ArbeitsscheinResultDto> GetArbeitsscheineAsync(string? firma = null, DateTime? saniertAmVon = null, DateTime? saniertAmBis = null, DateTime? saniertAm = null, string? abschlagsrechnung = null, string? kolonnenfuehrer = null, string? fahrzeug = null, string projectDb = "defaultDb")
     {
         try
         {
@@ -37,16 +37,16 @@ public class ArbeitsscheinService
             var response = await _httpClient.SendAsync(request);
             response.EnsureSuccessStatusCode();
 
-            return await response.Content.ReadFromJsonAsync<List<ArbeitsscheinDto>>();
+            return await response.Content.ReadFromJsonAsync<ArbeitsscheinResultDto>();
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error fetching Arbeitsscheine");
-            return new List<ArbeitsscheinDto>();
+            return new ArbeitsscheinResultDto();
         }
     }
 
-    public async Task<List<ArbeitsberichtKanalDbSummeDto>> GetArbeitsberichtKanalMonteur (string monteurName, string projectDb = "defaultDb", DateTime? saniertAmVon = null, DateTime? saniertAmBis = null, DateTime? saniertAm = null)
+    public async Task<ArbeitsberichtDbSummeResultDto> GetArbeitsberichtMonteur (bool schacht,string monteurName, string projectDb = "defaultDb", DateTime? saniertAmVon = null, DateTime? saniertAmBis = null, DateTime? saniertAm = null)
     {
         try
         {
@@ -57,20 +57,30 @@ public class ArbeitsscheinService
             if (!string.IsNullOrEmpty(monteurName)) queryParameters.Add($"MonteurName={monteurName}");
 
             var queryString = string.Join("&", queryParameters);
-            var request = new HttpRequestMessage(HttpMethod.Get, $"api/askanal/monteur?{queryString}");
+
+            HttpRequestMessage request;
+
+            if (schacht)
+            {
+                request = new HttpRequestMessage(HttpMethod.Get, $"api/asschacht/monteur?{queryString}");
+            }
+            else
+            {
+                request = new HttpRequestMessage(HttpMethod.Get, $"api/askanal/monteur?{queryString}");
+            }
             request.Headers.Add("X-IbeProjectDB", projectDb);
             var response = await _httpClient.SendAsync(request);
             response.EnsureSuccessStatusCode();
-            return await response.Content.ReadFromJsonAsync<List<ArbeitsberichtKanalDbSummeDto>>();
+            return await response.Content.ReadFromJsonAsync<ArbeitsberichtDbSummeResultDto>();
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error fetching Arbeitsbericht Kanal Monteur");
-            return new List<ArbeitsberichtKanalDbSummeDto>();
+            return new ArbeitsberichtDbSummeResultDto();
         }
     }
 
-    public async Task<List<ArbeitsberichtKanalDbSummeDto>> GetArbeitsberichtKanalAnlage(string fahrzeug, string projectDb = "defaultDb", DateTime? saniertAmVon = null, DateTime? saniertAmBis = null, DateTime? saniertAm = null)
+    public async Task<ArbeitsberichtDbSummeResultDto> GetArbeitsberichtAnlage(bool schacht, string fahrzeug, string projectDb = "defaultDb", DateTime? saniertAmVon = null, DateTime? saniertAmBis = null, DateTime? saniertAm = null)
     {
         try
         {
@@ -81,16 +91,26 @@ public class ArbeitsscheinService
             if (!string.IsNullOrEmpty(fahrzeug)) queryParameters.Add($"Fahrzeug={fahrzeug}");
 
             var queryString = string.Join("&", queryParameters);
-            var request = new HttpRequestMessage(HttpMethod.Get, $"api/askanal/anlage?{queryString}");
+            HttpRequestMessage request;
+
+            if (schacht)
+            {
+                request = new HttpRequestMessage(HttpMethod.Get, $"api/asschacht/anlage?{queryString}");
+            }
+            else
+            {
+                request = new HttpRequestMessage(HttpMethod.Get, $"api/askanal/anlage?{queryString}");
+            }
+
             request.Headers.Add("X-IbeProjectDB", projectDb);
             var response = await _httpClient.SendAsync(request);
             response.EnsureSuccessStatusCode();
-            return await response.Content.ReadFromJsonAsync<List<ArbeitsberichtKanalDbSummeDto>>();
+            return await response.Content.ReadFromJsonAsync<ArbeitsberichtDbSummeResultDto>();
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error fetching Arbeitsbericht Kanal Anlage");
-            return new List<ArbeitsberichtKanalDbSummeDto>();
+            return new ArbeitsberichtDbSummeResultDto();
         }
     }
 
