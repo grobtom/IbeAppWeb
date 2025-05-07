@@ -1,46 +1,32 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">IbeAppWeb</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+﻿@using Microsoft.FluentUI.AspNetCore.Components
+@using Microsoft.FluentUI.AspNetCore.Components.Icons
+
+<div class="top-row ps-3 navbar navbar-dark">
+
+
+
+<FluentStack Orientation="Microsoft.FluentUI.AspNetCore.Components.Orientation.Horizontal" Width="100%">
+    <div>
+        <FluentNavMenu @bind-Expanded="@Expanded" Width="200" Collapsible="true" CollapsedChildNavigation="@EnableCollapsedChildNavigation" Title="Collapsible demo">
+                <FluentNavGroup Title="Arbeitsberichte" Tooltip="Zu den Arbeitsberichten" Icon="@(new Icons.Regular.Size24.EarthLeaf())" Class="fluent-navlink">
+                    <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafOne())" Href="/arbeitsscheine" Tooltip="Zum allgemeinen Arbeitsbericht" Class="fluent-navlink">Arbeitsbericht alle</FluentNavLink>
+                    <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafTwo())" Href="/arbeitsberichtmonteur" Tooltip="Arbeitsbericht für Monteure" Class="fluent-navlink">Arbeitsbericht Monteur</FluentNavLink>
+                    <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafThree())" Href="/arbeitsberichtanlage" Tooltip="Arbeitsbericht für Anlagen" Class="fluent-navlink">Arbeitsbericht Anlage</FluentNavLink>
+            </FluentNavGroup>
+                <FluentNavGroup Title="Umsatz" Tooltip="Item 5 tooltip" Class="fluent-navlink">
+                    <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafOne())" Href="/umsatz" Tooltip="Zum Umsatz" Class="fluent-navlink">Umsatz</FluentNavLink>
+            </FluentNavGroup>
+                <FluentNavGroup Title="Projekte" Tooltip="Item 5 tooltip" Class="fluent-navlink">
+                    <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafOne())" Href="/project-anlage" Tooltip="Projekt Anlage Management" Class="fluent-navlink">Projekt Anlage</FluentNavLink>
+                </FluentNavGroup>
+        </FluentNavMenu>
     </div>
-</div>
 
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-    <nav class="nav flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="arbeitsscheine">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Arbeitsberichte
-            </NavLink>
-            <NavLink class="nav-link" href="arbeitsberichtmonteur">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Arbeitsbericht Monteur
-            </NavLink>
-            <NavLink class="nav-link" href="arbeitsberichtanlage">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Arbeitsbericht Anlage
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="umsatz">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Umsatz
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="test">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Test
-            </NavLink>
-        </div>
-
-    </nav>
+</FluentStack>
 </div>
 
 @code {
-    private bool collapseNavMenu = true;
 
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
+    bool Expanded = true;
+    bool EnableCollapsedChildNavigation = true;
 }

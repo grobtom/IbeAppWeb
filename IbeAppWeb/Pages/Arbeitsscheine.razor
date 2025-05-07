@@ -19,7 +19,7 @@
                     <option value="">Select a project</option>
                     @foreach (var project in projects)
                     {
-                        <option value="@project.ID">@project.ProjectName</option>
+                        <option value="@project.ProjectId">@project.ProjectName</option>
                     }
                 </InputSelect>
             </div>
@@ -305,7 +305,7 @@
 
         try
         {
-            var selectedProject = projects.FirstOrDefault(p => p.ID == formModel.SelectedProjectId);
+            var selectedProject = projects.FirstOrDefault(p => p.ProjectId == formModel.SelectedProjectId);
             projectDb = selectedProject?.ProjectName ?? "defaultDb";
 
             arbeitsscheinResultDto = await ArbeitsscheinService.GetArbeitsscheineAsync(

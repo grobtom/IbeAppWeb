@@ -1,0 +1,105 @@
+﻿@page "/project-anlage"
+@using IbeAppWeb.DTOs
+@using IbeAppWeb.Services
+@inject ProjectAnlageService ProjectAnlageService
+
+<h3>Project Anlage Management</h3>
+
+<input @bind="projectId" placeholder="Project ID" />
+<input @bind="anlageId" placeholder="Anlage ID" />
+<input @bind="oldAnlageId" placeholder="Alte Anlage ID" />
+
+<button @onclick="AssignAnlage">Anlage Zuordnen</button>
+<button @onclick="UpdateAnlage">Update Zuordnung</button>
+<button @onclick="RemoveAnlage">Lösche Zuordnung</button>
+<button @onclick="GetAnlagen">Zeige Anlagen</button>
+<button @onclick="GetAllAnlagen">Zeige alle projekte</button>
+
+@if (anlagen != null)
+{
+    <table class="table">
+       
+        
+            @if (!alle)
+            {
+                <thead>
+                    <tr>
+                        <th>Project ID</th>
+                        <th>Anlage ID</th>
+                        <th>Anlage Name</th>
+                    </tr>
+                </thead>
+            <tbody>
+                @foreach (var anlage in anlagen)
+                {
+                    <tr>
+                        <td>@anlage.ProjectId</td>
+                        <td>@anlage.AnlageId</td>
+                        <td>@anlage.AnlageName</td>
+                    </tr>
+                }
+            </tbody>
+            }
+            else{
+                <thead>
+                    <tr>
+                        <th>Project ID</th>
+                        <th>Project Name</th>
+                        <th>AnlageId</th>
+                        <th>Anlage Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var anlage in allAnlagen)
+                {
+                <tr>
+                    <td>@anlage.ProjectId</td>
+                    <td>@anlage.ProjectName</td>
+                        @foreach (var an in anlage.Anlagen)
+                        {
+                            <td>@an.AnlageId</td>
+                            <td>@an.AnlageName</td>
+                        }
+                </tr>
+                }
+            </tbody>
+            }
+        
+    </table>
+}
+
+@code {
+    private int projectId;
+    private int anlageId;
+    private int oldAnlageId;
+    private IEnumerable<ProjectAnlageDto> anlagen;
+    private IEnumerable<ProjectWithAnlagenDto> allAnlagen;
+    private bool alle = false;
+
+    private async Task AssignAnlage()
+    {
+        await ProjectAnlageService.AssignAnlageToProject(new AssignAnlageToProjectDto { ProjectId = projectId, AnlageId = anlageId });
+    }
+
+    private async Task UpdateAnlage()
+    {
+        await ProjectAnlageService.UpdateAssignment(new UpdateProjectAnlageDto { ProjectId = projectId, OldAnlageId = oldAnlageId, NewAnlageId = anlageId });
+    }
+
+    private async Task RemoveAnlage()
+    {
+        await ProjectAnlageService.RemoveAssignment(projectId, anlageId);
+    }
+
+    private async Task GetAnlagen()
+    {
+        anlagen = await ProjectAnlageService.GetAnlagenForProject(projectId);
+        alle = false;
+    }
+
+    private async Task GetAllAnlagen()
+    {
+        allAnlagen = await ProjectAnlageService.GetAllAnlagen();
+        alle = true;
+    }
+}

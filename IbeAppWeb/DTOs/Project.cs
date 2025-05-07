@@ -2,7 +2,7 @@
 {
     public class Project
     {
-        public int ID { get; set; }
+        public int ProjectId { get; set; }
         public string ProjectName { get; set; } = string.Empty;
         public DateTime? CreatedOnUtc { get; set; }
         public bool DbActive { get; set; }
