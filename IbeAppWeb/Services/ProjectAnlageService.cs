@@ -22,7 +22,7 @@ public class ProjectAnlageService
         return await _httpClient.GetFromJsonAsync<IEnumerable<ProjectAnlageDto>>($"api/ProjectAnlage/{projectId}");
     }
 
-    public async Task<IEnumerable<ProjectWithAnlagenDto>> GetAllAnlagen()
+    public async Task<IEnumerable<ProjectWithAnlagenDto>> GetAllProjectAnlagen()
     {
         return await _httpClient.GetFromJsonAsync<IEnumerable<ProjectWithAnlagenDto>>($"api/ProjectAnlage/all");
     }
@@ -35,5 +35,10 @@ public class ProjectAnlageService
     public async Task RemoveAssignment(int projectId, int anlageId)
     {
         await _httpClient.DeleteAsync($"api/ProjectAnlage/remove?projectId={projectId}&anlageId={anlageId}");
+    }
+
+    public async Task<IEnumerable<AnlageDto>> GetAllAnlagen()
+    {
+        return await _httpClient.GetFromJsonAsync<IEnumerable<AnlageDto>>($"api/Anlage");
     }
 }
