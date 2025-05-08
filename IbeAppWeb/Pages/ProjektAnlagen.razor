@@ -6,6 +6,11 @@
 
 <h3>Project Anlage Management</h3>
 
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger">@errorMessage</div>
+}
+
 <label for="projectSelect">Select Project:</label>
 <select id="projectSelect" @bind="projectId">
     @foreach (var project in projects)
@@ -15,7 +20,7 @@
 </select>
 
 <label for="existingAnlageSelect">Bestehende Anlage:</label>
-<select id="existingAnlageSelect" @bind="anlageId">
+<select id="existingAnlageSelect" @bind="oldAnlageId">
     @foreach (var anlage in anlagenList)
     {
         <option value="@anlage.AnlageId">@anlage.AnlageName</option>
@@ -23,7 +28,7 @@
 </select>
 
 <label for="newAnlageSelect">Neue Anlage:</label>
-<select id="newAnlageSelect" @bind="anlageId">
+<select id="newAnlageSelect" @bind="newAnlageId">
     @foreach (var anlage in anlagenList)
     {
         <option value="@anlage.AnlageId">@anlage.AnlageName</option>
@@ -69,46 +74,80 @@
 
 @code {
     private int projectId;
-    private int anlageId;
     private int oldAnlageId;
+    private int newAnlageId;
+    private string errorMessage;    
     private IEnumerable<ProjectAnlageDto> anlagen;
     private IEnumerable<ProjectWithAnlagenDto> allAnlagen;
     private IEnumerable<Project> projects;
     private IEnumerable<AnlageDto> anlagenList;
 
-    private bool alle = false;
-
     protected override async Task OnInitializedAsync()
     {
-        projects = await ProjectService.GetActiveProjectsAsync();
-        anlagenList = await ProjectAnlageService.GetAllAnlagen();
+        try
+        {
+            projects = await ProjectService.GetActiveProjectsAsync();
+            anlagenList = await ProjectAnlageService.GetAllAnlagen();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Fehler beim Laden der Daten: {ex.Message}";
+        }
     }
 
 
     private async Task AssignAnlage()
     {
-        await ProjectAnlageService.AssignAnlageToProject(new AssignAnlageToProjectDto { ProjectId = projectId, AnlageId = anlageId });
+        try
+        {
+            if (newAnlageId > 0 && projectId > 0)
+            {
+                await ProjectAnlageService.AssignAnlageToProject(new AssignAnlageToProjectDto { ProjectId = projectId, AnlageId = newAnlageId });
+                await GetProjectAnlage();
+            }
+            else
+            {
+                errorMessage = "Bitte wählen Sie sowohl ein Projekt als auch eine neue Anlage aus.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Fehler beim Zuweisen der Anlage: {ex.Message}";
+        }
     }
 
     private async Task UpdateAnlage()
     {
-        await ProjectAnlageService.UpdateAssignment(new UpdateProjectAnlageDto { ProjectId = projectId, OldAnlageId = oldAnlageId, NewAnlageId = anlageId });
+        try
+        {
+            if (oldAnlageId > 0 && projectId > 0 && newAnlageId > 0)
+            {
+                await ProjectAnlageService.UpdateAssignment(new UpdateProjectAnlageDto { ProjectId = projectId, OldAnlageId = oldAnlageId, NewAnlageId = newAnlageId });
+                await GetProjectAnlage();
+            }
+            else
+            {
+                errorMessage = "Bitte wählen Sie sowohl ein Projekt als auch eine bestehende Anlage aus.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Fehler beim Aktualisieren der Anlage: {ex.Message}";
+        }
     }
 
     private async Task RemoveAnlage()
     {
-        await ProjectAnlageService.RemoveAssignment(projectId, anlageId);
+        await ProjectAnlageService.RemoveAssignment(projectId, oldAnlageId);
     }
 
     private async Task GetProjectAnlage()
     {
         anlagen = await ProjectAnlageService.GetAnlagenForProject(projectId);
-        alle = false;
     }
 
     private async Task GetAllProjectAnlagen()
     {
         allAnlagen = await ProjectAnlageService.GetAllProjectAnlagen();
-        alle = true;
     }
 }
