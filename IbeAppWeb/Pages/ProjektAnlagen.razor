@@ -1,6 +1,7 @@
 ﻿@page "/project-anlage"
 @using IbeAppWeb.DTOs
 @using IbeAppWeb.Services
+@using Syncfusion.Blazor.DropDowns
 @inject ProjectAnlageService ProjectAnlageService
 @inject ProjectService ProjectService
 
@@ -11,34 +12,39 @@
     <div class="alert alert-danger">@errorMessage</div>
 }
 
-<label for="projectSelect">Select Project:</label>
-<select id="projectSelect" @bind="projectId">
-    @foreach (var project in projects)
-    {
-        <option value="@project.ProjectId">@project.ProjectName</option>
-    }
-</select>
+<div class="col-lg-4 control-section sb-property-border">
+    <div class="control-wrapper">
+        <label class="example-label">Wähle Projekt:</label>
+        <SfComboBox TValue="int" TItem="Project" PopupHeight="230px" Placeholder="Projekt" @bind-Value="@projectId" DataSource="@projects">
+            <ComboBoxEvents TValue="int" TItem="Project" ValueChange="OnChange" />
+            <ComboBoxFieldSettings Text="ProjectName" Value="ProjectId" />
+        </SfComboBox>
+    </div>
+</div>
 
-<label for="existingAnlageSelect">Bestehende Anlage:</label>
-<select id="existingAnlageSelect" @bind="oldAnlageId">
-    @foreach (var anlage in anlagenList)
-    {
-        <option value="@anlage.AnlageId">@anlage.AnlageName</option>
-    }
-</select>
+<div class="col-lg-4 control-section sb-property-border">
+    <div class="control-wrapper">
+        <label class="example-label">Bestehende Anlage:</label>
+        <SfComboBox TValue="int" TItem="ProjectAnlageDto" PopupHeight="230px" Placeholder="Anlage" @bind-Value="@oldAnlageId" DataSource="@anlagen">
+            <ComboBoxEvents TValue="int" TItem="ProjectAnlageDto" />
+            <ComboBoxFieldSettings Text="AnlageName" Value="AnlageId" />
+        </SfComboBox>
+    </div>
+</div>
 
-<label for="newAnlageSelect">Neue Anlage:</label>
-<select id="newAnlageSelect" @bind="newAnlageId">
-    @foreach (var anlage in anlagenList)
-    {
-        <option value="@anlage.AnlageId">@anlage.AnlageName</option>
-    }
-</select>
+<div class="col-lg-4 control-section sb-property-border">
+    <div class="control-wrapper">
+        <label class="example-label">Neue Anlage:</label>
+        <SfComboBox TValue="int" TItem="AnlageDto" PopupHeight="230px" Placeholder="Anlage" @bind-Value="@newAnlageId" DataSource="@anlagenList">
+            <ComboBoxEvents TValue="int" TItem="AnlageDto" />
+            <ComboBoxFieldSettings Text="AnlageName" Value="AnlageId" />
+        </SfComboBox>
+    </div>
+</div>
 
 <button @onclick="AssignAnlage">Anlage Zuordnen</button>
 <button @onclick="UpdateAnlage">Update Zuordnung</button>
 <button @onclick="RemoveAnlage">Lösche Zuordnung</button>
-<button @onclick="GetProjectAnlage">Zeige Anlagen</button>
 <button @onclick="GetAllProjectAnlagen">Zeige alle Projekte</button>
 
 @if (anlagen != null)
@@ -139,15 +145,36 @@
     private async Task RemoveAnlage()
     {
         await ProjectAnlageService.RemoveAssignment(projectId, oldAnlageId);
+        await GetProjectAnlage();
     }
 
     private async Task GetProjectAnlage()
     {
         anlagen = await ProjectAnlageService.GetAnlagenForProject(projectId);
+        foreach (var anlage in anlagen)
+        {
+            Console.WriteLine($"AnlageId: {anlage.AnlageId}, AnlageName: {anlage.AnlageName}");
+        }
     }
 
     private async Task GetAllProjectAnlagen()
     {
         allAnlagen = await ProjectAnlageService.GetAllProjectAnlagen();
     }
+
+    private async Task OnProjectChanged(Microsoft.AspNetCore.Components.ChangeEventArgs e)
+    {
+        if (int.TryParse(e.Value?.ToString(), out var selectedProjectId))
+        {
+            projectId = selectedProjectId;
+            await GetProjectAnlage(); // Load Anlagen for the selected project
+        }
+    }
+
+    private async Task OnChange(ChangeEventArgs<int, Project> args)
+    {
+        projectId = args.Value; // Update the selected project ID
+        await GetProjectAnlage(); // Load Anlagen for the selected project
+    }
+
 }
