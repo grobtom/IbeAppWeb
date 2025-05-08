@@ -2,6 +2,8 @@
 @using IbeAppWeb.DTOs
 @using IbeAppWeb.Services
 @using Syncfusion.Blazor.DropDowns
+@using Syncfusion.Blazor.SplitButtons
+   @using Syncfusion.Blazor.Grids
 @inject ProjectAnlageService ProjectAnlageService
 @inject ProjectService ProjectService
 
@@ -15,8 +17,8 @@
 <div class="col-lg-4 control-section sb-property-border">
     <div class="control-wrapper">
         <label class="example-label">Wähle Projekt:</label>
-        <SfComboBox TValue="int" TItem="Project" PopupHeight="230px" Placeholder="Projekt" @bind-Value="@projectId" DataSource="@projects">
-            <ComboBoxEvents TValue="int" TItem="Project" ValueChange="OnChange" />
+        <SfComboBox TValue="int?" TItem="Project" PopupHeight="230px" Placeholder="Projekt" SortOrder="Syncfusion.Blazor.DropDowns.SortOrder.Ascending" @bind-Value="@projectId" DataSource="@projects">
+            <ComboBoxEvents TValue="int?" TItem="Project" ValueChange="OnChange" />
             <ComboBoxFieldSettings Text="ProjectName" Value="ProjectId" />
         </SfComboBox>
     </div>
@@ -25,8 +27,8 @@
 <div class="col-lg-4 control-section sb-property-border">
     <div class="control-wrapper">
         <label class="example-label">Bestehende Anlage:</label>
-        <SfComboBox TValue="int" TItem="ProjectAnlageDto" PopupHeight="230px" Placeholder="Anlage" @bind-Value="@oldAnlageId" DataSource="@anlagen">
-            <ComboBoxEvents TValue="int" TItem="ProjectAnlageDto" />
+        <SfComboBox TValue="int?" TItem="ProjectAnlageDto" PopupHeight="230px" Placeholder="Bestehende Anlage(n)" @bind-Value="@oldAnlageId" DataSource="@anlagen">
+            <ComboBoxEvents TValue="int?" TItem="ProjectAnlageDto" />
             <ComboBoxFieldSettings Text="AnlageName" Value="AnlageId" />
         </SfComboBox>
     </div>
@@ -35,53 +37,63 @@
 <div class="col-lg-4 control-section sb-property-border">
     <div class="control-wrapper">
         <label class="example-label">Neue Anlage:</label>
-        <SfComboBox TValue="int" TItem="AnlageDto" PopupHeight="230px" Placeholder="Anlage" @bind-Value="@newAnlageId" DataSource="@anlagenList">
-            <ComboBoxEvents TValue="int" TItem="AnlageDto" />
+        <SfComboBox TValue="int?" TItem="AnlageDto" PopupHeight="230px" Placeholder="Neue Anlage" SortOrder="Syncfusion.Blazor.DropDowns.SortOrder.Ascending" @bind-Value="@newAnlageId" DataSource="@anlagenList">
+            <ComboBoxEvents TValue="int?" TItem="AnlageDto" />
             <ComboBoxFieldSettings Text="AnlageName" Value="AnlageId" />
         </SfComboBox>
     </div>
 </div>
-
-<button @onclick="AssignAnlage">Anlage Zuordnen</button>
-<button @onclick="UpdateAnlage">Update Zuordnung</button>
-<button @onclick="RemoveAnlage">Lösche Zuordnung</button>
-<button @onclick="GetAllProjectAnlagen">Zeige alle Projekte</button>
-
-@if (anlagen != null)
+<br/>
+<div class="row">
+                <SfButtonGroup Mode="Syncfusion.Blazor.SplitButtons.SelectionMode.Single">
+                    <ButtonGroupButton @onclick="@AssignAnlage">Anlage zuordnen</ButtonGroupButton>
+                    <ButtonGroupButton @onclick="@UpdateAnlage">Update Zuordnung</ButtonGroupButton>
+                    <ButtonGroupButton @onclick="@RemoveAnlage">Lösche Zuordnung</ButtonGroupButton>
+                    <ButtonGroupButton @onclick="@GetAllProjectAnlagen">Zeige alle Projekte</ButtonGroupButton>
+                </SfButtonGroup>
+</div>
+<br/>
+@if (allAnlagen != null)
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Project ID</th>
-                <th>Project Name</th>
-                <th>Anlagen</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var project in projects)
-            {
-                var projectAnlagen = anlagen.Where(a => a.ProjectId == project.ProjectId);
-                <tr>
-                    <td>@project.ProjectId</td>
-                    <td>@project.ProjectName</td>
-                    <td>
-                        <ul>
-                            @foreach (var anlage in projectAnlagen)
-                            {
-                                <li>ID: @anlage.AnlageId, Name: @anlage.AnlageName</li>
-                            }
-                        </ul>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <SfGrid DataSource="@allAnlagen" AllowSorting="true" AllowFiltering="true" AllowPaging="true" AllowSelection="true">
+        <GridPageSettings PageCount="5" PageSizes="true" PageSize="10"></GridPageSettings>
+        <GridSelectionSettings Mode="Syncfusion.Blazor.Grids.SelectionMode.Row" Type="SelectionType.Single"></GridSelectionSettings>
+        <GridEvents RowSelecting="RowselectingHandler" TValue="ProjectWithAnlagenDto"></GridEvents>
+        <GridColumns>
+            <!-- Project ID Column -->
+            <GridColumn Field="ProjectId" HeaderText="Project ID" TextAlign="TextAlign.Center" Width="100"></GridColumn>
+
+            <!-- Project Name Column -->
+            <GridColumn Field="ProjectName" TextAlign="TextAlign.Left" Width="200">
+            <HeaderTemplate>
+                <div>
+                    <span class="e-icon-userlogin e-icons employee"></span> Projekt Name
+                </div>
+            </HeaderTemplate>
+            </GridColumn>
+            <!-- Anlagen Column with Template -->
+            <GridColumn HeaderText="Anlagen" TextAlign="TextAlign.Left" Width="300">
+                <Template>
+                    @{
+                        var project = (context as ProjectWithAnlagenDto);
+                    }
+                    <ul>
+                        @foreach (var anlage in project.Anlagen)
+                        {
+                            <li>ID: @anlage.AnlageId, Name: @anlage.AnlageName</li>
+                        }
+                    </ul>
+                </Template>
+            </GridColumn>
+        </GridColumns>
+    </SfGrid>
 }
 
+
 @code {
-    private int projectId;
-    private int oldAnlageId;
-    private int newAnlageId;
+    private int? projectId;
+    private int? oldAnlageId;
+    private int? newAnlageId;
     private string errorMessage;    
     private IEnumerable<ProjectAnlageDto> anlagen;
     private IEnumerable<ProjectWithAnlagenDto> allAnlagen;
@@ -94,6 +106,7 @@
         {
             projects = await ProjectService.GetActiveProjectsAsync();
             anlagenList = await ProjectAnlageService.GetAllAnlagen();
+            await GetAllProjectAnlagen();
         }
         catch (Exception ex)
         {
@@ -108,8 +121,9 @@
         {
             if (newAnlageId > 0 && projectId > 0)
             {
-                await ProjectAnlageService.AssignAnlageToProject(new AssignAnlageToProjectDto { ProjectId = projectId, AnlageId = newAnlageId });
+                await ProjectAnlageService.AssignAnlageToProject(new AssignAnlageToProjectDto { ProjectId = projectId.Value, AnlageId = newAnlageId.Value });
                 await GetProjectAnlage();
+                await GetAllProjectAnlagen();
             }
             else
             {
@@ -128,8 +142,13 @@
         {
             if (oldAnlageId > 0 && projectId > 0 && newAnlageId > 0)
             {
-                await ProjectAnlageService.UpdateAssignment(new UpdateProjectAnlageDto { ProjectId = projectId, OldAnlageId = oldAnlageId, NewAnlageId = newAnlageId });
+                await ProjectAnlageService.UpdateAssignment(new UpdateProjectAnlageDto { 
+                        ProjectId = projectId.Value, 
+                        OldAnlageId = oldAnlageId.Value, 
+                        NewAnlageId = newAnlageId.Value 
+                });
                 await GetProjectAnlage();
+                await GetAllProjectAnlagen();
             }
             else
             {
@@ -144,22 +163,35 @@
 
     private async Task RemoveAnlage()
     {
-        await ProjectAnlageService.RemoveAssignment(projectId, oldAnlageId);
+        await ProjectAnlageService.RemoveAssignment(projectId.Value, oldAnlageId.Value);
         await GetProjectAnlage();
+        await GetAllProjectAnlagen();
     }
 
     private async Task GetProjectAnlage()
     {
-        anlagen = await ProjectAnlageService.GetAnlagenForProject(projectId);
-        foreach (var anlage in anlagen)
+        anlagen = await ProjectAnlageService.GetAnlagenForProject(projectId.Value);
+        if (anlagen == null || !anlagen.Any())
         {
-            Console.WriteLine($"AnlageId: {anlage.AnlageId}, AnlageName: {anlage.AnlageName}");
+            errorMessage = "Keine Anlagen für das ausgewählte Projekt gefunden.";
+        }
+        else
+        {
+            errorMessage = string.Empty; // Clear any previous error message
         }
     }
 
     private async Task GetAllProjectAnlagen()
     {
         allAnlagen = await ProjectAnlageService.GetAllProjectAnlagen();
+        if (allAnlagen == null || !allAnlagen.Any())
+        {
+            errorMessage = "Keine Anlagen für die Projekte gefunden.";
+        }
+        else
+        {
+            errorMessage = string.Empty; // Clear any previous error message
+        }
     }
 
     private async Task OnProjectChanged(Microsoft.AspNetCore.Components.ChangeEventArgs e)
@@ -171,10 +203,23 @@
         }
     }
 
-    private async Task OnChange(ChangeEventArgs<int, Project> args)
+    private async Task OnChange(ChangeEventArgs<int?, Project> args)
     {
+        if (args.Value == null)
+        {
+            return; // No project selected
+        }   
         projectId = args.Value; // Update the selected project ID
         await GetProjectAnlage(); // Load Anlagen for the selected project
+    }
+
+    private async Task RowselectingHandler(RowSelectingEventArgs<ProjectWithAnlagenDto> args)
+    {
+        if (args.Data != null)
+        {
+            projectId = args.Data.ProjectId; // Update the selected project ID
+            await GetProjectAnlage(); // Load Anlagen for the selected project
+        }
     }
 
 }
