@@ -1,0 +1,182 @@
+﻿using System.Net.Http.Json;
+using IbeAppWeb.DTOs;
+
+namespace IbeAppWeb.Services
+{
+    public class AnlagenService
+    {
+        private readonly HttpClient _httpClient;
+
+        public AnlagenService(HttpClient httpClient)
+        {
+            _httpClient = httpClient;
+        }
+
+        public async Task<IEnumerable<AnlageDto>> GetAllAnlagen()
+        {
+            try
+            {
+                // Send a GET request to the API
+                var response = await _httpClient.GetAsync("api/Anlage");
+
+                // Ensure the response is successful
+                if (response.IsSuccessStatusCode)
+                {
+                    // Deserialize and return the list of AnlageDto
+                    return await response.Content.ReadFromJsonAsync<IEnumerable<AnlageDto>>() ?? Enumerable.Empty<AnlageDto>();
+                }
+                else
+                {
+                    // Log or handle the error (optional)
+                    var errorContent = await response.Content.ReadAsStringAsync();
+                    throw new HttpRequestException($"Failed to fetch Anlagen. Status: {response.StatusCode}, Error: {errorContent}");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log or rethrow the exception as needed
+                Console.WriteLine($"Error in GetAllAnlagen: {ex.Message}");
+                return Enumerable.Empty<AnlageDto>(); // Return an empty list on failure
+            }
+        }
+
+        public async Task<AnlageDto?> GetAnlageById(int anlageId)
+        {
+            try
+            {
+                // Send a GET request to the API
+                var response = await _httpClient.GetAsync($"api/Anlage/{anlageId}");
+
+                // Ensure the response is successful
+                if (response.IsSuccessStatusCode)
+                {
+                    // Deserialize and return the AnlageDto
+                    return await response.Content.ReadFromJsonAsync<AnlageDto>();
+                }
+                else
+                {
+                    // Log or handle the error (optional)
+                    var errorContent = await response.Content.ReadAsStringAsync();
+                    throw new HttpRequestException($"Failed to fetch Anlage by ID. Status: {response.StatusCode}, Error: {errorContent}");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log or rethrow the exception as needed
+                Console.WriteLine($"Error in GetAnlageById: {ex.Message}");
+                return null; // Return null on failure
+            }
+        }
+
+        public async Task<AnlageDto?> CreateAnlage(AnlageDto anlageDto)
+        {
+            try
+            {
+                // Send a POST request to the API
+                var response = await _httpClient.PostAsJsonAsync("api/Anlage", anlageDto);
+
+                // Ensure the response is successful
+                if (response.IsSuccessStatusCode)
+                {
+                    // Deserialize and return the created AnlageDto
+                    return await response.Content.ReadFromJsonAsync<AnlageDto>();
+                }
+                else
+                {
+                    // Log or handle the error (optional)
+                    var errorContent = await response.Content.ReadAsStringAsync();
+                    throw new HttpRequestException($"Failed to create Anlage. Status: {response.StatusCode}, Error: {errorContent}");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log or rethrow the exception as needed
+                Console.WriteLine($"Error in CreateAnlage: {ex.Message}");
+                throw;
+            }
+        }
+
+        public async Task<AnlageDto?> UpdateAnlage(int anlageId, AnlageDto anlageDto)
+        {
+            try
+            {
+                // Send a PUT request to the API
+                var response = await _httpClient.PutAsJsonAsync($"api/Anlage/{anlageId}", anlageDto);
+
+                // Ensure the response is successful
+                if (response.IsSuccessStatusCode)
+                {
+                    // Deserialize and return the updated AnlageDto
+                    return await response.Content.ReadFromJsonAsync<AnlageDto>();
+                }
+                else
+                {
+                    // Log or handle the error (optional)
+                    var errorContent = await response.Content.ReadAsStringAsync();
+                    throw new HttpRequestException($"Failed to update Anlage. Status: {response.StatusCode}, Error: {errorContent}");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log or rethrow the exception as needed
+                Console.WriteLine($"Error in UpdateAnlage: {ex.Message}");
+                throw;
+            }
+        }
+
+        public async Task<bool> DeleteAnlage(int anlageId)
+        {
+            try
+            {
+                // Send a DELETE request to the API
+                var response = await _httpClient.DeleteAsync($"api/Anlage/{anlageId}");
+
+                // Ensure the response is successful
+                if (response.IsSuccessStatusCode)
+                {
+                    return true; // Indicate success
+                }
+                else
+                {
+                    // Log or handle the error (optional)
+                    var errorContent = await response.Content.ReadAsStringAsync();
+                    throw new HttpRequestException($"Failed to delete Anlage. Status: {response.StatusCode}, Error: {errorContent}");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log or rethrow the exception as needed
+                Console.WriteLine($"Error in DeleteAnlage: {ex.Message}");
+                throw;
+            }
+        }
+
+        public async Task<AnlageDto?> UndeleteAnlage(int anlageId)
+        {
+            try
+            {
+                // Send a PUT request to the undelete endpoint
+                var response = await _httpClient.PutAsJsonAsync($"api/Anlage/{anlageId}/undelete", new { });
+
+                // Ensure the response is successful
+                if (response.IsSuccessStatusCode)
+                {
+                    // Deserialize and return the updated AnlageDto
+                    return await response.Content.ReadFromJsonAsync<AnlageDto>();
+                }
+                else
+                {
+                    // Log or handle the error (optional)
+                    var errorContent = await response.Content.ReadAsStringAsync();
+                    throw new HttpRequestException($"Failed to undelete Anlage. Status: {response.StatusCode}, Error: {errorContent}");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log or rethrow the exception as needed
+                Console.WriteLine($"Error in UndeleteAnlage: {ex.Message}");
+                throw;
+            }
+        }
+    }
+}
