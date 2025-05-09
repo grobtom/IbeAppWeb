@@ -1,7 +1,87 @@
 ﻿@page "/anlagen"
+@using Syncfusion.Blazor.Grids
+@using IbeAppWeb.DTOs
+@using IbeAppWeb.Services
+@inject AnlagenService AnlagenService
 
-<h3>Anlagen</h3>
+<h3>Anlagen Management</h3>
+
+<div class="col-lg-12 control-section">
+    <div class="content-wrapper">
+        <div class="row">
+            <SfGrid @ref="Grid" DataSource="@AnlagenData" AllowPaging="true" Toolbar="@(new List<string>() { "Add", "Edit", "Delete", "Update", "Cancel" })">
+                <GridPageSettings PageCount="5"></GridPageSettings>
+                <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog"></GridEditSettings>
+                <GridEvents TValue="AnlageDto" OnActionBegin="OnActionBegin"></GridEvents>
+                <GridColumns>
+                    <GridColumn Field=@nameof(AnlageDto.AnlageId) HeaderText="Anlage ID" TextAlign="TextAlign.Left" Width="60" IsPrimaryKey="true"></GridColumn>
+                    <GridColumn Field=@nameof(AnlageDto.AnlageName) HeaderText="Anlage Kennzeichen" Width="100" ValidationRules="@(new ValidationRules{ Required=true, MinLength=5 })"></GridColumn>
+                    <GridColumn Field=@nameof(AnlageDto.Beschreibung) HeaderText="Beschreibung" Format="d" TextAlign="TextAlign.Left" Width="200"></GridColumn>
+                    <GridColumn Field=@nameof(AnlageDto.IsDeleted) HeaderText="Gelöscht" TextAlign="TextAlign.Left" Width="80"></GridColumn>
+                </GridColumns>
+            </SfGrid>
+        </div>
+    </div>
+</div>
+
 
 @code {
 
+    private IEnumerable<AnlageDto> AnlagenData { get; set; } = new List<AnlageDto>();
+    private SfGrid<AnlageDto> Grid;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+    }
+
+    private async Task LoadData()
+    {
+        try
+        {
+            AnlagenData = await AnlagenService.GetAllAnlagen();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading data: {ex.Message}");
+        }
+    }
+
+    private async Task OnActionBegin(ActionEventArgs<AnlageDto> args)
+    {
+        if (args.RequestType == Syncfusion.Blazor.Grids.Action.Save)
+        {
+            args.Cancel = true; 
+            if (args.Action == "Add")
+            {
+                await CustomAdd(args.Data);
+            }
+            else if (args.Action == "Edit")
+            {
+                await CustomUpdate(args.Data);
+            }
+            Grid.CloseEdit();
+            await LoadData();
+        }
+        else if (args.RequestType == Syncfusion.Blazor.Grids.Action.Delete)
+        {
+            await CustomDelete(args.Data);
+        }
+    }
+
+    private async Task CustomUpdate(AnlageDto anlage)
+    {
+        await AnlagenService.UpdateAnlage(anlage.AnlageId, anlage);
+    }
+
+    private async Task CustomDelete(AnlageDto anlage)
+    {
+        await AnlagenService.DeleteAnlage(anlage.AnlageId);
+        await LoadData();
+    }
+
+    private async Task CustomAdd(AnlageDto anlage)
+    {        
+        await AnlagenService.CreateAnlage(anlage);
+    }
 }
