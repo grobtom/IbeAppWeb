@@ -1,0 +1,166 @@
+﻿@page "/monteuranlage"
+@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.DropDowns
+@using IbeAppWeb.DTOs
+@using IbeAppWeb.Services
+@inject MonteurService MonteurService
+@inject AnlagenService AnlagenService
+
+<h3>Monteur Anlage Management</h3>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger">@errorMessage</div>
+}
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <div class="alert alert-success">@successMessage</div>
+}
+
+<div class="col-lg-12 control-section">
+    <div class="content-wrapper">
+        <div class="row">
+            <SfGrid @ref="Grid" DataSource="@Data" AllowPaging="true">
+                <GridPageSettings PageCount="5"></GridPageSettings>
+                <GridColumns>
+                    <GridColumn Field=@nameof(MonteurWithAnlageDto.MonteurId) HeaderText="Monteur ID" TextAlign="TextAlign.Left" Width="80" IsPrimaryKey="true"></GridColumn>
+                    <GridColumn Field=@nameof(MonteurWithAnlageDto.Vorname) HeaderText="Vorname" Width="150"></GridColumn>
+                    <GridColumn Field=@nameof(MonteurWithAnlageDto.Nachname) HeaderText="Nachname" Width="150"></GridColumn>
+                    <GridColumn Field=@nameof(MonteurWithAnlageDto.AnlageId) HeaderText="Anlage ID" Width="100"></GridColumn>
+                    <GridColumn Field=@nameof(MonteurWithAnlageDto.AnlageName) HeaderText="Anlage Name" Width="200"></GridColumn>
+                </GridColumns>
+            </SfGrid>
+        </div>
+
+        <div class="row mt-4">
+            <h4>Assign/Reassign Monteur to Anlage</h4>
+            <div class="form-group">
+                <label for="monteurSelect">Select Monteur:</label>
+                <SfDropDownList TItem="MonteurResponse" TValue="int" PopupHeight="230px" Placeholder="wähle Monteur" @bind-Value="@SelectedMonteurId" DataSource="@Monteure">
+                    <DropDownListFieldSettings Text="Nachname" Value="MonteurId" />
+                </SfDropDownList>
+            </div>
+            <div class="form-group mt-3">
+                <label for="anlageSelect">Select Anlage:</label>
+                <SfDropDownList TItem="AnlageDto" TValue="int" DataSource="@Anlagen" Placeholder="Wähle Anlage" @bind-Value="SelectedAnlageId"> 
+                    <DropDownListFieldSettings Text = "AnlageName" Value = "AnlageId" />
+                </SfDropDownList>
+            </div>
+            <div class="form-group mt-3">
+                <SfButton CssClass="e-primary" OnClick="AssignMonteurToAnlage">Assign/Reassign</SfButton>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private IEnumerable<MonteurWithAnlageDto> Data { get; set; } = new List<MonteurWithAnlageDto>();
+    private SfGrid<MonteurWithAnlageDto> Grid;
+
+    private IEnumerable<MonteurResponse> Monteure { get; set; } = new List<MonteurResponse>();
+    private IEnumerable<AnlageDto> Anlagen { get; set; } = new List<AnlageDto>();
+
+    private int SelectedMonteurId { get; set; }
+    private int SelectedAnlageId { get; set; }
+
+    private string? errorMessage;
+    private string? successMessage;
+
+    private async Task ShowMessage(string message, bool isSuccess)
+    {
+        if (isSuccess)
+        {
+            successMessage = message;
+            errorMessage = null;
+        }
+        else
+        {
+            errorMessage = message;
+            successMessage = null; 
+        }
+
+        StateHasChanged();
+
+        await Task.Delay(3000);
+
+        if (isSuccess)
+        {
+            successMessage = null;
+        }
+        else
+        {
+            errorMessage = null;
+        }
+
+        StateHasChanged();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+        await LoadMonteure();
+        await LoadAnlagen();
+    }
+
+    private async Task LoadData()
+    {
+        try
+        {
+            Data = await MonteurService.GetMonteurWithAnlage();
+        }
+        catch (Exception ex)
+        {
+            await ShowMessage($"Fehler beim Laden der Daten: {ex.Message}", false);
+        }
+    }
+
+    private async Task LoadMonteure()
+    {
+        try
+        {
+            Monteure = await MonteurService.GetAllMonteure();
+        }
+        catch (Exception ex)
+        {
+             await ShowMessage($"Fehler beim Laden der Anlagen: {ex.Message}", false);
+        }
+    }
+
+    private async Task LoadAnlagen()
+    {
+        try
+        {
+            Anlagen = await AnlagenService.GetAllAnlagen();
+        }
+        catch (Exception ex)
+        {
+            await ShowMessage($"Fehler beim Laden der Anlagen: {ex.Message}", false);
+        }
+    }
+
+    private async Task AssignMonteurToAnlage()
+    {
+        try
+        {
+            if (SelectedMonteurId > 0 && SelectedAnlageId > 0)
+            {
+                await MonteurService.AssignMonteurToAnlage(SelectedMonteurId, SelectedAnlageId);
+                await LoadData(); // Refresh the grid
+
+                SelectedMonteurId = 0;
+                SelectedAnlageId = 0;
+            
+                await ShowMessage("Monteur erfolgreich der Anlage zugewiesen.", true);
+            }
+            else
+            {
+                await ShowMessage("Bitte wähle einen Monteur UND eine Anlage.", false);
+            }
+        }
+        catch (Exception ex)
+        {
+            await ShowMessage($"Fehler beim Zuweisen des Monteurs zur Anlage: {ex.Message}", false);
+        }
+    }
+}

@@ -24,6 +24,7 @@ builder.Services.AddScoped<ProjectService>();
 builder.Services.AddScoped<UmsatzService>();
 builder.Services.AddScoped<ProjectAnlageService>();
 builder.Services.AddScoped<AnlagenService>();
+builder.Services.AddScoped<MonteurService>();
 
 builder.Services.AddSyncfusionBlazor();
 

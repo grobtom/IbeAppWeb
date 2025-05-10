@@ -1,107 +1,101 @@
-﻿using System.Net.Http.Json;
+﻿using IbeAppWeb.DTOs;
+using System.Net.Http.Json;
 using System.Text.Json;
-using IbeAppWeb.DTOs;
 
 namespace IbeAppWeb.Services;
 
-public class AnlagenService
+public class MonteurService
 {
     private readonly HttpClient _httpClient;
 
-    public AnlagenService(HttpClient httpClient)
+    public MonteurService(HttpClient httpClient)
     {
         _httpClient = httpClient;
     }
 
-    public async Task<IEnumerable<AnlageDto>> GetAllAnlagen()
+    public async Task<IEnumerable<MonteurResponse>> GetAllMonteure()
     {
         try
         {
             // Send a GET request to the API
-            var response = await _httpClient.GetAsync("api/Anlage");
+            var response = await _httpClient.GetAsync("api/monteur");
 
             // Ensure the response is successful
             if (response.IsSuccessStatusCode)
             {
                 // Deserialize and return the list of AnlageDto
-                return await response.Content.ReadFromJsonAsync<IEnumerable<AnlageDto>>() ?? Enumerable.Empty<AnlageDto>();
+                return await response.Content.ReadFromJsonAsync<IEnumerable<MonteurResponse>>() ?? Enumerable.Empty<MonteurResponse>();
             }
             else
             {
                 // Log or handle the error (optional)
                 var errorContent = await response.Content.ReadAsStringAsync();
-                throw new HttpRequestException($"Failed to fetch Anlagen. Status: {response.StatusCode}, Error: {errorContent}");
+                throw new HttpRequestException($"Failed to fetch Monteure. Status: {response.StatusCode}, Error: {errorContent}");
             }
         }
         catch (Exception ex)
         {
             // Log or rethrow the exception as needed
-            Console.WriteLine($"Error in GetAllAnlagen: {ex.Message}");
-            return Enumerable.Empty<AnlageDto>(); // Return an empty list on failure
+            Console.WriteLine($"Error in GetAllMonteure: {ex.Message}");
+            return Enumerable.Empty<MonteurResponse>(); // Return an empty list on failure
         }
     }
 
-    public async Task<AnlageDto?> GetAnlageById(int anlageId)
+    public async Task<List<MonteurWithAnlageDto>> GetMonteurWithAnlage()
     {
         try
         {
             // Send a GET request to the API
-            var response = await _httpClient.GetAsync($"api/Anlage/{anlageId}");
-
+            var response = await _httpClient.GetAsync("api/monteur/with-anlagen");
             // Ensure the response is successful
             if (response.IsSuccessStatusCode)
             {
-                // Deserialize and return the AnlageDto
-                return await response.Content.ReadFromJsonAsync<AnlageDto>();
+                // Deserialize and return the list of AnlageDto
+                return await response.Content.ReadFromJsonAsync<List<MonteurWithAnlageDto>>() ?? new List<MonteurWithAnlageDto>();
             }
             else
             {
                 // Log or handle the error (optional)
                 var errorContent = await response.Content.ReadAsStringAsync();
-                throw new HttpRequestException($"Failed to fetch Anlage by ID. Status: {response.StatusCode}, Error: {errorContent}");
+                throw new HttpRequestException($"Failed to fetch Monteure with Anlage. Status: {response.StatusCode}, Error: {errorContent}");
             }
         }
         catch (Exception ex)
         {
             // Log or rethrow the exception as needed
-            Console.WriteLine($"Error in GetAnlageById: {ex.Message}");
-            return null; // Return null on failure
+            Console.WriteLine($"Error in GetMonteurWithAnlage: {ex.Message}");
+            return new List<MonteurWithAnlageDto>(); // Return an empty list on failure
         }
     }
 
-    public async Task<AnlageDto?> CreateAnlage(AnlageDto anlageDto)
+    public async Task<MonteurResponse?> CreateMonteur(MonteurResponse Dto)
     {
         try
         {
-            // Send a POST request to the API
-            var response = await _httpClient.PostAsJsonAsync("api/Anlage", anlageDto);
+            var response = await _httpClient.PostAsJsonAsync("api/monteur", Dto);
 
-            // Ensure the response is successful
             if (response.IsSuccessStatusCode)
             {
-                // Deserialize and return the created AnlageDto
-                return await response.Content.ReadFromJsonAsync<AnlageDto>();
+                return await response.Content.ReadFromJsonAsync<MonteurResponse>();
             }
             else
             {
-                // Log or handle the error (optional)
                 var errorContent = await response.Content.ReadAsStringAsync();
-                throw new HttpRequestException($"Failed to create Anlage. Status: {response.StatusCode}, Error: {errorContent}");
+                throw new HttpRequestException($"Failed to create Monteur. Status: {response.StatusCode}, Error: {errorContent}");
             }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error in CreateAnlage: {ex.Message}");
+            Console.WriteLine($"Error in CreateMonteur: {ex.Message}");
             throw;
         }
     }
 
-    public async Task<AnlageDto?> UpdateAnlage(int anlageId, AnlageDto anlageDto)
+    public async Task<MonteurResponse?> UpdateMonteur(int Id, MonteurResponse Dto)
     {
         try
         {
-            // Send a PUT request to the API
-            var response = await _httpClient.PutAsJsonAsync($"api/anlage/{anlageId}", anlageDto);
+            var response = await _httpClient.PutAsJsonAsync($"api/monteur/{Id}", Dto);
 
             // Ensure the response is successful
             if (response.IsSuccessStatusCode)
@@ -117,7 +111,7 @@ public class AnlagenService
                         {
                             PropertyNameCaseInsensitive = true
                         };
-                        return JsonSerializer.Deserialize<AnlageDto>(responseContent, options);
+                        return JsonSerializer.Deserialize<MonteurResponse>(responseContent, options);
                     }
                     catch (JsonException jsonEx)
                     {
@@ -135,21 +129,21 @@ public class AnlagenService
             else
             {
                 var errorContent = await response.Content.ReadAsStringAsync();
-                throw new HttpRequestException($"Failed to update Anlage. Status: {response.StatusCode}, Error: {errorContent}");
+                throw new HttpRequestException($"Failed to update Monteur. Status: {response.StatusCode}, Error: {errorContent}");
             }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error in UpdateAnlage: {ex.Message}");
+            Console.WriteLine($"Error in UpdateMonteur: {ex.Message}");
             throw;
         }
     }
-    public async Task<bool> DeleteAnlage(int anlageId)
+    public async Task<bool> DeleteMonteur(int Id)
     {
         try
         {
             // Send a DELETE request to the API
-            var response = await _httpClient.DeleteAsync($"api/Anlage/{anlageId}");
+            var response = await _httpClient.DeleteAsync($"api/monteur/{Id}");
 
             // Ensure the response is successful
             if (response.IsSuccessStatusCode)
@@ -160,41 +154,43 @@ public class AnlagenService
             {
                 // Log or handle the error (optional)
                 var errorContent = await response.Content.ReadAsStringAsync();
-                throw new HttpRequestException($"Failed to delete Anlage. Status: {response.StatusCode}, Error: {errorContent}");
+                throw new HttpRequestException($"Failed to delete Monteur. Status: {response.StatusCode}, Error: {errorContent}");
             }
         }
         catch (Exception ex)
         {
             // Log or rethrow the exception as needed
-            Console.WriteLine($"Error in DeleteAnlage: {ex.Message}");
+            Console.WriteLine($"Error in DeleteMonteur: {ex.Message}");
             throw;
         }
     }
 
-    public async Task<AnlageDto?> UndeleteAnlage(int anlageId)
+    public async Task<MonteurWithAnlageDto?> AssignMonteurToAnlage(int monteurId, int anlageId)
     {
         try
         {
-            // Send a PUT request to the undelete endpoint
-            var response = await _httpClient.PutAsJsonAsync($"api/Anlage/{anlageId}/undelete", new { });
+            // Format the URL with the MonteurId and AnlageId
+            var url = $"api/monteur/{monteurId}/assign-to-anlage/{anlageId}";
 
+            // Send a POST request to the API with the payload
+            var response = await _httpClient.PostAsync(url, null);
             // Ensure the response is successful
             if (response.IsSuccessStatusCode)
             {
-                // Deserialize and return the updated AnlageDto
-                return await response.Content.ReadFromJsonAsync<AnlageDto>();
+                // Deserialize and return the response
+                return await response.Content.ReadFromJsonAsync<MonteurWithAnlageDto>();
             }
             else
             {
-                // Log or handle the error (optional)
+                // Log or handle the error
                 var errorContent = await response.Content.ReadAsStringAsync();
-                throw new HttpRequestException($"Failed to undelete Anlage. Status: {response.StatusCode}, Error: {errorContent}");
+                throw new HttpRequestException($"Failed to assign Monteur to Anlage. Status: {response.StatusCode}, Error: {errorContent}");
             }
         }
         catch (Exception ex)
         {
             // Log or rethrow the exception as needed
-            Console.WriteLine($"Error in UndeleteAnlage: {ex.Message}");
+            Console.WriteLine($"Error in AssignMonteurToAnlage: {ex.Message}");
             throw;
         }
     }

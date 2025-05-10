@@ -1,11 +1,11 @@
-﻿@page "/anlagen"
-@using Syncfusion.Blazor.Buttons
+﻿@page "/monteure"
 @using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Buttons
 @using IbeAppWeb.DTOs
 @using IbeAppWeb.Services
-@inject AnlagenService AnlagenService
+@inject MonteurService MonteurService
 
-<h3>Anlagen Management</h3>
+<h3>Monteur Management</h3>
 
 @if (!string.IsNullOrEmpty(errorMessage))
 {
@@ -19,22 +19,23 @@
 <div class="col-lg-12 control-section">
     <div class="content-wrapper">
         <div class="row">
-            <SfGrid @ref="Grid" DataSource="@AnlagenData" AllowPaging="true" Toolbar="@(new List<string>() { "Add", "Edit", "Delete", "Update", "Cancel" })">
+            <SfGrid @ref="Grid" DataSource="@Data" AllowPaging="true" Toolbar="@(new List<string>() { "Add", "Edit", "Delete", "Update", "Cancel" })">
                 <GridPageSettings PageCount="5"></GridPageSettings>
                 <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog"></GridEditSettings>
-                <GridEvents TValue="AnlageDto" OnActionBegin="OnActionBegin"></GridEvents>
+                <GridEvents TValue="MonteurResponse" OnActionBegin="OnActionBegin"></GridEvents>
                 <GridColumns>
-                    <GridColumn Field=@nameof(AnlageDto.AnlageId) HeaderText="Anlage ID" TextAlign="TextAlign.Left" Width="60" IsPrimaryKey="true"></GridColumn>
-                    <GridColumn Field=@nameof(AnlageDto.AnlageName) HeaderText="Anlage Kennzeichen" Width="100" ValidationRules="@(new ValidationRules{ Required=true, MinLength=5 })"></GridColumn>
-                    <GridColumn Field=@nameof(AnlageDto.Beschreibung) HeaderText="Beschreibung" Format="d" TextAlign="TextAlign.Left" Width="200"></GridColumn>
-                    <GridColumn Field=@nameof(AnlageDto.IsDeleted) HeaderText="Aktiv" TextAlign="TextAlign.Left" Width="80" AllowEditing="false">
-                        <Template>
+                    <GridColumn Field=@nameof(MonteurResponse.MonteurId) HeaderText="Monteur ID" TextAlign="TextAlign.Left" Width="60" IsPrimaryKey="true"></GridColumn>
+                    <GridColumn Field=@nameof(MonteurResponse.Vorname) HeaderText="Vorname" Width="150" ValidationRules="@(new ValidationRules{ Required=true, MinLength=5 })"></GridColumn>
+                    <GridColumn Field=@nameof(MonteurResponse.Nachname) HeaderText="Nachname" Format="d" TextAlign="TextAlign.Left" Width="150"></GridColumn>
+                    <GridColumn Field=@nameof(MonteurResponse.IsDeleted) HeaderText="Aktiv" TextAlign="TextAlign.Left" Width="80" AllowEditing="false">
+                                                <Template>
                             @{
-                                var data = context as AnlageDto;
+                                var data = context as MonteurResponse;
                                 var isActive = !data.IsDeleted;
                             }
                             <SfCheckBox Label="Aktiv" Value="false" @bind-Checked="@isActive"></SfCheckBox>
                         </Template>                    
+
                     </GridColumn>
                 </GridColumns>
             </SfGrid>
@@ -45,8 +46,8 @@
 
 @code {
 
-    private IEnumerable<AnlageDto> AnlagenData { get; set; } = new List<AnlageDto>();
-    private SfGrid<AnlageDto> Grid;
+    private IEnumerable<MonteurResponse> Data { get; set; } = new List<MonteurResponse>();
+    private SfGrid<MonteurResponse> Grid;
 
     private string? errorMessage;
     private string? successMessage;
@@ -80,7 +81,6 @@
         StateHasChanged();
     }
 
-
     protected override async Task OnInitializedAsync()
     {
         await LoadData();
@@ -90,19 +90,19 @@
     {
         try
         {
-            AnlagenData = await AnlagenService.GetAllAnlagen();
+            Data = await MonteurService.GetAllMonteure();
         }
         catch (Exception ex)
         {
-            await ShowMessage($"Fehler beim Laden der Daten: {ex.Message}", false);
+            await ShowMessage($"Error loading data: {ex.Message}", false);
         }
     }
 
-    private async Task OnActionBegin(ActionEventArgs<AnlageDto> args)
+    private async Task OnActionBegin(ActionEventArgs<MonteurResponse> args)
     {
         if (args.RequestType == Syncfusion.Blazor.Grids.Action.Save)
         {
-            args.Cancel = true; 
+            args.Cancel = true;
             if (args.Action == "Add")
             {
                 await CustomAdd(args.Data);
@@ -120,71 +120,72 @@
         }
     }
 
-    private async Task CustomUpdate(AnlageDto anlage)
+    private async Task CustomUpdate(MonteurResponse monteur)
     {
         try
         {
-            var updatedAnlage = await AnlagenService.UpdateAnlage(anlage.AnlageId, anlage);
+            var updatedMonteur = await MonteurService.UpdateMonteur(monteur.MonteurId, monteur);
 
-            if (updatedAnlage != null)
+            if (updatedMonteur != null)
             {
-                await ShowMessage("Anlage erfolgreich aktualisiert.", true);
+                await ShowMessage("Monteur erfolgreich aktualisiert.", true);
             }
             else
             {
-                await ShowMessage("Fehler beim Aktualisieren der Anlage. Bitte versuchen Sie es erneut.", false);
+                await ShowMessage("Fehler beim Aktualisieren des Monteurs. Bitte versuchen Sie es erneut.", false);
             }
         }
         catch (Exception ex)
         {
-            await ShowMessage($"Fehler beim Aktualisieren der Anlage: {ex.Message}", false);
+            await ShowMessage($"Fehler beim Aktualisieren des Monteurs: {ex.Message}", false);
         }
     }
 
-    private async Task CustomDelete(AnlageDto anlage)
+    private async Task CustomDelete(MonteurResponse monteur)
     {
         try
         {
-            var isDeleted = await AnlagenService.DeleteAnlage(anlage.AnlageId);
+            var isDeleted = await MonteurService.DeleteMonteur(monteur.MonteurId);
 
             if (isDeleted)
             {
-                await ShowMessage("Anlage erfolgreich gelöscht.", true);
+                await ShowMessage("Monteur erfolgreich gelöscht.", true);
 
                 await LoadData();
             }
             else
             {
-                await ShowMessage("Fehler beim Löschen der Anlage. Bitte versuchen Sie es erneut.", false);
+                await ShowMessage("Fehler beim Löschen des Monteurs. Bitte versuchen Sie es erneut.", false);
             }
         }
         catch (Exception ex)
         {
-            await ShowMessage($"Fehler beim Löschen der Anlage: {ex.Message}", false);
+            await ShowMessage($"Fehler beim Löschen des Monteurs: {ex.Message}", false);
         }
     }
 
-    private async Task CustomAdd(AnlageDto anlage)
+    private async Task CustomAdd(MonteurResponse monteur)
     {
         try
         {
-            var createdAnlage = await AnlagenService.CreateAnlage(anlage);
+            var createdMonteur = await MonteurService.CreateMonteur(monteur);
 
-            if (createdAnlage != null)
+            if (createdMonteur != null)
             {
-                await ShowMessage("Anlage erfolgreich hinzugefügt.", true);
+                await ShowMessage("Monteur erfolgreich hinzugefügt.", true);
 
                 await LoadData();
             }
             else
             {
-                await ShowMessage("Fehler beim Hinzufügen der Anlage. Bitte versuchen Sie es erneut.", false);
+                await ShowMessage("Fehler beim Hinzufügen des Monteurs. Bitte versuchen Sie es erneut.", false);
             }
         }
         catch (Exception ex)
         {
-            await ShowMessage($"Fehler beim Hinzufügen der Anlage: {ex.Message}", false);
+            await ShowMessage($"Fehler beim Hinzufügen des Monteurs: {ex.Message}", false);
         }
     }
 
 }
+
