@@ -1,4 +1,5 @@
 ﻿using IbeAppWeb.DTOs;
+using IbeAppWeb.DTOs.Umsatz;
 using System.Globalization;
 using System.Net.Http.Json;
 
@@ -45,6 +46,45 @@ public class UmsatzService
         {
             _logger.LogError(ex, "Error fetching Umsatzdatá");
             return new UmsatzResultDto();
+        }
+    }
+
+    public async Task<UmsatzFahrzeugMonteurProjectResultDto> GetUmsatzByFahrzeugAndMonteurAllAsync
+    (
+        DateTime? start = null,
+        DateTime? end = null,
+        string projectDb = "defaultDb"
+    )
+    {
+        try
+        {
+            // Build query parameters
+            var queryParameters = new List<string>();
+            if (start.HasValue) queryParameters.Add($"start={start.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
+            if (end.HasValue) queryParameters.Add($"end={end.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
+            var queryString = string.Join("&", queryParameters);
+
+            // Create the request
+            var request = new HttpRequestMessage(HttpMethod.Get, $"api/umsatz/kanal/fahrzeugmonteur/project?{queryString}");
+
+            // Send the request
+            var response = await _httpClient.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+
+            // Deserialize the response
+            var result = await response.Content.ReadFromJsonAsync<UmsatzFahrzeugMonteurProjectResultDto>();
+            if (result == null)
+            {
+                throw new InvalidOperationException("Response content is null.");
+            }
+
+            return result;
+        }
+        catch (Exception ex)
+        {
+            // Log the error and return an empty result
+            _logger.LogError(ex, "Error fetching Umsatz data");
+            return new UmsatzFahrzeugMonteurProjectResultDto();
         }
     }
 }

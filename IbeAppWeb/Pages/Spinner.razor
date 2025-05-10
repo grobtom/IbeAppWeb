@@ -1,0 +1,29 @@
+﻿@page "/spinner"
+@using Syncfusion.Blazor.Spinner
+@using Syncfusion.Blazor.Buttons
+
+<h3>Spinner Test</h3>
+
+<SfButton CssClass="e-primary" @onclick="ShowSpinner">Show Spinner</SfButton>
+
+<div id="container">
+    <SfSpinner @bind-Visible="@isLoading">
+    </SfSpinner>
+</div>
+
+@code {
+    private bool isLoading = false;
+
+    private void ShowSpinner()
+    {
+        isLoading = true;
+        StateHasChanged();
+
+        // Simulate a delay
+        Task.Delay(3000).ContinueWith(_ =>
+        {
+            isLoading = false;
+            InvokeAsync(StateHasChanged);
+        });
+    }
+}
