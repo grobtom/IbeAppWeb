@@ -38,14 +38,14 @@
             </SfSpinner>
         </div>
 
-        <SfGrid @ref="grid" DataSource="@Projects" AllowPaging="true" AllowSorting="true" Height="400px">
+        <SfGrid @ref="grid" DataSource="@Projects" AllowPaging="true" AllowSorting="true" Height="600px">
             <GridPageSettings PageCount="5"></GridPageSettings>
             <GridTemplates>
                 <DetailTemplate>
                     @{
                         var project = (context as UmsatzFahrzeugMonteurProjectDto);
                     }
-                    <SfGrid DataSource="@project.UmsatzProject" AllowPaging="true" AllowSorting="true" Height="300px">
+                    <SfGrid DataSource="@project?.UmsatzProject" AllowPaging="true" AllowSorting="true" Height="300px">
                         <GridPageSettings PageCount="5"></GridPageSettings>
                         <GridColumns>
                             <GridColumn Field="@nameof(UmsatzFahrzeugMonteurDto.ProjectName)" HeaderText="Project Name" Width="150"></GridColumn>
@@ -59,10 +59,10 @@
                 </DetailTemplate>
             </GridTemplates>
             <GridColumns>
-                <GridColumn Field="@nameof(UmsatzFahrzeugMonteurProjectDto.Project.ProjectId)" HeaderText="Project ID" TextAlign="TextAlign.Center" Width="110"></GridColumn>
-                <GridColumn Field="@nameof(UmsatzFahrzeugMonteurProjectDto.Project.ProjectName)" HeaderText="Project Name" Width="200"></GridColumn>
-                <GridColumn Field="@nameof(UmsatzFahrzeugMonteurProjectDto.Project.CreatedOnUtc)" HeaderText="Created On" Format="d" TextAlign="TextAlign.Center" Width="150"></GridColumn>
-                <GridColumn Field="@nameof(UmsatzFahrzeugMonteurProjectDto.Project.DbActive)" HeaderText="Active" TextAlign="TextAlign.Center" Width="100"></GridColumn>
+                <GridColumn Field="Project.ProjectId" HeaderText="Project ID" TextAlign="TextAlign.Center" Width="110"></GridColumn>
+                <GridColumn Field="Project.ProjectName" HeaderText="Project Name" Width="200"></GridColumn>
+                <GridColumn Field="Project.CreatedOnUtc" HeaderText="Created On" Format="d" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+                <GridColumn Field="Project.DbActive" HeaderText="Active" TextAlign="TextAlign.Center" Width="100"></GridColumn>
             </GridColumns>
         </SfGrid>
     </div>
