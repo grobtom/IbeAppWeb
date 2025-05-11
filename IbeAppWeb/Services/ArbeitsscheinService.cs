@@ -17,7 +17,7 @@ public class ArbeitsscheinService
         _logger = logger;
     }
 
-    public async Task<ArbeitsscheinResultDto> GetArbeitsscheineAsync(string? firma = null, DateTime? saniertAmVon = null, DateTime? saniertAmBis = null, DateTime? saniertAm = null, string? abschlagsrechnung = null, string? kolonnenfuehrer = null, string? fahrzeug = null, string projectDb = "defaultDb")
+    public async Task<ArbeitsscheinResultDto> GetArbeitsscheineAsync(int ComboBoxValue, string? firma = null, DateTime? saniertAmVon = null, DateTime? saniertAmBis = null, DateTime? saniertAm = null, string? abschlagsrechnung = null, string? kolonnenfuehrer = null, string? fahrzeug = null, string projectDb = "defaultDb")
     {
         try
         {
@@ -31,7 +31,17 @@ public class ArbeitsscheinService
             if (!string.IsNullOrEmpty(fahrzeug)) queryParameters.Add($"Fahrzeug={fahrzeug}");
 
             var queryString = string.Join("&", queryParameters);
-            var request = new HttpRequestMessage(HttpMethod.Get, $"api/askanal?{queryString}");
+
+            HttpRequestMessage request;
+
+            if (ComboBoxValue == 1)
+            {
+                request = new HttpRequestMessage(HttpMethod.Get, $"api/askanal?{queryString}");
+            }
+            else
+            {
+                request = new HttpRequestMessage(HttpMethod.Get, $"api/asschacht?{queryString}");
+            }   
             request.Headers.Add("X-IbeProjectDB", projectDb);
 
             var response = await _httpClient.SendAsync(request);

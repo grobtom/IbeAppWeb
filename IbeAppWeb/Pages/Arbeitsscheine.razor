@@ -4,8 +4,14 @@
 @inject ProjectService ProjectService
 @inject IJSRuntime JS
 @using System.ComponentModel.DataAnnotations
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.Inputs
+@using Syncfusion.Blazor.Calendars
+@using Syncfusion.Blazor.DropDowns
+@using IbeAppWeb.Forms
 
-<h3>Arbeitsscheine</h3>
+
+<h3>Arbeitsbericht</h3>
 
 <EditForm Model="@formModel" OnValidSubmit="LoadArbeitsscheine">
     <DataAnnotationsValidator />
@@ -14,51 +20,56 @@
     <div class="container mt-4">
         <div class="row mb-3">
             <div class="col-md-4">
-                <label for="projectDb" class="form-label">Project DB:</label>
-                <InputSelect id="projectDb" class="form-control" @bind-Value="formModel.SelectedProjectId">
-                    <option value="">Select a project</option>
-                    @foreach (var project in projects)
-                    {
-                        <option value="@project.ProjectId">@project.ProjectName</option>
-                    }
-                </InputSelect>
+                <label for="projectDb" class="form-label">Wähle Projekt:</label>
+                <SfComboBox TValue="int?" TItem="Project" PopupHeight="230px" Placeholder="Projekt"
+                            @bind-Value="@formModel.SelectedProjectId" DataSource="@projects">
+                    <ComboBoxFieldSettings Text="ProjectName" Value="ProjectId" />
+                </SfComboBox>
             </div>
             <div class="col-md-4">
-                <label for="saniertAmVon" class="form-label">Saniert Am Von:</label>
-                <InputDate id="saniertAmVon" class="form-control" @bind-Value="formModel.SaniertAmVon" disabled="@IsSaniertAmUsed" />
+            <label class="form-label">Wähle Bereich:</label>
+            <SfComboBox TValue="int" TItem="KanalSchacht" PopupHeight="230px"  @bind-Value="@ComboBoxValue" DataSource="@kanalSchachtList">
+                <ComboBoxEvents TValue="int" TItem="KanalSchacht" />
+                <ComboBoxFieldSettings Text="Auswahl" Value="Id" />
+            </SfComboBox>
+            </div>
+            <div class="col-md-4">
+                <label for="abschlagsrechnung" class="form-label">Abschlagsrechnung:</label>
+                <SfTextBox @bind-value="@formModel.Abschlagsrechnung"></SfTextBox>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-md-4">
+                <label for="saniertAmVon" class="form-label">Saniert Am Von:</label>
+                <SfDatePicker TValue="DateTime?" @bind-value="@formModel.SaniertAmVon"></SfDatePicker>
+            </div>
+
+            <div class="col-md-4">
                 <label for="saniertAmBis" class="form-label">Saniert Am Bis:</label>
-                <InputDate id="saniertAmBis" class="form-control" @bind-Value="formModel.SaniertAmBis" disabled="@IsSaniertAmUsed" />
+                <SfDatePicker TValue="DateTime?" @bind-value="@formModel.SaniertAmBis"></SfDatePicker>
             </div>
             <div class="col-md-4">
                 <label for="saniertAm" class="form-label">Saniert Am:</label>
-                <InputDate id="saniertAm" class="form-control" @bind-Value="formModel.SaniertAm" @onchange="OnSaniertAmChanged" />
+                <SfDatePicker TValue="DateTime?" @bind-value="@formModel.SaniertAm"></SfDatePicker>
             </div>
-            <div class="col-md-4">
-                <label for="abschlagsrechnung" class="form-label">Abschlagsrechnung:</label>
-                <InputText id="abschlagsrechnung" class="form-control" @bind-Value="formModel.Abschlagsrechnung" />
-            </div>
+            
         </div>
         <div class="row mb-3">
             <div class="col-md-4">
                 <label for="kolonnenfuehrer" class="form-label">Kolonnenführer:</label>
-                <InputText id="kolonnenfuehrer" class="form-control" @bind-Value="formModel.Kolonnenfuehrer" />
+                <SfTextBox @bind-value="@formModel.Kolonnenfuehrer"></SfTextBox>
             </div>
             <div class="col-md-4">
                 <label for="fahrzeug" class="form-label">Fahrzeug:</label>
-                <InputText id="fahrzeug" class="form-control" @bind-Value="formModel.Fahrzeug" />
+                <SfTextBox @bind-value="@formModel.Fahrzeug"></SfTextBox>
             </div>
             <div class="col-md-4 d-flex align-items-end">
-                <button class="btn btn-primary me-2" type="submit" disabled="@isLoading">Lade Arbeitsberichte</button>
-                <button class="btn btn-secondary" type="button" @onclick="ResetForm">Reset</button>
+                <SfButton class="btn btn-primary me-2" type="submit" disabled="@isLoading">Lade Arbeitsberichte</SfButton>
+                <SfButton class="btn btn-secondary" type="button" @onclick="ResetForm">Reset</SfButton>
             </div>
         </div>
     </div>
 </EditForm>
-<div>
     @if (isLoading)
     {
         <p><em>Loading...</em></p>
@@ -155,7 +166,7 @@
             </GridColumns>
         </SfGrid>
     }
-</div>
+
 <style type="text/css" class="cssStyles">
     .deatailTable td {
     font-size: 13px;
@@ -186,6 +197,14 @@
     private string projectDb;
 
     private bool IsSaniertAmUsed => formModel.SaniertAm.HasValue;
+
+    private List<KanalSchacht> kanalSchachtList = new List<KanalSchacht>
+    {
+        new KanalSchacht { Id = 1, Auswahl = "Kanal" },
+        new KanalSchacht { Id = 2, Auswahl = "Schacht" }
+    };
+
+    private int ComboBoxValue = 1;
 
     protected override async Task OnInitializedAsync()
     {
@@ -333,7 +352,8 @@
                 abschlagsrechnung: formModel.Abschlagsrechnung,
                 kolonnenfuehrer: formModel.Kolonnenfuehrer,
                 fahrzeug: formModel.Fahrzeug,
-                projectDb: projectDb
+                projectDb: projectDb,
+                ComboBoxValue: ComboBoxValue
             );
             arbeitsscheine = arbeitsscheinResultDto.Arbeitsscheine;
         }

@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.FluentUI.AspNetCore.Components;
 using Syncfusion.Blazor;
 
-//Register Syncfusion license
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Mzg0OTQ2OEAzMjM5MmUzMDJlMzAzYjMyMzkzYkZOeTBCei9pZXhMVjJ4aG4xL0NaOFlmZjl1Q0hKQUI1U3VqU3hUdE01aWc9");
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
+
 builder.Services.AddFluentUIComponents();
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5000") });
