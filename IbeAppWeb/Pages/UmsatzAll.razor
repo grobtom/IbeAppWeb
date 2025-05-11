@@ -39,7 +39,7 @@
         </div>
 
         <SfGrid @ref="grid" DataSource="@Projects" AllowPaging="true" AllowSorting="true" Height="400px">
-            <GridPageSettings PageCount="5"></GridPageSettings>
+            <GridPageSettings PageCount="5" PageSizes="true" PageSize="10"></GridPageSettings>
             <GridTemplates>
                 <DetailTemplate Context="detailcontext">
                     @{
