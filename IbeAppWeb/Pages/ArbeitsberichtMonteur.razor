@@ -239,6 +239,17 @@
                         Position = new PdfPosition() {X=300, Y = 30 },
                         Style = new PdfContentStyle() { FontSize = 14, TextBrushColor="#0a76ff" }
                     },
+                    new PdfHeaderFooterContent()
+                    {
+                        Type = ContentType.Text,
+                        Value = "Gesamtsumme: " + gesamtSumme?.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €",
+                        Position = new PdfPosition() { X = 500, Y = 35 },
+                        Style = new PdfContentStyle()
+                        {
+                            FontSize = 10,
+                            TextBrushColor = "#000000",
+                        }
+                    }
 
                 };
                 PdfHeader Header = new PdfHeader() { FromTop = 0, Height = 80, Contents = HeaderContent };
