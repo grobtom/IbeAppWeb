@@ -143,7 +143,7 @@
                 <GridColumn Field=@nameof(ArbeitsscheinDto.HALTUNG) HeaderText="Haltung" Width="40"></GridColumn>
                 <GridColumn Field=@nameof(ArbeitsscheinDto.LVPosition) HeaderText="LV-Position" Width="40"></GridColumn>
                 <GridColumn Field=@nameof(ArbeitsscheinDto.Menge) HeaderText="Menge" Width="80"></GridColumn>
-                <GridColumn Field=@nameof(ArbeitsscheinDto.SaniertAm) HeaderText="Saniert am" Width="80" Format="dd.MM.yyyy"></GridColumn>
+                <GridColumn Field=@nameof(ArbeitsscheinDto.SaniertAm) HeaderText="Ausgeführt am" Width="80" Format="dd.MM.yyyy"></GridColumn>
                 <GridColumn Field=@nameof(ArbeitsscheinDto.Abschlagsrechnung) HeaderText="AR" Width="30"></GridColumn>
                 <GridColumn Field=@nameof(ArbeitsscheinDto.Kolonnenfuehrer) HeaderText="Kolonnenführer" Width="80"></GridColumn>
                 <GridColumn Field=@nameof(ArbeitsscheinDto.AnlageName) HeaderText="Fahrzeug" Width="80"></GridColumn>
@@ -273,7 +273,7 @@
         };
         pdfRows.Add(ProcessPdfRow("Monteure", data.Monteur, "Kurztext", data.Kurztext));
         pdfRows.Add(ProcessPdfRow("Preis", $"{data.Preis.ToString("N3", System.Globalization.CultureInfo.GetCultureInfo("de-DE"))} €", "Positionspreis", $"{data.Positionssumme.ToString("N3", System.Globalization.CultureInfo.GetCultureInfo("de-DE"))} €"));
-        pdfRows.Add(ProcessPdfRow("Anzahl Monteure", $"{data.MonteurList.Count + 1}", "Anteil pro Monteur", $"{(data.Positionssumme / (data.MonteurList.Count + 1)).ToString("N3", System.Globalization.CultureInfo.GetCultureInfo("de-DE"))} €"));
+        pdfRows.Add(ProcessPdfRow("Anzahl Monteure", $"{data.MonteurList.Count}", "Anteil pro Monteur", $"{(data.Positionssumme / (data.MonteurList.Count)).ToString("N3", System.Globalization.CultureInfo.GetCultureInfo("de-DE"))} €"));
         pdfRows.Add(ProcessPdfRow("Anzahl Fahrzeuge", $"{data.FahrzeugList.Count}", "Anteil pro Fahrzeug", $"{(data.Positionssumme / (data.FahrzeugList.Count)).ToString("N3", System.Globalization.CultureInfo.GetCultureInfo("de-DE"))} €"));
 
         args.RowInfo.Rows = pdfRows;
