@@ -53,6 +53,7 @@ public class UmsatzService
     (
         DateTime? start = null,
         DateTime? end = null,
+        int ComboboxValue = 1, 
         string projectDb = "defaultDb"
     )
     {
@@ -64,8 +65,15 @@ public class UmsatzService
             if (end.HasValue) queryParameters.Add($"end={end.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
             var queryString = string.Join("&", queryParameters);
 
-            // Create the request
-            var request = new HttpRequestMessage(HttpMethod.Get, $"api/umsatz/kanal/fahrzeugmonteur/project?{queryString}");
+            HttpRequestMessage request;
+            if(ComboboxValue == 1)
+            {
+                request = new HttpRequestMessage(HttpMethod.Get, $"api/umsatz/kanal/fahrzeugmonteur/project?{queryString}");
+            }
+            else
+            {
+                request = new HttpRequestMessage(HttpMethod.Get, $"api/umsatz/schacht/fahrzeugmonteur/project?{queryString}");
+            }
 
             // Send the request
             var response = await _httpClient.SendAsync(request);

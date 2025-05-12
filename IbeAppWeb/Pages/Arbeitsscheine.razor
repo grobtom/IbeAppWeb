@@ -14,7 +14,6 @@
 
 <EditForm Model="@formModel" OnValidSubmit="LoadArbeitsscheine">
     <DataAnnotationsValidator />
-    <ValidationSummary />
 
     <div class="container mt-4">
         <div class="row mb-3">
@@ -35,6 +34,7 @@
             <div class="col-md-4">
                 <label for="abschlagsrechnung" class="form-label">Abschlagsrechnung:</label>
                 <SfTextBox @bind-value="@formModel.Abschlagsrechnung"></SfTextBox>
+                <ValidationMessage For="@(() => formModel.Abschlagsrechnung)" />
             </div>
         </div>
         <div class="row mb-3">
@@ -57,15 +57,20 @@
             <div class="col-md-4">
                 <label for="kolonnenfuehrer" class="form-label">Kolonnenführer:</label>
                 <SfTextBox @bind-value="@formModel.Kolonnenfuehrer"></SfTextBox>
+                <ValidationMessage For="@(() => formModel.Kolonnenfuehrer)" />
+
             </div>
             <div class="col-md-4">
                 <label for="monteurname" class="form-label">Monteur:</label>
                 <SfTextBox @bind-value="@formModel.Monteur"></SfTextBox>
+                <ValidationMessage For="@(() => formModel.Monteur)" />
             </div>
 
             <div class="col-md-4">
                 <label for="fahrzeug" class="form-label">Fahrzeug:</label>
                 <SfTextBox @bind-value="@formModel.Fahrzeug"></SfTextBox>
+                <ValidationMessage For="@(() => formModel.Fahrzeug)" />
+
             </div>
             <div class="col-md-4 d-flex align-items-end">
                 <SfButton class="btn btn-primary me-2" type="submit" disabled="@isLoading">Lade Arbeitsberichte</SfButton>
@@ -197,7 +202,7 @@ else
 
     private ArbeitsscheinResultDto arbeitsscheinResultDto;
 
-    private List<Project> projects = new();
+    private List<Project>? projects = new();
 
     private List<string> ToolbarItems = new List<string>() { "PdfExport" };
     private bool isLoading = false;
@@ -206,6 +211,7 @@ else
     private string projectDb;
     private Decimal gesamtSumme;
     private bool IsSaniertAmUsed => formModel.SaniertAm.HasValue;
+    private string Message = string.Empty;
 
     private List<KanalSchacht> kanalSchachtList = new List<KanalSchacht>
     {
@@ -419,13 +425,13 @@ else
 
         [DataType(DataType.Date)]
         public DateTime? SaniertAm { get; set; }
-
+        [MaxLength(4, ErrorMessage = "Name für die Abschlagsrechnung darf nicht länger als 4 Zeichen sein!")]
         public string? Abschlagsrechnung { get; set; }
-
+        [MaxLength(30, ErrorMessage = "Name für den Kolonnenführer darf nicht länger als 30 Zeichen sein!")]
         public string? Kolonnenfuehrer { get; set; }
-
+        [MaxLength(10, ErrorMessage = "Name für das Fahrzeug darf nicht länger als 10 Zeichen sein!")]
         public string? Fahrzeug { get; set; }
-
+        [MaxLength(30,ErrorMessage = "Name für den Monteur darf nicht länger als 30 Zeichen sein!")]
         public string? Monteur { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
@@ -438,5 +444,6 @@ else
             }
         }
     }
+
 }
 
