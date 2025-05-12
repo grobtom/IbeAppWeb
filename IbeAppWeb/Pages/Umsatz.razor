@@ -200,19 +200,9 @@
                 );
                 umsatzFahrzeugMonteurDto = umsatzFahrzeugMonteurResultDto?.umsatzFahrzeugMonteurDtos ?? new List<UmsatzFahrzeugMonteurDto>();
                 // Assign the fetched data to the masterDaten list
-                masterDaten = new List<UmsatzDto>();
-                foreach (var item in umsatzFahrzeugMonteurDto)
-                {
-                    masterDaten.Add(new UmsatzDto
-                        {
-                            SaniertAm = item.Ausfuehrungsdatum,
-                            Fahrzeug = item.Fahrzeug,
-                            Kolonnenfuehrer = item.Kolonnenfuehrer,
-                            Umsatz = item.Gesamtumsatz
-                        });
-                }
+                masterDaten = MapUmsatzData();
             }           
-                        
+
             else
             {
                 // Handle the case where no valid date input is provided
@@ -232,6 +222,21 @@
             // Reset the loading state
             isLoading = false;
         }
+    }
+
+    public List<UmsatzDto> MapUmsatzData()
+    {
+        if (umsatzFahrzeugMonteurDto == null)
+            return new List<UmsatzDto>();
+
+        return umsatzFahrzeugMonteurDto.Select(item => new UmsatzDto
+            {
+                PkLvPos = item.PkLvPos,
+                SaniertAm = item.Ausfuehrungsdatum,
+                Fahrzeug = item.Fahrzeug,
+                Kolonnenfuehrer = item.Kolonnenfuehrer,
+                Umsatz = item.Gesamtumsatz
+            }).ToList();
     }
 
 }
