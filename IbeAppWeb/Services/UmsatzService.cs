@@ -16,9 +16,10 @@ public class UmsatzService
         _logger = logger;
     }
 
-    public async Task<UmsatzResultDto> GetUmsatzByFahrzeugAndDateKanalAsync
+    public async Task<UmsatzResultDto> GetUmsatzByFahrzeugAndDateAsync
     (
         DateTime? saniertAm = null,
+        int ComboBoxValue = 1,
         string projectDb = "defaultDb"
     )
     {
@@ -28,9 +29,19 @@ public class UmsatzService
             if (saniertAm.HasValue) queryParameters.Add($"fromDate={saniertAm.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
 
             var queryString = string.Join("&", queryParameters);
-            var request = new HttpRequestMessage(HttpMethod.Get, $"api/umsatz/kanal/fahrzeug?{queryString}");
-            request.Headers.Add("X-IbeProjectDB", projectDb);
 
+            HttpRequestMessage request;
+
+            if(ComboBoxValue == 1)
+            {
+                request = new HttpRequestMessage(HttpMethod.Get, $"api/umsatz/kanal/fahrzeug?{queryString}");
+            }
+            else
+            {
+                request = new HttpRequestMessage(HttpMethod.Get, $"api/umsatz/schacht/fahrzeug?{queryString}");
+            }
+
+            request.Headers.Add("X-IbeProjectDB", projectDb);
             var response = await _httpClient.SendAsync(request);
             response.EnsureSuccessStatusCode();
 
@@ -49,6 +60,48 @@ public class UmsatzService
         }
     }
 
+    public async Task<UmsatzFahrzeugMonteurResultDto> GetUmsatzByFahrzeugMonteurAsync
+    (
+        DateTime? SaniertAmVon = null,
+        DateTime? SaniertAmBis = null,
+        int ComboBoxValue = 1,
+        string projectDb = "defaultDb"
+    )
+    {
+        try
+        {
+            var queryParameters = new List<string>();
+            if (SaniertAmVon.HasValue) queryParameters.Add($"start={SaniertAmVon.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
+            if (SaniertAmBis.HasValue) queryParameters.Add($"end={SaniertAmBis.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
+            var queryString = string.Join("&", queryParameters);
+            HttpRequestMessage request;
+            if (ComboBoxValue == 1)
+            {
+                request = new HttpRequestMessage(HttpMethod.Get, $"api/umsatz/kanal/fahrzeugmonteur?{queryString}");
+            }
+            else
+            {
+                request = new HttpRequestMessage(HttpMethod.Get, $"api/umsatz/schacht/fahrzeugmonteur?{queryString}");
+            }
+            request.Headers.Add("X-IbeProjectDB", projectDb);
+
+            var response = await _httpClient.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+
+            var result = await response.Content.ReadFromJsonAsync<UmsatzFahrzeugMonteurResultDto>();
+            if (result == null)
+            {
+                throw new InvalidOperationException("Response content is null.");
+            }
+            return result;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error fetching Umsatz data");
+            return new UmsatzFahrzeugMonteurResultDto();
+        }
+    }
+
     public async Task<UmsatzFahrzeugMonteurProjectResultDto> GetUmsatzByFahrzeugAndMonteurAllAsync
     (
         DateTime? start = null,
@@ -59,7 +112,6 @@ public class UmsatzService
     {
         try
         {
-            // Build query parameters
             var queryParameters = new List<string>();
             if (start.HasValue) queryParameters.Add($"start={start.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
             if (end.HasValue) queryParameters.Add($"end={end.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");

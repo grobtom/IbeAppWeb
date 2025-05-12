@@ -27,15 +27,15 @@
             <div class="col-md-4">
                 <label class="form-label">Startdatum:</label>
 
-                <SfDatePicker TValue="DateTime?" Placeholder="Start Date" @bind-Value="StartDate"></SfDatePicker>
+                <SfDatePicker TValue="DateTime?" Placeholder="Start Date" @bind-value="StartDate"></SfDatePicker>
             </div>
             <div class="col-md-4">
                 <label class="form-label">Enddatum:</label>
-                <SfDatePicker TValue="DateTime?" Placeholder="End Date" @bind-Value="EndDate"></SfDatePicker>
+                <SfDatePicker TValue="DateTime?" Placeholder="End Date" @bind-value="EndDate"></SfDatePicker>
             </div>
             <div class="col-md-4">
                 <label class="form-label">Wähle Bereich:</label>
-                <SfComboBox TValue="int" TItem="KanalSchacht" PopupHeight="230px" @bind-Value="@ComboBoxValue" DataSource="@kanalSchachtList">
+                <SfComboBox TValue="int" TItem="KanalSchacht" PopupHeight="230px" @bind-value="ComboBoxValue" DataSource="@kanalSchachtList">
                     <ComboBoxEvents TValue="int" TItem="KanalSchacht" />
                     <ComboBoxFieldSettings Text="Auswahl" Value="Id" />
                 </SfComboBox>

@@ -20,13 +20,13 @@
             <div class="col-md-4">
                 <label for="projectDb" class="form-label">Wähle Projekt:</label>
                 <SfComboBox TValue="int?" TItem="Project" PopupHeight="230px" Placeholder="Projekt"
-                @bind-Value="@formModel.SelectedProjectId" DataSource="@projects">
+                @bind-value="@formModel.SelectedProjectId" DataSource="@projects">
                     <ComboBoxFieldSettings Text="ProjectName" Value="ProjectId" />
                 </SfComboBox>
             </div>
             <div class="col-md-4">
                 <label class="form-label">Wähle Bereich:</label>
-                <SfComboBox TValue="int" TItem="KanalSchacht" PopupHeight="230px" @bind-Value="@ComboBoxValue" DataSource="@kanalSchachtList">
+                <SfComboBox TValue="int" TItem="KanalSchacht" PopupHeight="230px" @bind-value="@ComboBoxValue" DataSource="@kanalSchachtList">
                     <ComboBoxEvents TValue="int" TItem="KanalSchacht" />
                     <ComboBoxFieldSettings Text="Auswahl" Value="Id" />
                 </SfComboBox>

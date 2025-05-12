@@ -1,7 +1,11 @@
 ﻿@page "/umsatz"
 @using IbeAppWeb.DTOs
+@using IbeAppWeb.DTOs.Umsatz
 @using System.ComponentModel.DataAnnotations
 @using IbeAppWeb.Services
+@using IbeAppWeb.Forms
+@using Syncfusion.Blazor.Calendars
+@using Syncfusion.Blazor.DropDowns
 @inject ProjectService ProjectService
 @inject UmsatzService UmsatzService
 
@@ -16,7 +20,7 @@
         <div class="row mb-3">
             <div class="col-md-4">
                 <label for="projectDb" class="form-label">Project DB:</label>
-                <InputSelect id="projectDb" class="form-control" @bind-Value="formModel.SelectedProjectId">
+                <InputSelect id="projectDb" class="form-control" @bind-value="formModel.SelectedProjectId">
                     <option value="">Select a project</option>
                     @foreach (var project in projects)
                     {
@@ -25,9 +29,25 @@
                 </InputSelect>
             </div>
             <div class="col-md-4">
+                <label for="saniertAmVon" class="form-label">Saniert Am Von:</label>
+                <SfDatePicker TValue="DateTime?" @bind-value="@formModel.SaniertAmVon"></SfDatePicker>
+            </div>
+
+            <div class="col-md-4">
+                <label for="saniertAmBis" class="form-label">Saniert Am Bis:</label>
+                <SfDatePicker TValue="DateTime?" @bind-value="@formModel.SaniertAmBis"></SfDatePicker>
+            </div>
+            <div class="col-md-4">
                 <label for="saniertAm" class="form-label">Saniert Am:</label>
-                <InputDate id="saniertAm" class="form-control" @bind-Value="formModel.SaniertAm" />
-            </div>            
+                <InputDate id="saniertAm" class="form-control" @bind-value="formModel.SaniertAm" />
+            </div> 
+            <div class="col-md-4">
+                <label class="form-label">Wähle Bereich:</label>
+                <SfComboBox TValue="int" TItem="KanalSchacht" PopupHeight="230px" @bind-value="@ComboBoxValue" DataSource="@kanalSchachtList">
+                    <ComboBoxEvents TValue="int" TItem="KanalSchacht" />
+                    <ComboBoxFieldSettings Text="Auswahl" Value="Id" />
+                </SfComboBox>
+            </div>
         </div>
         <div class="row mb-3">            
             <div class="col-md-4 d-flex align-items-end">
@@ -91,11 +111,20 @@
     private List<Project> projects = new();
     private UmsatzFormModel formModel = new();
     private UmsatzResultDto umsatzData;
+    private List<UmsatzFahrzeugMonteurDto> umsatzFahrzeugMonteurDto;
+    private UmsatzFahrzeugMonteurResultDto umsatzFahrzeugMonteurResultDto;
 
     private bool isLoading = false;
     private bool errorOccurred = false;
     private string base64Image;
     private string projectDb;
+
+    private List<KanalSchacht> kanalSchachtList = new List<KanalSchacht>
+    {
+        new KanalSchacht { Id = 1, Auswahl = "Kanal" },
+        new KanalSchacht { Id = 2, Auswahl = "Schacht" }
+    };
+    private int ComboBoxValue = 1;
 
     protected override async Task OnInitializedAsync()
     {
@@ -128,6 +157,12 @@
         [DataType(DataType.Date)]
         public DateTime? SaniertAm { get; set; }
 
+        [DataType(DataType.Date)]
+        public DateTime? SaniertAmVon { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime? SaniertAmBis { get; set; }
+
     }
 
     private async Task LoadUmsatz()
@@ -137,21 +172,64 @@
 
         try
         {
+            // Get the selected project and its database name
             var selectedProject = projects.FirstOrDefault(p => p.ProjectId == formModel.SelectedProjectId);
             projectDb = selectedProject?.ProjectName ?? "defaultDb";
 
-            umsatzData = await UmsatzService.GetUmsatzByFahrzeugAndDateKanalAsync(
-                saniertAm: formModel.SaniertAm,
-                projectDb: projectDb
-            );
-            masterDaten = umsatzData.UmsatzFahrzeugDatum;    
+            // Check which date fields are provided and call the appropriate service
+            if (formModel.SaniertAm.HasValue)
+            {
+                // Fetch data for a specific date
+                umsatzData = await UmsatzService.GetUmsatzByFahrzeugAndDateAsync(
+                    saniertAm: formModel.SaniertAm.Value,
+                    ComboBoxValue: ComboBoxValue,
+                    projectDb: projectDb
+                );
+
+                // Assign the fetched data to the masterDaten list
+                masterDaten = umsatzData?.UmsatzFahrzeugDatum ?? new List<UmsatzDto>();
+            }
+            else if (formModel.SaniertAmVon.HasValue && formModel.SaniertAmBis.HasValue)
+            {
+                // Fetch data for a date range
+                umsatzFahrzeugMonteurResultDto = await UmsatzService.GetUmsatzByFahrzeugMonteurAsync(
+                    SaniertAmVon: formModel.SaniertAmVon.Value,
+                    SaniertAmBis: formModel.SaniertAmBis.Value,
+                    ComboBoxValue: ComboBoxValue,
+                    projectDb: projectDb
+                );
+                umsatzFahrzeugMonteurDto = umsatzFahrzeugMonteurResultDto?.umsatzFahrzeugMonteurDtos ?? new List<UmsatzFahrzeugMonteurDto>();
+                // Assign the fetched data to the masterDaten list
+                masterDaten = new List<UmsatzDto>();
+                foreach (var item in umsatzFahrzeugMonteurDto)
+                {
+                    masterDaten.Add(new UmsatzDto
+                        {
+                            SaniertAm = item.Ausfuehrungsdatum,
+                            Fahrzeug = item.Ressource,
+                            Kolonnenfuehrer = item.Kolonnenfuehrer,
+                            Umsatz = item.Gesamtumsatz
+                        });
+                }
+            }           
+                        
+            else
+            {
+                // Handle the case where no valid date input is provided
+                masterDaten = new List<UmsatzDto>();
+                errorOccurred = true;
+                Console.WriteLine("No valid date input provided.");
+            }
         }
-        catch
+        catch (Exception ex)
         {
+            // Log the error and set the error flag
             errorOccurred = true;
+            Console.WriteLine($"Error loading Umsatz data: {ex.Message}");
         }
         finally
         {
+            // Reset the loading state
             isLoading = false;
         }
     }
