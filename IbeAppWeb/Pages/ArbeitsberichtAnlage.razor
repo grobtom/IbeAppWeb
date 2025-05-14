@@ -14,7 +14,7 @@
     <div class="container mt-4">
         <div class="row mb-3">
             <div class="col-md-4">
-                <label for="projectDb" class="form-label">Project DB:</label>
+                <label for="projectDb" class="form-label">Project:</label>
                 <InputSelect id="projectDb" class="form-control" @bind-Value="formModel.SelectedProjectId">
                     <option value="">Select a project</option>
                     @foreach (var project in projects)
@@ -28,23 +28,23 @@
                 <InputCheckbox @bind-Value="isSchachtEnabled" />
             </div>
             <div class="col-md-4">
-                <label for="saniertAmVon" class="form-label">Saniert Am Von:</label>
+                <label for="saniertAmVon" class="form-label">Ausgeführt ab:</label>
                 <InputDate id="saniertAmVon" class="form-control" @bind-Value="formModel.SaniertAmVon" disabled="@IsSaniertAmUsed" />
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-md-4">
-                <label for="saniertAmBis" class="form-label">Saniert Am Bis:</label>
+                <label for="saniertAmBis" class="form-label">Ausgeführt bis:</label>
                 <InputDate id="saniertAmBis" class="form-control" @bind-Value="formModel.SaniertAmBis" disabled="@IsSaniertAmUsed" />
             </div>
             <div class="col-md-4">
-                <label for="saniertAm" class="form-label">Saniert Am:</label>
+                <label for="saniertAm" class="form-label">Ausgeführt am:</label>
                 <InputDate id="saniertAm" class="form-control" @bind-Value="formModel.SaniertAm" @onchange="OnSaniertAmChanged" />
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-md-4">
-                <label for="fahrzeug" class="form-label">Kennzeichen:</label>
+                <label for="fahrzeug" class="form-label">Anlage:</label>
                 <InputText id="fahrzeug" class="form-control" @bind-Value="formModel.Fahrzeug" />
             </div>
             <div class="col-md-4 d-flex align-items-end">

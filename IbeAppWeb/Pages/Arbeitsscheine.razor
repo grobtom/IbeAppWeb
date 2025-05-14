@@ -29,7 +29,7 @@
     <div class="container mt-4">
         <div class="row mb-3">
             <div class="col-md-4">
-                <label for="projectDb" class="form-label">Wähle Projekt:</label>
+                <label for="projectDb" class="form-label">Projekt:</label>
                 <SfComboBox TValue="int?" TItem="Project" PopupHeight="230px" Placeholder="Projekt"
                 @bind-value="@formModel.SelectedProjectId" DataSource="@projects">
                     <ComboBoxFieldSettings Text="ProjectName" Value="ProjectId" />
@@ -50,16 +50,16 @@
         </div>
         <div class="row mb-3">
             <div class="col-md-4">
-                <label for="saniertAmVon" class="form-label">Saniert Am Von:</label>
+                <label for="saniertAmVon" class="form-label">Ausgeführt ab:</label>
                 <SfDatePicker TValue="DateTime?" @bind-value="@formModel.SaniertAmVon"></SfDatePicker>
             </div>
 
             <div class="col-md-4">
-                <label for="saniertAmBis" class="form-label">Saniert Am Bis:</label>
+                <label for="saniertAmBis" class="form-label">Ausgeführt bis:</label>
                 <SfDatePicker TValue="DateTime?" @bind-value="@formModel.SaniertAmBis"></SfDatePicker>
             </div>
             <div class="col-md-4">
-                <label for="saniertAm" class="form-label">Saniert Am:</label>
+                <label for="saniertAm" class="form-label">Ausgeführt am:</label>
                 <SfDatePicker TValue="DateTime?" @bind-value="@formModel.SaniertAm" @onchange="@OnSaniertAmChanged"></SfDatePicker>
             </div>
 
