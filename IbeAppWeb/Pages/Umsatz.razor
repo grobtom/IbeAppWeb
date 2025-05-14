@@ -179,6 +179,8 @@
 
     public class UmsatzFormModel
     {
+        public string LvPos { get; set; }
+        public string Kurztext { get; set; }
         [Required(ErrorMessage = "Bitte wählen Sie ein Projekt aus.")]
         public int? SelectedProjectId { get; set; }
         [DataType(DataType.Date)]
@@ -251,6 +253,7 @@
         return umsatzFahrzeugMonteurDto.Select(item => new UmsatzDto
             {
                 PkLvPos = item.PkLvPos,
+                Kurztext = item.Kurztext,
                 SaniertAm = item.Ausfuehrungsdatum,
                 Fahrzeug = item.Fahrzeug,
                 Kolonnenfuehrer = item.Kolonnenfuehrer,
