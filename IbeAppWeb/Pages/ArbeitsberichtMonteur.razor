@@ -7,6 +7,15 @@
 
 <h3>Arbeitsscheine</h3>
 
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger">@errorMessage</div>
+}
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <div class="alert alert-success">@successMessage</div>
+}
+
 <EditForm Model="@formModel" OnValidSubmit="LoadArbeitsscheine">
     <DataAnnotationsValidator />
     <ValidationSummary />
@@ -54,106 +63,94 @@
         </div>
     </div>
 </EditForm>
-    @if (isLoading)
-    {
-        <p><em>Loading...</em></p>
-    }
-    else if (errorOccurred)
-    {
-        <div class="alert alert-danger" role="alert">
-            An error occurred. Please reload the page.
-        </div>
-    }
-    else if (arbeitsscheine == null || arbeitsscheine.Count == 0)
-    {
-        <div class="alert alert-warning" role="alert">
-            No Arbeitsscheine found.
-        </div>
-    }
-    else
-    {
-        <SfGrid ID="Grid" @ref="grid" DataSource="@arbeitsscheine" AllowReordering="true" AllowGrouping="true" Toolbar="@ToolbarItems" AllowPdfExport="true">
-            <GridTemplates>
-                <DetailTemplate Context="ascontext">
-                    @{
-                        var arbeitsschein = (ascontext as ArbeitsscheinDto);
-                        <table class="detailtable" width="100%">
-                            <colgroup>
-                                <col width="30%" />
-                                <col width="30%" />
-                                <col width="40%" />
-                            </colgroup>
-                            <thead>
+@if (isLoading)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <SfGrid ID="Grid" @ref="grid" DataSource="@arbeitsscheine" AllowReordering="true" AllowGrouping="true" Toolbar="@ToolbarItems" AllowPdfExport="true">
+        <GridTemplates>
+            <DetailTemplate Context="ascontext">
+                @{
+                    var arbeitsschein = (ascontext as ArbeitsscheinDto);
+                    <table class="detailtable" width="100%">
+                        <colgroup>
+                            <col width="30%" />
+                            <col width="30%" />
+                            <col width="40%" />
+                        </colgroup>
+                        <thead>
                             <th colspan="2" style="font-weight: 500;text-align: center; background-color: #ADD8E6;">
                                 Details
                             </th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style="text-align: center;">
-                                        <strong style="color: #0a76ff;">Monteure:</strong><br>
-                                        <span>@arbeitsschein?.Monteur</span>
-                                    </td>
-                                    <td style="text-align: center;">
-                                        <strong style="color: #0a76ff;">Anlagen:</strong><br>
-                                        <span>@arbeitsschein?.AnlageName</span>
-                                    </td>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: center;">
+                                    <strong style="color: #0a76ff;">Monteure:</strong><br>
+                                    <span>@arbeitsschein?.Monteur</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    <strong style="color: #0a76ff;">Anlagen:</strong><br>
+                                    <span>@arbeitsschein?.AnlageName</span>
+                                </td>
 
-                                    <td style="text-align: center;">
-                                        <strong style="color: #0a76ff;">Kurztext:</strong><br>
-                                        <span> @arbeitsschein?.Kurztext</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: center;">
-                                        <strong style="color: #0a76ff;">Anzahl Monteure:</strong><br>
-                                        <span>@(arbeitsschein?.MonteurList.Count)</span>
-                                    </td>
-                                    <td style="text-align: center;">
-                                        <strong style="color: #0a76ff;">Anzahl Anlagen:</strong><br>
-                                        <span>@(arbeitsschein?.FahrzeugList.Count)</span>
-                                    </td>
-                                    <td style="text-align: center;">
-                                        <strong style="color: #0a76ff;">Preis:</strong><br>
-                                        <span>@(arbeitsschein?.Preis.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: center;">
-                                        <strong style="color: #0a76ff;">Anteil pro Monteur:</strong><br>
-                                        <span>@((arbeitsschein.Positionssumme / (arbeitsschein.MonteurList.Count)).ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</span>
-                                    </td>
-                                    <td style="text-align: center;">
-                                        <strong style="color: #0a76ff;">Anteil pro Anlage:</strong><br>
-                                        <span>@((arbeitsschein.Positionssumme / (arbeitsschein.FahrzeugList.Count)).ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</span>
-                                    </td>
-                                    <td style="text-align: center;">
-                                        <strong style="color: #0a76ff;">Positionssumme:</strong><br>
-                                        <span>@(arbeitsschein?.Positionssumme.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    }
-                </DetailTemplate>
-            </GridTemplates>
-            <GridEvents OnToolbarClick="ToolbarClickHandler" PdfDetailTemplateExporting="PDFDetailTemplateHandler" TValue="ArbeitsscheinDto" />
-            <GridColumns>
-                <GridColumn Field=@nameof(ArbeitsscheinDto.HALTUNG) HeaderText="Haltung" Width="40"></GridColumn>
-                <GridColumn Field=@nameof(ArbeitsscheinDto.LVPosition) HeaderText="LV-Position" Width="40"></GridColumn>
-                <GridColumn Field=@nameof(ArbeitsscheinDto.Menge) HeaderText="Menge" Width="80"></GridColumn>
-                <GridColumn Field=@nameof(ArbeitsscheinDto.SaniertAm) HeaderText="Ausgeführt am" Width="80" Format="dd.MM.yyyy"></GridColumn>
-                <GridColumn Field=@nameof(ArbeitsscheinDto.Abschlagsrechnung) HeaderText="AR" Width="30"></GridColumn>
-                <GridColumn Field=@nameof(ArbeitsscheinDto.Kolonnenfuehrer) HeaderText="Kolonnenführer" Width="80"></GridColumn>
-                <GridColumn Field=@nameof(ArbeitsscheinDto.AnlageName) HeaderText="Fahrzeug" Width="80"></GridColumn>
-            </GridColumns>
-        </SfGrid>
-        <div class="row mt-3">
-            <div class="col-md-12">
+                                <td style="text-align: center;">
+                                    <strong style="color: #0a76ff;">Kurztext:</strong><br>
+                                    <span> @arbeitsschein?.Kurztext</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">
+                                    <strong style="color: #0a76ff;">Anzahl Monteure:</strong><br>
+                                    <span>@(arbeitsschein?.MonteurList.Count)</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    <strong style="color: #0a76ff;">Anzahl Anlagen:</strong><br>
+                                    <span>@(arbeitsschein?.FahrzeugList.Count)</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    <strong style="color: #0a76ff;">Preis:</strong><br>
+                                    <span>@(arbeitsschein?.Preis.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">
+                                    <strong style="color: #0a76ff;">Anteil pro Monteur:</strong><br>
+                                    <span>@((arbeitsschein.Positionssumme / (arbeitsschein.MonteurList.Count)).ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    <strong style="color: #0a76ff;">Anteil pro Anlage:</strong><br>
+                                    <span>@((arbeitsschein.Positionssumme / (arbeitsschein.FahrzeugList.Count)).ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    <strong style="color: #0a76ff;">Positionssumme:</strong><br>
+                                    <span>@(arbeitsschein?.Positionssumme.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                }
+            </DetailTemplate>
+        </GridTemplates>
+        <GridEvents OnToolbarClick="ToolbarClickHandler" PdfDetailTemplateExporting="PDFDetailTemplateHandler" TValue="ArbeitsscheinDto" />
+        <GridColumns>
+            <GridColumn Field=@nameof(ArbeitsscheinDto.HALTUNG) HeaderText="Haltung" Width="40"></GridColumn>
+            <GridColumn Field=@nameof(ArbeitsscheinDto.LVPosition) HeaderText="LV-Position" Width="40"></GridColumn>
+            <GridColumn Field=@nameof(ArbeitsscheinDto.Menge) HeaderText="Menge" Width="80"></GridColumn>
+            <GridColumn Field=@nameof(ArbeitsscheinDto.SaniertAm) HeaderText="Ausgeführt am" Width="80" Format="dd.MM.yyyy"></GridColumn>
+            <GridColumn Field=@nameof(ArbeitsscheinDto.Abschlagsrechnung) HeaderText="AR" Width="30"></GridColumn>
+            <GridColumn Field=@nameof(ArbeitsscheinDto.Kolonnenfuehrer) HeaderText="Kolonnenführer" Width="80"></GridColumn>
+            <GridColumn Field=@nameof(ArbeitsscheinDto.AnlageName) HeaderText="Fahrzeug" Width="80"></GridColumn>
+        </GridColumns>
+    </SfGrid>
+    <div class="row mt-3">
+        <div class="col-md-12">
             <h5>Gesamtsumme: @(gesamtSumme?.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE"))  + " €")</h5>
         </div>
     </div>
-    }
+}
 <style type="text/css" class="cssStyles">
     .deatailTable td {
     font-size: 13px;
@@ -181,10 +178,12 @@
     private Decimal? gesamtSumme = 0;
     private List<string> ToolbarItems = new List<string>() { "PdfExport" };
     private bool isLoading = false;
-    private bool errorOccurred = false;
     private string base64Image;
     private string projectDb;
     private bool isSchachtEnabled = false;
+    private string errorMessage = string.Empty;
+    private string successMessage = string.Empty;
+
 
     private bool IsSaniertAmUsed => formModel.SaniertAm.HasValue;
 
@@ -301,6 +300,36 @@
         return new PdfDetailTemplateRow() { Cells = cells };            
     }
 
+    private async Task ShowMessage(string message, bool isSuccess)
+    {
+        if (isSuccess)
+        {
+            successMessage = message;
+            errorMessage = null;
+        }
+        else
+        {
+            errorMessage = message;
+            successMessage = null;
+        }
+
+        StateHasChanged();
+
+        await Task.Delay(3000);
+
+        if (isSuccess)
+        {
+            successMessage = null;
+        }
+        else
+        {
+            errorMessage = null;
+        }
+
+        StateHasChanged();
+    }
+
+
     private void OnSaniertAmChanged(Microsoft.AspNetCore.Components.ChangeEventArgs e)
     {
         if (DateTime.TryParse(e.Value?.ToString(), out var date))
@@ -323,14 +352,13 @@
         }
         catch
         {
-            errorOccurred = true;
+            ShowMessage($"Fehler beim Laden der Projektdaten!", false);
         }
     }
 
     private async Task LoadArbeitsscheine()
     {
         isLoading = true;
-        errorOccurred = false;
 
         try
         {
@@ -362,10 +390,12 @@
             berichtDbSumme = arbeitsberichtResultDto.Arbeitsberichte;
             arbeitsscheine = berichtDbSumme.SelectMany(b => b.Arbeitsscheine).ToList();
             gesamtSumme = berichtDbSumme.Sum(b => b.Summe);
+
+            ShowMessage($"Arbeitsbericht erfolgreich geladen!", true);
         }
         catch
         {
-            errorOccurred = true;
+            ShowMessage($"Fehler beim Laden der Arbeitsberichtdaten!", false);
         }
         finally
         {

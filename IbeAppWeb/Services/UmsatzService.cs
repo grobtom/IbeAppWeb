@@ -26,7 +26,7 @@ public class UmsatzService
         try
         {
             var queryParameters = new List<string>();
-            if (saniertAm.HasValue) queryParameters.Add($"fromDate={saniertAm.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
+            if (saniertAm.HasValue) queryParameters.Add($"atDate={saniertAm.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
 
             var queryString = string.Join("&", queryParameters);
 

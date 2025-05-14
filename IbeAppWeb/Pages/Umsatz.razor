@@ -6,11 +6,21 @@
 @using IbeAppWeb.Forms
 @using Syncfusion.Blazor.Calendars
 @using Syncfusion.Blazor.DropDowns
+@using Syncfusion.Blazor.Spinner
 @inject ProjectService ProjectService
 @inject UmsatzService UmsatzService
 
 
 <h3>Umsatz</h3>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger">@errorMessage</div>
+}
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <div class="alert alert-success">@successMessage</div>
+}
 
 <EditForm Model="@formModel" OnValidSubmit="LoadUmsatz">
     <DataAnnotationsValidator />
@@ -20,29 +30,25 @@
         <div class="row mb-3">
             <div class="col-md-4">
                 <label for="projectDb" class="form-label">Project DB:</label>
-                <InputSelect id="projectDb" class="form-control" @bind-value="formModel.SelectedProjectId">
-                    <option value="">Select a project</option>
-                    @foreach (var project in projects)
-                    {
-                        <option value="@project.ProjectId">@project.ProjectName</option>
-                    }
-                </InputSelect>
+                <SfComboBox TValue="int?" TItem="Project" PopupHeight="230px" 
+                @bind-value="@formModel.SelectedProjectId" DataSource="@projects">
+                    <ComboBoxFieldSettings Text="ProjectName" Value="ProjectId" />
+                </SfComboBox>
             </div>
             <div class="col-md-4">
-                <label for="saniertAmVon" class="form-label">Saniert Am Von:</label>
+                <label for="saniertAmVon" class="form-label">Ausgeführt ab:</label>
                 <SfDatePicker TValue="DateTime?" @bind-value="@formModel.SaniertAmVon"></SfDatePicker>
             </div>
-
             <div class="col-md-4">
-                <label for="saniertAmBis" class="form-label">Saniert Am Bis:</label>
+                <label for="saniertAmBis" class="form-label">Ausgeführt bis:</label>
                 <SfDatePicker TValue="DateTime?" @bind-value="@formModel.SaniertAmBis"></SfDatePicker>
             </div>
             <div class="col-md-4">
-                <label for="saniertAm" class="form-label">Saniert Am:</label>
-                <InputDate id="saniertAm" class="form-control" @bind-value="formModel.SaniertAm" />
+                <label for="saniertAm" class="form-label">Ausgeführt am:</label>
+                <SfDatePicker TValue="DateTime?" @bind-value="@formModel.SaniertAm"></SfDatePicker>
             </div> 
             <div class="col-md-4">
-                <label class="form-label">Wähle Bereich:</label>
+                <label class="form-label">Wähle Sanierungsbereich:</label>
                 <SfComboBox TValue="int" TItem="KanalSchacht" PopupHeight="230px" @bind-value="@ComboBoxValue" DataSource="@kanalSchachtList">
                     <ComboBoxEvents TValue="int" TItem="KanalSchacht" />
                     <ComboBoxFieldSettings Text="Auswahl" Value="Id" />
@@ -51,7 +57,7 @@
         </div>
         <div class="row mb-3">            
             <div class="col-md-4 d-flex align-items-end">
-                <button class="btn btn-primary me-2" type="submit" disabled="@isLoading">Lade Umsatz</button>
+                <button class="btn btn-primary me-2" type="submit" disabled="@isLoading">Umsatz laden</button>
                 <button class="btn btn-secondary" type="button" @onclick="ResetForm">Reset</button>
             </div>
         </div>
@@ -61,18 +67,6 @@
     @if (isLoading)
     {
         <p><em>Loading...</em></p>
-    }
-    else if (errorOccurred)
-    {
-        <div class="alert alert-danger" role="alert">
-            An error occurred. Please reload the page.
-        </div>
-    }
-    else if (masterDaten == null || masterDaten.Count == 0)
-    {
-        <div class="alert alert-warning" role="alert">
-            Keine Umsatzdaten gefunden.
-        </div>
     }
     else
     {
@@ -101,6 +95,10 @@
                 </GridAggregate>
             </GridAggregates>
         </SfGrid>
+         <div id="container">
+            <SfSpinner @bind-Visible="@isLoading">
+            </SfSpinner>
+        </div>
     }
 </div>
 
@@ -115,9 +113,10 @@
     private UmsatzFahrzeugMonteurResultDto umsatzFahrzeugMonteurResultDto;
 
     private bool isLoading = false;
-    private bool errorOccurred = false;
     private string base64Image;
     private string projectDb;
+    private string errorMessage = string.Empty;
+    private string successMessage = string.Empty;
 
     private List<KanalSchacht> kanalSchachtList = new List<KanalSchacht>
     {
@@ -139,8 +138,37 @@
         }
         catch
         {
-            errorOccurred = true;
+            ShowMessage($"Fehler beim Laden der Umsatzdaten!", false);
         }
+    }
+
+    private async Task ShowMessage(string message, bool isSuccess)
+    {
+        if (isSuccess)
+        {
+            successMessage = message;
+            errorMessage = null;
+        }
+        else
+        {
+            errorMessage = message;
+            successMessage = null;
+        }
+
+        StateHasChanged();
+
+        await Task.Delay(3000);
+
+        if (isSuccess)
+        {
+            successMessage = null;
+        }
+        else
+        {
+            errorMessage = null;
+        }
+
+        StateHasChanged();
     }
 
     private void ResetForm()
@@ -151,24 +179,19 @@
 
     public class UmsatzFormModel
     {
-        [Required]
+        [Required(ErrorMessage = "Bitte wählen Sie ein Projekt aus.")]
         public int? SelectedProjectId { get; set; }
-
         [DataType(DataType.Date)]
         public DateTime? SaniertAm { get; set; }
-
         [DataType(DataType.Date)]
         public DateTime? SaniertAmVon { get; set; }
-
         [DataType(DataType.Date)]
         public DateTime? SaniertAmBis { get; set; }
-
     }
 
     private async Task LoadUmsatz()
     {
         isLoading = true;
-        errorOccurred = false;
 
         try
         {
@@ -207,19 +230,15 @@
             {
                 // Handle the case where no valid date input is provided
                 masterDaten = new List<UmsatzDto>();
-                errorOccurred = true;
-                Console.WriteLine("No valid date input provided.");
+                ShowMessage($"Kein gültiges Datum eingegeben!", false);
             }
         }
         catch (Exception ex)
         {
-            // Log the error and set the error flag
-            errorOccurred = true;
-            Console.WriteLine($"Error loading Umsatz data: {ex.Message}");
+            ShowMessage($"Fehler beim Laden der Umsatzdaten: {ex.Message}", false);
         }
         finally
         {
-            // Reset the loading state
             isLoading = false;
         }
     }
@@ -237,6 +256,18 @@
                 Kolonnenfuehrer = item.Kolonnenfuehrer,
                 Umsatz = item.Gesamtumsatz
             }).ToList();
+    }
+
+    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    {
+        if (formModel.SaniertAmVon.HasValue && formModel.SaniertAmBis.HasValue && formModel.SaniertAmVon > formModel.SaniertAmBis)
+        {
+            yield return new ValidationResult
+            (
+                "Saniert Am Von darf nicht nach Saniert Am Bis liegen.",
+                new[] { nameof(formModel.SaniertAmVon), nameof(formModel.SaniertAmBis) });
+            }
+        }
     }
 
 }

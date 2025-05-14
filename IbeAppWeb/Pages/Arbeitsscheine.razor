@@ -10,10 +10,21 @@
 @using Syncfusion.Blazor.DropDowns
 @using IbeAppWeb.Forms
 
+
 <h3>Arbeitsbericht</h3>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger">@errorMessage</div>
+}
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <div class="alert alert-success">@successMessage</div>
+}
 
 <EditForm Model="@formModel" OnValidSubmit="LoadArbeitsscheine">
     <DataAnnotationsValidator />
+    <ValidationSummary />
 
     <div class="container mt-4">
         <div class="row mb-3">
@@ -49,7 +60,7 @@
             </div>
             <div class="col-md-4">
                 <label for="saniertAm" class="form-label">Saniert Am:</label>
-                <SfDatePicker TValue="DateTime?" @bind-value="@formModel.SaniertAm"></SfDatePicker>
+                <SfDatePicker TValue="DateTime?" @bind-value="@formModel.SaniertAm" @onchange="@OnSaniertAmChanged"></SfDatePicker>
             </div>
 
         </div>
@@ -82,18 +93,6 @@
 @if (isLoading)
 {
     <p><em>Loading...</em></p>
-}
-else if (errorOccurred)
-{
-    <div class="alert alert-danger" role="alert">
-        An error occurred. Please reload the page.
-    </div>
-}
-else if (arbeitsscheine == null || arbeitsscheine.Count == 0)
-{
-    <div class="alert alert-warning" role="alert">
-        No Arbeitsscheine found.
-    </div>
 }
 else
 {
@@ -206,12 +205,14 @@ else
 
     private List<string> ToolbarItems = new List<string>() { "PdfExport" };
     private bool isLoading = false;
-    private bool errorOccurred = false;
     private string base64Image;
     private string projectDb;
     private Decimal gesamtSumme;
     private bool IsSaniertAmUsed => formModel.SaniertAm.HasValue;
     private string Message = string.Empty;
+    private string errorMessage = string.Empty;
+    private string successMessage = string.Empty;
+
 
     private List<KanalSchacht> kanalSchachtList = new List<KanalSchacht>
     {
@@ -348,6 +349,36 @@ else
         }
     }
 
+    private async Task ShowMessage(string message, bool isSuccess)
+    {
+        if (isSuccess)
+        {
+            successMessage = message;
+            errorMessage = null;
+        }
+        else
+        {
+            errorMessage = message;
+            successMessage = null;
+        }
+
+        StateHasChanged();
+
+        await Task.Delay(3000);
+
+        if (isSuccess)
+        {
+            successMessage = null;
+        }
+        else
+        {
+            errorMessage = null;
+        }
+
+        StateHasChanged();
+    }
+
+
     private async Task LoadProjects()
     {
         try
@@ -356,14 +387,13 @@ else
         }
         catch
         {
-            errorOccurred = true;
+            ShowMessage($"Fehler beim Laden der Projektdaten", false);
         }
     }
 
     private async Task LoadArbeitsscheine()
     {
         isLoading = true;
-        errorOccurred = false;
 
         try
         {
@@ -388,7 +418,7 @@ else
         }
         catch
         {
-            errorOccurred = true;
+            ShowMessage($"Fehler beim Laden der Arbeistberichtdaten", false);
         }
         finally
         {
@@ -410,7 +440,7 @@ else
         arbeitsscheine = null;
     }
 
-    public class ArbeitsscheinFormModel : IValidatableObject
+    public class ArbeitsscheinFormModel
     {
         [Required]
         public int? SelectedProjectId { get; set; }
@@ -433,17 +463,18 @@ else
         public string? Fahrzeug { get; set; }
         [MaxLength(30,ErrorMessage = "Name für den Monteur darf nicht länger als 30 Zeichen sein!")]
         public string? Monteur { get; set; }
+    }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    {
+        if (formModel.SaniertAmVon.HasValue && formModel.SaniertAmBis.HasValue && formModel.SaniertAmVon > formModel.SaniertAmBis)
         {
-            if (SaniertAmVon.HasValue && SaniertAmBis.HasValue && SaniertAmVon > SaniertAmBis)
-            {
-                yield return new ValidationResult(
-                    "Saniert Am Von darf nicht nach Saniert Am Bis liegen.",
-                    new[] { nameof(SaniertAmVon), nameof(SaniertAmBis) });
+            yield return new ValidationResult
+            (
+                "Saniert Am Von darf nicht nach Saniert Am Bis liegen.",
+                new[] { nameof(formModel.SaniertAmVon), nameof(formModel.SaniertAmBis) });
             }
         }
     }
-
 }
 

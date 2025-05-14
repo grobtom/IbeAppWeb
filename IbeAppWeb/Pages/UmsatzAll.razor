@@ -9,6 +9,8 @@
 @using IbeAppWeb.Services
 @using IbeAppWeb.Forms
 @inject UmsatzService UmsatzService
+@using System.ComponentModel.DataAnnotations
+
 
 <h3>Umsatz Management</h3>
 
@@ -21,20 +23,24 @@
     <div class="alert alert-success">@successMessage</div>
 }
 
+
+<EditForm  OnValidSubmit="FetchUmsatzData">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
 <div class="col-lg-12 control-section">
     <div class="content-wrapper">
         <div class="row mb-3">
             <div class="col-md-4">
-                <label class="form-label">Startdatum:</label>
-
+                <label class="form-label">Ausgeführt ab:</label>
                 <SfDatePicker TValue="DateTime?" Placeholder="Start Date" @bind-value="StartDate"></SfDatePicker>
             </div>
             <div class="col-md-4">
-                <label class="form-label">Enddatum:</label>
+                <label class="form-label">Ausgeführt bis:</label>
                 <SfDatePicker TValue="DateTime?" Placeholder="End Date" @bind-value="EndDate"></SfDatePicker>
             </div>
             <div class="col-md-4">
-                <label class="form-label">Wähle Bereich:</label>
+                <label class="form-label">Wähle Sanierungsbereich:</label>
                 <SfComboBox TValue="int" TItem="KanalSchacht" PopupHeight="230px" @bind-value="ComboBoxValue" DataSource="@kanalSchachtList">
                     <ComboBoxEvents TValue="int" TItem="KanalSchacht" />
                     <ComboBoxFieldSettings Text="Auswahl" Value="Id" />
@@ -45,6 +51,9 @@
                 <SfButton CssClass="e-primary" OnClick="FetchUmsatzData">Umsatz laden</SfButton>
             </div>
         </div>
+    </div>
+</div>
+</EditForm>
 
         <div id="container">
             <SfSpinner @bind-Visible="@isLoading">
@@ -94,8 +103,6 @@
                 <GridColumn Field="Project.DbActive" HeaderText="Aktive" TextAlign="TextAlign.Center" Width="100"></GridColumn>
             </GridColumns>
         </SfGrid>
-    </div>
-</div>
 
 @code {
     private SfGrid<UmsatzFahrzeugMonteurProjectDto> grid;
@@ -179,4 +186,17 @@
             StateHasChanged();
         }
     }
+
+    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    {
+        if (StartDate.HasValue && EndDate.HasValue && StartDate > EndDate)
+        {
+            yield return new ValidationResult
+            (
+                "Saniert Am Von darf nicht nach Saniert Am Bis liegen.",
+                new[] { nameof(StartDate), nameof(EndDate) });
+            }
+        }
+    }
+
 }
