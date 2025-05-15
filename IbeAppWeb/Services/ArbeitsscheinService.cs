@@ -126,7 +126,7 @@ public class ArbeitsscheinService
         }
     }
 
-    public async Task<ArbeitsberichtProjectsDto> GetArbeitsberichtProjects(DateTime? saniertAmVon, DateTime? saniertAmBis, DateTime? saniertAm, string monteurname)
+    public async Task<ArbeitsberichtProjectsDto> GetArbeitsberichtMonteurProjects(int bereich, DateTime? saniertAmVon, DateTime? saniertAmBis, DateTime? saniertAm, string monteurname)
     {
         try
         {
@@ -138,7 +138,16 @@ public class ArbeitsscheinService
 
             var queryString = string.Join("&", queryParameters);
 
-            var request = new HttpRequestMessage(HttpMethod.Get, $"api/askanal/monteur/projects?{queryString}");
+            HttpRequestMessage request;
+            if (bereich == 2)
+            {
+                request = new HttpRequestMessage(HttpMethod.Get, $"api/asschacht/monteur/projects?{queryString}");
+            }
+            else
+            {
+                request = new HttpRequestMessage(HttpMethod.Get, $"api/askanal/monteur/projects?{queryString}");
+            }
+
             var response = await _httpClient.SendAsync(request);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<ArbeitsberichtProjectsDto>();
@@ -149,6 +158,40 @@ public class ArbeitsscheinService
             return new ArbeitsberichtProjectsDto();
         }
     }
+
+    public async Task<ArbeitsberichtProjectsDto> GetArbeitsberichtAnlageProjects(int bereich, DateTime? saniertAmVon, DateTime? saniertAmBis, DateTime? saniertAm, string anlage)
+    {
+        try
+        {
+            var queryParameters = new List<string>();
+            if (saniertAmVon.HasValue) queryParameters.Add($"SaniertAmVon={saniertAmVon.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
+            if (saniertAmBis.HasValue) queryParameters.Add($"SaniertAmBis={saniertAmBis.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
+            if (saniertAm.HasValue) queryParameters.Add($"SaniertAm={saniertAm.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
+            if (!string.IsNullOrEmpty(anlage)) queryParameters.Add($"Fahrzeug={anlage}");
+
+            var queryString = string.Join("&", queryParameters);
+
+            HttpRequestMessage request;
+            if (bereich == 2)
+            {
+                request = new HttpRequestMessage(HttpMethod.Get, $"api/asschacht/anlage/projects?{queryString}");
+            }
+            else
+            {
+                request = new HttpRequestMessage(HttpMethod.Get, $"api/askanal/anlage/projects?{queryString}");
+            }
+
+            var response = await _httpClient.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadFromJsonAsync<ArbeitsberichtProjectsDto>();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error fetching Arbeitsbericht projects");
+            return new ArbeitsberichtProjectsDto();
+        }
+    }
+
 
 }
 
