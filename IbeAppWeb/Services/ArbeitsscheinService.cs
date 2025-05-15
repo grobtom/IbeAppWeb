@@ -126,5 +126,29 @@ public class ArbeitsscheinService
         }
     }
 
+    public async Task<ArbeitsberichtProjectsDto> GetArbeitsberichtProjects(DateTime? saniertAmVon, DateTime? saniertAmBis, DateTime? saniertAm, string monteurname)
+    {
+        try
+        {
+            var queryParameters = new List<string>();
+            if (saniertAmVon.HasValue) queryParameters.Add($"SaniertAmVon={saniertAmVon.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
+            if (saniertAmBis.HasValue) queryParameters.Add($"SaniertAmBis={saniertAmBis.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
+            if (saniertAm.HasValue) queryParameters.Add($"SaniertAm={saniertAm.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
+            if (!string.IsNullOrEmpty(monteurname)) queryParameters.Add($"MonteurName={monteurname}");
+
+            var queryString = string.Join("&", queryParameters);
+
+            var request = new HttpRequestMessage(HttpMethod.Get, $"api/askanal/monteur/projects?{queryString}");
+            var response = await _httpClient.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadFromJsonAsync<ArbeitsberichtProjectsDto>();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error fetching Arbeitsbericht projects");
+            return new ArbeitsberichtProjectsDto();
+        }
+    }
+
 }
 
