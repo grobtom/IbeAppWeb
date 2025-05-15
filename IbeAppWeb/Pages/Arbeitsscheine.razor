@@ -2,8 +2,11 @@
 @using IbeAppWeb.DTOs
 @inject ArbeitsscheinService ArbeitsscheinService
 @inject ProjectService ProjectService
+@inject AnlagenService AnlagenService
+@inject MonteurService MonteurService
 @inject IJSRuntime JS
 @using System.ComponentModel.DataAnnotations
+@using IbeAppWeb.Services
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor.Inputs
 @using Syncfusion.Blazor.Calendars
@@ -67,23 +70,28 @@
         <div class="row mb-3">
             <div class="col-md-4">
                 <label for="kolonnenfuehrer" class="form-label">Kolonnenführer:</label>
-                <SfTextBox @bind-value="@formModel.Kolonnenfuehrer"></SfTextBox>
-                <ValidationMessage For="@(() => formModel.Kolonnenfuehrer)" />
-
+                <SfComboBox TValue="int?" TItem="MonteurResponse" PopupHeight="230px" Placeholder="Kolonnenführer"
+                            @bind-value="@formModel.SelectedKolonnenfuehrerId" DataSource="@monteurData">
+                    <ComboBoxFieldSettings Text="FullName" Value="MonteurId" />
+                </SfComboBox>
             </div>
             <div class="col-md-4">
                 <label for="monteurname" class="form-label">Monteur:</label>
-                <SfTextBox @bind-value="@formModel.Monteur"></SfTextBox>
-                <ValidationMessage For="@(() => formModel.Monteur)" />
+                <SfComboBox TValue="int?" TItem="MonteurResponse" PopupHeight="230px" Placeholder="Monteur"
+                            @bind-value="@formModel.SelectedMonteurId" DataSource="@monteurData">
+                    <ComboBoxFieldSettings Text="FullName" Value="MonteurId" />
+                </SfComboBox>
             </div>
 
             <div class="col-md-4">
                 <label for="fahrzeug" class="form-label">Fahrzeug:</label>
-                <SfTextBox @bind-value="@formModel.Fahrzeug"></SfTextBox>
-                <ValidationMessage For="@(() => formModel.Fahrzeug)" />
-
+                <SfComboBox TValue="int?" TItem="AnlageDto" PopupHeight="230px" Placeholder="Anlage"
+                            @bind-value="@formModel.SelectedAnlageId" DataSource="@anlageData">
+                    <ComboBoxFieldSettings Text="AnlageName" Value="AnlageId" />
+                </SfComboBox>
             </div>
             <div class="col-md-4 d-flex align-items-end">
+                <br/>
                 <SfButton class="btn btn-primary me-2" type="submit" disabled="@isLoading">Lade Arbeitsberichte</SfButton>
                 <SfButton class="btn btn-secondary" type="button" @onclick="ResetForm">Reset</SfButton>
             </div>
@@ -203,6 +211,11 @@ else
 
     private List<Project>? projects = new();
 
+    private IEnumerable<MonteurResponse> monteurData { get; set; } = new List<MonteurResponse>();
+
+    private IEnumerable<AnlageDto> anlageData { get; set; } = new List<AnlageDto>();
+
+
     private List<string> ToolbarItems = new List<string>() { "PdfExport" };
     private bool isLoading = false;
     private string base64Image;
@@ -225,6 +238,8 @@ else
     protected override async Task OnInitializedAsync()
     {
         await LoadProjects();
+        await LoadMonteure();
+        await LoadAnlagen();
         await LoadImage();
     }
 
@@ -391,6 +406,30 @@ else
         }
     }
 
+    private async Task LoadMonteure()
+    {
+        try
+        {
+            monteurData = await MonteurService.GetAllMonteure();
+        }
+        catch
+        {
+            ShowMessage($"Fehler beim Laden der Monteurdaten", false);
+        }
+    }
+
+    private async Task LoadAnlagen()
+    {
+        try
+        {
+            anlageData = await AnlagenService.GetAllAnlagen();
+        }
+        catch
+        {
+            ShowMessage($"Fehler beim Laden der Anlagendaten", false);
+        }
+    }
+
     private async Task LoadArbeitsscheine()
     {
         isLoading = true;
@@ -406,9 +445,9 @@ else
                 saniertAmBis: formModel.SaniertAmBis,
                 saniertAm: formModel.SaniertAm,
                 abschlagsrechnung: formModel.Abschlagsrechnung,
-                kolonnenfuehrer: formModel.Kolonnenfuehrer,
-                fahrzeug: formModel.Fahrzeug,
-                monteurname: formModel.Monteur,
+                kolonnenfuehrer: monteurData.FirstOrDefault(kanalSchachtList => kanalSchachtList.MonteurId == formModel.SelectedKolonnenfuehrerId)?.Nachname,
+                fahrzeug: anlageData.FirstOrDefault(anlageData => anlageData.AnlageId == formModel.SelectedAnlageId)?.AnlageName,
+                monteurname: monteurData.FirstOrDefault(m => m.MonteurId == formModel.SelectedMonteurId)?.Nachname,
                 projectDb: projectDb,
                 ComboBoxValue: ComboBoxValue
             );
@@ -463,6 +502,9 @@ else
         public string? Fahrzeug { get; set; }
         [MaxLength(30,ErrorMessage = "Name für den Monteur darf nicht länger als 30 Zeichen sein!")]
         public string? Monteur { get; set; }
+        public int? SelectedKolonnenfuehrerId { get; set; }
+        public int? SelectedMonteurId { get; set; }
+        public int? SelectedAnlageId { get; set; }
     }
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

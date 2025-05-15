@@ -23,95 +23,93 @@
     <div class="alert alert-success">@successMessage</div>
 }
 
-
-<EditForm  OnValidSubmit="FetchUmsatzData">
+l
+<EditForm Model="@formModel" OnValidSubmit="FetchUmsatzData">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
-<div class="col-lg-12 control-section">
-    <div class="content-wrapper">
-        <div class="row mb-3">
-            <div class="col-md-4">
-                <label class="form-label">Ausgeführt ab:</label>
-                <SfDatePicker TValue="DateTime?" Placeholder="Start Date" @bind-value="StartDate"></SfDatePicker>
-            </div>
-            <div class="col-md-4">
-                <label class="form-label">Ausgeführt bis:</label>
-                <SfDatePicker TValue="DateTime?" Placeholder="End Date" @bind-value="EndDate"></SfDatePicker>
-            </div>
-            <div class="col-md-4">
-                <label class="form-label">Wähle Sanierungsbereich:</label>
-                <SfComboBox TValue="int" TItem="KanalSchacht" PopupHeight="230px" @bind-value="ComboBoxValue" DataSource="@kanalSchachtList">
-                    <ComboBoxEvents TValue="int" TItem="KanalSchacht" />
-                    <ComboBoxFieldSettings Text="Auswahl" Value="Id" />
-                </SfComboBox>
-            </div>
-            <div class="col-md-4">
-                <br/>
-                <SfButton CssClass="e-primary" OnClick="FetchUmsatzData">Umsatz laden</SfButton>
+    <div class="col-lg-12 control-section">
+        <div class="content-wrapper">
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">Ausgeführt ab:</label>
+                    <SfDatePicker TValue="DateTime?" Placeholder="Start Date" @bind-value="@formModel.StartDate"></SfDatePicker>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Ausgeführt bis:</label>
+                    <SfDatePicker TValue="DateTime?" Placeholder="End Date" @bind-value="@formModel.EndDate"></SfDatePicker>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Wähle Sanierungsbereich:</label>
+                    <SfComboBox TValue="int" TItem="KanalSchacht" PopupHeight="230px" @bind-value="ComboBoxValue" DataSource="@kanalSchachtList">
+                        <ComboBoxEvents TValue="int" TItem="KanalSchacht" />
+                        <ComboBoxFieldSettings Text="Auswahl" Value="Id" />
+                    </SfComboBox>
+                </div>
+                <div class="col-md-4">
+                    <br/>
+                    <SfButton class="btn btn-primary me-2" type="submit" disabled="@isLoading">Lade Umsatzdaten</SfButton>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </EditForm>
 
-        <div id="container">
-            <SfSpinner @bind-Visible="@isLoading">
-            </SfSpinner>
-        </div>
+<div id="container">
+    <SfSpinner @bind-Visible="@isLoading">
+    </SfSpinner>
+</div>
 
-        <SfGrid @ref="grid" DataSource="@Projects" AllowPaging="true" AllowSorting="true" Height="400px">
-            <GridPageSettings PageCount="5" PageSizes="true" PageSize="10"></GridPageSettings>
-            <GridTemplates>
-                <DetailTemplate Context="detailcontext">
-                    @{
-                        var project = (detailcontext as UmsatzFahrzeugMonteurProjectDto);
-                    }
-                    <SfGrid DataSource="@project?.UmsatzProject" AllowPaging="true" AllowSorting="true" Height="300px">
-                        <GridPageSettings PageCount="5"></GridPageSettings>
-                        <GridColumns>
-                            <GridColumn Field="@nameof(UmsatzFahrzeugMonteurDto.ProjectName)" HeaderText="Project Name" Width="150"></GridColumn>
-                            <GridColumn Field="@nameof(UmsatzFahrzeugMonteurDto.Ausfuehrungsdatum)" HeaderText="Ausführungsdatum" Format="d" TextAlign="TextAlign.Center" Width="150"></GridColumn>
-                            <GridColumn Field="@nameof(UmsatzFahrzeugMonteurDto.Typ)" HeaderText="Type" Width="100"></GridColumn>
-                            <GridColumn Field="@nameof(UmsatzFahrzeugMonteurDto.Ressource)" HeaderText="Ressource" Width="150"></GridColumn>
-                            <GridColumn Field="@nameof(UmsatzFahrzeugMonteurDto.Kolonnenfuehrer)" HeaderText="Kolonnenführer" Width="150"></GridColumn>
-                            <GridColumn Field="@nameof(UmsatzFahrzeugMonteurDto.Gesamtumsatz)" HeaderText="Summe" Format="C2" TextAlign="TextAlign.Right" Width="150"></GridColumn>
-                        </GridColumns>
-                        <GridAggregates>
-                            <GridAggregate>
-                                <GridAggregateColumns>
-                                    <GridAggregateColumn Field=@nameof(UmsatzFahrzeugMonteurDto.Gesamtumsatz) Type="AggregateType.Sum" Format="C2">
-                                        <FooterTemplate>
-                                            @{
-                                                var aggregate = (context as AggregateTemplateContext);
-                                                <div>
-                                                <p>Totalsumme: @aggregate.Sum</p>
-                                                </div>
-                                            }
-                                        </FooterTemplate>
-                                    </GridAggregateColumn>
-                                </GridAggregateColumns>
-                            </GridAggregate>                        
-                        </GridAggregates>
-                    </SfGrid>
-                </DetailTemplate>
-            </GridTemplates>
-            <GridColumns>
-                <GridColumn Field="Project.ProjectId" HeaderText="Projekt ID" TextAlign="TextAlign.Center" Width="110"></GridColumn>
-                <GridColumn Field="Project.ProjectName" HeaderText="Projekt Name" Width="200"></GridColumn>
-                <GridColumn Field="Project.CreatedOnUtc" HeaderText="Erzeugt am" Format="d" TextAlign="TextAlign.Center" Width="150"></GridColumn>
-                <GridColumn Field="Project.DbActive" HeaderText="Aktive" TextAlign="TextAlign.Center" Width="100"></GridColumn>
-            </GridColumns>
-        </SfGrid>
+<SfGrid @ref="grid" DataSource="@Projects" AllowPaging="true" AllowSorting="true" Height="400px">
+    <GridPageSettings PageCount="5" PageSizes="true" PageSize="10"></GridPageSettings>
+    <GridTemplates>
+        <DetailTemplate Context="detailcontext">
+            @{
+                var project = (detailcontext as UmsatzFahrzeugMonteurProjectDto);
+            }
+            <SfGrid DataSource="@project?.UmsatzProject" AllowPaging="true" AllowSorting="true" Height="300px">
+                <GridPageSettings PageCount="5"></GridPageSettings>
+                <GridColumns>
+                    <GridColumn Field="@nameof(UmsatzFahrzeugMonteurDto.ProjectName)" HeaderText="Project Name" Width="150"></GridColumn>
+                    <GridColumn Field="@nameof(UmsatzFahrzeugMonteurDto.Ausfuehrungsdatum)" HeaderText="Ausführungsdatum" Format="d" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+                    <GridColumn Field="@nameof(UmsatzFahrzeugMonteurDto.Fahrzeug)" HeaderText="Anlage" Width="150"></GridColumn>
+                    <GridColumn Field="@nameof(UmsatzFahrzeugMonteurDto.Kolonnenfuehrer)" HeaderText="Kolonnenführer" Width="150"></GridColumn>
+                    <GridColumn Field="@nameof(UmsatzFahrzeugMonteurDto.Gesamtumsatz)" HeaderText="Summe" Format="C2" TextAlign="TextAlign.Right" Width="150"></GridColumn>
+                </GridColumns>
+                <GridAggregates>
+                    <GridAggregate>
+                        <GridAggregateColumns>
+                            <GridAggregateColumn Field=@nameof(UmsatzFahrzeugMonteurDto.Gesamtumsatz) Type="AggregateType.Sum" Format="C2">
+                                <FooterTemplate>
+                                    @{
+                                        var aggregate = (context as AggregateTemplateContext);
+                                        <div>
+                                            <p>Totalsumme: @aggregate.Sum</p>
+                                        </div>
+                                    }
+                                </FooterTemplate>
+                            </GridAggregateColumn>
+                        </GridAggregateColumns>
+                    </GridAggregate>                        
+                </GridAggregates>
+            </SfGrid>
+        </DetailTemplate>
+    </GridTemplates>
+    <GridColumns>
+        <GridColumn Field="Project.ProjectId" HeaderText="Projekt ID" TextAlign="TextAlign.Center" Width="110"></GridColumn>
+        <GridColumn Field="Project.ProjectName" HeaderText="Projekt Name" Width="200"></GridColumn>
+        <GridColumn Field="Project.CreatedOnUtc" HeaderText="Erzeugt am" Format="d" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+        <GridColumn Field="Project.DbActive" HeaderText="Aktive" TextAlign="TextAlign.Center" Width="100"></GridColumn>
+    </GridColumns>
+</SfGrid>
 
 @code {
     private SfGrid<UmsatzFahrzeugMonteurProjectDto> grid;
-    private DateTime? StartDate { get; set; }
-    private DateTime? EndDate { get; set; }
     private List<UmsatzFahrzeugMonteurProjectDto> Projects { get; set; } = new List<UmsatzFahrzeugMonteurProjectDto>();
     private string? errorMessage;
     private string? successMessage;
     private bool isLoading = false;
+    private UmsatzFormModel formModel = new();
     private List<KanalSchacht> kanalSchachtList = new List<KanalSchacht>
     {
         new KanalSchacht { Id = 1, Auswahl = "Kanal" },
@@ -151,7 +149,7 @@
     {
         try
         {
-            if (!StartDate.HasValue || !EndDate.HasValue)
+            if (!formModel.StartDate.HasValue || !formModel.EndDate.HasValue)
             {
                 await ShowMessage($"Please select both a start and an end date.",false);
                 successMessage = null;
@@ -161,7 +159,7 @@
             isLoading = true; 
             StateHasChanged();
 
-            UmsatzFahrzeugMonteurProjectResultDto result = await UmsatzService.GetUmsatzByFahrzeugAndMonteurAllAsync(StartDate, EndDate, ComboBoxValue);
+            UmsatzFahrzeugMonteurProjectResultDto result = await UmsatzService.GetUmsatzByFahrzeugAndMonteurAllAsync(formModel.StartDate, formModel.EndDate, ComboBoxValue);
             if (result?.Projects != null && result.Projects.Any())
             {
                 Projects = result.Projects;
@@ -187,16 +185,24 @@
         }
     }
 
-    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    public class UmsatzFormModel : IValidatableObject
     {
-        if (StartDate.HasValue && EndDate.HasValue && StartDate > EndDate)
+
+        [DataType(DataType.Date)]
+        public DateTime? StartDate { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? EndDate { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            yield return new ValidationResult
-            (
-                "Saniert Am Von darf nicht nach Saniert Am Bis liegen.",
-                new[] { nameof(StartDate), nameof(EndDate) });
+            if (StartDate.HasValue && EndDate.HasValue && StartDate > EndDate)
+            {
+                yield return new ValidationResult
+                (
+                    "Saniert Am Von darf nicht nach Saniert Am Bis liegen.",
+                    new[] { nameof(StartDate), nameof(EndDate) });
             }
         }
     }
-
 }
+

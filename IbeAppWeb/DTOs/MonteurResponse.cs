@@ -7,4 +7,5 @@ public class MonteurResponse
     public string Nachname { get; set; }
     public bool IsDeleted { get; set; }
     public int? Anlageid { get; set; } = 0;
+    public string FullName => string.Join(" ", new[] { Nachname?.Trim(), Vorname?.Trim() }.Where(s => !string.IsNullOrWhiteSpace(s))).Trim();
 }

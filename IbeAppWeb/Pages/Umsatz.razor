@@ -95,7 +95,7 @@
                 </GridAggregate>
             </GridAggregates>
         </SfGrid>
-         <div id="container">
+        <div id="container">
             <SfSpinner @bind-Visible="@isLoading">
             </SfSpinner>
         </div>
@@ -138,7 +138,7 @@
         }
         catch
         {
-            ShowMessage($"Fehler beim Laden der Umsatzdaten!", false);
+            ShowMessage($"Fehler beim Laden der Projektdaten!", false);
         }
     }
 
@@ -177,7 +177,7 @@
         masterDaten = null;
     }
 
-    public class UmsatzFormModel
+    public class UmsatzFormModel : IValidatableObject
     {
         public string LvPos { get; set; }
         public string Kurztext { get; set; }
@@ -189,7 +189,19 @@
         public DateTime? SaniertAmVon { get; set; }
         [DataType(DataType.Date)]
         public DateTime? SaniertAmBis { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (SaniertAmVon.HasValue && SaniertAmBis.HasValue && SaniertAmVon > SaniertAmBis)
+            {
+                yield return new ValidationResult
+                (
+                    "Saniert Am Von darf nicht nach Saniert Am Bis liegen.",
+                    new[] { nameof(SaniertAmVon), nameof(SaniertAmBis) });
+            }
+        }
     }
+
 
     private async Task LoadUmsatz()
     {
@@ -261,16 +273,5 @@
             }).ToList();
     }
 
-    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-    {
-        if (formModel.SaniertAmVon.HasValue && formModel.SaniertAmBis.HasValue && formModel.SaniertAmVon > formModel.SaniertAmBis)
-        {
-            yield return new ValidationResult
-            (
-                "Saniert Am Von darf nicht nach Saniert Am Bis liegen.",
-                new[] { nameof(formModel.SaniertAmVon), nameof(formModel.SaniertAmBis) });
-            }
-        }
-    }
 
 }
