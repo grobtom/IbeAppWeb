@@ -19,6 +19,7 @@ builder.Services.AddMsalAuthentication(options =>
     builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
 });
 
+builder.Services.AddScoped<IbeToastService>();
 builder.Services.AddScoped<ArbeitsscheinService>();
 builder.Services.AddScoped<ProjectService>();
 builder.Services.AddScoped<UmsatzService>();

@@ -6,13 +6,9 @@
 @using Syncfusion.Blazor.Grids
 @inject ProjectAnlageService ProjectAnlageService
 @inject ProjectService ProjectService
+@inject IbeToastService ToastService
 
 <h3>Project Anlage Management</h3>
-
-@if (!string.IsNullOrEmpty(errorMessage))
-{
-    <div class="alert alert-danger">@errorMessage</div>
-}
 
 <div class="col-lg-4 control-section sb-property-border">
     <div class="control-wrapper">
@@ -110,7 +106,7 @@
         }
         catch (Exception ex)
         {
-            errorMessage = $"Fehler beim Laden der Daten: {ex.Message}";
+            await ToastService.ShowToast($"Fehler beim Laden der Daten: {ex.Message}",false);
         }
     }
 
@@ -127,12 +123,12 @@
             }
             else
             {
-                errorMessage = "Bitte wählen Sie sowohl ein Projekt als auch eine neue Anlage aus.";
+                await ToastService.ShowToast("Bitte wählen Sie sowohl ein Projekt als auch eine neue Anlage aus.",false);
             }
         }
         catch (Exception ex)
         {
-            errorMessage = $"Fehler beim Zuweisen der Anlage: {ex.Message}";
+           await ToastService.ShowToast($"Fehler beim Zuweisen der Anlage: {ex.Message}", false);
         }
     }
 
@@ -152,12 +148,12 @@
             }
             else
             {
-                errorMessage = "Bitte wählen Sie sowohl ein Projekt als auch eine bestehende Anlage aus.";
+                await ToastService.ShowToast("Bitte wählen Sie sowohl ein Projekt als auch eine bestehende Anlage aus.", false);
             }
         }
         catch (Exception ex)
         {
-            errorMessage = $"Fehler beim Aktualisieren der Anlage: {ex.Message}";
+            await ToastService.ShowToast($"Fehler beim Aktualisieren der Anlage: {ex.Message}", false);
         }
     }
 
@@ -173,11 +169,7 @@
         anlagen = await ProjectAnlageService.GetAnlagenForProject(projectId.Value);
         if (anlagen == null || !anlagen.Any())
         {
-            errorMessage = "Keine Anlagen für das ausgewählte Projekt gefunden.";
-        }
-        else
-        {
-            errorMessage = string.Empty; // Clear any previous error message
+           await ToastService.ShowToast("Keine Anlagen für das ausgewählte Projekt gefunden.", false);
         }
     }
 
@@ -186,12 +178,8 @@
         allAnlagen = await ProjectAnlageService.GetAllProjectAnlagen();
         if (allAnlagen == null || !allAnlagen.Any())
         {
-            errorMessage = "Keine Anlagen für die Projekte gefunden.";
-        }
-        else
-        {
-            errorMessage = string.Empty; // Clear any previous error message
-        }
+            await ToastService.ShowToast($"Keine Anlagen für die Projekte gefunden.",false);
+        }       
     }
 
     private async Task OnProjectChanged(Microsoft.AspNetCore.Components.ChangeEventArgs e)

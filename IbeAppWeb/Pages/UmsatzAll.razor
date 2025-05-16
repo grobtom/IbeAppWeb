@@ -9,20 +9,11 @@
 @using IbeAppWeb.Services
 @using IbeAppWeb.Forms
 @inject UmsatzService UmsatzService
+@inject IbeToastService ToastService
 @using System.ComponentModel.DataAnnotations
 
 
 <h3>Umsatz Management</h3>
-
-@if (!string.IsNullOrEmpty(errorMessage))
-{
-    <div class="alert alert-danger">@errorMessage</div>
-}
-@if (!string.IsNullOrEmpty(successMessage))
-{
-    <div class="alert alert-success">@successMessage</div>
-}
-
 l
 <EditForm Model="@formModel" OnValidSubmit="FetchUmsatzData">
     <DataAnnotationsValidator />
@@ -56,7 +47,7 @@ l
 </EditForm>
 
 <div id="container">
-    <SfSpinner @bind-Visible="@isLoading">
+    <SfSpinner @bind-Visible="@isLoading" Label="Loading...." Type="@SpinnerType.Bootstrap">
     </SfSpinner>
 </div>
 
@@ -106,8 +97,6 @@ l
 @code {
     private SfGrid<UmsatzFahrzeugMonteurProjectDto> grid;
     private List<UmsatzFahrzeugMonteurProjectDto> Projects { get; set; } = new List<UmsatzFahrzeugMonteurProjectDto>();
-    private string? errorMessage;
-    private string? successMessage;
     private bool isLoading = false;
     private UmsatzFormModel formModel = new();
     private List<KanalSchacht> kanalSchachtList = new List<KanalSchacht>
@@ -117,42 +106,13 @@ l
     };
     private int ComboBoxValue = 1;
 
-    private async Task ShowMessage(string message, bool isSuccess)
-    {
-        if (isSuccess)
-        {
-            successMessage = message;
-            errorMessage = null;
-        }
-        else
-        {
-            errorMessage = message;
-            successMessage = null;
-        }
-
-        StateHasChanged();
-
-        await Task.Delay(3000);
-
-        if (isSuccess)
-        {
-            successMessage = null;
-        }
-        else
-        {
-            errorMessage = null;
-        }
-
-        StateHasChanged();
-    }
     private async Task FetchUmsatzData()
     {
         try
         {
             if (!formModel.StartDate.HasValue || !formModel.EndDate.HasValue)
             {
-                await ShowMessage($"Please select both a start and an end date.",false);
-                successMessage = null;
+                await ToastService.ShowToast($"Please select both a start and an end date.", false);
                 return;
             }
 
@@ -163,20 +123,18 @@ l
             if (result?.Projects != null && result.Projects.Any())
             {
                 Projects = result.Projects;
-                await ShowMessage($"Data erfolgreich geladen.", true);
-                errorMessage = null;
+                await ToastService.ShowToast($"Daten erfolgreich geladen.", true);
             }
             else
             {
                 Projects = new List<UmsatzFahrzeugMonteurProjectDto>();
-                successMessage = null;
-                await ShowMessage($"Keine Daten gefunden.", false);
+
+                await ToastService.ShowToast($"Keine Daten gefunden.", false);
             }
         }
         catch (Exception ex)
         {
-            await ShowMessage($"Error fetching data: {ex.Message}", false);
-            successMessage = null;
+            await ToastService.ShowToast($"Error fetching data: {ex.Message}", false);
         }
         finally
         {

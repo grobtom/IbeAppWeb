@@ -9,18 +9,10 @@
 @using Syncfusion.Blazor.Spinner
 @inject ProjectService ProjectService
 @inject UmsatzService UmsatzService
+@inject IbeToastService ToastService
 
 
 <h3>Umsatz</h3>
-
-@if (!string.IsNullOrEmpty(errorMessage))
-{
-    <div class="alert alert-danger">@errorMessage</div>
-}
-@if (!string.IsNullOrEmpty(successMessage))
-{
-    <div class="alert alert-success">@successMessage</div>
-}
 
 <EditForm Model="@formModel" OnValidSubmit="LoadUmsatz">
     <DataAnnotationsValidator />
@@ -66,7 +58,10 @@
 <div>
     @if (isLoading)
     {
-        <p><em>Loading...</em></p>
+        <div id="container">
+            <SfSpinner @bind-Visible="@isLoading" Label="Loading...." Type="@SpinnerType.Bootstrap">
+            </SfSpinner>
+        </div>
     }
     else
     {
@@ -95,10 +90,7 @@
                 </GridAggregate>
             </GridAggregates>
         </SfGrid>
-        <div id="container">
-            <SfSpinner @bind-Visible="@isLoading">
-            </SfSpinner>
-        </div>
+        
     }
 </div>
 
@@ -115,8 +107,6 @@
     private bool isLoading = false;
     private string base64Image;
     private string projectDb;
-    private string errorMessage = string.Empty;
-    private string successMessage = string.Empty;
 
     private List<KanalSchacht> kanalSchachtList = new List<KanalSchacht>
     {
@@ -135,41 +125,14 @@
         try
         {
             projects = await ProjectService.GetActiveProjectsAsync();
+            await ToastService.ShowToast($"Daten erfolgreich geladen.", true);
         }
         catch
         {
-            ShowMessage($"Fehler beim Laden der Projektdaten!", false);
+            await ToastService.ShowToast($"Fehler beim Laden der Projektdaten!", false);
         }
     }
 
-    private async Task ShowMessage(string message, bool isSuccess)
-    {
-        if (isSuccess)
-        {
-            successMessage = message;
-            errorMessage = null;
-        }
-        else
-        {
-            errorMessage = message;
-            successMessage = null;
-        }
-
-        StateHasChanged();
-
-        await Task.Delay(3000);
-
-        if (isSuccess)
-        {
-            successMessage = null;
-        }
-        else
-        {
-            errorMessage = null;
-        }
-
-        StateHasChanged();
-    }
 
     private void ResetForm()
     {
@@ -244,12 +207,12 @@
             {
                 // Handle the case where no valid date input is provided
                 masterDaten = new List<UmsatzDto>();
-                ShowMessage($"Kein gültiges Datum eingegeben!", false);
+                await ToastService.ShowToast($"Kein gültiges Datum eingegeben!", false);
             }
         }
         catch (Exception ex)
         {
-            ShowMessage($"Fehler beim Laden der Umsatzdaten: {ex.Message}", false);
+            await ToastService.ShowToast($"Fehler beim Laden der Umsatzdaten: {ex.Message}", false);
         }
         finally
         {

@@ -1,0 +1,175 @@
+﻿@page "/projects"
+@using IbeAppWeb.DTOs
+@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.Spinner
+@using Syncfusion.Blazor.Inputs
+@using IbeAppWeb.Services
+@using System.ComponentModel.DataAnnotations
+@inject ProjectService ProjectService
+@inject IbeToastService ToastService
+
+
+<h3>Projekte Management</h3>
+
+<SfSpinner @bind-Visible="@isLoading" Label="Loading...." Type="@SpinnerType.Bootstrap"></SfSpinner>
+
+<div class="col-lg-12">
+    <EditForm Model="@SelectedData" OnValidSubmit="@UpdateProject">
+        <div style="padding-top: 20px;">
+            <div class="form-group col-md-6">
+                <label style="padding: 10px 70px 10px 0">Projekt:</label>
+                <SfTextBox ID="ProjectName" @bind-Value="@SelectedData.ProjectName" Placeholder="Customer ID" ></SfTextBox>
+            </div>
+            <div class="form-group col-md-6">
+                <label style="padding: 10px 70px 10px 0">Aktiv</label>
+                <SfSwitch @bind-Checked="@SelectedData.DbActive"></SfSwitch>
+            </div>
+            <div class="form-group col-md-6">
+                <label style="padding: 10px 70px 10px 0">Schacht</label>
+                <SfSwitch @bind-Checked="@SelectedData.IsSchacht"></SfSwitch>
+            </div>
+        </div>
+        <div class="temp">
+            <SfButton ButtonType="ButtonType.Submit">Projekt updaten</SfButton>
+        </div>
+    </EditForm>
+</div>
+<br />
+@if (projects != null)
+{
+    <div>
+        <SfGrid @ref="grid" DataSource="@projects" AllowSorting="true" AllowFiltering="true" AllowPaging="true" AllowSelection="true">
+            <GridPageSettings PageCount="5" PageSizes="true" PageSize="10"></GridPageSettings>
+            <GridSelectionSettings Mode="Syncfusion.Blazor.Grids.SelectionMode.Row" Type="Syncfusion.Blazor.Grids.SelectionType.Single"></GridSelectionSettings>
+            <GridEvents RowSelected="RowSelectHandler" RowDeselected="RowDeSelectHandler" TValue="Project"></GridEvents>
+            <GridColumns>
+                <GridColumn Field=@nameof(Project.ProjectId) HeaderText="Projekt ID" Width="120" IsPrimaryKey="true"></GridColumn>
+                <GridColumn Field=@nameof(Project.ProjectName) HeaderText="Projekt Name" Width="150"></GridColumn>
+                <GridColumn Field=@nameof(Project.CreatedOnUtc) HeaderText="Erstellt am:" Width="200"></GridColumn>
+                <GridColumn Field=@nameof(Project.DbActive) HeaderText="Aktiv" Format="d" Width="150">
+                    <Template>
+                        @{
+                            var changeData = (context as Project); 
+                            if (changeData.DbActive)
+                            {
+                                <div class="image">
+                                <img src="@($"images/activeproject.png")" alt="@changeData.DbActive" width="24"/>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="image"> 
+                                <img src="@($"images/stop-icon.png")" alt="@changeData.DbActive" width="24"/>
+                                </div>
+                            }
+                        }
+                    </Template>
+                </GridColumn>
+                <GridColumn Field=@nameof(Project.IsSchacht) HeaderText="Kanal/Schacht" Format="d" Width="150">
+                    <Template>
+                        @{
+                            var changeData = (context as Project); 
+                            if (changeData.IsSchacht)
+                            {
+                                <div class="image">
+                                <img src="@($"images/schacht.png")" alt="@changeData.IsSchacht" width="24"/>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="image"> 
+                                <img src="@($"images/rohr.png")" alt="@changeData.IsSchacht" width="24"/>
+                                </div>
+                            }
+
+                        }
+                    </Template>
+                    </GridColumn>
+            </GridColumns>
+        </SfGrid>    
+    </div>
+}
+
+
+
+@code {
+    private SfGrid<Project> grid;
+    private bool isSuccess = false;
+    private List<Project> projects = new List<Project>();
+    private bool isLoading = false;
+    private EditContext ProjectContext { get; set; }
+    public Project SelectedData = new Project();
+
+    protected override async Task OnInitializedAsync()
+    {
+        ProjectContext = new EditContext(new Project());
+        await LoadProjects();
+    }
+
+    private async Task LoadProjects()
+    {
+        try
+        {
+            isLoading = true;
+            projects = await ProjectService.GetProjectsAsync();
+            if (projects == null || projects.Count == 0)
+            {
+                await ToastService.ShowToast("Keine Projekte gefunden.", false);
+            }
+            else
+            {
+                isLoading = false;
+                await ToastService.ShowToast($"{projects.Count} Projekte erfolgreich geladen.", true);
+            }
+        }
+        catch (Exception ex)
+        {
+            await ToastService.ShowToast($"Fehler beim Laden der Projektaten: {ex.Message}", false);
+        }
+    }
+
+    public void RowSelectHandler(RowSelectEventArgs<Project> args)
+    {
+        SelectedData = new Project() { ProjectId = args.Data.ProjectId, 
+            ProjectName = args.Data.ProjectName, 
+            CreatedOnUtc = args.Data.CreatedOnUtc,
+            DbActive = args.Data.DbActive,
+            DbChangedDate = args.Data.DbChangedDate,
+            IsSchacht = args.Data.IsSchacht
+        };
+    }
+    public void RowDeSelectHandler(RowDeselectEventArgs<Project> args)
+    {
+        SelectedData = new Project();
+    }
+
+    private async Task UpdateProject()
+    {
+        try
+        {
+            isLoading = true;
+            var result = await ProjectService.UpdateProjectAsync(SelectedData.ProjectId, SelectedData.DbActive, SelectedData.IsSchacht);
+            if (result != null)
+            {
+                isSuccess = true;
+                projects = await ProjectService.GetProjectsAsync();
+                await ToastService.ShowToast("Projekt erfolgreich aktualisiert.", true);
+            }
+            else
+            {
+                isSuccess = false;
+                await ToastService.ShowToast("Fehler beim Aktualisieren des Projekts.", false);
+            }
+        }
+        catch (Exception ex)
+        {
+            isSuccess = false;
+            await ToastService.ShowToast($"Fehler beim Aktualisieren des Projekts: {ex.Message}", false);
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }    
+}

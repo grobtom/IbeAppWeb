@@ -1,0 +1,40 @@
+﻿@using IbeAppWeb.Services
+@inject IbeToastService ToastService
+
+@if (visible)
+{
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1100;">
+        <div class="toast show @toastClass" role="alert">
+            <div class="toast-body">
+                @message
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private string message;
+    private bool visible;
+    private string toastClass;
+
+    protected override void OnInitialized()
+    {
+        ToastService.OnShow += ShowToast;
+    }
+
+    private async Task ShowToast(string msg, bool isSuccess)
+    {
+        message = msg;
+        toastClass = isSuccess ? "bg-success text-white" : "bg-danger text-white";
+        visible = true;
+        StateHasChanged();
+        await Task.Delay(3000);
+        visible = false;
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        ToastService.OnShow -= ShowToast;
+    }
+}
