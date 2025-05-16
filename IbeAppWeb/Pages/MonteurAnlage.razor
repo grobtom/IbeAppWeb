@@ -6,17 +6,9 @@
 @using IbeAppWeb.Services
 @inject MonteurService MonteurService
 @inject AnlagenService AnlagenService
+@inject IbeToastService ToastService
 
 <h3>Monteur Anlage Management</h3>
-
-@if (!string.IsNullOrEmpty(errorMessage))
-{
-    <div class="alert alert-danger">@errorMessage</div>
-}
-@if (!string.IsNullOrEmpty(successMessage))
-{
-    <div class="alert alert-success">@successMessage</div>
-}
 
 <div class="col-lg-12 control-section">
     <div class="content-wrapper">
@@ -67,35 +59,6 @@
     private string? errorMessage;
     private string? successMessage;
 
-    private async Task ShowMessage(string message, bool isSuccess)
-    {
-        if (isSuccess)
-        {
-            successMessage = message;
-            errorMessage = null;
-        }
-        else
-        {
-            errorMessage = message;
-            successMessage = null; 
-        }
-
-        StateHasChanged();
-
-        await Task.Delay(3000);
-
-        if (isSuccess)
-        {
-            successMessage = null;
-        }
-        else
-        {
-            errorMessage = null;
-        }
-
-        StateHasChanged();
-    }
-
     protected override async Task OnInitializedAsync()
     {
         await LoadData();
@@ -111,7 +74,7 @@
         }
         catch (Exception ex)
         {
-            await ShowMessage($"Fehler beim Laden der Daten: {ex.Message}", false);
+            await ToastService.ShowToast($"Fehler beim Laden der Daten: {ex.Message}", false);
         }
     }
 
@@ -123,7 +86,7 @@
         }
         catch (Exception ex)
         {
-             await ShowMessage($"Fehler beim Laden der Anlagen: {ex.Message}", false);
+             await ToastService.ShowToast($"Fehler beim Laden der Anlagen: {ex.Message}", false);
         }
     }
 
@@ -135,7 +98,7 @@
         }
         catch (Exception ex)
         {
-            await ShowMessage($"Fehler beim Laden der Anlagen: {ex.Message}", false);
+            await ToastService.ShowToast($"Fehler beim Laden der Anlagen: {ex.Message}", false);
         }
     }
 
@@ -151,16 +114,16 @@
                 SelectedMonteurId = 0;
                 SelectedAnlageId = 0;
             
-                await ShowMessage("Monteur erfolgreich der Anlage zugewiesen.", true);
+                await ToastService.ShowToast("Monteur erfolgreich der Anlage zugewiesen.", true);
             }
             else
             {
-                await ShowMessage("Bitte wähle einen Monteur UND eine Anlage.", false);
+                await ToastService.ShowToast("Bitte wähle einen Monteur UND eine Anlage.", false);
             }
         }
         catch (Exception ex)
         {
-            await ShowMessage($"Fehler beim Zuweisen des Monteurs zur Anlage: {ex.Message}", false);
+            await ToastService.ShowToast($"Fehler beim Zuweisen des Monteurs zur Anlage: {ex.Message}", false);
         }
     }
 }

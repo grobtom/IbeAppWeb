@@ -1,20 +1,13 @@
 ﻿@page "/arbeitsberichtmonteur"
 @using IbeAppWeb.DTOs
+@using IbeAppWeb.Services
 @inject ArbeitsscheinService ArbeitsscheinService
 @inject ProjectService ProjectService
+@inject IbeToastService ToastService
 @inject IJSRuntime JS
 @using System.ComponentModel.DataAnnotations
 
 <h3>Arbeitsscheine</h3>
-
-@if (!string.IsNullOrEmpty(errorMessage))
-{
-    <div class="alert alert-danger">@errorMessage</div>
-}
-@if (!string.IsNullOrEmpty(successMessage))
-{
-    <div class="alert alert-success">@successMessage</div>
-}
 
 <EditForm Model="@formModel" OnValidSubmit="LoadArbeitsscheine">
     <DataAnnotationsValidator />
@@ -181,10 +174,6 @@ else
     private string base64Image;
     private string projectDb;
     private bool isSchachtEnabled = false;
-    private string errorMessage = string.Empty;
-    private string successMessage = string.Empty;
-
-
     private bool IsSaniertAmUsed => formModel.SaniertAm.HasValue;
 
     protected override async Task OnInitializedAsync()
@@ -300,36 +289,6 @@ else
         return new PdfDetailTemplateRow() { Cells = cells };            
     }
 
-    private async Task ShowMessage(string message, bool isSuccess)
-    {
-        if (isSuccess)
-        {
-            successMessage = message;
-            errorMessage = null;
-        }
-        else
-        {
-            errorMessage = message;
-            successMessage = null;
-        }
-
-        StateHasChanged();
-
-        await Task.Delay(3000);
-
-        if (isSuccess)
-        {
-            successMessage = null;
-        }
-        else
-        {
-            errorMessage = null;
-        }
-
-        StateHasChanged();
-    }
-
-
     private void OnSaniertAmChanged(Microsoft.AspNetCore.Components.ChangeEventArgs e)
     {
         if (DateTime.TryParse(e.Value?.ToString(), out var date))
@@ -352,7 +311,7 @@ else
         }
         catch
         {
-            ShowMessage($"Fehler beim Laden der Projektdaten!", false);
+            await ToastService.ShowToast($"Fehler beim Laden der Projektdaten!", false);
         }
     }
 
@@ -391,11 +350,11 @@ else
             arbeitsscheine = berichtDbSumme.SelectMany(b => b.Arbeitsscheine).ToList();
             gesamtSumme = berichtDbSumme.Sum(b => b.Summe);
 
-            ShowMessage($"Arbeitsbericht erfolgreich geladen!", true);
+            await ToastService.ShowToast($"Arbeitsbericht erfolgreich geladen!", true);
         }
         catch
         {
-            ShowMessage($"Fehler beim Laden der Arbeitsberichtdaten!", false);
+            await ToastService.ShowToast($"Fehler beim Laden der Arbeitsberichtdaten!", false);
         }
         finally
         {

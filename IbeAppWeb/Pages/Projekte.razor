@@ -9,7 +9,6 @@
 @inject ProjectService ProjectService
 @inject IbeToastService ToastService
 
-
 <h3>Projekte Management</h3>
 
 <SfSpinner @bind-Visible="@isLoading" Label="Loading...." Type="@SpinnerType.Bootstrap"></SfSpinner>
@@ -154,7 +153,7 @@
             {
                 isSuccess = true;
                 projects = await ProjectService.GetProjectsAsync();
-                await ToastService.ShowToast("Projekt erfolgreich aktualisiert.", true);
+                await ToastService.ShowToast("Projekt erfolgreich aktualisiert. Daten werden aktualisiert.", true);
             }
             else
             {

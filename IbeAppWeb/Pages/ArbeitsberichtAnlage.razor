@@ -1,7 +1,9 @@
 ﻿@page "/arbeitsberichtanlage"
 @using IbeAppWeb.DTOs
+@using IbeAppWeb.Services
 @inject ArbeitsscheinService ArbeitsscheinService
 @inject ProjectService ProjectService
+@inject IbeToastService ToastService
 @inject IJSRuntime JS
 @using System.ComponentModel.DataAnnotations
 
@@ -55,24 +57,9 @@
     </div>
 </EditForm>
 <div>
-    @if (isLoading)
-    {
-        <p><em>Loading...</em></p>
-    }
-    else if (errorOccurred)
-    {
-        <div class="alert alert-danger" role="alert">
-            An error occurred. Please reload the page.
-        </div>
-    }
-    else if (arbeitsscheine == null || arbeitsscheine.Count == 0)
-    {
-        <div class="alert alert-warning" role="alert">
-            No Arbeitsscheine found.
-        </div>
-    }
-    else
-    {
+
+@if(arbeitsscheine != null)
+{
         <SfGrid ID="Grid" @ref="grid" DataSource="@arbeitsscheine" AllowReordering="true" AllowGrouping="true" Toolbar="@ToolbarItems" AllowPdfExport="true">
             <GridTemplates>
                 <DetailTemplate Context="ascontext">
@@ -154,8 +141,7 @@
                 <h5>Gesamtsumme: @(gesamtSumme?.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</h5>
             </div>
         </div>
-
-    }
+}
 </div>
 <style type="text/css" class="cssStyles">
     .deatailTable td {
@@ -366,10 +352,11 @@
             arbeitsscheine = berichtDbSumme.SelectMany(b => b.Arbeitsscheine).ToList();
             gesamtSumme = berichtDbSumme.Sum(b => b.Summe);
 
+            await ToastService.ShowToast("Arbeitsberichte erfolgreich geladen!", true);
         }
         catch
         {
-            errorOccurred = true;
+            await ToastService.ShowToast("Fehler beim Laden der Daten!", false);
         }
         finally
         {

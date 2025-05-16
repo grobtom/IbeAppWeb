@@ -5,17 +5,9 @@
 @using IbeAppWeb.Services
 @using System.ComponentModel.DataAnnotations
 @inject AnlagenService AnlagenService
+@inject IbeToastService ToastService
 
 <h3>Anlagen Management</h3>
-
-@if (!string.IsNullOrEmpty(errorMessage))
-{
-    <div class="alert alert-danger">@errorMessage</div>
-}
-@if (!string.IsNullOrEmpty(successMessage))
-{
-    <div class="alert alert-success">@successMessage</div>
-}
 
 <div class="col-lg-12 control-section">
     <div class="content-wrapper">
@@ -49,39 +41,6 @@
     private IEnumerable<AnlageDto> AnlagenData { get; set; } = new List<AnlageDto>();
     private SfGrid<AnlageDto> Grid;
 
-    private string? errorMessage;
-    private string? successMessage;
-
-    private async Task ShowMessage(string message, bool isSuccess)
-    {
-        if (isSuccess)
-        {
-            successMessage = message;
-            errorMessage = null;
-        }
-        else
-        {
-            errorMessage = message;
-            successMessage = null;
-        }
-
-        StateHasChanged();
-
-        await Task.Delay(3000);
-
-        if (isSuccess)
-        {
-            successMessage = null;
-        }
-        else
-        {
-            errorMessage = null;
-        }
-
-        StateHasChanged();
-    }
-
-
     protected override async Task OnInitializedAsync()
     {
         await LoadData();
@@ -95,7 +54,7 @@
         }
         catch (Exception ex)
         {
-            await ShowMessage($"Fehler beim Laden der Daten: {ex.Message}", false);
+            await ToastService.ShowToast($"Fehler beim Laden der Daten: {ex.Message}", false);
         }
     }
 
@@ -129,16 +88,16 @@
 
             if (updatedAnlage != null)
             {
-                await ShowMessage("Anlage erfolgreich aktualisiert.", true);
+                await ToastService.ShowToast("Anlage erfolgreich aktualisiert.", true);
             }
             else
             {
-                await ShowMessage("Fehler beim Aktualisieren der Anlage. Bitte versuchen Sie es erneut.", false);
+                await ToastService.ShowToast("Fehler beim Aktualisieren der Anlage. Bitte versuchen Sie es erneut.", false);
             }
         }
         catch (Exception ex)
         {
-            await ShowMessage($"Fehler beim Aktualisieren der Anlage: {ex.Message}", false);
+            await ToastService.ShowToast($"Fehler beim Aktualisieren der Anlage: {ex.Message}", false);
         }
     }
 
@@ -150,18 +109,18 @@
 
             if (isDeleted)
             {
-                await ShowMessage("Anlage erfolgreich gelöscht.", true);
+                await ToastService.ShowToast("Anlage erfolgreich gelöscht.", true);
 
                 await LoadData();
             }
             else
             {
-                await ShowMessage("Fehler beim Löschen der Anlage. Bitte versuchen Sie es erneut.", false);
+                await ToastService.ShowToast("Fehler beim Löschen der Anlage. Bitte versuchen Sie es erneut.", false);
             }
         }
         catch (Exception ex)
         {
-            await ShowMessage($"Fehler beim Löschen der Anlage: {ex.Message}", false);
+            await ToastService.ShowToast($"Fehler beim Löschen der Anlage: {ex.Message}", false);
         }
     }
 
@@ -173,18 +132,18 @@
 
             if (createdAnlage != null)
             {
-                await ShowMessage("Anlage erfolgreich hinzugefügt.", true);
+                await ToastService.ShowToast("Anlage erfolgreich hinzugefügt.", true);
 
                 await LoadData();
             }
             else
             {
-                await ShowMessage("Fehler beim Hinzufügen der Anlage. Bitte versuchen Sie es erneut.", false);
+                await ToastService.ShowToast("Fehler beim Hinzufügen der Anlage. Bitte versuchen Sie es erneut.", false);
             }
         }
         catch (Exception ex)
         {
-            await ShowMessage($"Fehler beim Hinzufügen der Anlage: {ex.Message}", false);
+            await ToastService.ShowToast($"Fehler beim Hinzufügen der Anlage: {ex.Message}", false);
         }
     }
 

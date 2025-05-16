@@ -4,6 +4,7 @@
 @inject ProjectService ProjectService
 @inject AnlagenService AnlagenService
 @inject MonteurService MonteurService
+@inject IbeToastService ToastService
 @inject IJSRuntime JS
 @using System.ComponentModel.DataAnnotations
 @using IbeAppWeb.Services
@@ -15,15 +16,6 @@
 
 
 <h3>Arbeitsbericht</h3>
-
-@if (!string.IsNullOrEmpty(errorMessage))
-{
-    <div class="alert alert-danger">@errorMessage</div>
-}
-@if (!string.IsNullOrEmpty(successMessage))
-{
-    <div class="alert alert-success">@successMessage</div>
-}
 
 <EditForm Model="@formModel" OnValidSubmit="LoadArbeitsscheine">
     <DataAnnotationsValidator />
@@ -225,9 +217,6 @@ else
     private Decimal gesamtSumme;
     private bool IsSaniertAmUsed => formModel.SaniertAm.HasValue;
     private string Message = string.Empty;
-    private string errorMessage = string.Empty;
-    private string successMessage = string.Empty;
-
 
     private List<KanalSchacht> kanalSchachtList = new List<KanalSchacht>
     {
@@ -374,36 +363,6 @@ else
         }
     }
 
-    private async Task ShowMessage(string message, bool isSuccess)
-    {
-        if (isSuccess)
-        {
-            successMessage = message;
-            errorMessage = null;
-        }
-        else
-        {
-            errorMessage = message;
-            successMessage = null;
-        }
-
-        StateHasChanged();
-
-        await Task.Delay(3000);
-
-        if (isSuccess)
-        {
-            successMessage = null;
-        }
-        else
-        {
-            errorMessage = null;
-        }
-
-        StateHasChanged();
-    }
-
-
     private async Task LoadProjects()
     {
         try
@@ -412,7 +371,7 @@ else
         }
         catch
         {
-            ShowMessage($"Fehler beim Laden der Projektdaten", false);
+            await ToastService.ShowToast($"Fehler beim Laden der Projektdaten", false);
         }
     }
 
@@ -424,7 +383,7 @@ else
         }
         catch
         {
-            ShowMessage($"Fehler beim Laden der Monteurdaten", false);
+            await ToastService.ShowToast($"Fehler beim Laden der Monteurdaten", false);
         }
     }
 
@@ -436,7 +395,7 @@ else
         }
         catch
         {
-            ShowMessage($"Fehler beim Laden der Anlagendaten", false);
+            await ToastService.ShowToast($"Fehler beim Laden der Anlagendaten", false);
         }
     }
 
@@ -467,7 +426,7 @@ else
         }
         catch
         {
-            ShowMessage($"Fehler beim Laden der Arbeistberichtdaten", false);
+            await ToastService.ShowToast($"Fehler beim Laden der Arbeistberichtdaten", false);
         }
         finally
         {
