@@ -1,0 +1,441 @@
+﻿@page "/arbeitsberichtprojects"
+@using IbeAppWeb.DTOs
+@inject ArbeitsscheinService ArbeitsscheinService
+@inject ProjectService ProjectService
+@inject AnlagenService AnlagenService
+@inject MonteurService MonteurService
+@inject IJSRuntime JS
+@using System.ComponentModel.DataAnnotations
+@using IbeAppWeb.Services
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.Inputs
+@using Syncfusion.Blazor.Calendars
+@using Syncfusion.Blazor.DropDowns
+@using Syncfusion.Blazor.Data
+@using IbeAppWeb.Forms
+
+
+<h3>Arbeitsberichte Projekte</h3>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger">@errorMessage</div>
+}
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <div class="alert alert-success">@successMessage</div>
+}
+
+<EditForm Model="@formModel" OnValidSubmit="LoadArbeitsscheine">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="container mt-4">
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label">Wähle Bereich:</label>
+                <SfComboBox TValue="int" TItem="KanalSchacht" PopupHeight="230px" 
+                    @bind-value="@ComboBoxValue" DataSource="@kanalSchachtList">
+                    <ComboBoxEvents TValue="int" TItem="KanalSchacht" />
+                    <ComboBoxFieldSettings Text="Auswahl" Value="Id" />
+                </SfComboBox>
+            </div>
+            <div class="col-md-4">
+                <label for="saniertAmVon" class="form-label">Ausgeführt ab:</label>
+                <SfDatePicker TValue="DateTime?" @bind-value="@formModel.SaniertAmVon"></SfDatePicker>
+            </div>
+
+            <div class="col-md-4">
+                <label for="saniertAmBis" class="form-label">Ausgeführt bis:</label>
+                <SfDatePicker TValue="DateTime?" @bind-value="@formModel.SaniertAmBis"></SfDatePicker>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="saniertAm" class="form-label">Ausgeführt am:</label>
+                <SfDatePicker TValue="DateTime?" @bind-value="@formModel.SaniertAm" @onchange="@OnSaniertAmChanged"></SfDatePicker>
+            </div>
+            <div class="col-md-4">
+                <label for="monteurname" class="form-label">Monteur:</label>
+                <SfComboBox TValue="int?" TItem="MonteurResponse" PopupHeight="230px" Placeholder="Monteur"
+                            @bind-value="@formModel.SelectedMonteurId" DataSource="@monteurData" Enabled="@monteurSelected">
+                    <ComboBoxEvents TValue="int?" TItem="MonteurResponse" ValueChange="@OnMonteurChange" />
+                    <ComboBoxFieldSettings Text="FullName" Value="MonteurId" />
+                </SfComboBox>
+            </div>
+
+            <div class="col-md-4">
+                <label for="fahrzeug" class="form-label">Fahrzeug:</label>
+                <SfComboBox TValue="int?" TItem="AnlageDto" PopupHeight="230px" Placeholder="Anlage"
+                            @bind-value="@formModel.SelectedAnlageId" DataSource="@anlageData" Enabled="@anlageSelected">
+                    <ComboBoxEvents TValue="int?" TItem="AnlageDto" ValueChange="@OnAnlageChange" />
+                    <ComboBoxFieldSettings Text="AnlageName" Value="AnlageId" />
+                </SfComboBox>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-4 d-flex align-items-end">
+                <br/>
+                <SfButton class="btn btn-primary me-2" type="submit" disabled="@isLoading">Lade Arbeitsberichte</SfButton>
+                <SfButton class="btn btn-secondary" type="button" @onclick="ResetForm">Reset</SfButton>
+            </div>
+        </div>
+    </div>
+</EditForm>
+@if (isLoading)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <SfGrid ID="Grid" @ref="grid" DataSource="@arbeitsberichtSummeDto" AllowPaging="true" AllowSelection="true" AllowReordering="true" AllowGrouping="true"  Height="500">
+        <GridPageSettings PageCount="5"></GridPageSettings>
+        <GridTemplates>
+            <DetailTemplate>
+                @{
+                    var arbeitsbericht = (context as ArbeitsberichtDbSummeDto);
+                    <SfGrid TValue="ArbeitsscheinDto"
+                            DataSource="arbeitsbericht?.Arbeitsscheine"
+                            AllowPaging="true">
+                        <GridTemplates>
+                            <DetailTemplate Context="ascontext">
+                                @{
+                                    var arbeitsschein = (ascontext as ArbeitsscheinDto);
+                                    <table class="detailtable" width="100%">
+                                        <colgroup>
+                                            <col width="30%" />
+                                            <col width="30%" />
+                                            <col width="40%" />
+                                        </colgroup>
+                                        <thead>
+                                        <th colspan="2" style="font-weight: 500;text-align: center; background-color: #ADD8E6;">
+                                            Details
+                                        </th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td style="text-align: center;">
+                                                    <strong style="color: #0a76ff;">Monteure:</strong><br>
+                                                    <span>@arbeitsschein?.Monteur</span>
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    <strong style="color: #0a76ff;">Anlagen:</strong><br>
+                                                    <span>@arbeitsschein?.AnlageName</span>
+                                                </td>
+
+                                                <td style="text-align: center;">
+                                                    <strong style="color: #0a76ff;">Kurztext:</strong><br>
+                                                    <span> @arbeitsschein?.Kurztext</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center;">
+                                                    <strong style="color: #0a76ff;">Anzahl Monteure:</strong><br>
+                                                    <span>@(arbeitsschein?.MonteurList.Count)</span>
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    <strong style="color: #0a76ff;">Anzahl Anlagen:</strong><br>
+                                                    <span>@(arbeitsschein?.FahrzeugList.Count)</span>
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    <strong style="color: #0a76ff;">Preis:</strong><br>
+                                                    <span>@(arbeitsschein?.Preis.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center;">
+                                                    <strong style="color: #0a76ff;">Anteil pro Monteur:</strong><br>
+                                                    <span>@((arbeitsschein.Positionssumme / (arbeitsschein.MonteurList.Count)).ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</span>
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    <strong style="color: #0a76ff;">Anteil pro Anlage:</strong><br>
+                                                    <span>@((arbeitsschein.Positionssumme / (arbeitsschein.FahrzeugList.Count)).ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</span>
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    <strong style="color: #0a76ff;">Positionssumme:</strong><br>
+                                                    <span>@(arbeitsschein?.Positionssumme.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                }
+                            </DetailTemplate>
+                        </GridTemplates>
+                        <GridColumns>
+                            <GridColumn Field=@nameof(ArbeitsscheinDto.HALTUNG) HeaderText="Haltung" Width="40"></GridColumn>
+                            <GridColumn Field=@nameof(ArbeitsscheinDto.LVPosition) HeaderText="LV-Position" Width="40"></GridColumn>
+                            <GridColumn Field=@nameof(ArbeitsscheinDto.Menge) HeaderText="Menge" Width="80"></GridColumn>
+                            <GridColumn Field=@nameof(ArbeitsscheinDto.SaniertAm) HeaderText="Ausgeführt am" Width="80" Format="dd.MM.yyyy"></GridColumn>
+                            <GridColumn Field=@nameof(ArbeitsscheinDto.Abschlagsrechnung) HeaderText="AR" Width="30"></GridColumn>
+                            <GridColumn Field=@nameof(ArbeitsscheinDto.Kolonnenfuehrer) HeaderText="Kolonnenführer" Width="80"></GridColumn>
+                            <GridColumn Field=@nameof(ArbeitsscheinDto.AnlageName) HeaderText="Fahrzeug" Width="80"></GridColumn>
+                        </GridColumns>
+                    </SfGrid>
+                }
+            </DetailTemplate>
+        </GridTemplates>
+        <GridColumns>
+            <GridColumn Field=@nameof(ArbeitsberichtDbSummeDto.Projektname) HeaderText="Projekt" Width="80"></GridColumn>
+        </GridColumns>
+    </SfGrid>
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <h5>Gesamtsumme: @(gesamtSumme.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</h5>
+        </div>
+    </div>
+
+<style type="text/css" class="cssStyles">
+    .deatailTable td {
+    font-size: 13px;
+    padding: 4px;
+    max-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: normal;
+    }
+</style>
+
+    @code {
+
+    public Query GetArbeitscheinQuery(ArbeitsberichtDbSummeDto value)
+    {
+        return new Query().Where("ProjectName", "equal", value.Projektname);
+    }
+    private SfGrid<ArbeitsberichtDbSummeDto> grid;
+
+    private ArbeitsscheinFormModel formModel = new();
+
+    private List<ArbeitsscheinDto> arbeitsscheine;
+
+    private List<ArbeitsberichtDbSummeDto> arbeitsberichtSummeDto;
+
+    private ArbeitsberichtProjectsDto arbeitsberichtProjectsDto;
+
+    private IEnumerable<MonteurResponse> monteurData { get; set; } = new List<MonteurResponse>();
+
+    private IEnumerable<AnlageDto> anlageData { get; set; } = new List<AnlageDto>();
+
+
+    private List<string> ToolbarItems = new List<string>() { "PdfExport" };
+    private bool isLoading = false;
+    private Decimal gesamtSumme;
+    private bool IsSaniertAmUsed => formModel.SaniertAm.HasValue;
+    private string errorMessage = string.Empty;
+    private string successMessage = string.Empty;
+    private bool monteurSelected = true;
+    private bool anlageSelected = true;
+
+    private List<KanalSchacht> kanalSchachtList = new List<KanalSchacht>
+    {
+        new KanalSchacht { Id = 1, Auswahl = "Kanal" },
+        new KanalSchacht { Id = 2, Auswahl = "Schacht" }
+    };
+
+    private int ComboBoxValue = 1;
+
+    private void OnMonteurChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<int?, MonteurResponse> args)
+    {
+        if (args.ItemData != null) // Check if a valid Monteur is selected
+        {
+    formModel.SelectedMonteurId = args.ItemData.MonteurId;
+    formModel.SelectedAnlageId = null; // Reset Anlage selection
+    anlageSelected = false; // Disable Anlage ComboBox
+        }
+        else
+        {
+    formModel.SelectedMonteurId = null;
+    anlageSelected = true; // Enable Anlage ComboBox if no Monteur is selected
+        }
+        StateHasChanged(); // Force UI update
+    }
+
+    private void OnAnlageChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<int?, AnlageDto> args)
+    {
+        if (args.ItemData != null) // Check if a valid Anlage is selected
+        {
+    formModel.SelectedAnlageId = args.ItemData.AnlageId;
+    formModel.SelectedMonteurId = null; // Reset Monteur selection
+    monteurSelected = false; // Disable Monteur ComboBox
+        }
+        else
+        {
+    formModel.SelectedAnlageId = null;
+    monteurSelected = true; // Enable Monteur ComboBox if no Anlage is selected
+        }
+        StateHasChanged(); // Force UI update
+    }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadMonteure();
+        await LoadAnlagen();
+    }
+
+
+    private void OnSaniertAmChanged(Microsoft.AspNetCore.Components.ChangeEventArgs e)
+    {
+        if (DateTime.TryParse(e.Value?.ToString(), out var date))
+        {
+    formModel.SaniertAm = date;
+    formModel.SaniertAmVon = null;
+    formModel.SaniertAmBis = null;
+        }
+        else
+        {
+    formModel.SaniertAm = null;
+        }
+    }
+
+    private async Task ShowMessage(string message, bool isSuccess)
+    {
+        if (isSuccess)
+        {
+    successMessage = message;
+    errorMessage = null;
+        }
+        else
+        {
+    errorMessage = message;
+    successMessage = null;
+        }
+
+        StateHasChanged();
+
+        await Task.Delay(3000);
+
+        if (isSuccess)
+        {
+    successMessage = null;
+        }
+        else
+        {
+    errorMessage = null;
+        }
+
+        StateHasChanged();
+    }
+
+    private async Task LoadMonteure()
+    {
+        try
+        {
+    monteurData = await MonteurService.GetAllMonteure();
+        }
+        catch
+        {
+    ShowMessage($"Fehler beim Laden der Monteurdaten", false);
+        }
+    }
+
+    private async Task LoadAnlagen()
+    {
+        try
+        {
+    anlageData = await AnlagenService.GetAllAnlagen();
+        }
+        catch
+        {
+    ShowMessage($"Fehler beim Laden der Anlagendaten", false);
+        }
+    }
+
+    private async Task LoadArbeitsscheine()
+    {
+        isLoading = true;
+
+        try
+        {
+            if (monteurSelected)
+            { 
+                arbeitsberichtProjectsDto = await ArbeitsscheinService.GetArbeitsberichtMonteurProjects(
+                    bereich: ComboBoxValue,
+                    saniertAmVon: formModel.SaniertAmVon,
+                    saniertAmBis: formModel.SaniertAmBis,
+                    saniertAm: formModel.SaniertAm,
+                    monteurname: monteurData.FirstOrDefault(m => m.MonteurId == formModel.SelectedMonteurId)?.Nachname
+                );
+            }
+            else if (anlageSelected)
+            {
+                arbeitsberichtProjectsDto = await ArbeitsscheinService.GetArbeitsberichtAnlageProjects(
+                    bereich: ComboBoxValue,
+                    saniertAmVon: formModel.SaniertAmVon,
+                    saniertAmBis: formModel.SaniertAmBis,
+                    saniertAm: formModel.SaniertAm,
+                    anlage: anlageData.FirstOrDefault(a => a.AnlageId == formModel.SelectedAnlageId)?.AnlageName
+                );
+            }
+            else
+            {
+                ShowMessage("Bitte wählen Sie entweder einen Monteur oder eine Anlage aus.", false);
+                return;
+            }
+            arbeitsberichtSummeDto = arbeitsberichtProjectsDto.ArbeitsberichtProjekt ?? new List<ArbeitsberichtDbSummeDto>();
+        }
+        catch
+        {
+            ShowMessage($"Fehler beim Laden der Arbeistberichtdaten", false);
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+    private async Task<Decimal> GetSumAsync()
+    {
+        gesamtSumme = 0;
+        foreach (var item in arbeitsscheine)
+        {
+            gesamtSumme += item.Positionssumme;
+        }
+        return gesamtSumme;
+    }
+    private void ResetForm()
+    {
+        formModel = new();
+        arbeitsberichtProjectsDto = null;
+        arbeitsberichtSummeDto = null;
+        arbeitsscheine = null;
+        isLoading = false;
+        monteurSelected = true;
+        anlageSelected = true;
+        StateHasChanged();
+    }
+
+    public class ArbeitsscheinFormModel
+    {
+        [DataType(DataType.Date)]
+        public DateTime? SaniertAmVon { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime? SaniertAmBis { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime? SaniertAm { get; set; }
+
+        [MaxLength(10, ErrorMessage = "Name für das Fahrzeug darf nicht länger als 10 Zeichen sein!")]
+        public string? Fahrzeug { get; set; }
+
+        [MaxLength(30,ErrorMessage = "Name für den Monteur darf nicht länger als 30 Zeichen sein!")]
+        public string? Monteur { get; set; }
+
+        public int? SelectedMonteurId { get; set; }
+
+        public int? SelectedAnlageId { get; set; }
+    }
+
+    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    {
+        if (formModel.SaniertAmVon.HasValue && formModel.SaniertAmBis.HasValue && formModel.SaniertAmVon > formModel.SaniertAmBis)
+        {
+            yield return new ValidationResult
+            (
+                "Saniert Am Von darf nicht nach Saniert Am Bis liegen.",
+                new[] { nameof(formModel.SaniertAmVon), nameof(formModel.SaniertAmBis) });
+            }
+        }
+    }
+}
+

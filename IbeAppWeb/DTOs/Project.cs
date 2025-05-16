@@ -7,5 +7,6 @@
         public DateTime? CreatedOnUtc { get; set; }
         public bool DbActive { get; set; }
         public DateTime? DbChangedDate { get; set; }
+        public bool IsSchacht { get; set; }
     }
 }

@@ -5,6 +5,7 @@ namespace IbeAppWeb.DTOs;
 
 public class ArbeitsscheinDto
 {
+    public string ProjectName { get; set; }
     public string? HALTUNG { get; set; }
     public string? LVPosition { get; set; }
     public string? Firma { get; set; }
