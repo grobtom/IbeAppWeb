@@ -56,8 +56,8 @@ public class ProjectService
         try
         {
             var queryParameters = new List<string>();
-            queryParameters.Add($"DbActive={isActive}");
-            queryParameters.Add($"IsSchacht={isSchacht}");
+            queryParameters.Add($"dbActive={isActive}");
+            queryParameters.Add($"schacht={isSchacht}");
 
             var queryString = string.Join("&", queryParameters);
 
