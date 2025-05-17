@@ -90,7 +90,25 @@ l
         <GridColumn Field="Project.ProjectId" HeaderText="Projekt ID" TextAlign="TextAlign.Center" Width="110"></GridColumn>
         <GridColumn Field="Project.ProjectName" HeaderText="Projekt Name" Width="200"></GridColumn>
         <GridColumn Field="Project.CreatedOnUtc" HeaderText="Erzeugt am" Format="d" TextAlign="TextAlign.Center" Width="150"></GridColumn>
-        <GridColumn Field="Project.DbActive" HeaderText="Aktive" TextAlign="TextAlign.Center" Width="100"></GridColumn>
+        <GridColumn Field="Project.DbActive" HeaderText="Aktive" TextAlign="TextAlign.Center" Width="100">
+            <Template>
+                @{
+                    var changeData = (context as UmsatzFahrzeugMonteurProjectDto)?.Project;
+                    if (changeData.DbActive)
+                    {
+                        <div class="image">
+                            <img src="@($"images/activproject.png")" alt="@changeData.DbActive" width="24" />
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="image">
+                            <img src="@($"images/stop-icon.png")" alt="@changeData.DbActive" width="24" />
+                        </div>
+                    }
+                }
+            </Template>
+        </GridColumn>
     </GridColumns>
 </SfGrid>
 

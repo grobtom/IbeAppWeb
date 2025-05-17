@@ -71,7 +71,8 @@
                 <GridColumn Field=@nameof(UmsatzDto.SaniertAm) HeaderText="Saniert am" Width="80" Format="dd.MM.yyyy"></GridColumn>
                 <GridColumn Field=@nameof(UmsatzDto.Fahrzeug) HeaderText="Fahrzeug" Width="40"></GridColumn>
                 <GridColumn Field=@nameof(UmsatzDto.Kolonnenfuehrer) HeaderText="Kolonnenführer" Width="80"></GridColumn>
-                <GridColumn Field=@nameof(UmsatzDto.Umsatz) HeaderText="Umsatz" Width="80"></GridColumn>
+                <GridColumn Field=@nameof(UmsatzDto.Umsatz) HeaderText="Umsatz" Width="80" Format="C2"
+                            TextAlign="TextAlign.Right"></GridColumn>
             </GridColumns>
             <GridAggregates>
                 <GridAggregate>
