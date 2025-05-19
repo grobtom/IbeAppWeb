@@ -24,7 +24,7 @@
                         <Template>
                             @{
                                 var data = context as AnlageDto;
-                                var isActive = !data.IsDeleted;
+                                var isActive = !data?.IsDeleted;
                             }
                             <SfCheckBox Label="Aktiv" Value="false" @bind-Checked="@isActive"></SfCheckBox>
                         </Template>                    
@@ -39,7 +39,7 @@
 @code {
 
     private IEnumerable<AnlageDto> AnlagenData { get; set; } = new List<AnlageDto>();
-    private SfGrid<AnlageDto> Grid;
+    private SfGrid<AnlageDto>? Grid;
 
     protected override async Task OnInitializedAsync()
     {
@@ -71,7 +71,7 @@
             {
                 await CustomUpdate(args.Data);
             }
-            Grid.CloseEdit();
+            Grid?.CloseEditAsync();
             await LoadData();
         }
         else if (args.RequestType == Syncfusion.Blazor.Grids.Action.Delete)

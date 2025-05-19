@@ -48,16 +48,13 @@
 
 @code {
     private IEnumerable<MonteurWithAnlageDto> Data { get; set; } = new List<MonteurWithAnlageDto>();
-    private SfGrid<MonteurWithAnlageDto> Grid;
+    private SfGrid<MonteurWithAnlageDto> Grid = new();
 
     private IEnumerable<MonteurResponse> Monteure { get; set; } = new List<MonteurResponse>();
     private IEnumerable<AnlageDto> Anlagen { get; set; } = new List<AnlageDto>();
 
     private int SelectedMonteurId { get; set; }
     private int SelectedAnlageId { get; set; }
-
-    private string? errorMessage;
-    private string? successMessage;
 
     protected override async Task OnInitializedAsync()
     {

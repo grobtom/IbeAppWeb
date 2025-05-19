@@ -3,6 +3,6 @@
     public class KanalSchacht
     {
         public int Id { get; set; }
-        public string Auswahl { get; set; }
+        public string Auswahl { get; set; } = string.Empty;
     }
 }

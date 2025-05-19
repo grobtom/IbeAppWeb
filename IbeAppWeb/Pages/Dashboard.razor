@@ -1,0 +1,69 @@
+﻿@page "/dashboard"  
+@using IbeAppWeb.DTOs.Umsatz  
+@using static System.Net.WebRequestMethods  
+@using Syncfusion.Blazor.Grids  
+@using Syncfusion.Blazor.Charts  
+@using IbeAppWeb.Services
+@inject UmsatzService UmsatzService
+
+<h2 class="text-2xl font-bold mb-4">Umsatz-Dashboard</h2>  
+
+@if (dashboardData is null)  
+{  
+    <p>Lade Daten...</p>  
+}  
+else  
+{  
+    <div class="mb-4 font-semibold">  
+        Gesamtumsatz aller Projekte: <span style="color:green">€@dashboardData.GesamtumsatzAllProjects.ToString("N2")</span>  
+    </div>  
+
+    <SfChart Title="Umsatz je Projekt">  
+        <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Projekt" />  
+        <ChartPrimaryYAxis Title="Umsatz (€)" LabelFormat="C0" />  
+        <ChartSeriesCollection>  
+            <ChartSeries DataSource="@dashboardData.Projects"  
+                         XName="ProjectName"  
+                         YName="Gesamtumsatz"  
+                         Type="ChartSeriesType.Column" />  
+        </ChartSeriesCollection>  
+    </SfChart>  
+
+    <SfGrid DataSource="@monteurData" AllowPaging="true" AllowSorting="true" ShowColumnChooser="true">  
+        <GridColumns>  
+            <GridColumn Field="ProjectName" HeaderText="Projekt" Width="150" />  
+            <GridColumn Field="FieldName" HeaderText="Feld" Width="150" />  
+            <GridColumn Field="Monteur" HeaderText="Monteur" Width="200" />  
+            <GridColumn Field="Gesamtumsatz" HeaderText="Umsatz (€)" Format="C2" TextAlign="TextAlign.Right" Width="150" />  
+        </GridColumns>  
+    </SfGrid>  
+
+    <SfGrid DataSource="@fahrzeugData" AllowPaging="true" AllowSorting="true" >  
+        <GridColumns>  
+            <GridColumn Field="ProjectName" HeaderText="Projekt" Width="150" />  
+            <GridColumn Field="FieldName" HeaderText="Feld" Width="150" />  
+            <GridColumn Field="Fahrzeug" HeaderText="Fahrzeug" Width="200" />  
+            <GridColumn Field="Gesamtumsatz" HeaderText="Umsatz (€)" Format="C2" TextAlign="TextAlign.Right" Width="150" />  
+        </GridColumns>  
+    </SfGrid>  
+}  
+
+@code {
+    private AllProjectsUmsatzSplitDto? dashboardData;  
+    private List<MonteurUmsatzDto> monteurData = new();  
+    private List<FahrzeugUmsatzDto> fahrzeugData = new();  
+
+    protected override async Task OnInitializedAsync()  
+    {  
+        // Parse the date strings to DateTime to match the service method signature
+        DateTime start = DateTime.Parse("1.3.2025");
+        DateTime end = DateTime.Parse("31.5.2025");
+        dashboardData = await UmsatzService.GetProjectsUmsatzSplit(start, end);
+
+        if (dashboardData != null)  
+        {  
+            monteurData = dashboardData.Projects.SelectMany(p => p.MonteurUmsaetze).ToList();  
+            fahrzeugData = dashboardData.Projects.SelectMany(p => p.FahrzeugUmsaetze).ToList();  
+        }  
+    }  
+}

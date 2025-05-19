@@ -106,14 +106,16 @@ else
                     var arbeitsschein = (ascontext as ArbeitsscheinDto);
                     <table class="detailtable" width="100%">
                         <colgroup>
-                            <col width="30%" />
-                            <col width="30%" />
-                            <col width="40%" />
+                            <col style="width: 30%;" />
+                            <col style="width: 30%;" />
+                            <col style="width: 40%;" />
                         </colgroup>
                         <thead>
-                            <th colspan="2" style="font-weight: 500;text-align: center; background-color: #ADD8E6;">
-                                Details
-                            </th>
+                            <tr>
+                                <th colspan="2" style="font-weight: 500;text-align: center; background-color: #ADD8E6;">
+                                    Details
+                                </th>
+                            </tr>
                         </thead>
                         <tbody>
                             <tr>
@@ -195,13 +197,13 @@ else
 </style>
 
 @code {
-    private SfGrid<ArbeitsscheinDto> grid;
+    private SfGrid<ArbeitsscheinDto> grid = new();
 
     private ArbeitsscheinFormModel formModel = new();
 
-    private List<ArbeitsscheinDto> arbeitsscheine;
+    private List<ArbeitsscheinDto> arbeitsscheine = new();
 
-    private ArbeitsscheinResultDto arbeitsscheinResultDto;
+    private ArbeitsscheinResultDto arbeitsscheinResultDto = new();
 
     private List<Project>? projects = new();
 
@@ -212,8 +214,8 @@ else
 
     private List<string> ToolbarItems = new List<string>() { "PdfExport" };
     private bool isLoading = false;
-    private string base64Image;
-    private string projectDb;
+    private string? base64Image;
+    private string? projectDb;
     private Decimal gesamtSumme;
     private bool IsSaniertAmUsed => formModel.SaniertAm.HasValue;
     private string Message = string.Empty;
@@ -426,8 +428,8 @@ else
                 projectDb: projectDb,
                 ComboBoxValue: ComboBoxValue
             );
-            arbeitsscheine = arbeitsscheinResultDto.Arbeitsscheine;
-            gesamtSumme = await GetSumAsync();
+            arbeitsscheine = arbeitsscheinResultDto.Arbeitsscheine ?? new();
+            gesamtSumme = GetSum();
 
         }
         catch
@@ -439,7 +441,7 @@ else
             isLoading = false;
         }
     }
-    private async Task<Decimal> GetSumAsync()
+    private Decimal GetSum()
     {
         gesamtSumme = 0;
         foreach (var item in arbeitsscheine)
@@ -448,10 +450,11 @@ else
         }
         return gesamtSumme;
     }
+
     private void ResetForm()
     {
         formModel = new();
-        arbeitsscheine = null;
+        arbeitsscheine = new();
     }
 
     public class ArbeitsscheinFormModel

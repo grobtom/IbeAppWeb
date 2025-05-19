@@ -93,11 +93,10 @@
 
 
 @code {
-    private SfGrid<Project> grid;
-    private bool isSuccess = false;
+    private SfGrid<Project> grid = new();
     private List<Project> projects = new List<Project>();
     private bool isLoading = false;
-    private EditContext ProjectContext { get; set; }
+    private EditContext? ProjectContext { get; set; }
     public Project SelectedData = new Project();
 
     protected override async Task OnInitializedAsync()
@@ -150,7 +149,6 @@
             var result = await ProjectService.UpdateProjectAsync(SelectedData.ProjectId, SelectedData.DbActive, SelectedData.IsSchacht);
             if (result != null)
             {
-                isSuccess = true;
 
                 var project = projects.FirstOrDefault(p => p.ProjectId == SelectedData.ProjectId);
                 if (project != null)
@@ -167,13 +165,11 @@
             }
             else
             {
-                isSuccess = false;
                 await ToastService.ShowToast("Fehler beim Aktualisieren des Projekts.", false);
             }
         }
         catch (Exception ex)
         {
-            isSuccess = false;
             await ToastService.ShowToast($"Fehler beim Aktualisieren des Projekts: {ex.Message}", false);
         }
     }    

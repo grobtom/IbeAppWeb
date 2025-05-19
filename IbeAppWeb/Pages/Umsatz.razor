@@ -82,7 +82,7 @@
                                 @{
                                     var aggregate = (context as AggregateTemplateContext);
                                     <div>
-                                        <p>Totalsumme: @aggregate.Sum</p>
+                                        <p>Totalsumme: @aggregate?.Sum</p>
                                     </div>
                                 }
                             </FooterTemplate>
@@ -97,17 +97,16 @@
 
 
 @code {
-    private SfGrid<UmsatzDto> grid;
-    private List<UmsatzDto> masterDaten;
+    private SfGrid<UmsatzDto> grid = new();
+    private List<UmsatzDto> masterDaten = new();
     private List<Project> projects = new();
     private UmsatzFormModel formModel = new();
-    private UmsatzResultDto umsatzData;
-    private List<UmsatzFahrzeugMonteurDto> umsatzFahrzeugMonteurDto;
-    private UmsatzFahrzeugMonteurResultDto umsatzFahrzeugMonteurResultDto;
+    private UmsatzResultDto umsatzData = new();
+    private List<UmsatzFahrzeugMonteurDto> umsatzFahrzeugMonteurDto = new();
+    private UmsatzFahrzeugMonteurResultDto umsatzFahrzeugMonteurResultDto = new();
 
     private bool isLoading = false;
-    private string base64Image;
-    private string projectDb;
+    private string projectDb = string.Empty;
 
     private List<KanalSchacht> kanalSchachtList = new List<KanalSchacht>
     {
@@ -138,7 +137,7 @@
     private void ResetForm()
     {
         formModel = new();
-        masterDaten = null;
+        masterDaten = new();
     }
 
     public class UmsatzFormModel : IValidatableObject

@@ -2,6 +2,7 @@
 using IbeAppWeb.DTOs.Umsatz;
 using System.Globalization;
 using System.Net.Http.Json;
+using static System.Net.WebRequestMethods;
 
 namespace IbeAppWeb.Services;
 
@@ -145,6 +146,37 @@ public class UmsatzService
             // Log the error and return an empty result
             _logger.LogError(ex, "Error fetching Umsatz data");
             return new UmsatzFahrzeugMonteurProjectResultDto();
+        }
+    }
+
+    public async Task<AllProjectsUmsatzSplitDto> GetProjectsUmsatzSplit(DateTime? startDatum, DateTime? endDatum)
+    {
+        try
+        {
+            var queryParameters = new List<string>();
+            if (startDatum.HasValue) queryParameters.Add($"startDatum={startDatum.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
+            if (endDatum.HasValue) queryParameters.Add($"endDatum={endDatum.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
+            var queryString = string.Join("&", queryParameters);
+
+            HttpRequestMessage request;
+            request = new HttpRequestMessage(HttpMethod.Get, $"api/umsatz/all-projects-umsatz?{queryString}");
+
+            var response = await _httpClient.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+
+            // Deserialize the response
+            var result = await response.Content.ReadFromJsonAsync<AllProjectsUmsatzSplitDto>();
+            if (result == null)
+            {
+                throw new InvalidOperationException("Response content is null.");
+            }
+
+            return result;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error fetching AllProjectsUmsatzSplit");
+            return new AllProjectsUmsatzSplitDto();
         }
     }
 }

@@ -49,7 +49,7 @@ public class ArbeitsscheinService
             var response = await _httpClient.SendAsync(request);
             response.EnsureSuccessStatusCode();
 
-            return await response.Content.ReadFromJsonAsync<ArbeitsscheinResultDto>();
+            return await response.Content.ReadFromJsonAsync<ArbeitsscheinResultDto>() ?? new();
         }
         catch (Exception ex)
         {
@@ -92,7 +92,7 @@ public class ArbeitsscheinService
         }
     }
 
-    public async Task<ArbeitsberichtDbSummeResultDto> GetArbeitsberichtAnlage(bool schacht, string fahrzeug, string projectDb = "defaultDb", DateTime? saniertAmVon = null, DateTime? saniertAmBis = null, DateTime? saniertAm = null)
+    public async Task<ArbeitsberichtDbSummeResultDto> GetArbeitsberichtAnlage(bool schacht, string? fahrzeug, string? projectDb = "defaultDb", DateTime? saniertAmVon = null, DateTime? saniertAmBis = null, DateTime? saniertAm = null)
     {
         try
         {
@@ -150,12 +150,13 @@ public class ArbeitsscheinService
 
             var response = await _httpClient.SendAsync(request);
             response.EnsureSuccessStatusCode();
-            return await response.Content.ReadFromJsonAsync<ArbeitsberichtProjectsDto>();
+            var result = await response.Content.ReadFromJsonAsync<ArbeitsberichtProjectsDto>();
+            return result ?? new ArbeitsberichtProjectsDto { ArbeitsberichtProjekt = new List<ArbeitsberichtDbSummeDto>(), Links = new List<LinkDto>() };
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error fetching Arbeitsbericht projects");
-            return new ArbeitsberichtProjectsDto();
+            return new ArbeitsberichtProjectsDto { ArbeitsberichtProjekt = new List<ArbeitsberichtDbSummeDto>(), Links = new List<LinkDto>() };
         }
     }
 
@@ -183,12 +184,13 @@ public class ArbeitsscheinService
 
             var response = await _httpClient.SendAsync(request);
             response.EnsureSuccessStatusCode();
-            return await response.Content.ReadFromJsonAsync<ArbeitsberichtProjectsDto>();
+            var result = await response.Content.ReadFromJsonAsync<ArbeitsberichtProjectsDto>();
+            return result ?? new ArbeitsberichtProjectsDto { ArbeitsberichtProjekt = new List<ArbeitsberichtDbSummeDto>(), Links = new List<LinkDto>() };
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error fetching Arbeitsbericht projects");
-            return new ArbeitsberichtProjectsDto();
+            return new ArbeitsberichtProjectsDto { ArbeitsberichtProjekt = new List<ArbeitsberichtDbSummeDto>(), Links = new List<LinkDto>() };
         }
     }
 

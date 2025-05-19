@@ -72,7 +72,7 @@
             {
                 await CustomUpdate(args.Data);
             }
-            Grid.CloseEdit();
+            await Grid.CloseEditAsync();
             await LoadData();
         }
         else if (args.RequestType == Syncfusion.Blazor.Grids.Action.Delete)

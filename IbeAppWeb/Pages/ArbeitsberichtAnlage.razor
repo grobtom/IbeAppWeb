@@ -67,14 +67,16 @@
                         var arbeitsschein = (ascontext as ArbeitsscheinDto);
                         <table class="detailtable" width="100%">
                             <colgroup>
-                                <col width="30%" />
-                                <col width="30%" />
-                                <col width="40%" />
+                                <col style="width: 30%;" />
+                                <col style="width: 30%;" />
+                                <col style="width: 40%;" />
                             </colgroup>
                             <thead>
-                                <th colspan="2" style="font-weight: 500;text-align: center; background-color: #ADD8E6;">
-                                    Details
-                                </th>
+                                <tr>
+                                    <th colspan="2" style="font-weight: 500;text-align: center; background-color: #ADD8E6;">
+                                        Details
+                                    </th>
+                                </tr>
                             </thead>
                             <tbody>
                                 <tr>
@@ -138,7 +140,7 @@
         </SfGrid>
         <div class="row mt-3">
             <div class="col-md-12">
-                <h5>Gesamtsumme: @(gesamtSumme?.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</h5>
+                <h5>Gesamtsumme: @(gesamtSumme.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</h5>
             </div>
         </div>
 }
@@ -156,24 +158,23 @@
 </style>
 
 @code {
-    private SfGrid<ArbeitsscheinDto> grid;
+    private SfGrid<ArbeitsscheinDto>? grid;
 
     private ArbeitsscheinFormModel formModel = new();
 
-    private List<ArbeitsberichtDbSummeDto> berichtDbSumme;
+    private List<ArbeitsberichtDbSummeDto> berichtDbSumme = new();
 
-    private ArbeitsberichtDbSummeResultDto arbeitsberichtResultDto;
+    private ArbeitsberichtDbSummeResultDto arbeitsberichtResultDto = new();
 
-    private List<ArbeitsscheinDto> arbeitsscheine;
+    private List<ArbeitsscheinDto> arbeitsscheine = new();
 
     private List<Project> projects = new();
 
     private List<string> ToolbarItems = new List<string>() { "PdfExport" };
     private bool isLoading = false;
-    private bool errorOccurred = false;
-    private string base64Image;
-    private string projectDb;
-    private decimal? gesamtSumme;
+    private string base64Image = string.Empty;
+    private string projectDb = string.Empty;
+    private decimal gesamtSumme = 0;
     private bool isSchachtEnabled = false;
 
     private bool IsSaniertAmUsed => formModel.SaniertAm.HasValue;
@@ -234,7 +235,7 @@
                     new PdfHeaderFooterContent()
                     {
                         Type = ContentType.Text,
-                        Value = "Gesamtsumme: " + gesamtSumme?.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €",
+                        Value = "Gesamtsumme: " + gesamtSumme.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €",
                         Position = new PdfPosition() { X = 500, Y = 35 },
                         Style = new PdfContentStyle()
                         {
@@ -315,14 +316,13 @@
         }
         catch
         {
-            errorOccurred = true;
+            await ToastService.ShowToast("Fehler beim Laden der Projekte!", false);
         }
     }
 
     private async Task LoadArbeitsscheine()
     {
         isLoading = true;
-        errorOccurred = false;
 
         try
         {

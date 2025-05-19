@@ -5,12 +5,12 @@ namespace IbeAppWeb.DTOs;
 
 public class ArbeitsscheinDto
 {
-    public string ProjectName { get; set; }
+    public string? ProjectName { get; set; }
     public string? HALTUNG { get; set; }
     public string? LVPosition { get; set; }
     public string? Firma { get; set; }
     public string? Kolonnenfuehrer { get; set; }
-    public string Monteur { get; set; }
+    public string? Monteur { get; set; }
     public List<MonteurDto> MonteurList { get; set; } = new();
     public string? AnlageName { get; set; }
     public List<FahrzeugDto> FahrzeugList { get; set; } = new();

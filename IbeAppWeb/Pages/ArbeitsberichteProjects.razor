@@ -96,14 +96,16 @@ else
                                     var arbeitsschein = (ascontext as ArbeitsscheinDto);
                                     <table class="detailtable" width="100%">
                                         <colgroup>
-                                            <col width="30%" />
-                                            <col width="30%" />
-                                            <col width="40%" />
+                                            <col style="width: 30%;" />
+                                            <col style="width: 30%;" />
+                                            <col style="width: 40%;" />
                                         </colgroup>
                                         <thead>
-                                        <th colspan="2" style="font-weight: 500;text-align: center; background-color: #ADD8E6;">
-                                            Details
-                                        </th>
+                                            <tr>
+                                                <th colspan="3" style="font-weight: 500;text-align: center; background-color: #ADD8E6;">
+                                                    Details
+                                                </th>
+                                            </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
@@ -195,15 +197,15 @@ else
     {
         return new Query().Where("ProjectName", "equal", value.Projektname);
     }
-    private SfGrid<ArbeitsberichtDbSummeDto> grid;
+    private SfGrid<ArbeitsberichtDbSummeDto> grid = new();
 
     private ArbeitsscheinFormModel formModel = new();
 
-    private List<ArbeitsscheinDto> arbeitsscheine;
+    private List<ArbeitsscheinDto> arbeitsscheine = new();
 
-    private List<ArbeitsberichtDbSummeDto> arbeitsberichtSummeDto;
+    private List<ArbeitsberichtDbSummeDto> arbeitsberichtSummeDto = new();
 
-    private ArbeitsberichtProjectsDto arbeitsberichtProjectsDto;
+    private ArbeitsberichtProjectsDto arbeitsberichtProjectsDto = new();
 
     private IEnumerable<MonteurResponse> monteurData { get; set; } = new List<MonteurResponse>();
 
@@ -359,9 +361,9 @@ else
     private void ResetForm()
     {
         formModel = new();
-        arbeitsberichtProjectsDto = null;
-        arbeitsberichtSummeDto = null;
-        arbeitsscheine = null;
+        arbeitsberichtProjectsDto = new();
+        arbeitsberichtSummeDto = new();
+        arbeitsscheine = new();
         isLoading = false;
         monteurSelected = true;
         anlageSelected = true;

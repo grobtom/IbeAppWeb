@@ -11,11 +11,11 @@ namespace IbeAppWeb.Services;
     /// </remarks>
     public class IbeToastService
 {
-    public event Func<string, bool, Task> OnShow;
+        public event Func<string, bool, Task> OnShow;
 
-    public async Task ShowToast(string message, bool isSuccess)
-    {
-        if (OnShow != null)
-            await OnShow.Invoke(message, isSuccess);
-    }
+        public async Task ShowToast(string message, bool isSuccess)
+        {
+            if (OnShow != null)
+                await OnShow.Invoke(message, isSuccess);
+        }
 }

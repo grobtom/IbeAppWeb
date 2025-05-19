@@ -90,11 +90,10 @@
     private int? projectId;
     private int? oldAnlageId;
     private int? newAnlageId;
-    private string errorMessage;    
-    private IEnumerable<ProjectAnlageDto> anlagen;
-    private IEnumerable<ProjectWithAnlagenDto> allAnlagen;
-    private IEnumerable<Project> projects;
-    private IEnumerable<AnlageDto> anlagenList;
+    private IEnumerable<ProjectAnlageDto>? anlagen;
+    private IEnumerable<ProjectWithAnlagenDto>? allAnlagen;
+    private IEnumerable<Project>? projects;
+    private IEnumerable<AnlageDto>? anlagenList;
 
     protected override async Task OnInitializedAsync()
     {
