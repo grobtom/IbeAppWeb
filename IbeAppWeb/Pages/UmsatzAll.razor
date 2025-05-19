@@ -109,6 +109,8 @@ l
                 }
             </Template>
         </GridColumn>
+        <GridColumn Field="TotalUmsatz" HeaderText="Projektumsatz" Width="200" Format="C2"></GridColumn>
+
     </GridColumns>
 </SfGrid>
 
@@ -117,6 +119,7 @@ l
     private List<UmsatzFahrzeugMonteurProjectDto> Projects { get; set; } = new List<UmsatzFahrzeugMonteurProjectDto>();
     private bool isLoading = false;
     private UmsatzFormModel formModel = new();
+    private UmsatzFahrzeugMonteurDto fahrzeugMonteurDto = new UmsatzFahrzeugMonteurDto();
     private List<KanalSchacht> kanalSchachtList = new List<KanalSchacht>
     {
         new KanalSchacht { Id = 1, Auswahl = "Kanal" },
@@ -138,9 +141,19 @@ l
             StateHasChanged();
 
             UmsatzFahrzeugMonteurProjectResultDto result = await UmsatzService.GetUmsatzByFahrzeugAndMonteurAllAsync(formModel.StartDate, formModel.EndDate, ComboBoxValue);
+            isLoading = false;
             if (result?.Projects != null && result.Projects.Any())
             {
                 Projects = result.Projects;
+
+                foreach (var project in Projects)
+                {
+                    if (project.UmsatzProject != null && project.UmsatzProject.Any())
+                    {
+                        project.TotalUmsatz = project.UmsatzProject.Sum(x => x.Gesamtumsatz);
+                    }
+                }
+                
                 await ToastService.ShowToast($"Daten erfolgreich geladen.", true);
             }
             else

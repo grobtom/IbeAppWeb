@@ -236,10 +236,13 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        await LoadProjects();
-        await LoadMonteure();
-        await LoadAnlagen();
-        await LoadImage();
+        // Load all data in parallel for faster initial load
+        var projectsTask = LoadProjects();
+        var monteureTask = LoadMonteure();
+        var anlagenTask = LoadAnlagen();
+        var imageTask = LoadImage();
+
+        await Task.WhenAll(projectsTask, monteureTask, anlagenTask, imageTask);
     }
 
     private async Task LoadImage()
@@ -249,6 +252,46 @@ else
 
         // Funktion aufrufen
         base64Image = await module.InvokeAsync<string>("getImageAsBase64", "images/logos/logo_oxid.png");
+    }
+
+    private async Task LoadProjects()
+    {
+        try
+        {
+            // Only fetch active projects if not already loaded
+            if (projects == null || projects.Count == 0)
+                projects = await ProjectService.GetActiveProjectsAsync();
+        }
+        catch
+        {
+            await ToastService.ShowToast($"Fehler beim Laden der Projektdaten", false);
+        }
+    }
+
+    private async Task LoadMonteure()
+    {
+        try
+        {
+            if (monteurData == null || !monteurData.Any())
+                monteurData = await MonteurService.GetAllMonteure();
+        }
+        catch
+        {
+            await ToastService.ShowToast($"Fehler beim Laden der Monteurdaten", false);
+        }
+    }
+
+    private async Task LoadAnlagen()
+    {
+        try
+        {
+            if (anlageData == null || !anlageData.Any())
+                anlageData = await AnlagenService.GetAllAnlagen();
+        }
+        catch
+        {
+            await ToastService.ShowToast($"Fehler beim Laden der Anlagendaten", false);
+        }
     }
 
     public async Task ToolbarClickHandler(Syncfusion.Blazor.Navigations.ClickEventArgs args)
@@ -360,42 +403,6 @@ else
         else
         {
             formModel.SaniertAm = null;
-        }
-    }
-
-    private async Task LoadProjects()
-    {
-        try
-        {
-            projects = await ProjectService.GetActiveProjectsAsync();
-        }
-        catch
-        {
-            await ToastService.ShowToast($"Fehler beim Laden der Projektdaten", false);
-        }
-    }
-
-    private async Task LoadMonteure()
-    {
-        try
-        {
-            monteurData = await MonteurService.GetAllMonteure();
-        }
-        catch
-        {
-            await ToastService.ShowToast($"Fehler beim Laden der Monteurdaten", false);
-        }
-    }
-
-    private async Task LoadAnlagen()
-    {
-        try
-        {
-            anlageData = await AnlagenService.GetAllAnlagen();
-        }
-        catch
-        {
-            await ToastService.ShowToast($"Fehler beim Laden der Anlagendaten", false);
         }
     }
 
