@@ -15,21 +15,21 @@
 
 <div class="col-lg-12">
     <EditForm Model="@SelectedData" OnValidSubmit="@UpdateProject">
-        <div style="padding-top: 20px;">
-            <div class="form-group col-md-6">
-                <label style="padding: 10px 70px 10px 0">Projekt:</label>
-                <SfTextBox ID="ProjectName" @bind-Value="@SelectedData.ProjectName" Placeholder="Customer ID" ></SfTextBox>
+        <div style="padding-top: 20px; display: flex; flex-direction: row; gap: 24px; align-items: center;">
+            <div class="form-group" style="display: flex; flex-direction: column;">
+                <label style="padding-bottom: 4px;">Projekt:</label>
+                <SfTextBox ID="ProjectName" @bind-Value="@SelectedData.ProjectName" Placeholder="Projekt"></SfTextBox>
             </div>
-            <div class="form-group col-md-6">
-                <label style="padding: 10px 70px 10px 0">Aktiv</label>
+            <div class="form-group" style="display: flex; flex-direction: column;">
+                <label style="padding-bottom: 4px;">Aktiv</label>
                 <SfSwitch @bind-Checked="@SelectedData.DbActive"></SfSwitch>
             </div>
-            <div class="form-group col-md-6">
-                <label style="padding: 10px 70px 10px 0">Schacht</label>
+            <div class="form-group" style="display: flex; flex-direction: column;">
+                <label style="padding-bottom: 4px;">Schacht</label>
                 <SfSwitch @bind-Checked="@SelectedData.IsSchacht"></SfSwitch>
             </div>
         </div>
-        <div class="temp">
+        <div class="temp" style="margin-top: 16px;">
             <SfButton ButtonType="ButtonType.Submit">Projekt updaten</SfButton>
         </div>
     </EditForm>
@@ -112,13 +112,13 @@
         {
             isLoading = true;
             projects = await ProjectService.GetProjectsAsync();
+            isLoading = false;  
             if (projects == null || projects.Count == 0)
             {
                 await ToastService.ShowToast("Keine Projekte gefunden.", false);
             }
             else
             {
-                isLoading = false;
                 await ToastService.ShowToast($"{projects.Count} Projekte erfolgreich geladen.", true);
             }
         }
@@ -147,13 +147,23 @@
     {
         try
         {
-            isLoading = true;
             var result = await ProjectService.UpdateProjectAsync(SelectedData.ProjectId, SelectedData.DbActive, SelectedData.IsSchacht);
             if (result != null)
             {
                 isSuccess = true;
-                projects = await ProjectService.GetProjectsAsync();
-                await ToastService.ShowToast("Projekt erfolgreich aktualisiert. Daten werden aktualisiert.", true);
+
+                var project = projects.FirstOrDefault(p => p.ProjectId == SelectedData.ProjectId);
+                if (project != null)
+                {
+                    project.ProjectName = SelectedData.ProjectName;
+                    project.DbActive = SelectedData.DbActive;
+                    project.IsSchacht = SelectedData.IsSchacht;
+                    project.DbChangedDate = DateTime.Now;
+                }
+
+                await grid.Refresh();
+
+                await ToastService.ShowToast("Projekt erfolgreich aktualisiert.", true);
             }
             else
             {
@@ -165,10 +175,6 @@
         {
             isSuccess = false;
             await ToastService.ShowToast($"Fehler beim Aktualisieren des Projekts: {ex.Message}", false);
-        }
-        finally
-        {
-            isLoading = false;
         }
     }    
 }

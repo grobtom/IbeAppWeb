@@ -12,33 +12,78 @@ public class ProjectAnlageService
         _httpClient = httpClient;
     }
 
-    public async Task AssignAnlageToProject(AssignAnlageToProjectDto dto)
+    public async Task<bool> AssignAnlageToProject(AssignAnlageToProjectDto dto)
     {
-        await _httpClient.PostAsJsonAsync("api/ProjectAnlage/assign", dto);
+        var response = await _httpClient.PostAsJsonAsync("api/ProjectAnlage/assign", dto);
+        if (response.IsSuccessStatusCode)
+        {
+            return true;
+        }
+        else
+        {
+            // Optionally log or handle the error here
+            var error = await response.Content.ReadAsStringAsync();
+            throw new HttpRequestException($"Assignment failed: {response.StatusCode} - {error}");
+        }
     }
 
     public async Task<IEnumerable<ProjectAnlageDto>> GetAnlagenForProject(int projectId)
     {
-        return await _httpClient.GetFromJsonAsync<IEnumerable<ProjectAnlageDto>>($"api/ProjectAnlage/{projectId}");
+        var response = await _httpClient.GetFromJsonAsync<IEnumerable<ProjectAnlageDto>>($"api/ProjectAnlage/{projectId}");
+        if (response == null)
+        {
+            throw new HttpRequestException($"Failed to retrieve Anlagen for project {projectId}.");
+        }
+        return response.ToList();
     }
 
     public async Task<IEnumerable<ProjectWithAnlagenDto>> GetAllProjectAnlagen()
     {
-        return await _httpClient.GetFromJsonAsync<IEnumerable<ProjectWithAnlagenDto>>($"api/ProjectAnlage/all");
+        var response = await _httpClient.GetFromJsonAsync<IEnumerable<ProjectWithAnlagenDto>>($"api/ProjectAnlage/all");
+        if (response == null)
+        {
+            throw new HttpRequestException("Failed to retrieve projects with Anlagen.");
+        }
+        return response.Where(p => p.Anlagen != null).ToList();
     }
 
-    public async Task UpdateAssignment(UpdateProjectAnlageDto dto)
+    public async Task<bool> UpdateAssignment(UpdateProjectAnlageDto dto)
     {
-        await _httpClient.PutAsJsonAsync("api/ProjectAnlage/update", dto);
+        var response = await _httpClient.PutAsJsonAsync("api/ProjectAnlage/update", dto);
+        if (response.IsSuccessStatusCode)
+        {
+            return true;
+        }
+        else
+        {
+            // Optionally log or handle the error here
+            var error = await response.Content.ReadAsStringAsync();
+            throw new HttpRequestException($"Update failed: {response.StatusCode} - {error}");
+        }
     }
 
-    public async Task RemoveAssignment(int projectId, int anlageId)
+    public async Task<bool> RemoveAssignment(int projectId, int anlageId)
     {
-        await _httpClient.DeleteAsync($"api/ProjectAnlage/remove?projectId={projectId}&anlageId={anlageId}");
+        var response = await _httpClient.DeleteAsync($"api/ProjectAnlage/remove?projectId={projectId}&anlageId={anlageId}");
+        if (response.IsSuccessStatusCode)
+        {
+            return true;
+        }
+        else
+        {
+            // Optionally log or handle the error here
+            var error = await response.Content.ReadAsStringAsync();
+            throw new HttpRequestException($"Removal failed: {response.StatusCode} - {error}");
+        }
     }
 
-    public async Task<IEnumerable<AnlageDto>> GetAllAnlagen()
+    public async Task<List<AnlageDto>> GetAllAnlagen()
     {
-        return await _httpClient.GetFromJsonAsync<IEnumerable<AnlageDto>>($"api/Anlage");
+        var response = await _httpClient.GetFromJsonAsync<List<AnlageDto>>($"api/Anlage");
+        if (response == null)
+        {
+            throw new HttpRequestException("Failed to retrieve Anlagen.");
+        }
+        return response.Where(a => !a.IsDeleted).ToList();
     }
 }

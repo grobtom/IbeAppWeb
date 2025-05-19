@@ -109,11 +109,27 @@
             if (SelectedMonteurId > 0 && SelectedAnlageId > 0)
             {
                 await MonteurService.AssignMonteurToAnlage(SelectedMonteurId, SelectedAnlageId);
-                await LoadData(); // Refresh the grid
 
-                SelectedMonteurId = 0;
-                SelectedAnlageId = 0;
-            
+                await LoadData();
+
+                var updatedMonteur = Data.FirstOrDefault(m => m.MonteurId == SelectedMonteurId);
+                if (updatedMonteur != null)
+                {
+                    updatedMonteur.AnlageId = SelectedAnlageId;
+                    var anlage = Anlagen.FirstOrDefault(a => a.AnlageId == SelectedAnlageId);
+                    updatedMonteur.AnlageName = anlage?.AnlageName;
+                }
+
+                if (!Data.Any(m => m.MonteurId == SelectedMonteurId))
+                {
+                    SelectedMonteurId = 0;
+                }
+                if (!Anlagen.Any(a => a.AnlageId == SelectedAnlageId))
+                {
+                    SelectedAnlageId = 0;
+                }
+
+                StateHasChanged();
                 await ToastService.ShowToast("Monteur erfolgreich der Anlage zugewiesen.", true);
             }
             else
