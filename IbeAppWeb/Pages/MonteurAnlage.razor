@@ -61,9 +61,10 @@
 
     protected override async Task OnInitializedAsync()
     {
-        await LoadData();
-        await LoadMonteure();
-        await LoadAnlagen();
+        var dataTask = LoadData();
+        var monteurTask = LoadMonteure();
+        var anlageTask = LoadAnlagen();
+        await Task.WhenAll(dataTask, monteurTask, anlageTask);
     }
 
     private async Task LoadData()

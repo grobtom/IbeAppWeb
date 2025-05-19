@@ -236,7 +236,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        // Load all data in parallel for faster initial load
         var projectsTask = LoadProjects();
         var monteureTask = LoadMonteure();
         var anlagenTask = LoadAnlagen();

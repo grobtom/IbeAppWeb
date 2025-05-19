@@ -229,14 +229,14 @@ else
     {
         if (args.ItemData != null) // Check if a valid Monteur is selected
         {
-    formModel.SelectedMonteurId = args.ItemData.MonteurId;
-    formModel.SelectedAnlageId = null; // Reset Anlage selection
-    anlageSelected = false; // Disable Anlage ComboBox
+            formModel.SelectedMonteurId = args.ItemData.MonteurId;
+            formModel.SelectedAnlageId = null; // Reset Anlage selection
+            anlageSelected = false; // Disable Anlage ComboBox
         }
         else
         {
-    formModel.SelectedMonteurId = null;
-    anlageSelected = true; // Enable Anlage ComboBox if no Monteur is selected
+            formModel.SelectedMonteurId = null;
+            anlageSelected = true; // Enable Anlage ComboBox if no Monteur is selected
         }
         StateHasChanged(); // Force UI update
     }
@@ -245,14 +245,14 @@ else
     {
         if (args.ItemData != null) // Check if a valid Anlage is selected
         {
-    formModel.SelectedAnlageId = args.ItemData.AnlageId;
-    formModel.SelectedMonteurId = null; // Reset Monteur selection
-    monteurSelected = false; // Disable Monteur ComboBox
+            formModel.SelectedAnlageId = args.ItemData.AnlageId;
+            formModel.SelectedMonteurId = null; // Reset Monteur selection
+            monteurSelected = false; // Disable Monteur ComboBox
         }
         else
         {
-    formModel.SelectedAnlageId = null;
-    monteurSelected = true; // Enable Monteur ComboBox if no Anlage is selected
+            formModel.SelectedAnlageId = null;
+            monteurSelected = true; // Enable Monteur ComboBox if no Anlage is selected
         }
         StateHasChanged(); // Force UI update
     }
@@ -260,8 +260,10 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        await LoadMonteure();
-        await LoadAnlagen();
+        var monteurTask = LoadMonteure();
+        var anlagenTask = LoadAnlagen();
+
+        await Task.WhenAll(monteurTask, anlagenTask);
     }
 
 
@@ -283,7 +285,7 @@ else
     {
         try
         {
-    monteurData = await MonteurService.GetAllMonteure();
+            monteurData = await MonteurService.GetAllMonteure();
         }
         catch
         {
@@ -295,7 +297,7 @@ else
     {
         try
         {
-    anlageData = await AnlagenService.GetAllAnlagen();
+            anlageData = await AnlagenService.GetAllAnlagen();
         }
         catch
         {

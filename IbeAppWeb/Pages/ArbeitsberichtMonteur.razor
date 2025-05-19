@@ -178,8 +178,9 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        await LoadProjects();
-        await LoadImage();
+        var projectsTask = LoadProjects();
+        var imageTask =  LoadImage();
+        await Task.WhenAll(projectsTask, imageTask);
     }
 
     private async Task LoadImage()
