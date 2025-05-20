@@ -30,7 +30,7 @@
             <div class="form-group">
                 <label for="monteurSelect">Select Monteur:</label>
                 <SfDropDownList TItem="MonteurResponse" TValue="int" PopupHeight="230px" Placeholder="wähle Monteur" @bind-Value="@SelectedMonteurId" DataSource="@Monteure">
-                    <DropDownListFieldSettings Text="Nachname" Value="MonteurId" />
+                    <DropDownListFieldSettings Text="FullName" Value="MonteurId" />
                 </SfDropDownList>
             </div>
             <div class="form-group mt-3">
