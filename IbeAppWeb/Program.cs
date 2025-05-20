@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.FluentUI.AspNetCore.Components;
 using Syncfusion.Blazor;
+using Syncfusion.Blazor.Charts;
+using System.Globalization;
 
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Mzg0OTQ2OEAzMjM5MmUzMDJlMzAzYjMyMzkzYkZOeTBCei9pZXhMVjJ4aG4xL0NaOFlmZjl1Q0hKQUI1U3VqU3hUdE01aWc9");
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -28,5 +30,4 @@ builder.Services.AddScoped<AnlagenService>();
 builder.Services.AddScoped<MonteurService>();
 
 builder.Services.AddSyncfusionBlazor();
-
 await builder.Build().RunAsync();
