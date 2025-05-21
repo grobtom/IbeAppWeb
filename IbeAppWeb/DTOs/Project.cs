@@ -8,5 +8,7 @@
         public bool DbActive { get; set; }
         public DateTime? DbChangedDate { get; set; }
         public bool IsSchacht { get; set; }
+        public int? BauleiterId { get; set; }
+        public string? BauleiterFullName { get; set; }
     }
 }

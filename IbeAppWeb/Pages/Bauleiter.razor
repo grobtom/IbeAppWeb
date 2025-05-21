@@ -1,0 +1,129 @@
+﻿@page "/bauleiter"
+@using IbeAppWeb.DTOs
+@using IbeAppWeb.Services
+@using Syncfusion.Blazor.Spinner
+@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Buttons
+@inject IbeToastService ToastService
+@inject BauleiterService BauleiterService
+
+<h3>Bauleiter</h3>
+
+<div id="container">
+    <SfSpinner @bind-Visible="@isLoading" Label="Loading...." Type="@SpinnerType.Bootstrap">
+    </SfSpinner>
+</div>
+
+<div class="col-lg-12 control-section">
+    <div class="content-wrapper">
+        <div class="row">
+            <SfGrid @ref="Grid" DataSource="@bauleiter" AllowPaging="true" >
+                <GridPageSettings PageCount="5"></GridPageSettings>
+                <GridTemplates>
+                    <DetailTemplate Context="detailcontext">
+                        @{
+                            var data = (detailcontext as BauleiterWithProjectsDto);
+                        }
+                        @if (data?.Projects != null && data.Projects.Any())
+                        {
+                            <SfGrid DataSource="@data.Projects"
+                                    AllowPaging="true"
+                                    AllowSorting="true"
+                                    Height="300px">
+                                <GridPageSettings PageCount="5"></GridPageSettings>
+                                <GridColumns>
+                                    <GridColumn Field="@nameof(Project.ProjectName)" HeaderText="Projekt Name" Width="150"></GridColumn>
+                                    <GridColumn Field="@nameof(Project.CreatedOnUtc)" HeaderText="Erstellt am" Format="d" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+                                    <GridColumn Field="@nameof(Project.DbActive)" HeaderText="Aktiv" Width="80">
+                                        <Template>
+                                            @{
+                                                var changeData = (context as Project);
+                                                if (changeData.DbActive)
+                                                {
+                                                    <div class="image">
+                                                        <img src="@($"images/activproject.png")" alt="@changeData.DbActive" width="24" />
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="image">
+                                                        <img src="@($"images/stop-icon.png")" alt="@changeData.DbActive" width="24" />
+                                                    </div>
+                                                }
+                                            }
+                                        </Template>
+                                    </GridColumn>
+                                    <GridColumn Field="@nameof(Project.IsSchacht)" HeaderText="Kanal/Schacht" Width="120">
+                                        <Template>
+                                            @{
+                                                var changeData = (context as Project);
+                                                if (changeData.IsSchacht)
+                                                {
+                                                    <div class="image">
+                                                        <img src="@($"images/schacht.png")" alt="@changeData.IsSchacht" width="24" />
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="image">
+                                                        <img src="@($"images/rohr.png")" alt="@changeData.IsSchacht" width="24" />
+                                                    </div>
+                                                }
+
+                                            }
+                                        </Template>
+                                    </GridColumn>
+                                </GridColumns>
+                            </SfGrid>
+                        }
+                        else
+                        {
+                            <div style="padding: 16px;">Keine Projekte vorhanden.</div>
+                        }
+                    </DetailTemplate>
+                </GridTemplates>
+                <GridColumns>
+                    <GridColumn Field=@nameof(BauleiterWithProjectsDto.Vorname) HeaderText="Vorname" Width="150" ValidationRules="@(new ValidationRules{ Required=true, MinLength=5 })"></GridColumn>
+                    <GridColumn Field=@nameof(BauleiterWithProjectsDto.Nachname) HeaderText="Nachname" Format="d" TextAlign="TextAlign.Left" Width="150"></GridColumn>
+                    <GridColumn Field=@nameof(BauleiterWithProjectsDto.IsDeleted) HeaderText="Aktiv" TextAlign="TextAlign.Left" Width="80" AllowEditing="false">
+                        <Template>
+                            @{
+                                var data = context as BauleiterWithProjectsDto;
+                                var isActive = !data?.IsDeleted;
+                            }
+                            <SfCheckBox Label="Aktiv" Value="false" @bind-Checked="@isActive"></SfCheckBox>
+                        </Template> 
+                    </GridColumn>
+                </GridColumns>
+            </SfGrid>
+        </div>
+    </div>
+</div>
+
+@code {
+    private SfGrid<BauleiterWithProjectsDto> Grid;
+    private IEnumerable<BauleiterWithProjectsDto> bauleiter = new List<BauleiterWithProjectsDto>();
+    private bool isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadBauleiter();
+    }
+
+    private async Task LoadBauleiter()
+    {
+        try
+        {
+            isLoading = true;
+            bauleiter = await BauleiterService.GetBauleiterWithProjects();
+        }
+        catch (Exception ex)
+        {
+            await ToastService.ShowToast($"Fehler beim Laden der Bauleiter: {ex.Message}" , false);
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+}

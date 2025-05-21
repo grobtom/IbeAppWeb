@@ -4,10 +4,12 @@
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor.Spinner
 @using Syncfusion.Blazor.Inputs
+@using Syncfusion.Blazor.DropDowns
 @using IbeAppWeb.Services
 @using System.ComponentModel.DataAnnotations
 @inject ProjectService ProjectService
 @inject IbeToastService ToastService
+@inject BauleiterService BauleiterService
 
 <h3>Projekte Management</h3>
 
@@ -19,6 +21,13 @@
             <div class="form-group" style="display: flex; flex-direction: column;">
                 <label style="padding-bottom: 4px;">Projekt:</label>
                 <SfTextBox ID="ProjectName" @bind-Value="@SelectedData.ProjectName" Placeholder="Projekt"></SfTextBox>
+            </div>
+            <div class="form-group" style="display: flex; flex-direction: column;">
+                <label style="padding-bottom: 4px;">Bauleiter:</label>
+                    <SfComboBox TValue="int?" TItem="BauleiterDto" PopupHeight="230px" Placeholder="Bauleiter:" @bind-Value="@SelectedData.BauleiterId" DataSource="@bauleiter">
+                        <ComboBoxEvents TValue="int?" TItem="BauleiterDto" />
+                        <ComboBoxFieldSettings Text="FullName" Value="BauleiterId" />
+                    </SfComboBox>            
             </div>
             <div class="form-group" style="display: flex; flex-direction: column;">
                 <label style="padding-bottom: 4px;">Aktiv</label>
@@ -44,7 +53,8 @@
             <GridEvents RowSelected="RowSelectHandler" RowDeselected="RowDeSelectHandler" TValue="Project"></GridEvents>
             <GridColumns>
                 <GridColumn Field=@nameof(Project.ProjectId) HeaderText="Projekt ID" Width="120" IsPrimaryKey="true"></GridColumn>
-                <GridColumn Field=@nameof(Project.ProjectName) HeaderText="Projekt Name" Width="150"></GridColumn>
+                <GridColumn Field=@nameof(Project.ProjectName) HeaderText="Projekt Name" Width="150"></GridColumn>                
+                <GridColumn Field=@nameof(Project.BauleiterFullName) HeaderText="Bauleiter" Width="150"></GridColumn>
                 <GridColumn Field=@nameof(Project.CreatedOnUtc) HeaderText="Erstellt am:" Width="200"></GridColumn>
                 <GridColumn Field=@nameof(Project.DbActive) HeaderText="Aktiv" Format="d" Width="150">
                     <Template>
@@ -95,6 +105,7 @@
 @code {
     private SfGrid<Project> grid = new();
     private List<Project> projects = new List<Project>();
+    private IEnumerable<BauleiterDto> bauleiter = new List<BauleiterDto>();
     private bool isLoading = false;
     private EditContext? ProjectContext { get; set; }
     public Project SelectedData = new Project();
@@ -102,7 +113,9 @@
     protected override async Task OnInitializedAsync()
     {
         ProjectContext = new EditContext(new Project());
-        await LoadProjects();
+        Task taskProject =  LoadProjects();
+        Task taskBauleiter = LoadBauleiter();
+        await Task.WhenAll(taskProject, taskBauleiter);
     }
 
     private async Task LoadProjects()
@@ -127,6 +140,28 @@
         }
     }
 
+    private async Task LoadBauleiter()
+    {
+        try
+        {
+            isLoading = true;
+            bauleiter = await BauleiterService.GetAllBauleiter();
+            isLoading = false;  
+            if (bauleiter == null || bauleiter.ToList().Count == 0)
+            {
+                await ToastService.ShowToast("Keine Bauleiter gefunden.", false);
+            }
+            else
+            {
+                await ToastService.ShowToast($"{bauleiter.ToList().Count} Bauleiter erfolgreich geladen.", true);
+            }
+        }
+        catch (Exception ex)
+        {
+            await ToastService.ShowToast($"Fehler beim Laden der Bauleiter: {ex.Message}", false);
+        }
+    }
+
     public void RowSelectHandler(RowSelectEventArgs<Project> args)
     {
         SelectedData = new Project() { ProjectId = args.Data.ProjectId, 
@@ -134,7 +169,9 @@
             CreatedOnUtc = args.Data.CreatedOnUtc,
             DbActive = args.Data.DbActive,
             DbChangedDate = args.Data.DbChangedDate,
-            IsSchacht = args.Data.IsSchacht
+            IsSchacht = args.Data.IsSchacht,
+            BauleiterId = args.Data.BauleiterId,
+            BauleiterFullName = args.Data.BauleiterFullName
         };
     }
     public void RowDeSelectHandler(RowDeselectEventArgs<Project> args)
@@ -146,7 +183,7 @@
     {
         try
         {
-            var result = await ProjectService.UpdateProjectAsync(SelectedData.ProjectId, SelectedData.DbActive, SelectedData.IsSchacht);
+            var result = await ProjectService.UpdateProjectAsync(SelectedData.ProjectId, SelectedData.DbActive, SelectedData.IsSchacht, SelectedData.BauleiterId ?? 0);
             if (result != null)
             {
 
@@ -157,6 +194,7 @@
                     project.DbActive = SelectedData.DbActive;
                     project.IsSchacht = SelectedData.IsSchacht;
                     project.DbChangedDate = DateTime.Now;
+                    project.BauleiterId = SelectedData.BauleiterId;
                 }
 
                 await grid.Refresh();

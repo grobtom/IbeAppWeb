@@ -14,7 +14,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddFluentUIComponents();
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5000") });
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://pcit.exrohr.dom") });
 
 builder.Services.AddMsalAuthentication(options =>
 {
@@ -28,6 +28,7 @@ builder.Services.AddScoped<UmsatzService>();
 builder.Services.AddScoped<ProjectAnlageService>();
 builder.Services.AddScoped<AnlagenService>();
 builder.Services.AddScoped<MonteurService>();
+builder.Services.AddScoped<BauleiterService>();
 
 builder.Services.AddSyncfusionBlazor();
 await builder.Build().RunAsync();

@@ -51,13 +51,17 @@ public class ProjectService
         }
     }
 
-    public async Task<Project> UpdateProjectAsync(int projectId, bool isActive, bool isSchacht)
+    public async Task<Project> UpdateProjectAsync(int projectId, bool isActive, bool isSchacht, int bauleiterId)
     {
         try
         {
             var queryParameters = new List<string>();
             queryParameters.Add($"dbActive={isActive}");
             queryParameters.Add($"schacht={isSchacht}");
+            if (bauleiterId > 0)
+            {
+                queryParameters.Add($"bauleiterId={bauleiterId}");
+            }
 
             var queryString = string.Join("&", queryParameters);
 
