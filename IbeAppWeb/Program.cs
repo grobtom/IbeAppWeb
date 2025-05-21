@@ -14,7 +14,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddFluentUIComponents();
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://pcit.exrohr.dom") });
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5000") });
 
 builder.Services.AddMsalAuthentication(options =>
 {
