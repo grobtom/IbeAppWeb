@@ -47,7 +47,7 @@
 @if (projects != null)
 {
     <div>
-        <SfGrid @ref="grid" DataSource="@projects" AllowSorting="true" AllowFiltering="true" AllowPaging="true" AllowSelection="true">
+        <SfGrid @ref="grid" DataSource="@projects" AllowSorting="true" AllowPaging="true" AllowSelection="true">
             <GridPageSettings PageCount="5" PageSizes="true" PageSize="10"></GridPageSettings>
             <GridSelectionSettings Mode="Syncfusion.Blazor.Grids.SelectionMode.Row" Type="Syncfusion.Blazor.Grids.SelectionType.Single"></GridSelectionSettings>
             <GridEvents RowSelected="RowSelectHandler" RowDeselected="RowDeSelectHandler" TValue="Project"></GridEvents>
@@ -99,7 +99,12 @@
         </SfGrid>    
     </div>
 }
-
+<style>
+    .e-grid .e-headercell {
+        background-color: #a2d6f4;
+        color: rgb(3, 2, 2);
+    }
+</style>
 
 
 @code {

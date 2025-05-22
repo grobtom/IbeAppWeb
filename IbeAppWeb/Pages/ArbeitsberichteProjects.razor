@@ -81,7 +81,9 @@
 }
 else
 {
-    <SfGrid ID="Grid" @ref="grid" DataSource="@arbeitsberichtSummeDto" AllowPaging="true" AllowSelection="true" AllowReordering="true" AllowGrouping="true"  Height="500">
+    <SfGrid ID="Grid" @ref="grid" DataSource="@arbeitsberichtSummeDto" AllowPaging="true" 
+        AllowSelection="true" AllowReordering="true" 
+            AllowGrouping="true" AllowResizing="true" Height="500">
         <GridPageSettings PageCount="5"></GridPageSettings>
         <GridTemplates>
             <DetailTemplate>
@@ -102,7 +104,7 @@ else
                                         </colgroup>
                                         <thead>
                                             <tr>
-                                                <th colspan="3" style="font-weight: 500;text-align: center; background-color: #ADD8E6;">
+                                                <th colspan="3" style="font-weight: 500;text-align: center; background-color: #e08e4f;">
                                                     Details
                                                 </th>
                                             </tr>
@@ -189,7 +191,13 @@ else
     white-space: nowrap;
     font-weight: normal;
     }
+
+    .e-grid .e-headercell {
+        background-color: #a2d6f4;
+        color: rgb(3, 2, 2);
+    }
 </style>
+
 
     @code {
 

@@ -58,7 +58,7 @@ l
             @{
                 var project = (detailcontext as UmsatzFahrzeugMonteurProjectDto);
             }
-            <SfGrid DataSource="@project?.UmsatzProject" AllowPaging="true" AllowSorting="true" Height="300px">
+            <SfGrid DataSource="@project?.UmsatzProject" AllowPaging="true" AllowResizing="true" AllowSorting="true" Height="300px">
                 <GridPageSettings PageCount="5"></GridPageSettings>
                 <GridColumns>
                     <GridColumn Field="@nameof(UmsatzFahrzeugMonteurDto.ProjectName)" HeaderText="Project Name" Width="150"></GridColumn>
@@ -113,6 +113,13 @@ l
 
     </GridColumns>
 </SfGrid>
+
+<style>
+    .e-grid .e-headercell {
+        background-color: #a2d6f4;
+        color: rgb(3, 2, 2);
+    }
+</style>
 
 @code {
     private SfGrid<UmsatzFahrzeugMonteurProjectDto> grid = new();
