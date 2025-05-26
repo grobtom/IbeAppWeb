@@ -130,7 +130,8 @@
     {
         try
         {
-            projects = await ProjectService.GetActiveProjectsAsync();
+            var activeProjects = await ProjectService.GetActiveProjectsAsync();
+            projects = activeProjects ?? new List<Project>();
             await ToastService.ShowToast($"Daten erfolgreich geladen.", true);
         }
         catch
@@ -148,8 +149,8 @@
 
     public class UmsatzFormModel : IValidatableObject
     {
-        public string LvPos { get; set; }
-        public string Kurztext { get; set; }
+        public string LvPos { get; set; } = string.Empty;
+        public string Kurztext { get; set; } = string.Empty;
         [Required(ErrorMessage = "Bitte wählen Sie ein Projekt aus.")]
         public int? SelectedProjectId { get; set; }
         [DataType(DataType.Date)]

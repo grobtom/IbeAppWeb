@@ -74,10 +74,14 @@
                         var project = (context as ProjectWithAnlagenDto);
                     }
                     <ul>
-                        @foreach (var anlage in project.Anlagen)
+                        @if(project?.Anlagen == null || !project.Anlagen.Any())
                         {
-                            <li>ID: @anlage.AnlageId, Name: @anlage.AnlageName</li>
+                            <li>Keine Anlagen zugeordnet.</li>
                         }
+                        else
+                        {
+                            <li>Keine Anlagen verfügbar</li>                      }
+        
                     </ul>
                 </Template>
             </GridColumn>
@@ -203,25 +207,39 @@
 
     private async Task RemoveAnlage()
     {
-        var response = await ProjectAnlageService.RemoveAssignment(projectId.Value, oldAnlageId.Value);
-        if (response)
+        if (projectId.HasValue && oldAnlageId.HasValue)
         {
-            await RefreshSingleProjectAnlage(oldAnlageId.Value);
-
-            await ToastService.ShowToast("Anlage erfolgreich entfernt.", true);
+            var response = await ProjectAnlageService.RemoveAssignment(projectId.Value, oldAnlageId.Value);
+            if (response)
+            {
+                await RefreshSingleProjectAnlage(oldAnlageId.Value);
+                await ToastService.ShowToast("Anlage erfolgreich entfernt.", true);
+            }
+            else
+            {
+                await ToastService.ShowToast("Fehler beim Entfernen der Anlage.", false);
+            }
         }
         else
         {
-            await ToastService.ShowToast("Fehler beim Entfernen der Anlage.", false);
+            await ToastService.ShowToast("Bitte wählen Sie ein Projekt und eine bestehende Anlage aus.", false);
         }
     }
 
     private async Task GetProjectAnlage()
     {
-        anlagen = await ProjectAnlageService.GetAnlagenForProject(projectId.Value);
-        if (anlagen == null || !anlagen.Any())
+        if (projectId.HasValue)
         {
-           await ToastService.ShowToast("Keine Anlagen für das ausgewählte Projekt gefunden.", false);
+            var updatedAnlagen = await ProjectAnlageService.GetAnlagenForProject(projectId!.Value);
+            anlagen = updatedAnlagen;
+            if (anlagen == null || !anlagen.Any())
+            {
+                await ToastService.ShowToast("Keine Anlagen für das ausgewählte Projekt gefunden.", false);
+            }
+        }
+        else
+        {
+            await ToastService.ShowToast("Projekt-ID ist nicht gesetzt.", false);
         }
     }
 
@@ -292,44 +310,45 @@
     }
     private async Task RefreshSingleProjectAnlage(int anlageId)
     {
-        var updatedAnlagen = await ProjectAnlageService.GetAnlagenForProject(projectId.Value);
-
-        anlagen = updatedAnlagen;
-
-        // If the oldAnlageId is no longer present in the updated list, clear it
-        if (oldAnlageId.HasValue && !updatedAnlagen.Any(a => a.AnlageId == oldAnlageId.Value))
+        if (projectId.HasValue)
         {
-            oldAnlageId = null;
-        }
+            var updatedAnlagen = await ProjectAnlageService.GetAnlagenForProject(projectId.Value);
 
-        // Map ProjectAnlageDto to AnlageDto
-        var updatedAnlageDtos = updatedAnlagen.Select(a => new AnlageDto
-        {
-            AnlageId = a.AnlageId,
-            AnlageName = a.AnlageName,
-            Beschreibung = string.Empty, // Default value, adjust if necessary
-            IsDeleted = false // Default value, adjust if necessary
-        }).ToList();
+            anlagen = updatedAnlagen;
 
-        var index = allAnlagen.ToList().FindIndex(a => a.ProjectId == projectId.Value && a.Anlagen.Any(an => an.AnlageId == anlageId));
-        if (index >= 0)
-        {
-            var updatedList = allAnlagen.ToList();
-            updatedList[index].Anlagen = updatedAnlageDtos; // Use the mapped list
+            if (oldAnlageId.HasValue && !updatedAnlagen.Any(a => a.AnlageId == oldAnlageId.Value))
+            {
+                oldAnlageId = null;
+            }
+
+            var updatedAnlageDtos = updatedAnlagen.Select(a => new AnlageDto
+            {
+                AnlageId = a.AnlageId,
+                AnlageName = a.AnlageName,
+                IsDeleted = false 
+            }).ToList();
+
+            var updatedList = allAnlagen?.ToList() ?? new List<ProjectWithAnlagenDto>(); 
+            var index = updatedList.FindIndex(a => a.ProjectId == projectId.Value && a.Anlagen.Any(an => an.AnlageId == anlageId));
+            if (index >= 0)
+            {
+                updatedList[index].Anlagen = updatedAnlageDtos;
+            }
+            else
+            {
+                updatedList.Add(new ProjectWithAnlagenDto
+                {
+                    ProjectId = projectId.Value,
+                    ProjectName = updatedAnlageDtos.FirstOrDefault()?.AnlageName ?? string.Empty,
+                    Anlagen = updatedAnlageDtos
+                });
+            }
             allAnlagen = updatedList;
+            StateHasChanged();
         }
         else
         {
-            var updatedList = allAnlagen.ToList();
-            updatedList.Add(new ProjectWithAnlagenDto
-            {
-                ProjectId = projectId.Value,
-                ProjectName = updatedAnlageDtos.FirstOrDefault()?.AnlageName ?? string.Empty, // Adjust this if necessary
-                Anlagen = updatedAnlageDtos
-            });
-            allAnlagen = updatedList;
+            await ToastService.ShowToast("Projekt-ID ist nicht gesetzt.", false);
         }
-        StateHasChanged(); 
     }
-    
 }

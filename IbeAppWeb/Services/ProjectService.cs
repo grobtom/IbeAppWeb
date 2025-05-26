@@ -70,7 +70,7 @@ public class ProjectService
             var response = await _httpClient.SendAsync(request);
             response.EnsureSuccessStatusCode();
 
-            return await response.Content.ReadFromJsonAsync<Project>();
+            return await response.Content.ReadFromJsonAsync<Project>() ?? new Project();
 
         }
         catch (Exception ex)

@@ -38,16 +38,16 @@
                                         <Template>
                                             @{
                                                 var changeData = (context as Project);
-                                                if (changeData.DbActive)
+                                                if (changeData?.DbActive == true)
                                                 {
                                                     <div class="image">
-                                                        <img src="@($"images/activproject.png")" alt="@changeData.DbActive" width="24" />
+                                                        <img src="@($"images/activproject.png")" alt="@changeData?.DbActive" width="24" />
                                                     </div>
                                                 }
                                                 else
                                                 {
                                                     <div class="image">
-                                                        <img src="@($"images/stop-icon.png")" alt="@changeData.DbActive" width="24" />
+                                                        <img src="@($"images/stop-icon.png")" alt="@changeData?.DbActive" width="24" />
                                                     </div>
                                                 }
                                             }
@@ -57,16 +57,16 @@
                                         <Template>
                                             @{
                                                 var changeData = (context as Project);
-                                                if (changeData.IsSchacht)
+                                                if (changeData?.IsSchacht == true)
                                                 {
                                                     <div class="image">
-                                                        <img src="@($"images/schacht.png")" alt="@changeData.IsSchacht" width="24" />
+                                                        <img src="@($"images/schacht.png")" alt="@changeData?.IsSchacht" width="24" />
                                                     </div>
                                                 }
                                                 else
                                                 {
                                                     <div class="image">
-                                                        <img src="@($"images/rohr.png")" alt="@changeData.IsSchacht" width="24" />
+                                                        <img src="@($"images/rohr.png")" alt="@changeData?.IsSchacht" width="24" />
                                                     </div>
                                                 }
 
@@ -108,7 +108,7 @@
 </style>
 
 @code {
-    private SfGrid<BauleiterWithProjectsDto> Grid;
+    private SfGrid<BauleiterWithProjectsDto>? Grid;
     private IEnumerable<BauleiterWithProjectsDto> bauleiter = new List<BauleiterWithProjectsDto>();
     private bool isLoading = true;
 

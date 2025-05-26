@@ -23,7 +23,7 @@
                                                 <Template>
                             @{
                                 var data = context as MonteurResponse;
-                                var isActive = !data.IsDeleted;
+                                var isActive = data != null &&!data.IsDeleted;
                             }
                             <SfCheckBox Label="Aktiv" Value="false" @bind-Checked="@isActive"></SfCheckBox>
                         </Template>                    
@@ -45,7 +45,7 @@
 @code {
 
     private IEnumerable<MonteurResponse> Data { get; set; } = new List<MonteurResponse>();
-    private SfGrid<MonteurResponse> Grid;
+    private SfGrid<MonteurResponse>? Grid;
 
 
     protected override async Task OnInitializedAsync()
@@ -78,7 +78,16 @@
             {
                 await CustomUpdate(args.Data);
             }
-            await Grid.CloseEditAsync();
+
+            if(Grid != null)
+            {
+                await Grid.CloseEditAsync();
+            }
+            else
+            {
+                await ToastService.ShowToast("Grid is not initialized.", false);
+            }
+
             await LoadData();
         }
         else if (args.RequestType == Syncfusion.Blazor.Grids.Action.Delete)

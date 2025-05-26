@@ -83,7 +83,7 @@ public class ArbeitsscheinService
             request.Headers.Add("X-IbeProjectDB", projectDb);
             var response = await _httpClient.SendAsync(request);
             response.EnsureSuccessStatusCode();
-            return await response.Content.ReadFromJsonAsync<ArbeitsberichtDbSummeResultDto>();
+            return await response.Content.ReadFromJsonAsync<ArbeitsberichtDbSummeResultDto>() ?? new ArbeitsberichtDbSummeResultDto();
         }
         catch (Exception ex)
         {
@@ -117,7 +117,7 @@ public class ArbeitsscheinService
             request.Headers.Add("X-IbeProjectDB", projectDb);
             var response = await _httpClient.SendAsync(request);
             response.EnsureSuccessStatusCode();
-            return await response.Content.ReadFromJsonAsync<ArbeitsberichtDbSummeResultDto>();
+            return await response.Content.ReadFromJsonAsync<ArbeitsberichtDbSummeResultDto>() ?? new ArbeitsberichtDbSummeResultDto();
         }
         catch (Exception ex)
         {

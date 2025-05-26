@@ -113,11 +113,11 @@ else
                             <tr>
                                 <td style="text-align: center;">
                                     <strong style="color: #0a76ff;">Anteil pro Monteur:</strong><br>
-                                    <span>@((arbeitsschein.Positionssumme / (arbeitsschein.MonteurList.Count)).ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</span>
+                                    <span>@((arbeitsschein?.Positionssumme ?? 0)/ (arbeitsschein?.MonteurList?.Count ?? 1)).ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")))</span>
                                 </td>
                                 <td style="text-align: center;">
                                     <strong style="color: #0a76ff;">Anteil pro Anlage:</strong><br>
-                                    <span>@((arbeitsschein.Positionssumme / (arbeitsschein.FahrzeugList.Count)).ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</span>
+                                    <span>@((arbeitsschein?.Positionssumme ??0)/ (arbeitsschein?.FahrzeugList?.Count ?? 1)).ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")))</span>
                                 </td>
                                 <td style="text-align: center;">
                                     <strong style="color: #0a76ff;">Positionssumme:</strong><br>
@@ -251,7 +251,7 @@ else
                 PdfHeader Header = new PdfHeader() { FromTop = 0, Height = 80, Contents = HeaderContent };
                 ExportProperties.Header = Header;
 
-                await grid.PdfExport(ExportProperties);
+                await grid.ExportToPdfAsync(ExportProperties);
             }
         }
     }
@@ -281,7 +281,7 @@ else
                 }
             }
         };
-        pdfRows.Add(ProcessPdfRow("Monteure", data.Monteur, "Kurztext", data.Kurztext));
+        pdfRows.Add(ProcessPdfRow("Monteure", data.Monteur ?? "N/A", "Kurztext", data.Kurztext ?? "N/A"));
         pdfRows.Add(ProcessPdfRow("Preis", $"{data.Preis.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE"))} €", "Positionspreis", $"{data.Positionssumme.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE"))} €"));
         pdfRows.Add(ProcessPdfRow("Anzahl Monteure", $"{data.MonteurList.Count}", "Anteil pro Monteur", $"{(data.Positionssumme / (data.MonteurList.Count)).ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE"))} €"));
         pdfRows.Add(ProcessPdfRow("Anzahl Fahrzeuge", $"{data.FahrzeugList.Count}", "Anteil pro Fahrzeug", $"{(data.Positionssumme / (data.FahrzeugList.Count)).ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE"))} €"));
@@ -315,7 +315,17 @@ else
     {
         try
         {
-            projects = await ProjectService.GetActiveProjectsAsync();
+            var activeProjects = await ProjectService.GetActiveProjectsAsync();
+            if (activeProjects != null && activeProjects.Any())
+            {
+                projects = activeProjects.ToList();
+                formModel.SelectedProjectId = projects.FirstOrDefault()?.ProjectId;
+            }
+            else
+            {
+                await ToastService.ShowToast("Keine aktiven Projekte gefunden!", false);
+            }
+
         }
         catch
         {
@@ -339,7 +349,7 @@ else
                     saniertAmVon: formModel.SaniertAmVon,
                     saniertAmBis: formModel.SaniertAmBis,
                     saniertAm: formModel.SaniertAm,
-                    monteurName: formModel.Monteurname,
+                    monteurName: formModel.Monteurname ?? string.Empty,
                     projectDb: projectDb
                 );
             }
@@ -350,12 +360,16 @@ else
                     saniertAmVon: formModel.SaniertAmVon,
                     saniertAmBis: formModel.SaniertAmBis,
                     saniertAm: formModel.SaniertAm,
-                    monteurName: formModel.Monteurname,
+                    monteurName: formModel.Monteurname ?? string.Empty,
                     projectDb: projectDb
                 );
             }
-            berichtDbSumme = arbeitsberichtResultDto.Arbeitsberichte;
-            arbeitsscheine = berichtDbSumme.SelectMany(b => b.Arbeitsscheine).ToList();
+            berichtDbSumme = arbeitsberichtResultDto.Arbeitsberichte ?? new List<ArbeitsberichtDbSummeDto>();
+            arbeitsscheine = berichtDbSumme
+                            .Where(b => b.Arbeitsscheine != null && b.Arbeitsscheine.Any())
+                            .SelectMany(b => b.Arbeitsscheine!)
+                            .ToList();
+
             gesamtSumme = berichtDbSumme.Sum(b => b.Summe);
 
             await ToastService.ShowToast($"Arbeitsbericht erfolgreich geladen!", true);

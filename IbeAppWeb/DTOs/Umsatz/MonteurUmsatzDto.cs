@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace IbeAppWeb.DTOs.Umsatz;
 public class MonteurUmsatzDto
 {
-    public string ProjectName { get; set; }
-    public string FieldName { get; set; }
-    public string Monteur { get; set; }
+    public string ProjectName { get; set; } = string.Empty;
+    public string FieldName { get; set; } = string.Empty;
+    public string Monteur { get; set; } = string.Empty;
     public decimal Gesamtumsatz { get; set; }
 }
