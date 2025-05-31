@@ -69,6 +69,33 @@ public class AnlagenService
         }
     }
 
+    public async Task<AnlageWithMonteureDto> GetAnlageWithMonteureById(int anlageId)
+    {
+        try
+        {
+            // Send a GET request to the API
+            var response = await _httpClient.GetAsync($"api/Anlage/withmonteure/{anlageId}");
+            // Ensure the response is successful
+            if (response.IsSuccessStatusCode)
+            {
+                // Deserialize and return the AnlageWithMonteureDto
+                return await response.Content.ReadFromJsonAsync<AnlageWithMonteureDto>() ?? new AnlageWithMonteureDto();
+            }
+            else
+            {
+                // Log or handle the error (optional)
+                var errorContent = await response.Content.ReadAsStringAsync();
+                throw new HttpRequestException($"Failed to fetch Anlage with Monteure by ID. Status: {response.StatusCode}, Error: {errorContent}");
+            }
+        }
+        catch (Exception ex)
+        {
+            // Log or rethrow the exception as needed
+            Console.WriteLine($"Error in GetAnlageWithMonteureById: {ex.Message}");
+            return new AnlageWithMonteureDto(); // Return an empty object on failure
+        }
+    }
+
     public async Task<AnlageDto?> GetAnlageById(int anlageId)
     {
         try
@@ -97,23 +124,32 @@ public class AnlagenService
         }
     }
 
-    public async Task<AnlageDto?> CreateAnlage(AnlageDto anlageDto)
+    public async Task<AnlageDto?> CreateAnlage(string anlageName, string beschreibung)
     {
         try
         {
-            // Send a POST request to the API
-            var response = await _httpClient.PostAsJsonAsync("api/Anlage", anlageDto);
+            // Trim input to avoid trailing/leading spaces
+            var trimmedName = anlageName?.Trim();
+            var trimmedBeschreibung = beschreibung?.Trim();
 
-            // Ensure the response is successful
+            // Validate input
+            if (string.IsNullOrWhiteSpace(trimmedName))
+                throw new ArgumentException("AnlageName darf nicht leer sein.");
+
+            // Build the query string
+            var url = $"api/Anlage?anlagename={Uri.EscapeDataString(trimmedName)}&beschreibung={Uri.EscapeDataString(trimmedBeschreibung ?? string.Empty)}";
+
+            // Send a POST request with no body, parameters in query string
+            var response = await _httpClient.PostAsync(url, null);
+
             if (response.IsSuccessStatusCode)
             {
-                // Deserialize and return the created AnlageDto
                 return await response.Content.ReadFromJsonAsync<AnlageDto>();
             }
             else
             {
-                // Log or handle the error (optional)
                 var errorContent = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"CreateAnlage failed: {errorContent}");
                 throw new HttpRequestException($"Failed to create Anlage. Status: {response.StatusCode}, Error: {errorContent}");
             }
         }
@@ -128,12 +164,11 @@ public class AnlagenService
     {
         try
         {
-            // Send a PUT request to the API
             var response = await _httpClient.PutAsJsonAsync($"api/anlage/{anlageId}", anlageDto);
 
-            // Ensure the response is successful
             if (response.IsSuccessStatusCode)
             {
+                // Expecting a 200 OK with AnlageDto in the body
                 var responseContent = await response.Content.ReadAsStringAsync();
                 Console.WriteLine($"Raw JSON response: {responseContent}");
 
@@ -156,6 +191,11 @@ public class AnlagenService
                 }
                 else
                 {
+                    // If the server returns 204 NoContent, return null
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        return null;
+                    }
                     Console.WriteLine("Empty or whitespace response from the server.");
                     return null;
                 }

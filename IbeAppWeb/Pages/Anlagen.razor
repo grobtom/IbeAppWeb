@@ -17,10 +17,10 @@
                 <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog"></GridEditSettings>
                 <GridEvents TValue="AnlageWithMonteureDto" OnActionBegin="OnActionBegin"></GridEvents>
                 <GridColumns>
-                    <GridColumn Field=@nameof(AnlageWithMonteureDto.AnlageId) HeaderText="Anlage ID" TextAlign="TextAlign.Left" Width="60" IsPrimaryKey="true"></GridColumn>
+                    <GridColumn Field=@nameof(AnlageWithMonteureDto.AnlageId) HeaderText="Anlage ID" TextAlign="TextAlign.Left" Width="60" IsPrimaryKey="true" AllowEditing="false"></GridColumn>
                     <GridColumn Field=@nameof(AnlageWithMonteureDto.AnlageName) HeaderText="Anlage Kennzeichen" Width="100" ValidationRules="@(new ValidationRules{ Required=true, MinLength=5 })"></GridColumn>
                     <GridColumn Field=@nameof(AnlageWithMonteureDto.Beschreibung) HeaderText="Beschreibung" Format="d" TextAlign="TextAlign.Left" Width="200"></GridColumn>
-                    <GridColumn HeaderText="Monteure" TextAlign="TextAlign.Left" Width="300">
+                    <GridColumn HeaderText="Monteure" Field="Monteure" Width="300">
                         <Template>
                             @{
                                 var mont = (context as AnlageWithMonteureDto);
@@ -99,7 +99,6 @@
         }
     }
 
-    // Update all usages of AnlageDto to AnlageWithMonteureDto in event handlers
     private async Task OnActionBegin(ActionEventArgs<AnlageWithMonteureDto> args)
     {
         if (args.RequestType == Syncfusion.Blazor.Grids.Action.Save)
@@ -126,16 +125,21 @@
     {
         try
         {
-            var updatedAnlage = await AnlagenService.UpdateAnlage(anlage.AnlageId, new AnlageDto()
+            AnlageDto transAnlage = new AnlageDto()
             {
                 AnlageId = anlage.AnlageId,
-                AnlageName = anlage.AnlageName,
-                Beschreibung = anlage.Beschreibung,
+                AnlageName = anlage.AnlageName?.Trim(),
+                Beschreibung = anlage.Beschreibung?.Trim(),
                 IsDeleted = anlage.IsDeleted
-            });
+            };
+            var updatedAnlage = await AnlagenService.UpdateAnlage(anlage.AnlageId, transAnlage);
 
             if (updatedAnlage != null)
             {
+                await LoadData(); 
+                await InvokeAsync(StateHasChanged);
+                await Grid.Refresh();
+
                 await ToastService.ShowToast("Anlage erfolgreich aktualisiert.", true);
             }
             else
@@ -176,12 +180,7 @@
     {
         try
         {
-            var createdAnlage = await AnlagenService.CreateAnlage(new AnlageDto()
-            {
-                AnlageName = anlage.AnlageName,
-                Beschreibung = anlage.Beschreibung,
-                IsDeleted = anlage.IsDeleted
-            });
+            var createdAnlage = await AnlagenService.CreateAnlage(anlage.AnlageName, anlage.Beschreibung);
 
             if (createdAnlage != null)
             {
