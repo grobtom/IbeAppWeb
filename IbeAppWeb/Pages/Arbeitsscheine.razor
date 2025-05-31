@@ -106,66 +106,73 @@ else
             <DetailTemplate Context="ascontext">
                 @{
                     var arbeitsschein = (ascontext as ArbeitsscheinDto);
-                    <table class="detailtable" width="100%">
-                        <colgroup>
-                            <col style="width: 30%;" />
-                            <col style="width: 30%;" />
-                            <col style="width: 40%;" />
-                        </colgroup>
-                        <thead>
-                            <tr>
-                                <th colspan="3" style="font-weight: 500;text-align: center; background-color: #e08e4f;">
-                                    Details
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="text-align: center;">
-                                    <strong style="color: #0a76ff;">Monteure:</strong><br>
-                                    <span>@arbeitsschein?.Monteur</span>
-                                </td>
-                                <td style="text-align: center;">
-                                    <strong style="color: #0a76ff;">Anlagen:</strong><br>
-                                    <span>@arbeitsschein?.AnlageName</span>
-                                </td>
-
-                                <td style="text-align: center;">
-                                    <strong style="color: #0a76ff;">Kurztext:</strong><br>
-                                    <span> @arbeitsschein?.Kurztext</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center;">
-                                    <strong style="color: #0a76ff;">Anzahl Monteure:</strong><br>
-                                    <span>@(arbeitsschein?.MonteurList.Count)</span>
-                                </td>
-                                <td style="text-align: center;">
-                                    <strong style="color: #0a76ff;">Anzahl Anlagen:</strong><br>
-                                    <span>@(arbeitsschein?.FahrzeugList.Count)</span>
-                                </td>
-                                <td style="text-align: center;">
-                                    <strong style="color: #0a76ff;">Preis:</strong><br>
-                                    <span>@(arbeitsschein?.Preis.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center;">
-                                    <strong style="color: #0a76ff;">Anteil pro Monteur:</strong><br>
-                                    <span>@(((arbeitsschein?.Positionssumme ?? 0)/ (arbeitsschein?.MonteurList?.Count ?? 1)).ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</span>
-                                </td>
-                                <td style="text-align: center;">
-                                    <strong style="color: #0a76ff;">Anteil pro Anlage:</strong><br>
-                                    <span>@(((arbeitsschein?.Positionssumme ?? 0) / (arbeitsschein?.FahrzeugList?.Count ?? 1)).ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</span>
-                                </td>
-                                <td style="text-align: center;">
-                                    <strong style="color: #0a76ff;">Positionssumme:</strong><br>
-                                    <span>@(arbeitsschein?.Positionssumme.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    var monteurCount = arbeitsschein?.MonteurList != null ? arbeitsschein.MonteurList.Count : 0;
+                    var fahrzeugCount = arbeitsschein?.FahrzeugList != null ? arbeitsschein.FahrzeugList.Count : 0;
                 }
+                <table class="detailtable" width="100%">
+                    <colgroup>
+                        <col style="width: 30%;" />
+                        <col style="width: 30%;" />
+                        <col style="width: 40%;" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th colspan="3" style="font-weight: 500;text-align: center; background-color: #e08e4f;">
+                                Details
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center;">
+                                <strong style="color: #0a76ff;">Monteure:</strong><br>
+                                <span>@(arbeitsschein?.Monteur ?? "Keine Monteure")</span>
+                            </td>
+                            <td style="text-align: center;">
+                                <strong style="color: #0a76ff;">Anlagen:</strong><br>
+                                <span>@(arbeitsschein?.AnlageName ?? "Keine Anlage")</span>
+                            </td>
+                            <td style="text-align: center;">
+                                <strong style="color: #0a76ff;">Kurztext:</strong><br>
+                                <span>@(arbeitsschein?.Kurztext ?? "-")</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">
+                                <strong style="color: #0a76ff;">Anzahl Monteure:</strong><br>
+                                <span>@monteurCount</span>
+                            </td>
+                            <td style="text-align: center;">
+                                <strong style="color: #0a76ff;">Anzahl Anlagen:</strong><br>
+                                <span>@fahrzeugCount</span>
+                            </td>
+                            <td style="text-align: center;">
+                                <strong style="color: #0a76ff;">Preis:</strong><br>
+                                <span>@((arbeitsschein?.Preis ?? 0).ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">
+                                <strong style="color: #0a76ff;">Anteil pro Monteur:</strong><br>
+                                <span>
+                                    @((arbeitsschein?.Positionssumme ?? 0) / (monteurCount == 0 ? 1 : monteurCount))
+                                    @(" €")
+                                </span>
+                            </td>
+                            <td style="text-align: center;">
+                                <strong style="color: #0a76ff;">Anteil pro Anlage:</strong><br>
+                                <span>
+                                    @((arbeitsschein?.Positionssumme ?? 0) / (fahrzeugCount == 0 ? 1 : fahrzeugCount))
+                                    @(" €")
+                                </span>
+                            </td>
+                            <td style="text-align: center;">
+                                <strong style="color: #0a76ff;">Positionssumme:</strong><br>
+                                <span>@((arbeitsschein?.Positionssumme ?? 0).ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </DetailTemplate>
         </GridTemplates>
         <GridEvents OnToolbarClick="ToolbarClickHandler" PdfDetailTemplateExporting="PDFDetailTemplateHandler" TValue="ArbeitsscheinDto" />
@@ -363,18 +370,26 @@ else
     {
         var pdfRows = new List<PdfDetailTemplateRow>();
         var data = args.ParentRow.Data;
+
+        // Defensive null checks and safe division
+        int monteurCount = data?.MonteurList != null ? data.MonteurList.Count : 0;
+        int fahrzeugCount = data?.FahrzeugList != null ? data.FahrzeugList.Count : 0;
+        decimal positionssumme = data?.Positionssumme ?? 0;
+        decimal preis = data?.Preis ?? 0;
+
         args.RowInfo.ColumnCount = 2;
-        args.RowInfo.Headers = new List<PdfDetailTemplateRow>()
+        args.RowInfo.Headers = new List<PdfDetailTemplateRow>
         {
-            new PdfDetailTemplateRow()
+            new PdfDetailTemplateRow
             {
-                Cells = new List<PdfDetailTemplateCell>()
-                { new PdfDetailTemplateCell()
+                Cells = new List<PdfDetailTemplateCell>
+                {
+                    new PdfDetailTemplateCell
                     {
                         Index = 0,
                         CellValue = "Details",
-                        ColumnSpan = 3,
-                        Style = new PdfThemeStyle()
+                        ColumnSpan = 2, 
+                        Style = new PdfThemeStyle
                         {
                             Bold = true,
                             FontColor = "#0A76FF",
@@ -384,10 +399,17 @@ else
                 }
             }
         };
-        pdfRows.Add(ProcessPdfRow("Monteure", data.Monteur ?? "N/A", "Kurztext", data.Kurztext ?? "N/A"));
-        pdfRows.Add(ProcessPdfRow("Preis", $"{data.Preis.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE"))} €", "Positionspreis", $"{data.Positionssumme.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE"))} €"));
-        pdfRows.Add(ProcessPdfRow("Anzahl Monteure", $"{data.MonteurList.Count}", "Anteil pro Monteur", $"{(data.Positionssumme / (data.MonteurList.Count)).ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE"))} €"));
-        pdfRows.Add(ProcessPdfRow("Anzahl Fahrzeuge", $"{data.FahrzeugList.Count}", "Anteil pro Fahrzeug", $"{(data.Positionssumme / (data.FahrzeugList.Count)).ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE"))} €"));
+
+        pdfRows.Add(ProcessPdfRow("Monteure", data?.Monteur ?? "N/A", "Kurztext", data?.Kurztext ?? "N/A"));
+        pdfRows.Add(ProcessPdfRow("Preis", $"{preis.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE"))} €", "Positionspreis", $"{positionssumme.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE"))} €"));
+        pdfRows.Add(ProcessPdfRow(
+            "Anzahl Monteure", $"{monteurCount}",
+            "Anteil pro Monteur", $"{(monteurCount == 0 ? positionssumme : positionssumme / monteurCount).ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE"))} €"
+        ));
+        pdfRows.Add(ProcessPdfRow(
+            "Anzahl Fahrzeuge", $"{fahrzeugCount}",
+            "Anteil pro Fahrzeug", $"{(fahrzeugCount == 0 ? positionssumme : positionssumme / fahrzeugCount).ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE"))} €"
+        ));
 
         args.RowInfo.Rows = pdfRows;
     }

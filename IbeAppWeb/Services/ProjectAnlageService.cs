@@ -27,14 +27,14 @@ public class ProjectAnlageService
         }
     }
 
-    public async Task<IEnumerable<ProjectAnlageDto>> GetAnlagenForProject(int projectId)
+    public async Task<ProjectWithAnlagenDto> GetAnlagenForProject(int projectId)
     {
-        var response = await _httpClient.GetFromJsonAsync<IEnumerable<ProjectAnlageDto>>($"api/ProjectAnlage/{projectId}");
+        var response = await _httpClient.GetFromJsonAsync<ProjectWithAnlagenDto>($"api/ProjectAnlage/{projectId}");
         if (response == null)
         {
             throw new HttpRequestException($"Failed to retrieve Anlagen for project {projectId}.");
         }
-        return response.ToList();
+        return response;
     }
 
     public async Task<IEnumerable<ProjectWithAnlagenDto>> GetAllProjectAnlagen()

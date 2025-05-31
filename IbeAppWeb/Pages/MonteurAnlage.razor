@@ -15,6 +15,7 @@
         <div class="row">
             <SfGrid @ref="Grid" DataSource="@Data" AllowPaging="true">
                 <GridPageSettings PageCount="5"></GridPageSettings>
+                <GridEvents TValue="MonteurWithAnlageDto" RowSelected="OnRowSelected"></GridEvents>
                 <GridColumns>
                     <GridColumn Field=@nameof(MonteurWithAnlageDto.MonteurId) HeaderText="Monteur ID" TextAlign="TextAlign.Left" Width="80" IsPrimaryKey="true"></GridColumn>
                     <GridColumn Field=@nameof(MonteurWithAnlageDto.Vorname) HeaderText="Vorname" Width="150"></GridColumn>
@@ -71,6 +72,15 @@
         await Task.WhenAll(dataTask, monteurTask, anlageTask);
     }
 
+    private void OnRowSelected(RowSelectEventArgs<MonteurWithAnlageDto> args)
+    {
+        if (args.Data != null)
+        {
+            SelectedMonteurId = args.Data.MonteurId;
+            StateHasChanged();
+        }
+    }
+
     private async Task LoadData()
     {
         try
@@ -113,6 +123,12 @@
         {
             if (SelectedMonteurId > 0 && SelectedAnlageId > 0)
             {
+                var alreadyAssigned = Data.Any(m => m.MonteurId == SelectedMonteurId && m.AnlageId == SelectedAnlageId);
+                if (alreadyAssigned)
+                {
+                    await ToastService.ShowToast("Dieser Monteur ist bereits dieser Anlage zugeordnet.", false);
+                    return;
+                }
                 await MonteurService.AssignMonteurToAnlage(SelectedMonteurId, SelectedAnlageId);
 
                 await LoadData();

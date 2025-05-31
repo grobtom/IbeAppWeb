@@ -41,6 +41,34 @@ public class AnlagenService
         }
     }
 
+    public async Task<IEnumerable<AnlageWithMonteureDto>> GetAllAnlagenWithMonteure()
+    {
+        try
+        {
+            // Send a GET request to the API
+            var response = await _httpClient.GetAsync("api/Anlage/withmonteure");
+
+            // Ensure the response is successful
+            if (response.IsSuccessStatusCode)
+            {
+                // Deserialize and return the list of AnlageDto
+                return await response.Content.ReadFromJsonAsync<IEnumerable<AnlageWithMonteureDto>>() ?? Enumerable.Empty<AnlageWithMonteureDto>();
+            }
+            else
+            {
+                // Log or handle the error (optional)
+                var errorContent = await response.Content.ReadAsStringAsync();
+                throw new HttpRequestException($"Failed to fetch Anlagen. Status: {response.StatusCode}, Error: {errorContent}");
+            }
+        }
+        catch (Exception ex)
+        {
+            // Log or rethrow the exception as needed
+            Console.WriteLine($"Error in GetAllAnlagen: {ex.Message}");
+            return Enumerable.Empty<AnlageWithMonteureDto>(); // Return an empty list on failure
+        }
+    }
+
     public async Task<AnlageDto?> GetAnlageById(int anlageId)
     {
         try

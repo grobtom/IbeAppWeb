@@ -15,15 +15,35 @@
             <SfGrid @ref="Grid" DataSource="@AnlagenData" AllowPaging="true" Toolbar="@(new List<string>() { "Add", "Edit", "Delete", "Update", "Cancel" })">
                 <GridPageSettings PageCount="5"></GridPageSettings>
                 <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog"></GridEditSettings>
-                <GridEvents TValue="AnlageDto" OnActionBegin="OnActionBegin"></GridEvents>
+                <GridEvents TValue="AnlageWithMonteureDto" OnActionBegin="OnActionBegin"></GridEvents>
                 <GridColumns>
-                    <GridColumn Field=@nameof(AnlageDto.AnlageId) HeaderText="Anlage ID" TextAlign="TextAlign.Left" Width="60" IsPrimaryKey="true"></GridColumn>
-                    <GridColumn Field=@nameof(AnlageDto.AnlageName) HeaderText="Anlage Kennzeichen" Width="100" ValidationRules="@(new ValidationRules{ Required=true, MinLength=5 })"></GridColumn>
-                    <GridColumn Field=@nameof(AnlageDto.Beschreibung) HeaderText="Beschreibung" Format="d" TextAlign="TextAlign.Left" Width="200"></GridColumn>
-                    <GridColumn Field=@nameof(AnlageDto.IsDeleted) HeaderText="Aktiv" TextAlign="TextAlign.Left" Width="80" AllowEditing="false">
+                    <GridColumn Field=@nameof(AnlageWithMonteureDto.AnlageId) HeaderText="Anlage ID" TextAlign="TextAlign.Left" Width="60" IsPrimaryKey="true"></GridColumn>
+                    <GridColumn Field=@nameof(AnlageWithMonteureDto.AnlageName) HeaderText="Anlage Kennzeichen" Width="100" ValidationRules="@(new ValidationRules{ Required=true, MinLength=5 })"></GridColumn>
+                    <GridColumn Field=@nameof(AnlageWithMonteureDto.Beschreibung) HeaderText="Beschreibung" Format="d" TextAlign="TextAlign.Left" Width="200"></GridColumn>
+                    <GridColumn HeaderText="Monteure" TextAlign="TextAlign.Left" Width="300">
                         <Template>
                             @{
-                                var data = context as AnlageDto;
+                                var mont = (context as AnlageWithMonteureDto);
+                            }
+                            <ul>
+                                @if (mont?.Monteure == null || !mont.Monteure.Any())
+                                {
+                                    <li class="no-monteure">Keine Monteure zugeordnet.</li>
+                                }
+                                else
+                                {
+                                    @foreach (var mon in mont.Monteure)
+                                    {
+                                        <li>@mon.FullName</li>
+                                    }
+                                }
+                            </ul>
+                        </Template>
+                    </GridColumn>
+                    <GridColumn Field=@nameof(AnlageWithMonteureDto.IsDeleted) HeaderText="Aktiv" TextAlign="TextAlign.Left" Width="80" AllowEditing="false">
+                        <Template>
+                            @{
+                                var data = context as AnlageWithMonteureDto;
                                 var isActive = !data?.IsDeleted;
                             }
                             <SfCheckBox Label="Aktiv" Value="false" @bind-Checked="@isActive"></SfCheckBox>
@@ -40,12 +60,18 @@
         background-color: #a2d6f4;
         color: rgb(3, 2, 2);
     }
+
+    .no-monteure {
+        color: #d9534f; 
+        font-weight: bold;
+    }
 </style>
 
 @code {
 
-    private IEnumerable<AnlageDto> AnlagenData { get; set; } = new List<AnlageDto>();
-    private SfGrid<AnlageDto>? Grid;
+    // Change the type to AnlageWithMonteureDto to include Monteure
+    private List<AnlageWithMonteureDto> AnlagenData { get; set; } 
+    private SfGrid<AnlageWithMonteureDto>? Grid;
 
     protected override async Task OnInitializedAsync()
     {
@@ -56,7 +82,16 @@
     {
         try
         {
-            AnlagenData = await AnlagenService.GetAllAnlagen();
+            var result = await AnlagenService.GetAllAnlagenWithMonteure();
+            if (result != null && result.Any())
+            {
+                AnlagenData = result.ToList();
+            }
+            else
+            {
+                AnlagenData = new List<AnlageWithMonteureDto>();
+                await ToastService.ShowToast("Keine Anlagen gefunden.", false);
+            }
         }
         catch (Exception ex)
         {
@@ -64,7 +99,8 @@
         }
     }
 
-    private async Task OnActionBegin(ActionEventArgs<AnlageDto> args)
+    // Update all usages of AnlageDto to AnlageWithMonteureDto in event handlers
+    private async Task OnActionBegin(ActionEventArgs<AnlageWithMonteureDto> args)
     {
         if (args.RequestType == Syncfusion.Blazor.Grids.Action.Save)
         {
@@ -86,11 +122,17 @@
         }
     }
 
-    private async Task CustomUpdate(AnlageDto anlage)
+    private async Task CustomUpdate(AnlageWithMonteureDto anlage)
     {
         try
         {
-            var updatedAnlage = await AnlagenService.UpdateAnlage(anlage.AnlageId, anlage);
+            var updatedAnlage = await AnlagenService.UpdateAnlage(anlage.AnlageId, new AnlageDto()
+            {
+                AnlageId = anlage.AnlageId,
+                AnlageName = anlage.AnlageName,
+                Beschreibung = anlage.Beschreibung,
+                IsDeleted = anlage.IsDeleted
+            });
 
             if (updatedAnlage != null)
             {
@@ -107,7 +149,7 @@
         }
     }
 
-    private async Task CustomDelete(AnlageDto anlage)
+    private async Task CustomDelete(AnlageWithMonteureDto anlage)
     {
         try
         {
@@ -130,11 +172,16 @@
         }
     }
 
-    private async Task CustomAdd(AnlageDto anlage)
+    private async Task CustomAdd(AnlageWithMonteureDto anlage)
     {
         try
         {
-            var createdAnlage = await AnlagenService.CreateAnlage(anlage);
+            var createdAnlage = await AnlagenService.CreateAnlage(new AnlageDto()
+            {
+                AnlageName = anlage.AnlageName,
+                Beschreibung = anlage.Beschreibung,
+                IsDeleted = anlage.IsDeleted
+            });
 
             if (createdAnlage != null)
             {

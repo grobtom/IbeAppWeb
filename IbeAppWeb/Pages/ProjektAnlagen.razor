@@ -74,14 +74,17 @@
                         var project = (context as ProjectWithAnlagenDto);
                     }
                     <ul>
-                        @if(project?.Anlagen == null || !project.Anlagen.Any())
+                        @if (project?.Anlagen == null || !project.Anlagen.Any())
                         {
                             <li>Keine Anlagen zugeordnet.</li>
                         }
                         else
                         {
-                            <li>Keine Anlagen verfügbar</li>                      }
-        
+                            @foreach (var anlage in project.Anlagen)
+                            {
+                                <li>@anlage.AnlageName</li>
+                            }
+                        }
                     </ul>
                 </Template>
             </GridColumn>
@@ -104,6 +107,8 @@
     private IEnumerable<ProjectWithAnlagenDto>? allAnlagen;
     private IEnumerable<Project>? projects;
     private IEnumerable<AnlageDto>? anlagenList;
+    private ProjectAnlageDto projectAnlage;
+    private ProjectWithAnlagenDto projectWithAnlagen;
 
     protected override async Task OnInitializedAsync()
     {
@@ -231,7 +236,7 @@
         if (projectId.HasValue)
         {
             var updatedAnlagen = await ProjectAnlageService.GetAnlagenForProject(projectId!.Value);
-            anlagen = updatedAnlagen;
+            projectWithAnlagen = updatedAnlagen;
             if (anlagen == null || !anlagen.Any())
             {
                 await ToastService.ShowToast("Keine Anlagen für das ausgewählte Projekt gefunden.", false);
@@ -314,18 +319,18 @@
         {
             var updatedAnlagen = await ProjectAnlageService.GetAnlagenForProject(projectId.Value);
 
-            anlagen = updatedAnlagen;
+            projectWithAnlagen = updatedAnlagen;
 
-            if (oldAnlageId.HasValue && !updatedAnlagen.Any(a => a.AnlageId == oldAnlageId.Value))
+            if (oldAnlageId.HasValue && !updatedAnlagen.Anlagen.Any(a => a.AnlageId == oldAnlageId.Value))
             {
                 oldAnlageId = null;
             }
 
-            var updatedAnlageDtos = updatedAnlagen.Select(a => new AnlageDto
+            var updatedAnlageDtos = updatedAnlagen.Anlagen.Select(a => new AnlageDto
             {
                 AnlageId = a.AnlageId,
                 AnlageName = a.AnlageName,
-                IsDeleted = false 
+                IsDeleted = false
             }).ToList();
 
             var updatedList = allAnlagen?.ToList() ?? new List<ProjectWithAnlagenDto>(); 
