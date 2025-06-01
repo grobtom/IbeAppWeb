@@ -2,6 +2,7 @@ using IbeAppWeb;
 using IbeAppWeb.Services;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.FluentUI.AspNetCore.Components;
 using Syncfusion.Blazor;
 using Syncfusion.Blazor.Charts;
@@ -12,9 +13,20 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
+builder.Logging.SetMinimumLevel(LogLevel.Debug);
+
 builder.Services.AddFluentUIComponents();
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5000") });
+builder.Services.AddScoped<CustomAuthorizationMessageHandler>();
+
+builder.Services.AddHttpClient("AuthorizedAPI", client =>
+{
+    client.BaseAddress = new Uri("https://localhost/api");
+})
+.AddHttpMessageHandler<CustomAuthorizationMessageHandler>();
+
+builder.Services.AddScoped(sp =>
+    sp.GetRequiredService<IHttpClientFactory>().CreateClient("AuthorizedAPI"));
 
 builder.Services.AddMsalAuthentication(options =>
 {

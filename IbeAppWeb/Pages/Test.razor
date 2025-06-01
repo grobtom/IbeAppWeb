@@ -8,16 +8,23 @@
         <GridColumn Field=@nameof(TestData.Value) HeaderText="Value"></GridColumn>
     </GridColumns>
 </SfGrid>
+<Syncfusion.Blazor.Buttons.SfButton Content="Click Me" CssClass="e-primary" OnClick="TestCall"></Syncfusion.Blazor.Buttons.SfButton>
 <style>
     .e-grid .e-rowcell.below-50 {
         background-color: orange !important;
     }
 </style>
 @code {
+    HttpClient httpClient = new HttpClient { BaseAddress = new Uri("https://localhost/api") };
     public class TestData
     {
         public string Name { get; set; }
         public int Value { get; set; }
+    }
+    void TestCall()
+    {
+        Console.WriteLine("Button clicked!");
+        httpClient.GetAsync("api/authtest");
     }
 
     List<TestData> data = new()

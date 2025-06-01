@@ -1,68 +1,75 @@
 ﻿using IbeAppWeb.DTOs;
 using System.Net.Http.Json;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 namespace IbeAppWeb.Services;
 
 public class BauleiterService
 {
     private readonly HttpClient _httpClient;
+    private readonly NavigationManager _navigationManager;
 
-    public BauleiterService(HttpClient httpClient)
+    public BauleiterService(HttpClient httpClient, NavigationManager navigationManager)
     {
         _httpClient = httpClient;
+        _navigationManager = navigationManager;
     }
-        public async Task<IEnumerable<BauleiterDto>> GetAllBauleiter()
+
+    public async Task<IEnumerable<BauleiterDto>> GetAllBauleiter()
+    {
+        try
         {
-            try
+            var response = await _httpClient.GetAsync("api/Bauleiter");
+            if (response.IsSuccessStatusCode)
             {
-                // Send a GET request to the API
-                var response = await _httpClient.GetAsync("api/Bauleiter");
-    
-                // Ensure the response is successful
-                if (response.IsSuccessStatusCode)
-                {
-                    // Deserialize and return the list of BauleiterDto
-                    return await response.Content.ReadFromJsonAsync<IEnumerable<BauleiterDto>>() ?? Enumerable.Empty<BauleiterDto>();
-                }
-                else
-                {
-                    // Log or handle the error (optional)
-                    var errorContent = await response.Content.ReadAsStringAsync();
-                    throw new HttpRequestException($"Failed to fetch Bauleiters. Status: {response.StatusCode}, Error: {errorContent}");
-                }
+                return await response.Content.ReadFromJsonAsync<IEnumerable<BauleiterDto>>() ?? Enumerable.Empty<BauleiterDto>();
             }
-            catch (Exception ex)
+            else
             {
-                // Log or rethrow the exception as needed
-                Console.WriteLine($"Error in GetAllBauleiters: {ex.Message}");
-                return Enumerable.Empty<BauleiterDto>(); // Return an empty list on failure
+                var errorContent = await response.Content.ReadAsStringAsync();
+                throw new HttpRequestException($"Failed to fetch Bauleiters. Status: {response.StatusCode}, Error: {errorContent}");
             }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error in GetAllBauleiters: {ex.Message}");
+            return Enumerable.Empty<BauleiterDto>();
+        }
     }
 
     public async Task<IEnumerable<BauleiterWithProjectsDto>> GetBauleiterWithProjects()
     {
         try
         {
-            // Send a GET request to the API
             var response = await _httpClient.GetAsync("api/Bauleiter/with-projects");
-            // Ensure the response is successful
             if (response.IsSuccessStatusCode)
             {
-                // Deserialize and return the list of BauleiterWithProjectsDto
                 return await response.Content.ReadFromJsonAsync<IEnumerable<BauleiterWithProjectsDto>>() ?? Enumerable.Empty<BauleiterWithProjectsDto>();
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            {
+                throw new AccessTokenNotAvailableException(
+                    _navigationManager, 
+                    null, 
+                    new[] { "api.read" }
+                );
             }
             else
             {
-                // Log or handle the error (optional)
                 var errorContent = await response.Content.ReadAsStringAsync();
                 throw new HttpRequestException($"Failed to fetch Bauleiters with projects. Status: {response.StatusCode}, Error: {errorContent}");
             }
         }
+        catch (AccessTokenNotAvailableException ex)
+        {
+            ex.Redirect();
+            return Enumerable.Empty<BauleiterWithProjectsDto>();
+        }
         catch (Exception ex)
         {
-            // Log or rethrow the exception as needed
             Console.WriteLine($"Error in GetBauleiterWithProjects: {ex.Message}");
-            return Enumerable.Empty<BauleiterWithProjectsDto>(); // Return an empty list on failure
+            return Enumerable.Empty<BauleiterWithProjectsDto>();
         }
     }
 }
