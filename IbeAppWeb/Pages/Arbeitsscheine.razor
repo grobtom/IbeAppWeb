@@ -574,9 +574,9 @@ else
             yield return new ValidationResult
             (
                 "Saniert Am Von darf nicht nach Saniert Am Bis liegen.",
-                new[] { nameof(formModel.SaniertAmVon), nameof(formModel.SaniertAmBis) });
-            }
+                new[] { nameof(formModel.SaniertAmVon), nameof(formModel.SaniertAmBis) }
+            );
         }
-    }
+    }    
 }
 

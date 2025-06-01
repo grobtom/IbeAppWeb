@@ -18,6 +18,7 @@
 
 
 <h3>Arbeitsberichte Projekte</h3>
+<h5>Es muss ein Monteur oder eine Anlage gewählt werden. Datumsfelder sind optional.</h5>
 
 <EditForm Model="@formModel" OnValidSubmit="LoadArbeitsscheine">
     <DataAnnotationsValidator />
@@ -321,7 +322,7 @@ else
 
         try
         {
-            if (monteurSelected)
+            if (formModel.SelectedMonteurId > 0)
             { 
                 arbeitsberichtProjectsDto = await ArbeitsscheinService.GetArbeitsberichtMonteurProjects(
                     bereich: ComboBoxValue,
@@ -331,7 +332,7 @@ else
                     monteurname: monteurData.FirstOrDefault(m => m.MonteurId == formModel.SelectedMonteurId)?.Nachname ?? string.Empty
                 );
             }
-            else if (anlageSelected)
+            else if (formModel.SelectedAnlageId > 0)
             {
                 arbeitsberichtProjectsDto = await ArbeitsscheinService.GetArbeitsberichtAnlageProjects(
                     bereich: ComboBoxValue,
