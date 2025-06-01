@@ -70,7 +70,7 @@
 @code {
 
     // Change the type to AnlageWithMonteureDto to include Monteure
-    private List<AnlageWithMonteureDto> AnlagenData { get; set; } 
+    private List<AnlageWithMonteureDto> AnlagenData { get; set; } = new List<AnlageWithMonteureDto>();
     private SfGrid<AnlageWithMonteureDto>? Grid;
     private AnlageWithMonteureDto addedRecord { get; set; } = new AnlageWithMonteureDto();
 
@@ -139,7 +139,10 @@
             {
                 await LoadData(); 
                 await InvokeAsync(StateHasChanged);
-                await Grid.Refresh();
+                if(Grid != null)
+                {
+                    await Grid.Refresh();
+                }
 
                 await ToastService.ShowToast("Anlage erfolgreich aktualisiert.", true);
             }
@@ -177,7 +180,7 @@
         }
     }
 
-    public async Task RowCreateHandler(RowCreatedEventArgs<AnlageWithMonteureDto> args)
+    public void RowCreateHandler(RowCreatedEventArgs<AnlageWithMonteureDto> args)
     {
         addedRecord = args.Data;
     }

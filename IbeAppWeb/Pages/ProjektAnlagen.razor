@@ -108,7 +108,7 @@
     private IEnumerable<Project>? projects;
     private IEnumerable<AnlageDto>? anlagenList;
     private ProjectAnlageDto projectAnlage;
-    private ProjectWithAnlagenDto projectWithAnlagen;
+    private ProjectWithAnlagenDto projectWithAnlagen = new();
 
     protected override async Task OnInitializedAsync()
     {
