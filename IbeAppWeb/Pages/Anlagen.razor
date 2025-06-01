@@ -15,7 +15,7 @@
             <SfGrid @ref="Grid" DataSource="@AnlagenData" AllowPaging="true" Toolbar="@(new List<string>() { "Add", "Edit", "Delete", "Update", "Cancel" })">
                 <GridPageSettings PageCount="5"></GridPageSettings>
                 <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog"></GridEditSettings>
-                <GridEvents TValue="AnlageWithMonteureDto" OnActionBegin="OnActionBegin"></GridEvents>
+                <GridEvents TValue="AnlageWithMonteureDto" OnActionBegin="OnActionBegin" RowCreated="RowCreateHandler"></GridEvents>
                 <GridColumns>
                     <GridColumn Field=@nameof(AnlageWithMonteureDto.AnlageId) HeaderText="Anlage ID" TextAlign="TextAlign.Left" Width="60" IsPrimaryKey="true" AllowEditing="false"></GridColumn>
                     <GridColumn Field=@nameof(AnlageWithMonteureDto.AnlageName) HeaderText="Anlage Kennzeichen" Width="100" ValidationRules="@(new ValidationRules{ Required=true, MinLength=5 })"></GridColumn>
@@ -72,6 +72,7 @@
     // Change the type to AnlageWithMonteureDto to include Monteure
     private List<AnlageWithMonteureDto> AnlagenData { get; set; } 
     private SfGrid<AnlageWithMonteureDto>? Grid;
+    private AnlageWithMonteureDto addedRecord { get; set; } = new AnlageWithMonteureDto();
 
     protected override async Task OnInitializedAsync()
     {
@@ -176,11 +177,26 @@
         }
     }
 
+    public async Task RowCreateHandler(RowCreatedEventArgs<AnlageWithMonteureDto> args)
+    {
+        addedRecord = args.Data;
+    }
+
     private async Task CustomAdd(AnlageWithMonteureDto anlage)
     {
         try
         {
-            var createdAnlage = await AnlagenService.CreateAnlage(anlage.AnlageName, anlage.Beschreibung);
+            if(addedRecord == null)
+            {
+                await ToastService.ShowToast("Bitte fügen Sie eine gültige Anlage hinzu.", false);
+                return;
+            };
+            var createdAnlage = await AnlagenService.CreateAnlage(new AnlageDto()
+            {
+                AnlageName = addedRecord.AnlageName?.Trim(),
+                Beschreibung = addedRecord.Beschreibung?.Trim(),
+                IsDeleted = addedRecord.IsDeleted
+            });
 
             if (createdAnlage != null)
             {

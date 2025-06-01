@@ -124,23 +124,13 @@ public class AnlagenService
         }
     }
 
-    public async Task<AnlageDto?> CreateAnlage(string anlageName, string beschreibung)
+    public async Task<AnlageDto?> CreateAnlage(AnlageDto anlageDto)
     {
         try
         {
-            // Trim input to avoid trailing/leading spaces
-            var trimmedName = anlageName?.Trim();
-            var trimmedBeschreibung = beschreibung?.Trim();
 
-            // Validate input
-            if (string.IsNullOrWhiteSpace(trimmedName))
-                throw new ArgumentException("AnlageName darf nicht leer sein.");
 
-            // Build the query string
-            var url = $"api/Anlage?anlagename={Uri.EscapeDataString(trimmedName)}&beschreibung={Uri.EscapeDataString(trimmedBeschreibung ?? string.Empty)}";
-
-            // Send a POST request with no body, parameters in query string
-            var response = await _httpClient.PostAsync(url, null);
+            var response = await _httpClient.PostAsJsonAsync("api/anlage",  anlageDto);
 
             if (response.IsSuccessStatusCode)
             {
