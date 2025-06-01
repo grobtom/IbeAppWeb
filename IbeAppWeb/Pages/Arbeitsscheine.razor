@@ -100,7 +100,8 @@ else
 {
     <SfGrid ID="Grid" @ref="grid" DataSource="@arbeitsscheine" AllowPaging="true" 
             AllowSelection="true" AllowReordering="true" AllowGrouping="true" AllowResizing="true"
-        Toolbar="@ToolbarItems" AllowPdfExport="true" Height="300">
+        Toolbar="@ToolbarItems" AllowPdfExport="true" AllowFiltering="true" AllowSorting="true" Height="300">
+        <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Excel"></GridFilterSettings>
         <GridPageSettings PageCount="5" PageSizes="true" PageSize="10"></GridPageSettings>
         <GridTemplates>
             <DetailTemplate Context="ascontext">
@@ -175,7 +176,8 @@ else
                 </table>
             </DetailTemplate>
         </GridTemplates>
-        <GridEvents OnToolbarClick="ToolbarClickHandler" PdfDetailTemplateExporting="PDFDetailTemplateHandler" TValue="ArbeitsscheinDto" />
+        <GridEvents OnToolbarClick="ToolbarClickHandler" PdfDetailTemplateExporting="PDFDetailTemplateHandler" 
+            TValue="ArbeitsscheinDto" QueryCellInfo="CustomizeCell"/>
         <GridColumns>
             <GridColumn Field=@nameof(ArbeitsscheinDto.HALTUNG) HeaderText="Haltung" Width="40"></GridColumn>
             <GridColumn Field=@nameof(ArbeitsscheinDto.LVPosition) HeaderText="LV-Position" Width="40"></GridColumn>
@@ -187,28 +189,44 @@ else
         </GridColumns>
     </SfGrid>
     <div class="row mt-3">
-        <div class="col-md-12">
-            <h5>Gesamtsumme: @(gesamtSumme.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</h5>
+        <div class="col-md-6">
+            <h5>Gesamtsumme ausgeführt: @(gesamtSumme.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</h5>
+        </div>
+        <div class="col-md-6 text-end">
+        <h5>Gesamtsumme LV: @(LvSumme.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE")) + " €")</h5>
         </div>
     </div>
 }
 
 <style type="text/css" class="cssStyles">
-    .deatailTable td {
-    font-size: 13px;
-    padding: 4px;
-    max-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-weight: normal;
+    .detailtable td {
+        font-size: 13px;
+        padding: 4px;
+        max-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-weight: normal;
     }
     .e-grid .e-headercell
     {
         background-color: #a2d6f4;
         color: rgb(3, 2, 2);    
     }
-</style>
+
+    .cssaniertam {
+        background-color: rgb(211, 225, 248) !important;
+    }
+
+    .csanlagename {
+        background-color: rgb(252, 180, 131) !important;
+    }
+
+    .cskolonnenfuehrer {
+        background-color: rgb(255, 237, 148) !important;
+    }
+
+    </style>
 
 @code {
     private SfGrid<ArbeitsscheinDto> grid = new();
@@ -231,6 +249,7 @@ else
     private string? base64Image;
     private string? projectDb;
     private Decimal gesamtSumme;
+    private Decimal LvSumme;
     private bool IsSaniertAmUsed => formModel.SaniertAm.HasValue;
     private string Message = string.Empty;
 
@@ -306,6 +325,28 @@ else
         catch
         {
             await ToastService.ShowToast($"Fehler beim Laden der Anlagendaten", false);
+        }
+    }
+
+    void CustomizeCell(QueryCellInfoEventArgs<ArbeitsscheinDto> args)
+    {
+        Console.WriteLine($"CustomizeCell called for field: {args.Column.Field}");
+        if (args.Column.Field == nameof(ArbeitsscheinDto.SaniertAm) &&
+                args.Data.SaniertAm == new DateTime(1, 1, 1))
+        {
+            args.Cell.AddClass(new[] { "cssaniertam" });
+        }
+
+        if (args.Column.Field == nameof(ArbeitsscheinDto.AnlageName) &&
+            string.IsNullOrEmpty(args.Data.AnlageName))
+        {
+            args.Cell.AddClass(new[] { "csanlagename" });
+        }
+
+        if (args.Column.Field == nameof(ArbeitsscheinDto.Kolonnenfuehrer) &&
+            string.IsNullOrEmpty(args.Data.Kolonnenfuehrer))
+        {
+            args.Cell.AddClass(new[] { "cskolonnenfuehrer" });
         }
     }
 
@@ -459,7 +500,10 @@ else
             );
             arbeitsscheine = arbeitsscheinResultDto.Arbeitsscheine ?? new();
             gesamtSumme = GetSum();
+            LvSumme = GetLvSum();
 
+            await grid.RefreshColumns();
+            await grid.Refresh();
         }
         catch
         {
@@ -473,11 +517,20 @@ else
     private Decimal GetSum()
     {
         gesamtSumme = 0;
-        foreach (var item in arbeitsscheine)
+        foreach (var item in arbeitsscheine.Where(a => a.SaniertAm > new DateTime(1,1,1)))
         {
             gesamtSumme += item.Positionssumme;
         }
         return gesamtSumme;
+    }
+
+    private Decimal GetLvSum(){
+        LvSumme = 0;
+        foreach (var item in arbeitsscheine)
+        {
+            LvSumme += item.Positionssumme;
+        }
+        return LvSumme;
     }
 
     private void ResetForm()

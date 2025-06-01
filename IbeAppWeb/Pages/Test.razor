@@ -1,0 +1,37 @@
+﻿@page "/Test"
+@using Syncfusion.Blazor.Grids
+
+<SfGrid DataSource="@data" AllowPaging="true">
+    <GridEvents TValue="TestData" QueryCellInfo="CustomizeCell" />
+    <GridColumns>
+        <GridColumn Field=@nameof(TestData.Name) HeaderText="Name"></GridColumn>
+        <GridColumn Field=@nameof(TestData.Value) HeaderText="Value"></GridColumn>
+    </GridColumns>
+</SfGrid>
+<style>
+    .e-grid .e-rowcell.below-50 {
+        background-color: orange !important;
+    }
+</style>
+@code {
+    public class TestData
+    {
+        public string Name { get; set; }
+        public int Value { get; set; }
+    }
+
+    List<TestData> data = new()
+    {
+        new TestData { Name = "One", Value = 10 },
+        new TestData { Name = "Two", Value = 20 },
+        new TestData { Name = "Three", Value = 30 },
+    };
+
+    void CustomizeCell(QueryCellInfoEventArgs<TestData> args)
+    {
+        if (args.Column.Field == "Value" && args.Data.Value >= 20)
+        {
+            args.Cell.AddClass(new[] { "below-50" });
+        }
+    }
+}
