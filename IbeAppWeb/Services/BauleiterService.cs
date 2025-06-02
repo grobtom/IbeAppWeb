@@ -2,6 +2,7 @@
 using System.Net.Http.Json;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 
 namespace IbeAppWeb.Services;
 
@@ -15,7 +16,6 @@ public class BauleiterService
         _httpClient = httpClient;
         _navigationManager = navigationManager;
     }
-
     public async Task<IEnumerable<BauleiterDto>> GetAllBauleiter()
     {
         try

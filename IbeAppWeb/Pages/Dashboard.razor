@@ -20,24 +20,55 @@ else
         Gesamtumsatz aller Projekte: <span style="color:green">€@dashboardData.GesamtumsatzAllProjects.ToString("N2")</span>  
     </div>  
     <SfChart Title="Umsatz je Projekt" >  
-        <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Projekt" />  
-        <ChartPrimaryYAxis Title="Umsatz (€) " LabelFormat="N2" />  
+        <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Projekt">
+            <ChartAxisMajorGridLines Width="0"></ChartAxisMajorGridLines>
+            <ChartAxisMajorTickLines Width="0"></ChartAxisMajorTickLines>
+        </ChartPrimaryXAxis>
+        <ChartMargin Bottom="12"></ChartMargin>
+        <ChartArea>
+            <ChartAreaBorder Width="0"></ChartAreaBorder>
+        </ChartArea>
+        <ChartPrimaryYAxis Title="Umsatz (€) " LabelFormat="N2">
+            <ChartAxisMajorTickLines Width="0"></ChartAxisMajorTickLines>
+            <ChartAxisLineStyle Width="0"></ChartAxisLineStyle>
+        </ChartPrimaryYAxis>
         <ChartSeriesCollection>  
             <ChartSeries DataSource="@dashboardData.Projects"  
                          XName="ProjectName"  
-                         YName="Gesamtumsatz"  
-                         Type="ChartSeriesType.Column">
+                         YName="GesamtumsatzAlle"  
+                         Name="Gesamtumsatz lt. LV"
+                         GroupName="ProjectName"
+                         Fill="url(#grad1)"
+                         ColumnWidth="0.7" ColumnSpacing="0.1" 
+                         Type="ChartSeriesType.Column" 
+                         CornerRadius="@(new ChartCornerRadius { TopLeft = 4, TopRight = 4})" 
+                         LegendShape="LegendShape.Rectangle">
                 <ChartMarker>
                     <ChartDataLabel Visible="true" Format="N2"></ChartDataLabel>
                 </ChartMarker>
             </ChartSeries>
-        </ChartSeriesCollection>  
+            <ChartSeries DataSource="@dashboardData.Projects"
+                         XName="ProjectName"
+                         YName="GesamtumsatzMitDatum"
+                         Name="Gesamtumsatz ausgeführt"
+                         GroupName="ProjectName"
+                         Fill="url(#grad2)"
+                         ColumnWidth="0.5" ColumnSpacing="0.1" 
+                         Type="ChartSeriesType.Column" 
+                         CornerRadius="@(new ChartCornerRadius { TopLeft = 4, TopRight = 4})" 
+                         LegendShape="LegendShape.Rectangle">
+                <ChartMarker>
+                    <ChartDataLabel Visible="true" Format="N2"></ChartDataLabel>
+                </ChartMarker>
+            </ChartSeries>
+        </ChartSeriesCollection>
+        <ChartLegendSettings Visible="true" ShapeHeight="9" ShapeWidth="9"></ChartLegendSettings>
     </SfChart>  
 
         <div class="grid-container">
             <div class="grid-half">
                 <h3>Monteur Umsatz</h3>
-                <SfGrid DataSource="@monteurData" AllowPaging="true" AllowSorting="true" ShowColumnChooser="true">
+                <SfGrid @ref="monteurGrid" DataSource="@monteurData" AllowPaging="true" AllowSorting="true" ShowColumnChooser="true">
                     <GridPageSettings PageCount="5" PageSizes="true" PageSize="5"></GridPageSettings>
                     <GridColumns>  
                         <GridColumn Field="ProjectName" HeaderText="Projekt" Width="150" />  
@@ -48,11 +79,11 @@ else
             </div>
             <div class="grid-half">
                 <h3>Fahrzeug Umsatz</h3>
-                <SfGrid DataSource="@fahrzeugData" AllowPaging="true" AllowSorting="true">
+                <SfGrid @ref="anlageGrid" DataSource="@fahrzeugData" AllowPaging="true" AllowSorting="true">
                     <GridPageSettings PageCount="5" PageSizes="true" PageSize="5"></GridPageSettings>
                     <GridColumns>  
                         <GridColumn Field="ProjectName" HeaderText="Projekt" Width="150" />  
-                        <GridColumn Field="Fahrzeug" HeaderText="Fahrzeug" Width="200" />
+                        <GridColumn Field="Fahrzeug" HeaderText="Anlage" Width="200" />
                     <GridColumn Field="Gesamtumsatz" HeaderText="Umsatz (€) " Format="N2" Type="Syncfusion.Blazor.Grids.ColumnType.Decimal" TextAlign="TextAlign.Right" Width="150" />
                 </GridColumns>  
                 </SfGrid>    
@@ -72,8 +103,26 @@ else
         min-width: 350px;
     }
 </style>
+<svg style="height: 0">
+    <defs>
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="20%" style="stop-color:orange;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:darkred;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+</svg>
+<svg style="height: 0">
+    <defs>
+        <linearGradient id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="20%" style="stop-color:limegreen;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:cornflowerblue;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+</svg>
 
 @code {
+        private SfGrid<MonteurUmsatzDto>? monteurGrid;
+        private SfGrid<FahrzeugUmsatzDto>? anlageGrid;
         private AllProjectsUmsatzSplitDto? dashboardData;
         private List<ProjektUmsatzDto> projektDaten = new();
         private List<MonteurUmsatzDto> monteurData = new();
@@ -90,7 +139,7 @@ else
         protected override async Task OnInitializedAsync()
         {
             DateTime start = DateTime.Parse("1.3.2025");
-            DateTime end = DateTime.Parse("31.5.2025");
+            DateTime end = DateTime.Parse("31.12.2025");
             dashboardData = await UmsatzService.GetProjectsUmsatzSplit(start, end);
 
             if (dashboardData != null)
