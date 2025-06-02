@@ -33,7 +33,6 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState, CustomUserAcco
 {
     builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
     options.ProviderOptions.DefaultAccessTokenScopes.Add("api://07d1f5eb-f995-4a62-8c28-084b579e01ed/ibeapp_api_all");
-    options.ProviderOptions.DefaultAccessTokenScopes.Add("https://graph.microsoft.com/User.Read"); 
     options.UserOptions.RoleClaim = "appRole"; 
 }).AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, CustomUserAccount, CustomAccountFactory>();
 

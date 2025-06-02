@@ -4,27 +4,24 @@
 
     namespace IbeAppWeb.Models;
 
-    public class CustomAccountFactory(IAccessTokenProviderAccessor accessor, IServiceProvider serviceProvider)
-        : AccountClaimsPrincipalFactory<CustomUserAccount>(accessor)
+    public class CustomAccountFactory : AccountClaimsPrincipalFactory<CustomUserAccount>
     {
-        private readonly IServiceProvider serviceProvider = serviceProvider;
+        public CustomAccountFactory(IAccessTokenProviderAccessor accessor)
+            : base(accessor)
+        {
+        }
+
 
         public override async ValueTask<ClaimsPrincipal> CreateUserAsync(CustomUserAccount account, RemoteAuthenticationUserOptions options)
         {
             var initialUser = await base.CreateUserAsync(account, options);
 
-            if (initialUser.Identity is not null && initialUser.Identity.IsAuthenticated)
+            if (initialUser?.Identity?.IsAuthenticated ?? false)
             {
-                var userIdentity = initialUser.Identity as ClaimsIdentity;
+                var userIdentity = (ClaimsIdentity)initialUser.Identity;
 
-                if (userIdentity is not null && account.Roles is not null)
-                {
-                    account?.Roles.ForEach((role) =>
-                    {
-                        userIdentity.AddClaim(new Claim("appRole", role));
-                    });
-                }
-            }
+                userIdentity.AddClaim(new Claim("appRole", string.Join(",", account.Roles ?? new List<string>())));
+        }
             return initialUser;
         }
     }
