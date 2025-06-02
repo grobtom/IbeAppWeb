@@ -5,6 +5,13 @@ using System.Threading;
 using System.Threading.Tasks;
 
 namespace IbeAppWeb.Services;
+
+/// <summary>
+/// A custom message handler that integrates authorization functionality for HTTP requests.
+/// </summary>
+/// <remarks>This handler is designed to work with Blazor applications and ensures that HTTP requests include the
+/// necessary authorization tokens. It automatically configures the handler to target specific authorized URLs and
+/// scopes.  If an access token is not available, the handler redirects the user to reauthenticate.</remarks>
 public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
 {
     public CustomAuthorizationMessageHandler(IAccessTokenProvider provider, NavigationManager navigation)
@@ -12,7 +19,7 @@ public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
     {
         ConfigureHandler(
             authorizedUrls: new[] { "https://localhost" }
-            , scopes: new[] {"api://07d1f5eb-f995-4a62-8c28-084b579e01ed/ibeapp_api_all"} // Uncomment and set if needed
+            , scopes: new[] {"api://07d1f5eb-f995-4a62-8c28-084b579e01ed/ibeapp_api_all"} 
         );
     }
 
@@ -24,8 +31,8 @@ public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
         }
         catch (AccessTokenNotAvailableException ex)
         {
-            ex.Redirect(); // This will redirect the user to login
-            throw; // Optionally rethrow or handle as needed
+            ex.Redirect(); 
+            throw; 
         }
     }
 }
