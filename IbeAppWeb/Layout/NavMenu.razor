@@ -27,7 +27,11 @@
                     <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafOne())" Href="/monteuranlage" Tooltip="Monteur-Anlagen Management" Class="fluent-navlink">Monteur-Anlagen</FluentNavLink>
                 </FluentNavGroup>
                     <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafOne())" Href="/projects" Tooltip="Projekt Management" Class="fluent-navlink">Projekte</FluentNavLink>
+                    <AuthorizeView>
+                        <Authorized>
                     <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafOne())" Href="/bauleiter" Tooltip="Projekt Management" Class="fluent-navlink">Bauleiter</FluentNavLink>
+                        </Authorized>
+                    </AuthorizeView>
                     <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafOne())" Href="/dashboard" Tooltip="Dashboard" Class="fluent-navlink">Dashboard</FluentNavLink>
         </FluentNavMenu>
     </div>
