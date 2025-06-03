@@ -57,32 +57,20 @@
         <SfSpinner @bind-Visible="@isLoading" Label="Loading...." Type="@SpinnerType.Bootstrap">
         </SfSpinner>
     </div>
-
 }
 else
 {
-    <SfGrid DataSource="@allAnlagen" 
+    <SfGrid @ref="grid" DataSource="@allAnlagen" 
         AllowSorting="true" 
         AllowFiltering="true" 
         AllowPaging="true" 
-        RowHeight="20"
         Height="400">
         <GridPageSettings PageCount="5" PageSizes="true" PageSize="10"></GridPageSettings>
         <GridSelectionSettings Mode="Syncfusion.Blazor.Grids.SelectionMode.Row" Type="SelectionType.Single"></GridSelectionSettings>
         <GridEvents RowSelecting="RowselectingHandler" TValue="ProjectWithAnlagenDto"></GridEvents>
         <GridColumns>
-            <!-- Project ID Column -->
             <GridColumn Field="ProjectId" HeaderText="Project ID" TextAlign="TextAlign.Center" Width="100"></GridColumn>
-
-            <!-- Project Name Column -->
-            <GridColumn Field="ProjectName" TextAlign="TextAlign.Left" Width="200">
-                <HeaderTemplate>
-                    <div>
-                        <span class="e-icon-userlogin e-icons employee"></span> Projekt Name
-                    </div>
-                </HeaderTemplate>
-            </GridColumn>
-            <!-- Anlagen Column with Template -->
+            <GridColumn Field="ProjectName" HeaderText="Projektname" TextAlign="TextAlign.Left" Width="200"></GridColumn>
             <GridColumn HeaderText="Anlagen" TextAlign="TextAlign.Left" Width="300">
                 <Template>
                     @{
@@ -118,6 +106,7 @@ else
     private int? projectId;
     private int? oldAnlageId;
     private int? newAnlageId;
+    private SfGrid<ProjectWithAnlagenDto>? grid;
     private IEnumerable<ProjectAnlageDto>? anlagen;
     private IEnumerable<ProjectWithAnlagenDto>? allAnlagen;
     private IEnumerable<Project>? projects;
