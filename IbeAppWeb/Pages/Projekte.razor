@@ -95,6 +95,13 @@
                         }
                     </Template>
                 </GridColumn>
+                <GridColumn HeaderText="Arbeitsbericht"  Width="150">
+                    <Template>
+                        <a href="@($"arbeitsscheine/{(context as Project)?.ProjectId}/{(context as Project)?.IsSchacht}")" >
+                            <img src="images/arbeitsbericht.png" alt="Arbeitsbericht" width="24"/>
+                        </a>
+                    </Template>
+                </GridColumn>
             </GridColumns>
         </SfGrid>    
     </div>

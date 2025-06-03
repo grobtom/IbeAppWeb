@@ -1,4 +1,5 @@
 ﻿@page "/arbeitsscheine"
+@page "/arbeitsscheine/{project:int}/{bereich:bool}"
 @using IbeAppWeb.DTOs
 @inject ArbeitsscheinService ArbeitsscheinService
 @inject ProjectService ProjectService
@@ -233,6 +234,9 @@ else
     </style>
 
 @code {
+    [Parameter] public int? Project { get; set; }
+    [Parameter] public bool Bereich { get; set; }
+
     private SfGrid<ArbeitsscheinDto> grid = new();
 
     private ArbeitsscheinFormModel formModel = new();
@@ -281,6 +285,25 @@ else
         var imageTask = LoadImage();
 
         await Task.WhenAll(projectsTask, monteureTask, anlagenTask, imageTask);
+        if(Project.HasValue)
+        {
+            formModel.SelectedProjectId = Project.Value;
+            if(Bereich)
+            {
+                ComboBoxValue = 2; 
+            }
+            else
+            {
+                ComboBoxValue = 1; 
+            }
+            await LoadArbeitsscheine();
+        }
+        else
+        {
+            formModel.SelectedProjectId = projects?.FirstOrDefault()?.ProjectId;
+            ComboBoxValue = kanalSchachtList.FirstOrDefault()?.Id ?? 1;
+        }
+
     }
 
     private async Task LoadImage()

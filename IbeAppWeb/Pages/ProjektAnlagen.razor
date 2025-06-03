@@ -61,7 +61,7 @@
 }
 else
 {
-    <SfGrid DataSource="@allAnlagen" AllowSorting="true" AllowFiltering="true" AllowPaging="true" AllowSelection="true">
+    <SfGrid DataSource="@allAnlagen" AllowSorting="true" AllowFiltering="true" AllowPaging="true" >
         <GridPageSettings PageCount="5" PageSizes="true" PageSize="10"></GridPageSettings>
         <GridSelectionSettings Mode="Syncfusion.Blazor.Grids.SelectionMode.Row" Type="SelectionType.Single"></GridSelectionSettings>
         <GridEvents RowSelecting="RowselectingHandler" TValue="ProjectWithAnlagenDto"></GridEvents>
