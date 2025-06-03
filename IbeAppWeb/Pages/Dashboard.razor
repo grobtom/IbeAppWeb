@@ -8,10 +8,11 @@
 @using Syncfusion.Blazor.Spinner
 @using IbeAppWeb.Services
 @inject UmsatzService UmsatzService
-@inject ToastService ToastService
+@inject IbeToastService ToastService
 @inject NavigationManager NavigationManager
 
 <h2 class="text-2xl font-bold mb-4">Umsatz-Dashboard</h2>  
+<p>@message</p>
 @if (dashboardData is null)  
 {  
     <p>Lade Daten...</p>
@@ -74,7 +75,7 @@ else
 
         <div class="grid-container">
             <div class="grid-half">
-            @if (projectName != null)
+            @if (!string.IsNullOrEmpty(projectName))
             {
                 <h5>Monteur Umsatz für @projectName</h5>
             }
@@ -92,9 +93,12 @@ else
                 </SfGrid>  
             </div>
             <div class="grid-half">
-                @if(projectName != null)
+                @if(!string.IsNullOrEmpty(projectName))
                 {
                     <h5>Anlage Umsatz für @projectName</h5>
+                    <div>
+                        <Syncfusion.Blazor.Buttons.SfButton CssClass="e-primary" OnClick="GotoArbeitsbericht">Arbeitsbericht</Syncfusion.Blazor.Buttons.SfButton>
+                    </div>
                 }
                 else
                 {
@@ -109,9 +113,6 @@ else
                 </GridColumns>  
                 </SfGrid>    
             </div>
-        </div>
-        <div>
-        <Syncfusion.Blazor.Buttons.SfButton CssClass="e-primary" OnClick="GotoArbeitsbericht"></Syncfusion.Blazor.Buttons.SfButton>
         </div>
 }  
 <style>
@@ -161,6 +162,7 @@ else
     private bool SidebarToggle { get; set; } = false;
     private bool isLoading = false;
     private string? projectName = string.Empty;
+    private string? message = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
@@ -198,7 +200,7 @@ else
         {
             var Id = projektDaten.FirstOrDefault(p => p.ProjectName == projectName)?.ProjectId;
             var schacht = projektDaten.FirstOrDefault(p => p.ProjectName == projectName)?.IsSchacht;
-            NavigationManager.NavigateTo($".arbeitsscheine/{Id}/{schacht}");
+            NavigationManager.NavigateTo($"arbeitsscheine/{Id}/{schacht}");
         }
        
     }
