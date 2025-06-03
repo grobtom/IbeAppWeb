@@ -95,9 +95,12 @@ else
             <div class="grid-half">
                 @if(!string.IsNullOrEmpty(projectName))
                 {
-                    <h5>Anlage Umsatz für @projectName</h5>
-                    <div>
-                        <Syncfusion.Blazor.Buttons.SfButton CssClass="e-primary" OnClick="GotoArbeitsbericht">Arbeitsbericht</Syncfusion.Blazor.Buttons.SfButton>
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <h5>Anlage Umsatz für @projectName</h5>                    
+                        <Syncfusion.Blazor.Buttons.SfButton CssClass="e-primary" 
+                        OnClick="GotoArbeitsbericht">
+                            Arbeitsbericht
+                        </Syncfusion.Blazor.Buttons.SfButton>
                     </div>
                 }
                 else
