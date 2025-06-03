@@ -357,7 +357,6 @@ else
 
     void CustomizeCell(QueryCellInfoEventArgs<ArbeitsscheinDto> args)
     {
-        Console.WriteLine($"CustomizeCell called for field: {args.Column.Field}");
         if (args.Column.Field == nameof(ArbeitsscheinDto.SaniertAm) &&
                 args.Data.SaniertAm == new DateTime(1, 1, 1))
         {
@@ -585,7 +584,7 @@ else
         public string? Abschlagsrechnung { get; set; }
         [MaxLength(30, ErrorMessage = "Name für den Kolonnenführer darf nicht länger als 30 Zeichen sein!")]
         public string? Kolonnenfuehrer { get; set; }
-        [MaxLength(10, ErrorMessage = "Name für das Fahrzeug darf nicht länger als 10 Zeichen sein!")]
+        [MaxLength(10, ErrorMessage = "Name für das Fahrzeug darf nicht länger als 15 Zeichen sein!")]
         public string? Fahrzeug { get; set; }
         [MaxLength(30,ErrorMessage = "Name für den Monteur darf nicht länger als 30 Zeichen sein!")]
         public string? Monteur { get; set; }
