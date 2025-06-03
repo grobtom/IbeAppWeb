@@ -261,6 +261,7 @@ else
         args.IsInteracted = true;
         start = args.StartDate ?? new DateTime(DateTime.Now.Year,1,1); 
         end = args.EndDate ?? new DateTime(DateTime.Now.Year, 12, 31);
+        projectName = string.Empty;
         dashboardData = null;
         projektDaten = new List<ProjektUmsatzDto>();
         monteurData = new List<MonteurUmsatzDto>();
@@ -289,7 +290,7 @@ else
         {
             var Id = projektDaten.FirstOrDefault(p => p.ProjectName == projectName)?.ProjectId;
             var schacht = projektDaten.FirstOrDefault(p => p.ProjectName == projectName)?.IsSchacht;
-            NavigationManager.NavigateTo($"arbeitsscheine/{Id}/{schacht}");
+            NavigationManager.NavigateTo($"/arbeitsscheine/{Id}/{schacht}/{start.ToString("s")}/{end.ToString("s")}");
         }       
     }
 

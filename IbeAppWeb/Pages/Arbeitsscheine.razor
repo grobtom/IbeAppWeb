@@ -1,5 +1,5 @@
 ﻿@page "/arbeitsscheine"
-@page "/arbeitsscheine/{project:int}/{bereich:bool}"
+@page "/arbeitsscheine/{idproject:int}/{schacht:bool}/{start:datetime}/{end:datetime}"
 @using IbeAppWeb.DTOs
 @inject ArbeitsscheinService ArbeitsscheinService
 @inject ProjectService ProjectService
@@ -234,8 +234,10 @@ else
     </style>
 
 @code {
-    [Parameter] public int? Project { get; set; }
-    [Parameter] public bool Bereich { get; set; }
+    [Parameter] public int idproject { get; set; }
+    [Parameter] public bool schacht { get; set; }
+    [Parameter] public DateTime start { get; set; } = DateTime.MinValue;
+    [Parameter] public DateTime end { get; set; } = DateTime.MaxValue;
 
     private SfGrid<ArbeitsscheinDto> grid = new();
 
@@ -285,10 +287,10 @@ else
         var imageTask = LoadImage();
 
         await Task.WhenAll(projectsTask, monteureTask, anlagenTask, imageTask);
-        if(Project.HasValue)
+        if(idproject > 0)
         {
-            formModel.SelectedProjectId = Project.Value;
-            if(Bereich)
+            formModel.SelectedProjectId = idproject;
+            if(schacht)
             {
                 ComboBoxValue = 2; 
             }
@@ -296,6 +298,8 @@ else
             {
                 ComboBoxValue = 1; 
             }
+            formModel.SaniertAmVon = start != DateTime.MinValue ? start : null;
+            formModel.SaniertAmBis = end != DateTime.MaxValue ? end : null;
             await LoadArbeitsscheine();
         }
         else
