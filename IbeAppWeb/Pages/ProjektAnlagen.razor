@@ -4,6 +4,7 @@
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.SplitButtons
 @using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Spinner
 @inject ProjectAnlageService ProjectAnlageService
 @inject ProjectService ProjectService
 @inject IbeToastService ToastService
@@ -39,17 +40,26 @@
         </SfComboBox>
     </div>
 </div>
-<br/>
+<br />
 <div class="row">
-                <SfButtonGroup Mode="Syncfusion.Blazor.SplitButtons.SelectionMode.Single">
-                    <ButtonGroupButton @onclick="@AssignAnlage">Anlage zuordnen</ButtonGroupButton>
-                    <ButtonGroupButton @onclick="@UpdateAnlage">Update Zuordnung</ButtonGroupButton>
-                    <ButtonGroupButton @onclick="@RemoveAnlage">Lösche Zuordnung</ButtonGroupButton>
-                    <ButtonGroupButton @onclick="@GetAllProjectAnlagen">Zeige alle Projekte</ButtonGroupButton>
-                </SfButtonGroup>
+    <SfButtonGroup Mode="Syncfusion.Blazor.SplitButtons.SelectionMode.Single">
+        <ButtonGroupButton @onclick="@AssignAnlage">Anlage zuordnen</ButtonGroupButton>
+        <ButtonGroupButton @onclick="@UpdateAnlage">Update Zuordnung</ButtonGroupButton>
+        <ButtonGroupButton @onclick="@RemoveAnlage">Lösche Zuordnung</ButtonGroupButton>
+        <ButtonGroupButton @onclick="@GetAllProjectAnlagen">Zeige alle Projekte</ButtonGroupButton>
+    </SfButtonGroup>
 </div>
-<br/>
-@if (allAnlagen != null)
+<br />
+@if (allAnlagen is null)
+{
+    <p>Lade Daten...</p>
+    <div id="container">
+        <SfSpinner @bind-Visible="@isLoading" Label="Loading...." Type="@SpinnerType.Bootstrap">
+        </SfSpinner>
+    </div>
+
+}
+else
 {
     <SfGrid DataSource="@allAnlagen" AllowSorting="true" AllowFiltering="true" AllowPaging="true" AllowSelection="true">
         <GridPageSettings PageCount="5" PageSizes="true" PageSize="10"></GridPageSettings>
@@ -61,11 +71,11 @@
 
             <!-- Project Name Column -->
             <GridColumn Field="ProjectName" TextAlign="TextAlign.Left" Width="200">
-            <HeaderTemplate>
-                <div>
-                    <span class="e-icon-userlogin e-icons employee"></span> Projekt Name
-                </div>
-            </HeaderTemplate>
+                <HeaderTemplate>
+                    <div>
+                        <span class="e-icon-userlogin e-icons employee"></span> Projekt Name
+                    </div>
+                </HeaderTemplate>
             </GridColumn>
             <!-- Anlagen Column with Template -->
             <GridColumn HeaderText="Anlagen" TextAlign="TextAlign.Left" Width="300">
@@ -109,9 +119,11 @@
     private IEnumerable<AnlageDto>? anlagenList;
     private ProjectAnlageDto projectAnlage;
     private ProjectWithAnlagenDto projectWithAnlagen = new();
+    private bool isLoading = false;
 
     protected override async Task OnInitializedAsync()
     {
+        isLoading = true;
         try
         {
             projects = await ProjectService.GetActiveProjectsAsync();
@@ -128,7 +140,11 @@
         }
         catch (Exception ex)
         {
-            await ToastService.ShowToast($"Fehler beim Laden der Daten: {ex.Message}",false);
+            await ToastService.ShowToast($"Fehler beim Laden der Daten: {ex.Message}", false);
+        }
+        finally
+        {
+            isLoading = false;
         }
     }
 
@@ -184,14 +200,15 @@
         {
             if (oldAnlageId > 0 && projectId > 0 && newAnlageId > 0)
             {
-                var result = await ProjectAnlageService.UpdateAssignment(new UpdateProjectAnlageDto { 
-                        ProjectId = projectId.Value, 
-                        OldAnlageId = oldAnlageId.Value, 
-                        NewAnlageId = newAnlageId.Value 
-                });
-                if(result)
+                var result = await ProjectAnlageService.UpdateAssignment(new UpdateProjectAnlageDto
                 {
-                    await RefreshSingleProjectAnlage(oldAnlageId.Value); 
+                    ProjectId = projectId.Value,
+                    OldAnlageId = oldAnlageId.Value,
+                    NewAnlageId = newAnlageId.Value
+                });
+                if (result)
+                {
+                    await RefreshSingleProjectAnlage(oldAnlageId.Value);
                     await ToastService.ShowToast("Anlage erfolgreich aktualisiert.", true);
                 }
                 else
@@ -253,8 +270,8 @@
         allAnlagen = await ProjectAnlageService.GetAllProjectAnlagen();
         if (allAnlagen == null || !allAnlagen.Any())
         {
-            await ToastService.ShowToast($"Keine Anlagen für die Projekte gefunden.",false);
-        }       
+            await ToastService.ShowToast($"Keine Anlagen für die Projekte gefunden.", false);
+        }
     }
 
     private Task OnChange(ChangeEventArgs<int?, Project> args)
@@ -333,7 +350,7 @@
                 IsDeleted = false
             }).ToList();
 
-            var updatedList = allAnlagen?.ToList() ?? new List<ProjectWithAnlagenDto>(); 
+            var updatedList = allAnlagen?.ToList() ?? new List<ProjectWithAnlagenDto>();
             var index = updatedList.FindIndex(a => a.ProjectId == projectId.Value && a.Anlagen.Any(an => an.AnlageId == anlageId));
             if (index >= 0)
             {

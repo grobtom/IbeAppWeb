@@ -5,21 +5,26 @@
 @using Syncfusion.Blazor.Grids  
 @using Syncfusion.Blazor.Charts  
 @using Syncfusion.Blazor.Navigations
+@using Syncfusion.Blazor.Spinner
 @using IbeAppWeb.Services
 @inject UmsatzService UmsatzService
 
 <h2 class="text-2xl font-bold mb-4">Umsatz-Dashboard</h2>  
-
 @if (dashboardData is null)  
 {  
-    <p>Lade Daten...</p>  
+    <p>Lade Daten...</p>
+            <div id="container">
+            <SfSpinner @bind-Visible="@isLoading" Label="Loading...." Type="@SpinnerType.Bootstrap">
+            </SfSpinner>
+        </div>
 }  
 else  
 { 
     <div class="mb-4 font-semibold">  
         Gesamtumsatz aller Projekte: <span style="color:green">€@dashboardData.GesamtumsatzAllProjects.ToString("N2")</span>  
     </div>  
-    <SfChart Title="Umsatz je Projekt" >  
+    <SfChart Title="Umsatz je Projekt" >
+        <ChartEvents OnPointClick="PointClickEvent"></ChartEvents>
         <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Projekt">
             <ChartAxisMajorGridLines Width="0"></ChartAxisMajorGridLines>
             <ChartAxisMajorTickLines Width="0"></ChartAxisMajorTickLines>
@@ -67,8 +72,15 @@ else
 
         <div class="grid-container">
             <div class="grid-half">
-                <h3>Monteur Umsatz</h3>
-                <SfGrid @ref="monteurGrid" DataSource="@monteurData" AllowPaging="true" AllowSorting="true" ShowColumnChooser="true">
+            @if (projectName != null)
+            {
+                <h5>Monteur Umsatz für @projectName</h5>
+            }
+            else
+            {
+                <h5>Monteur Umsatz</h5>
+            }
+            <SfGrid @ref="monteurGrid" DataSource="@monteurData" AllowPaging="true" AllowSorting="true" ShowColumnChooser="true">
                     <GridPageSettings PageCount="5" PageSizes="true" PageSize="5"></GridPageSettings>
                     <GridColumns>  
                         <GridColumn Field="ProjectName" HeaderText="Projekt" Width="150" />  
@@ -78,7 +90,14 @@ else
                 </SfGrid>  
             </div>
             <div class="grid-half">
-                <h3>Fahrzeug Umsatz</h3>
+                @if(projectName != null)
+                {
+                    <h5>Anlage Umsatz für @projectName</h5>
+                }
+                else
+                {
+                    <h5>Anlage Umsatz</h5>
+                }
                 <SfGrid @ref="anlageGrid" DataSource="@fahrzeugData" AllowPaging="true" AllowSorting="true">
                     <GridPageSettings PageCount="5" PageSizes="true" PageSize="5"></GridPageSettings>
                     <GridColumns>  
@@ -95,12 +114,12 @@ else
         display: flex;
         flex-wrap: wrap;
         gap: 2rem;
-        margin-top: 1.5rem;
+        margin-top: 1.0rem;
     }
 
     .grid-half {
         flex: 1 1 48%;
-        min-width: 350px;
+        min-width: 300px;
     }
 </style>
 <svg style="height: 0">
@@ -121,34 +140,50 @@ else
 </svg>
 
 @code {
-        private SfGrid<MonteurUmsatzDto>? monteurGrid;
-        private SfGrid<FahrzeugUmsatzDto>? anlageGrid;
-        private AllProjectsUmsatzSplitDto? dashboardData;
-        private List<ProjektUmsatzDto> projektDaten = new();
-        private List<MonteurUmsatzDto> monteurData = new();
-        private List<FahrzeugUmsatzDto> fahrzeugData = new();
+    private SfGrid<MonteurUmsatzDto>? monteurGrid;
+    private SfGrid<FahrzeugUmsatzDto>? anlageGrid;
+    private AllProjectsUmsatzSplitDto? dashboardData;
+    private List<ProjektUmsatzDto> projektDaten = new();
+    private List<MonteurUmsatzDto> monteurData = new();
+    private List<FahrzeugUmsatzDto> fahrzeugData = new();
 
 
-        private List<string> projektNamen = new();
-        private List<string> monteurNamen = new();
-        private List<string> fahrzeugNamen = new();
+    private List<string> projektNamen = new();
+    private List<string> monteurNamen = new();
+    private List<string> fahrzeugNamen = new();
 
 
-        private bool SidebarToggle { get; set; } = false;
+    private bool SidebarToggle { get; set; } = false;
+    private bool isLoading = false;
+    private string? projectName = string.Empty;
 
-        protected override async Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
+    {
+        isLoading = true;
+        DateTime start = DateTime.Parse("1.3.2025");
+        DateTime end = DateTime.Parse("31.12.2025");
+        dashboardData = await UmsatzService.GetProjectsUmsatzSplit(start, end);
+
+        if (dashboardData != null)
         {
-            DateTime start = DateTime.Parse("1.3.2025");
-            DateTime end = DateTime.Parse("31.12.2025");
-            dashboardData = await UmsatzService.GetProjectsUmsatzSplit(start, end);
-
-            if (dashboardData != null)
-            {
-                projektDaten = dashboardData.Projects;
-                monteurData = projektDaten.SelectMany(p => p.MonteurUmsaetze).ToList();
-                fahrzeugData = projektDaten.SelectMany(p => p.FahrzeugUmsaetze).ToList();
-
-            }
+            projektDaten = dashboardData.Projects;
+            monteurData = projektDaten.SelectMany(p => p.MonteurUmsaetze).ToList();
+            fahrzeugData = projektDaten.SelectMany(p => p.FahrzeugUmsaetze).ToList();
+            isLoading = false;
         }
+    }
 
+    public void PointClickEvent(PointEventArgs args)
+    {
+        projectName = args.Point.X?.ToString();
+        monteurData = projektDaten
+            .Where(p => p.ProjectName == projectName)
+            .SelectMany(p => p.MonteurUmsaetze)
+            .ToList();
+        fahrzeugData = projektDaten
+            .Where(p => p.ProjectName == projectName)
+            .SelectMany(p => p.FahrzeugUmsaetze)
+            .ToList();
+        StateHasChanged();
+    }
 }
