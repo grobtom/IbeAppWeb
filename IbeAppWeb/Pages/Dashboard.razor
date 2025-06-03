@@ -6,20 +6,32 @@
 @using Syncfusion.Blazor.Charts  
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.Spinner
+@using Syncfusion.Blazor.Calendars
 @using IbeAppWeb.Services
+@using System.Globalization
 @inject UmsatzService UmsatzService
 @inject IbeToastService ToastService
 @inject NavigationManager NavigationManager
 
-<h2 class="text-2xl font-bold mb-4">Umsatz-Dashboard</h2>  
-<p>@message</p>
+<div style="display: flex; align-items: center; justify-content: space-between;">
+    <h2 class="text-2xl font-bold mb-4">Umsatz-Dashboard</h2>
+    <div class="control-wrapper">
+        <label class="example-label">Dashboard Datumsbereich</label>
+        <SfDateRangePicker TValue="DateTime?" Placeholder="Periode auswählen" ShowClearButton="true" FullScreen="true">
+            <DateRangePickerEvents TValue="DateTime?" ValueChange="RangeSelectHandler"></DateRangePickerEvents>
+            <DateRangePickerPresets>
+                <DateRangePickerPreset Label="@LabelThisWeek" Start="@WeekStart" End="@WeekEnd"></DateRangePickerPreset>
+                <DateRangePickerPreset Label="@LabelThisMonth" Start="@MonthStart" End="@MonthEnd"></DateRangePickerPreset>
+                <DateRangePickerPreset Label="@LabelLastMonth" Start="@LastMonthStart" End="@LastMonthEnd"></DateRangePickerPreset>
+                <DateRangePickerPreset Label="@LabelThisYear" Start="@ThisYearStart" End="@ThisYearEnd"></DateRangePickerPreset>
+                <DateRangePickerPreset Label="@LabelLastYear" Start="@LastYearStart" End="@LastYearEnd"></DateRangePickerPreset>
+            </DateRangePickerPresets>
+        </SfDateRangePicker>
+    </div>
+</div>
 @if (dashboardData is null)  
 {  
-    <p>Lade Daten...</p>
-            <div id="container">
-            <SfSpinner @bind-Visible="@isLoading" Label="Loading...." Type="@SpinnerType.Bootstrap">
-            </SfSpinner>
-        </div>
+    <p>Lade Daten...</p>           
 }  
 else  
 { 
@@ -117,7 +129,11 @@ else
                 </SfGrid>    
             </div>
         </div>
-}  
+}
+<div id="container">
+    <SfSpinner @bind-Visible="@isLoading" Label="Loading...." Type="@SpinnerType.Bootstrap">
+    </SfSpinner>
+</div>
 <style>
     .grid-container {
         display: flex;
@@ -167,11 +183,53 @@ else
     private string? projectName = string.Empty;
     private string? message = string.Empty;
 
+    private string LabelThisWeek { get; set; }
+    private string LabelThisMonth { get; set; }
+    private string LabelLastMonth { get; set; }
+    private string LabelThisYear { get; set; }
+    private string LabelLastYear { get; set; }
+    private DateTime LastMonth { get; set; }
+    private DateTime WeekStart { get; set; }
+    private DateTime WeekEnd { get; set; }
+    private DateTime MonthStart { get; set; }
+    private DateTime MonthEnd { get; set; }
+    private DateTime LastMonthStart { get; set; }
+    private DateTime LastMonthEnd { get; set; }
+    private DateTime ThisYearStart { get; set; }
+    private DateTime ThisYearEnd { get; set; }
+    private DateTime LastYearStart { get; set; }
+    private DateTime LastYearEnd { get; set; }
+    private int Days { get; set; }
+    private DateTime start;
+    private DateTime end;
+
     protected override async Task OnInitializedAsync()
     {
+        start = new DateTime(DateTime.Now.Year,1,1);
+        end = new DateTime(DateTime.Now.Year, 12, 31);      
+
+        Days = (int)DateTime.Now.DayOfWeek;
+        LastMonth = DateTime.Now.AddMonths(-1);
+        WeekStart = DateTime.Now.AddDays(-Days);
+        WeekEnd = WeekStart.AddDays(6);
+        MonthStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+        MonthEnd = MonthStart.AddMonths(1).AddDays(-1);
+        LastMonthStart = new DateTime(LastMonth.Year, LastMonth.Month, 1);
+        LastMonthEnd = LastMonthStart.AddMonths(1).AddDays(-1);
+        ThisYearStart = new DateTime(DateTime.Now.Year, 1, 1);
+        ThisYearEnd = new DateTime(DateTime.Now.Year, 12, 31);
+        LastYearStart = new DateTime(DateTime.Now.Year - 1, 1, 1);
+        LastYearEnd = new DateTime(DateTime.Now.Year - 1, 12, 31);
+        var CurrentCulture = CultureInfo.CurrentCulture;
+        UpdateLabels(CurrentCulture);
+
+        await LoadDashboard();
+    }
+
+    private async Task LoadDashboard()
+    {   
         isLoading = true;
-        DateTime start = DateTime.Parse("1.3.2025");
-        DateTime end = DateTime.Parse("31.12.2025");
+
         dashboardData = await UmsatzService.GetProjectsUmsatzSplit(start, end);
 
         if (dashboardData != null)
@@ -179,8 +237,36 @@ else
             projektDaten = dashboardData.Projects;
             monteurData = projektDaten.SelectMany(p => p.MonteurUmsaetze).ToList();
             fahrzeugData = projektDaten.SelectMany(p => p.FahrzeugUmsaetze).ToList();
-            isLoading = false;
         }
+        else
+        {
+            message = "Keine Daten gefunden.";
+            await ToastService.ShowToast(message, false);
+        }
+        isLoading = false;
+    }
+
+    private void UpdateLabels(CultureInfo culture)
+    {
+        var labels = GetLocalizedLabels(culture);
+        LabelThisWeek = labels["ThisWeek"];
+        LabelThisMonth = labels["ThisMonth"];
+        LabelLastMonth = labels["LastMonth"];
+        LabelThisYear = labels["ThisYear"];
+        LabelLastYear = labels["LastYear"];
+    }
+
+    public async Task RangeSelectHandler(RangePickerEventArgs<DateTime?> args)
+    {
+        args.IsInteracted = true;
+        start = args.StartDate ?? new DateTime(DateTime.Now.Year,1,1); 
+        end = args.EndDate ?? new DateTime(DateTime.Now.Year, 12, 31);
+        dashboardData = null;
+        projektDaten = new List<ProjektUmsatzDto>();
+        monteurData = new List<MonteurUmsatzDto>();
+        fahrzeugData = new List<FahrzeugUmsatzDto>();
+        await LoadDashboard();
+        StateHasChanged();
     }
 
     public void PointClickEvent(PointEventArgs args)
@@ -204,7 +290,18 @@ else
             var Id = projektDaten.FirstOrDefault(p => p.ProjectName == projectName)?.ProjectId;
             var schacht = projektDaten.FirstOrDefault(p => p.ProjectName == projectName)?.IsSchacht;
             NavigationManager.NavigateTo($"arbeitsscheine/{Id}/{schacht}");
-        }
-       
+        }       
+    }
+
+    private Dictionary<string, string> GetLocalizedLabels(CultureInfo culture)
+    {
+        var localizedLabels = new Dictionary<string, Dictionary<string, string>>
+        {
+            ["en"] = new Dictionary<string, string> { { "ThisWeek", "This Week" }, { "ThisMonth", "This Month" }, { "LastMonth", "Last Month" }, { "LastYear", "Last Year" } },
+            ["fr-CH"] = new Dictionary<string, string> { { "ThisWeek", "Cette semaine" }, { "ThisMonth", "Ce mois-ci" }, { "LastMonth", "Le mois dernier" }, { "LastYear", "L'année dernière" } },
+            ["de-DE"] = new Dictionary<string, string> { { "ThisWeek", "Diese Woche" }, { "ThisMonth", "Diesen Monat" }, { "LastMonth", "Letzter Monat" }, { "LastYear", "Letztes Jahr" }, {"ThisYear", "Diese Jahr" } },
+            ["zh-CN"] = new Dictionary<string, string> { { "ThisWeek", "本周" }, { "ThisMonth", "本月" }, { "LastMonth", "上个月" }, { "LastYear", "去年" } }
+        };
+        return localizedLabels.TryGetValue(culture.Name, out var labels) ? labels : localizedLabels["de-DE"];
     }
 }
