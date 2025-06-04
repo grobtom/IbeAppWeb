@@ -1,15 +1,23 @@
 ﻿@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @inject NavigationManager Navigation
 
-<AuthorizeView>
-    <Authorized>
-        Hello, @context.User.Identity?.Name!
-        <button class="nav-link btn btn-link" @onclick="BeginLogOut">Log out</button>
-    </Authorized>
-    <NotAuthorized>
-        <a href="authentication/login">Log in</a>
-    </NotAuthorized>
-</AuthorizeView>
+<div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+    <div style="display: flex; align-items: center;">
+        <img src="images/logos/exrohrlogo.png" alt="Exrohr Logo" style="height:40px; margin-right:10px;" />
+        <img src="images/logos/ibelogo.png" alt="Ibe Logo" style="height:40px;" />
+    </div>
+    <div>
+        <AuthorizeView>
+            <Authorized>
+                Hello, @context.User.Identity?.Name !
+                <button class="nav-link btn btn-link" @onclick="BeginLogOut">Log out</button>
+            </Authorized>
+            <NotAuthorized>
+                <a href="authentication/login">Log in</a>
+            </NotAuthorized>
+        </AuthorizeView>
+    </div>
+</div>
 
 @code{
     public void BeginLogOut()
