@@ -8,6 +8,6 @@ public class CustomUserAccount : RemoteUserAccount
     [JsonPropertyName("groups")]
     public List<string> Groups { get; set; }
 
-    [JsonPropertyName("roles")] 
+    [JsonPropertyName("roles")]
     public List<string> Roles { get; set; }
 }

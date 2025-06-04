@@ -1,6 +1,6 @@
-﻿using System.Net.Http.Json;
+﻿using IbeAppWeb.DTOs;
+using System.Net.Http.Json;
 using System.Text.Json;
-using IbeAppWeb.DTOs;
 
 namespace IbeAppWeb.Services;
 
@@ -130,7 +130,7 @@ public class AnlagenService
         {
 
 
-            var response = await _httpClient.PostAsJsonAsync("api/anlage",  anlageDto);
+            var response = await _httpClient.PostAsJsonAsync("api/anlage", anlageDto);
 
             if (response.IsSuccessStatusCode)
             {

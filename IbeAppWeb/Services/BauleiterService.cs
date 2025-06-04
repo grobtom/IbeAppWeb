@@ -1,8 +1,7 @@
 ﻿using IbeAppWeb.DTOs;
-using System.Net.Http.Json;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-using Microsoft.AspNetCore.Authorization.Infrastructure;
+using System.Net.Http.Json;
 
 namespace IbeAppWeb.Services;
 
@@ -50,8 +49,8 @@ public class BauleiterService
             else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
             {
                 throw new AccessTokenNotAvailableException(
-                    _navigationManager, 
-                    null, 
+                    _navigationManager,
+                    null,
                     new[] { "api.read" }
                 );
             }

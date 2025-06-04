@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace IbeAppWeb.Services;
 
@@ -19,7 +16,7 @@ public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
     {
         ConfigureHandler(
             authorizedUrls: new[] { "https://localhost" }
-            , scopes: new[] {"api://07d1f5eb-f995-4a62-8c28-084b579e01ed/ibeapp_api_all"} 
+            , scopes: new[] { "api://07d1f5eb-f995-4a62-8c28-084b579e01ed/ibeapp_api_all" }
         );
     }
 
@@ -31,8 +28,8 @@ public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
         }
         catch (AccessTokenNotAvailableException ex)
         {
-            ex.Redirect(); 
-            throw; 
+            ex.Redirect();
+            throw;
         }
     }
 }

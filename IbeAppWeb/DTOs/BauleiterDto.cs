@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace IbeAppWeb.DTOs;
+﻿namespace IbeAppWeb.DTOs;
 public class BauleiterDto
 {
     public int BauleiterId { get; set; }

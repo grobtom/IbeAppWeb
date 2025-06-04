@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using System.Text.Json.Serialization;
-
-namespace IbeAppWeb.DTOs;
+﻿namespace IbeAppWeb.DTOs;
 
 public class ArbeitsscheinDto
 {

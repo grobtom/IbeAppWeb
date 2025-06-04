@@ -1,10 +1,6 @@
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Microsoft.Extensions.Logging;
-using System.Globalization;
 using IbeAppWeb.DTOs;
+using System.Globalization;
+using System.Net.Http.Json;
 
 public class ArbeitsscheinService
 {
@@ -43,7 +39,7 @@ public class ArbeitsscheinService
             else
             {
                 request = new HttpRequestMessage(HttpMethod.Get, $"api/asschacht?{queryString}");
-            }   
+            }
             request.Headers.Add("X-IbeProjectDB", projectDb);
 
             var response = await _httpClient.SendAsync(request);
@@ -58,7 +54,7 @@ public class ArbeitsscheinService
         }
     }
 
-    public async Task<ArbeitsberichtDbSummeResultDto> GetArbeitsberichtMonteur (bool schacht,string monteurName, string projectDb = "defaultDb", DateTime? saniertAmVon = null, DateTime? saniertAmBis = null, DateTime? saniertAm = null)
+    public async Task<ArbeitsberichtDbSummeResultDto> GetArbeitsberichtMonteur(bool schacht, string monteurName, string projectDb = "defaultDb", DateTime? saniertAmVon = null, DateTime? saniertAmBis = null, DateTime? saniertAm = null)
     {
         try
         {
