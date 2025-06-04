@@ -24,6 +24,7 @@
                 <label for="projectDb" class="form-label">Projekt:</label>
                 <SfComboBox TValue="int?" TItem="Project" PopupHeight="230px" 
                 @bind-value="@formModel.SelectedProjectId" DataSource="@projects">
+                    <ComboBoxEvents TValue="int?" TItem="Project" ValueChange="OnProjectChange" />
                     <ComboBoxFieldSettings Text="ProjectName" Value="ProjectId" />
                 </SfComboBox>
             </div>
@@ -40,8 +41,9 @@
                 <SfDatePicker TValue="DateTime?" @bind-value="@formModel.SaniertAm"></SfDatePicker>
             </div> 
             <div class="col-md-4">
-                <label class="form-label">Wähle Sanierungsbereich:</label>
-                <SfComboBox TValue="int" TItem="KanalSchacht" PopupHeight="230px" @bind-value="@ComboBoxValue" DataSource="@kanalSchachtList">
+                <label class="form-label">Bereich:</label>
+                <SfComboBox TValue="int" TItem="KanalSchacht" PopupHeight="230px" 
+                    @bind-value="@ComboBoxValue" DataSource="@kanalSchachtList" Enabled="false">
                     <ComboBoxEvents TValue="int" TItem="KanalSchacht" />
                     <ComboBoxFieldSettings Text="Auswahl" Value="Id" />
                 </SfComboBox>
@@ -138,6 +140,14 @@
         {
             await ToastService.ShowToast($"Fehler beim Laden der Projektdaten!", false);
         }
+    }
+
+    private void OnProjectChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<int?, Project> args)
+    {
+        if (args.ItemData.IsSchacht)
+        { ComboBoxValue = 2; }
+        else
+        { ComboBoxValue = 1; }
     }
 
 

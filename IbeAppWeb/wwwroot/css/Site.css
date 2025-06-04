@@ -1,1 +1,23 @@
-﻿
+﻿.layout-root {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebarnav {
+    width: 250px;
+    min-width: 72px;
+    transition: width 0.3s;
+    /* Optional: background-color for visibility */
+    background: #271152;
+}
+
+.sidebarnav.collapsed {
+    width: 72px;
+}
+
+.main-content {
+    flex: 1 1 auto;
+    transition: all 0.3s;
+    /* Remove margin-left and width! */
+    min-width: 0;
+}

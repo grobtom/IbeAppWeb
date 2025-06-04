@@ -1,0 +1,8 @@
+.sidebar {
+    width: 200px;
+    transition: width 0.3s;
+    /* other sidebar styles */
+}
+.sidebar.collapsed {
+    width: 56px;
+}
