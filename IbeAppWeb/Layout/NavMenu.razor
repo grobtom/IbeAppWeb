@@ -5,31 +5,30 @@
             <FluentStack Orientation="Microsoft.FluentUI.AspNetCore.Components.Orientation.Horizontal" Width="100%">
                 <div>
                     <FluentNavMenu @bind-Expanded="@Expanded" Width="200" Collapsible="true" CollapsedChildNavigation="@EnableCollapsedChildNavigation" Title="Menü">
+                        <FluentNavLink Icon="@(new Icons.Color.Size24.Home())" Href="/" Tooltip="Home" Class="fluent-navlink">Start</FluentNavLink>
                         <FluentNavGroup Title="Arbeitsberichte" Tooltip="Zu den Arbeitsberichten" Icon="@(new Icons.Regular.Size24.EarthLeaf())" Class="fluent-navlink">
-                            <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafOne())" Href="/arbeitsscheine" Tooltip="Zum allgemeinen Arbeitsbericht" Class="fluent-navlink">Projekt</FluentNavLink>
-                            <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafThree())" Href="/arbeitsberichtprojects" Tooltip="Alle Projekte" Class="fluent-navlink">Alle Projekte</FluentNavLink>
-
+                            <FluentNavLink Icon="@(new Icons.Color.Size24.Document())" Href="/arbeitsscheine" Tooltip="Zum allgemeinen Arbeitsbericht" Class="fluent-navlink">Projekt</FluentNavLink>
+                            <FluentNavLink Icon="@(new Icons.Color.Size24.DocumentFolder())" Href="/arbeitsberichtprojects" Tooltip="Alle Projekte" Class="fluent-navlink">Alle Projekte</FluentNavLink>
                         </FluentNavGroup>
                         <FluentNavGroup Title="Umsatz" Tooltip="Item 5 tooltip" Class="fluent-navlink">
-                            <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafOne())" Href="/umsatz" Tooltip="Zum Umsatz" Class="fluent-navlink">Projektumsatz</FluentNavLink>
-                            <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafOne())" Href="/umsatzall" Tooltip="Gesamtmsatz" Class="fluent-navlink">GesamtUmsatz</FluentNavLink>
-
+                            <FluentNavLink Icon="@(new Icons.Color.Size24.Table())" Href="/umsatz" Tooltip="Zum Umsatz" Class="fluent-navlink">Projektumsatz</FluentNavLink>
+                            <FluentNavLink Icon="@(new Icons.Color.Size24.TextBulletListSquare())" Href="/umsatzall" Tooltip="Gesamtmsatz" Class="fluent-navlink">GesamtUmsatz</FluentNavLink>
                         </FluentNavGroup>
                         <FluentNavGroup Title="Anlagen" Tooltip="Item 5 tooltip" Class="fluent-navlink">
-                            <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafOne())" Href="/anlagen" Tooltip="Anlagen Management" Class="fluent-navlink">Anlagen</FluentNavLink>
-                            <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafOne())" Href="/project-anlage" Tooltip="Projekt Anlage Management" Class="fluent-navlink">Projekt Anlage</FluentNavLink>
+                            <FluentNavLink Icon="@(new Icons.Regular.Size24.VehicleCab())" Href="/anlagen" Tooltip="Anlagen Management" Class="fluent-navlink">Anlagen</FluentNavLink>
+                            <FluentNavLink Icon="@(new Icons.Regular.Size24.VehicleTruckCheckmark())" Href="/project-anlage" Tooltip="Projekt Anlage Management" Class="fluent-navlink">Projekt Anlage</FluentNavLink>
                         </FluentNavGroup>
                         <FluentNavGroup Title="Monteure" Tooltip="Item 5 tooltip" Class="fluent-navlink">
-                            <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafOne())" Href="/monteure" Tooltip="Monteur Management" Class="fluent-navlink">Monteure</FluentNavLink>
-                            <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafOne())" Href="/monteuranlage" Tooltip="Monteur-Anlagen Management" Class="fluent-navlink">Monteur-Anlagen</FluentNavLink>
+                            <FluentNavLink Icon="@(new Icons.Color.Size24.People())" Href="/monteure" Tooltip="Monteur Management" Class="fluent-navlink">Monteure</FluentNavLink>
+                            <FluentNavLink Icon="@(new Icons.Color.Size24.PeopleCommunity())" Href="/monteuranlage" Tooltip="Monteur-Anlagen Management" Class="fluent-navlink">Monteur-Anlagen</FluentNavLink>
                         </FluentNavGroup>
-                        <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafOne())" Href="/projects" Tooltip="Projekt Management" Class="fluent-navlink">Projekte</FluentNavLink>
+                        <FluentNavLink Icon="@(new Icons.Regular.Size24.ProjectionScreenText())" Href="/projects" Tooltip="Projekt Management" Class="fluent-navlink">Projekte</FluentNavLink>
                         <AuthorizeView>
                             <Authorized>
-                                <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafOne())" Href="/bauleiter" Tooltip="Projekt Management" Class="fluent-navlink">Bauleiter</FluentNavLink>
+                                <FluentNavLink Icon="@(new Icons.Regular.Size24.Guardian())" Href="/bauleiter" Tooltip="Projekt Management" Class="fluent-navlink">Bauleiter</FluentNavLink>
                             </Authorized>
                         </AuthorizeView>
-                        <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafOne())" Href="/dashboard" Tooltip="Dashboard" Class="fluent-navlink">Dashboard</FluentNavLink>
+                        <FluentNavLink Icon="@(new Icons.Regular.Size24.DataUsageCheckmark())" Href="/dashboard" Tooltip="Dashboard" Class="fluent-navlink">Dashboard</FluentNavLink>
                         @*                 <FluentNavLink Icon="@(new Icons.Regular.Size24.LeafOne())" Href="/test" Tooltip="Test" Class="fluent-navlink">Test</FluentNavLink>
  *@
                     </FluentNavMenu>
