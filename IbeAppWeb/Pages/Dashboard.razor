@@ -204,6 +204,13 @@ else
     private DateTime LastYearStart { get; set; }
     private DateTime LastYearEnd { get; set; }
     private int Days { get; set; }
+    public List<Syncfusion.Blazor.Charts.ToolbarItems> ToolbarItem = new List<Syncfusion.Blazor.Charts.ToolbarItems>()
+    {
+        Syncfusion.Blazor.Charts.ToolbarItems.Zoom,
+        Syncfusion.Blazor.Charts.ToolbarItems.Reset,
+        Syncfusion.Blazor.Charts.ToolbarItems.Pan
+    };
+
     private DateTime start;
     private DateTime end;
 
