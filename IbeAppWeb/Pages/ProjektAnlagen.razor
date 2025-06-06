@@ -153,6 +153,8 @@ else
                 if (result)
                 {
                     await GetAllProjectAnlagen();
+                    if (grid != null)
+                        await grid.Refresh();
 
                     var projectWithAnlagen = allAnlagen?.FirstOrDefault(p => p.ProjectId == projectId);
                     if (projectWithAnlagen != null)
@@ -163,6 +165,7 @@ else
                             AnlageId = a.AnlageId,
                             AnlageName = a.AnlageName
                         }).ToList();
+                        newAnlageId = null;
                     }
                     else
                     {
@@ -272,7 +275,7 @@ else
     {
         if (args.ItemData == null)
         {
-            return Task.CompletedTask; // No project selected
+            return Task.CompletedTask; 
         }
         var selectedProject = args.ItemData;
         projectId = selectedProject.ProjectId;
@@ -341,6 +344,13 @@ else
                 AnlageId = a.AnlageId,
                 AnlageName = a.AnlageName,
                 IsDeleted = false
+            }).ToList();
+            anlagen = null;
+            anlagen = updatedAnlagen.Anlagen.Select(a => new ProjectAnlageDto
+            {
+                ProjectId = updatedAnlagen.ProjectId,
+                AnlageId = a.AnlageId,
+                AnlageName = a.AnlageName
             }).ToList();
 
             var updatedList = allAnlagen?.ToList() ?? new List<ProjectWithAnlagenDto>();
