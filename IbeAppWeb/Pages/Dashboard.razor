@@ -40,7 +40,11 @@ else
     </div>  
     <SfChart Title="Umsatz je Projekt" >
         <ChartEvents OnPointClick="PointClickEvent"></ChartEvents>
-        <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Projekt">
+        <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="">
+            LabelIntersectAction="LabelIntersectAction.Rotate45">
+            <ChartZoomSettings EnableMouseWheelZooming="true" EnablePinchZooming="true"
+                               EnableSelectionZooming="true"
+                               ToolbarItems="@ToolbarItem" Mode="ZoomMode.XY"></ChartZoomSettings>
             <ChartAxisMajorGridLines Width="0"></ChartAxisMajorGridLines>
             <ChartAxisMajorTickLines Width="0"></ChartAxisMajorTickLines>
         </ChartPrimaryXAxis>
@@ -82,7 +86,7 @@ else
                 </ChartMarker>
             </ChartSeries>
         </ChartSeriesCollection>
-        <ChartLegendSettings Visible="true" ShapeHeight="9" ShapeWidth="9"></ChartLegendSettings>
+        <ChartLegendSettings Visible="true" ShapeHeight="9" ShapeWidth="9" Position="LegendPosition.Right"></ChartLegendSettings>
     </SfChart>  
 
         <div class="grid-container">
@@ -200,6 +204,13 @@ else
     private DateTime LastYearStart { get; set; }
     private DateTime LastYearEnd { get; set; }
     private int Days { get; set; }
+    public List<Syncfusion.Blazor.Charts.ToolbarItems> ToolbarItem = new List<Syncfusion.Blazor.Charts.ToolbarItems>()
+    {
+        Syncfusion.Blazor.Charts.ToolbarItems.Zoom,
+        Syncfusion.Blazor.Charts.ToolbarItems.Reset,
+        Syncfusion.Blazor.Charts.ToolbarItems.Pan
+    };
+
     private DateTime start;
     private DateTime end;
 
@@ -298,10 +309,9 @@ else
     {
         var localizedLabels = new Dictionary<string, Dictionary<string, string>>
         {
-            ["en"] = new Dictionary<string, string> { { "ThisWeek", "This Week" }, { "ThisMonth", "This Month" }, { "LastMonth", "Last Month" }, { "LastYear", "Last Year" } },
-            ["fr-CH"] = new Dictionary<string, string> { { "ThisWeek", "Cette semaine" }, { "ThisMonth", "Ce mois-ci" }, { "LastMonth", "Le mois dernier" }, { "LastYear", "L'année dernière" } },
+            ["en"] = new Dictionary<string, string> { { "ThisWeek", "This Week" }, { "ThisMonth", "This Month" }, { "LastMonth", "Last Month" }, { "LastYear", "Last Year" }, { "ThisYear", "ThisYear" } },
+            ["fr-CH"] = new Dictionary<string, string> { { "ThisWeek", "Cette semaine" }, { "ThisMonth", "Ce mois-ci" }, { "LastMonth", "Le mois dernier" }, { "LastYear", "L'année dernière" }, { "ThisYear", "Cette année" } },
             ["de-DE"] = new Dictionary<string, string> { { "ThisWeek", "Diese Woche" }, { "ThisMonth", "Diesen Monat" }, { "LastMonth", "Letzter Monat" }, { "LastYear", "Letztes Jahr" }, {"ThisYear", "Diese Jahr" } },
-            ["zh-CN"] = new Dictionary<string, string> { { "ThisWeek", "本周" }, { "ThisMonth", "本月" }, { "LastMonth", "上个月" }, { "LastYear", "去年" } }
         };
         return localizedLabels.TryGetValue(culture.Name, out var labels) ? labels : localizedLabels["de-DE"];
     }
