@@ -38,9 +38,13 @@ else
     <div class="mb-4 font-semibold">  
         Gesamtumsatz aller Projekte: <span style="color:green">€@dashboardData.GesamtumsatzAllProjects.ToString("N2")</span>  
     </div>  
-    <SfChart Title="Umsatz je Projekt" >
+    <SfChart Title="Umsatz je Projekt" Width="100%" Height="100%">
         <ChartEvents OnPointClick="PointClickEvent"></ChartEvents>
-        <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Projekt">
+        <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" 
+                           LabelIntersectAction="LabelIntersectAction.Rotate45">
+            <ChartZoomSettings EnableMouseWheelZooming="true" EnablePinchZooming="true"
+                               EnableSelectionZooming="true" 
+                               ToolbarItems="@ToolbarItem" Mode="ZoomMode.XY"></ChartZoomSettings>
             <ChartAxisMajorGridLines Width="0"></ChartAxisMajorGridLines>
             <ChartAxisMajorTickLines Width="0"></ChartAxisMajorTickLines>
         </ChartPrimaryXAxis>
@@ -82,7 +86,7 @@ else
                 </ChartMarker>
             </ChartSeries>
         </ChartSeriesCollection>
-        <ChartLegendSettings Visible="true" ShapeHeight="9" ShapeWidth="9"></ChartLegendSettings>
+        <ChartLegendSettings Visible="true" ShapeHeight="9" ShapeWidth="9" Position="LegendPosition.Right"></ChartLegendSettings>
     </SfChart>  
 
         <div class="grid-container">
@@ -200,6 +204,12 @@ else
     private DateTime LastYearStart { get; set; }
     private DateTime LastYearEnd { get; set; }
     private int Days { get; set; }
+    public List<Syncfusion.Blazor.Charts.ToolbarItems> ToolbarItem = new List<Syncfusion.Blazor.Charts.ToolbarItems>() 
+    { 
+        Syncfusion.Blazor.Charts.ToolbarItems.Zoom, 
+        Syncfusion.Blazor.Charts.ToolbarItems.Reset, 
+        Syncfusion.Blazor.Charts.ToolbarItems.Pan 
+    };
     private DateTime start;
     private DateTime end;
 
