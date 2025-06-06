@@ -46,8 +46,8 @@
         <ButtonGroupButton @onclick="@AssignAnlage">Anlage zuordnen</ButtonGroupButton>
         <ButtonGroupButton @onclick="@UpdateAnlage">Update Zuordnung</ButtonGroupButton>
         <ButtonGroupButton @onclick="@RemoveAnlage">Lösche Zuordnung</ButtonGroupButton>
-        <ButtonGroupButton @onclick="@GetAllProjectAnlagen">Zeige alle Projekte</ButtonGroupButton>
-    </SfButtonGroup>
+@*         <ButtonGroupButton @onclick="@GetAllProjectAnlagen">Zeige alle Projekte</ButtonGroupButton>
+ *@    </SfButtonGroup>
 </div>
 <br />
 @if (allAnlagen is null)
@@ -152,26 +152,9 @@ else
                 var result = await ProjectAnlageService.AssignAnlageToProject(new AssignAnlageToProjectDto { ProjectId = projectId.Value, AnlageId = newAnlageId.Value });
                 if (result)
                 {
-                    await GetAllProjectAnlagen();
-                    if (grid != null)
-                        await grid.Refresh();
-
-                    var projectWithAnlagen = allAnlagen?.FirstOrDefault(p => p.ProjectId == projectId);
-                    if (projectWithAnlagen != null)
-                    {
-                        anlagen = projectWithAnlagen.Anlagen.Select(a => new ProjectAnlageDto
-                        {
-                            ProjectId = projectWithAnlagen.ProjectId,
-                            AnlageId = a.AnlageId,
-                            AnlageName = a.AnlageName
-                        }).ToList();
-                        newAnlageId = null;
-                    }
-                    else
-                    {
-                        await GetProjectAnlage();
-                    }
-
+                    await RefreshSingleProjectAnlage(newAnlageId.Value);
+                    newAnlageId = null;
+                    grid.Refresh();
                     StateHasChanged();
                     await ToastService.ShowToast("Anlage erfolgreich zugewiesen.", true);
                 }
@@ -280,10 +263,10 @@ else
         var selectedProject = args.ItemData;
         projectId = selectedProject.ProjectId;
 
-        // Try to get Anlagen from allAnlagen if available
         var projectWithAnlagen = allAnlagen?.FirstOrDefault(p => p.ProjectId == projectId);
         if (projectWithAnlagen != null)
         {
+            anlagen = null;
             anlagen = projectWithAnlagen.Anlagen.Select(a => new ProjectAnlageDto
             {
                 ProjectId = projectWithAnlagen.ProjectId,
@@ -354,7 +337,7 @@ else
             }).ToList();
 
             var updatedList = allAnlagen?.ToList() ?? new List<ProjectWithAnlagenDto>();
-            var index = updatedList.FindIndex(a => a.ProjectId == projectId.Value && a.Anlagen.Any(an => an.AnlageId == anlageId));
+            var index = updatedList.FindIndex(a => a.ProjectId == projectId.Value);
             if (index >= 0)
             {
                 updatedList[index].Anlagen = updatedAnlageDtos;
