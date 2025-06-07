@@ -222,13 +222,15 @@ public class UmsatzService
     /// error occurs, an empty <see cref="AllProjectsUmsatzSplitDto"/> is returned.</returns>
     /// <exception cref="InvalidOperationException">Thrown if the response content is <see langword="null"/>.</exception>
 
-    public async Task<AllProjectsUmsatzSplitDto> GetProjectsUmsatzSplit(DateTime? startDatum, DateTime? endDatum)
+    public async Task<AllProjectsUmsatzSplitDto> GetProjectsUmsatzSplit(DateTime? startDatum, DateTime? endDatum, bool isSchacht, bool dbActive)
     {
         try
         {
             var queryParameters = new List<string>();
             if (startDatum.HasValue) queryParameters.Add($"startDatum={startDatum.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
             if (endDatum.HasValue) queryParameters.Add($"endDatum={endDatum.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
+            queryParameters.Add($"isSchacht={isSchacht.ToString().ToLowerInvariant()}");
+            queryParameters.Add($"dbActive={dbActive.ToString().ToLowerInvariant()}");
             var queryString = string.Join("&", queryParameters);
 
             HttpRequestMessage request;

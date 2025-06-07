@@ -1,12 +1,13 @@
-﻿@page "/dashboard"  
-@using IbeAppWeb.DTOs.Umsatz  
-@using static System.Net.WebRequestMethods  
+﻿@page "/dashboard"
+@using IbeAppWeb.DTOs.Umsatz
+@using static System.Net.WebRequestMethods
 @using Syncfusion.Blazor.DropDowns
-@using Syncfusion.Blazor.Grids  
-@using Syncfusion.Blazor.Charts  
+@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.Spinner
 @using Syncfusion.Blazor.Calendars
+@using Syncfusion.Blazor.Buttons
 @using IbeAppWeb.Services
 @using System.Globalization
 @inject UmsatzService UmsatzService
@@ -15,6 +16,17 @@
 
 <div style="display: flex; align-items: center; justify-content: space-between;">
     <h2 class="text-2xl font-bold mb-4">Umsatz-Dashboard</h2>
+    <div clas="control-wrapper">
+        <SfRadioButton Label="Kanal" Name="Bereich" Value="Kanal" TChecked="string" @onchange="onChangeBereich" @bind-Checked="stringCheckedBereich"></SfRadioButton>
+        <br />
+        <SfRadioButton Label="Schacht" Name="Bereich" Value="Schacht" TChecked="string" @onchange="onChangeBereich" @bind-Checked="stringCheckedBereich"></SfRadioButton>
+    </div>
+    <div clas="control-wrapper">
+        <SfRadioButton Label="Aktiv" Name="active" Value="Aktiv" TChecked="string" @onchange="onChangeActive" @bind-Checked="stringCheckedActive"></SfRadioButton>
+        <br />
+        <SfRadioButton Label="Alle" Name="active" Value="All" TChecked="string" @onchange="onChangeActive" @bind-Checked="stringCheckedActive"></SfRadioButton>
+    </div>
+
     <div class="control-wrapper">
         <label class="example-label">Dashboard Datumsbereich</label>
         <SfDateRangePicker TValue="DateTime?" Placeholder="Periode auswählen" ShowClearButton="true" FullScreen="true">
@@ -29,21 +41,21 @@
         </SfDateRangePicker>
     </div>
 </div>
-@if (dashboardData is null)  
-{  
-    <p>Lade Daten...</p>           
-}  
-else  
-{ 
-    <div class="mb-4 font-semibold">  
-        Gesamtumsatz aller Projekte: <span style="color:green">€@dashboardData.GesamtumsatzAllProjects.ToString("N2")</span>  
-    </div>  
+@if (dashboardData is null)
+{
+    <p>Lade Daten...</p>
+}
+else
+{
+    <div class="mb-4 font-semibold">
+        Gesamtumsatz aller Projekte: <span style="color:green">€@dashboardData.GesamtumsatzAllProjects.ToString("N2")</span>
+    </div>
     <SfChart Title="Umsatz je Projekt" Width="100%" Height="100%">
         <ChartEvents OnPointClick="PointClickEvent"></ChartEvents>
         <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title=""
                            LabelIntersectAction="LabelIntersectAction.Rotate45">
             <ChartZoomSettings EnableMouseWheelZooming="true" EnablePinchZooming="true"
-                               EnableSelectionZooming="true" 
+                               EnableSelectionZooming="true"
                                ToolbarItems="@ToolbarItem" Mode="ZoomMode.XY"></ChartZoomSettings>
             <ChartAxisMajorGridLines Width="0"></ChartAxisMajorGridLines>
             <ChartAxisMajorTickLines Width="0"></ChartAxisMajorTickLines>
@@ -56,16 +68,16 @@ else
             <ChartAxisMajorTickLines Width="0"></ChartAxisMajorTickLines>
             <ChartAxisLineStyle Width="0"></ChartAxisLineStyle>
         </ChartPrimaryYAxis>
-        <ChartSeriesCollection>  
-            <ChartSeries DataSource="@dashboardData.Projects"  
-                         XName="ProjectName"  
-                         YName="GesamtumsatzAlle"  
+        <ChartSeriesCollection>
+            <ChartSeries DataSource="@dashboardData.Projects"
+                         XName="ProjectName"
+                         YName="GesamtumsatzAlle"
                          Name="Gesamtumsatz lt. LV"
                          GroupName="ProjectName"
                          Fill="url(#grad1)"
-                         ColumnWidth="0.7" ColumnSpacing="0.1" 
-                         Type="ChartSeriesType.Column" 
-                         CornerRadius="@(new ChartCornerRadius { TopLeft = 4, TopRight = 4})" 
+                         ColumnWidth="0.7" ColumnSpacing="0.1"
+                         Type="ChartSeriesType.Column"
+                         CornerRadius="@(new ChartCornerRadius { TopLeft = 4, TopRight = 4})"
                          LegendShape="LegendShape.Rectangle">
                 <ChartMarker>
                     <ChartDataLabel Visible="true" Format="N2"></ChartDataLabel>
@@ -77,9 +89,9 @@ else
                          Name="Gesamtumsatz ausgeführt"
                          GroupName="ProjectName"
                          Fill="url(#grad2)"
-                         ColumnWidth="0.5" ColumnSpacing="0.1" 
-                         Type="ChartSeriesType.Column" 
-                         CornerRadius="@(new ChartCornerRadius { TopLeft = 4, TopRight = 4})" 
+                         ColumnWidth="0.5" ColumnSpacing="0.1"
+                         Type="ChartSeriesType.Column"
+                         CornerRadius="@(new ChartCornerRadius { TopLeft = 4, TopRight = 4})"
                          LegendShape="LegendShape.Rectangle">
                 <ChartMarker>
                     <ChartDataLabel Visible="true" Format="N2"></ChartDataLabel>
@@ -87,10 +99,10 @@ else
             </ChartSeries>
         </ChartSeriesCollection>
         <ChartLegendSettings Visible="true" ShapeHeight="9" ShapeWidth="9" Position="LegendPosition.Right"></ChartLegendSettings>
-    </SfChart>  
+    </SfChart>
 
-        <div class="grid-container">
-            <div class="grid-half">
+    <div class="grid-container">
+        <div class="grid-half">
             @if (!string.IsNullOrEmpty(projectName))
             {
                 <h5>Monteur Umsatz für @projectName</h5>
@@ -100,39 +112,39 @@ else
                 <h5>Monteur Umsatz</h5>
             }
             <SfGrid @ref="monteurGrid" DataSource="@monteurData" AllowPaging="true" AllowSorting="true" ShowColumnChooser="true">
-                    <GridPageSettings PageCount="5" PageSizes="true" PageSize="5"></GridPageSettings>
-                    <GridColumns>  
-                        <GridColumn Field="ProjectName" HeaderText="Projekt" Width="150" />  
-                        <GridColumn Field="Monteur" HeaderText="Monteur" Width="200" />
+                <GridPageSettings PageCount="5" PageSizes="true" PageSize="5"></GridPageSettings>
+                <GridColumns>
+                    <GridColumn Field="ProjectName" HeaderText="Projekt" Width="150" />
+                    <GridColumn Field="Monteur" HeaderText="Monteur" Width="200" />
                     <GridColumn Field="Gesamtumsatz" HeaderText="Umsatz (€) " Format="N2" Type="Syncfusion.Blazor.Grids.ColumnType.Decimal" TextAlign="TextAlign.Right" Width="150" />
-                </GridColumns>  
-                </SfGrid>  
-            </div>
-            <div class="grid-half">
-                @if(!string.IsNullOrEmpty(projectName))
-                {
-                    <div style="display: flex; align-items: center; justify-content: space-between;">
-                        <h5>Anlage Umsatz für @projectName</h5>                    
-                        <Syncfusion.Blazor.Buttons.SfButton CssClass="e-primary" 
-                        OnClick="GotoArbeitsbericht">
-                            Arbeitsbericht
-                        </Syncfusion.Blazor.Buttons.SfButton>
-                    </div>
-                }
-                else
-                {
-                    <h5>Anlage Umsatz</h5>
-                }
-                <SfGrid @ref="anlageGrid" DataSource="@fahrzeugData" AllowPaging="true" AllowSorting="true">
-                    <GridPageSettings PageCount="5" PageSizes="true" PageSize="5"></GridPageSettings>
-                    <GridColumns>  
-                        <GridColumn Field="ProjectName" HeaderText="Projekt" Width="150" />  
-                        <GridColumn Field="Fahrzeug" HeaderText="Anlage" Width="200" />
-                    <GridColumn Field="Gesamtumsatz" HeaderText="Umsatz (€) " Format="N2" Type="Syncfusion.Blazor.Grids.ColumnType.Decimal" TextAlign="TextAlign.Right" Width="150" />
-                </GridColumns>  
-                </SfGrid>    
-            </div>
+                </GridColumns>
+            </SfGrid>
         </div>
+        <div class="grid-half">
+            @if (!string.IsNullOrEmpty(projectName))
+            {
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <h5>Anlage Umsatz für @projectName</h5>
+                    <Syncfusion.Blazor.Buttons.SfButton CssClass="e-primary"
+                                                        OnClick="GotoArbeitsbericht">
+                        Arbeitsbericht
+                    </Syncfusion.Blazor.Buttons.SfButton>
+                </div>
+            }
+            else
+            {
+                <h5>Anlage Umsatz</h5>
+            }
+            <SfGrid @ref="anlageGrid" DataSource="@fahrzeugData" AllowPaging="true" AllowSorting="true">
+                <GridPageSettings PageCount="5" PageSizes="true" PageSize="5"></GridPageSettings>
+                <GridColumns>
+                    <GridColumn Field="ProjectName" HeaderText="Projekt" Width="150" />
+                    <GridColumn Field="Fahrzeug" HeaderText="Anlage" Width="200" />
+                    <GridColumn Field="Gesamtumsatz" HeaderText="Umsatz (€) " Format="N2" Type="Syncfusion.Blazor.Grids.ColumnType.Decimal" TextAlign="TextAlign.Right" Width="150" />
+                </GridColumns>
+            </SfGrid>
+        </div>
+    </div>
 }
 <div id="container">
     <SfSpinner @bind-Visible="@isLoading" Label="Loading...." Type="@SpinnerType.Bootstrap">
@@ -213,11 +225,16 @@ else
 
     private DateTime start;
     private DateTime end;
+    private bool isSchacht = false;
+    private bool dbActive = true;
+    private string stringCheckedActive = "Aktiv";
+    private string stringCheckedBereich = "Kanal";
+
 
     protected override async Task OnInitializedAsync()
     {
-        start = new DateTime(DateTime.Now.Year,1,1);
-        end = new DateTime(DateTime.Now.Year, 12, 31);      
+        start = new DateTime(DateTime.Now.Year, 1, 1);
+        end = new DateTime(DateTime.Now.Year, 12, 31);
 
         Days = (int)DateTime.Now.DayOfWeek;
         LastMonth = DateTime.Now.AddMonths(-1);
@@ -237,11 +254,39 @@ else
         await LoadDashboard();
     }
 
+    private async Task onChangeActive(Microsoft.AspNetCore.Components.ChangeEventArgs args)
+    {
+        if(args?.Value?.ToString() == "Aktiv")
+        {
+            dbActive = true;
+        }
+        else if(args?.Value?.ToString() == "All")
+        {
+            dbActive = false;
+        }
+        await LoadDashboard();
+        StateHasChanged();
+    }
+
+    private async Task onChangeBereich(Microsoft.AspNetCore.Components.ChangeEventArgs args)
+    {
+        if(args?.Value?.ToString() == "Kanal")
+        {
+            isSchacht = false;
+        }
+        else if(args?.Value?.ToString() == "Schacht")
+        {
+            isSchacht = true;
+        }
+        await LoadDashboard();
+        StateHasChanged();
+    }
+
     private async Task LoadDashboard()
-    {   
+    {
         isLoading = true;
 
-        dashboardData = await UmsatzService.GetProjectsUmsatzSplit(start, end);
+        dashboardData = await UmsatzService.GetProjectsUmsatzSplit(start, end, isSchacht, dbActive);
 
         if (dashboardData != null)
         {
@@ -270,7 +315,7 @@ else
     public async Task RangeSelectHandler(RangePickerEventArgs<DateTime?> args)
     {
         args.IsInteracted = true;
-        start = args.StartDate ?? new DateTime(DateTime.Now.Year,1,1); 
+        start = args.StartDate ?? new DateTime(DateTime.Now.Year, 1, 1);
         end = args.EndDate ?? new DateTime(DateTime.Now.Year, 12, 31);
         projectName = string.Empty;
         dashboardData = null;
@@ -302,7 +347,7 @@ else
             var Id = projektDaten.FirstOrDefault(p => p.ProjectName == projectName)?.ProjectId;
             var schacht = projektDaten.FirstOrDefault(p => p.ProjectName == projectName)?.IsSchacht;
             NavigationManager.NavigateTo($"/arbeitsscheine/{Id}/{schacht}/{start.ToString("s")}/{end.ToString("s")}");
-        }       
+        }
     }
 
     private Dictionary<string, string> GetLocalizedLabels(CultureInfo culture)
@@ -311,7 +356,7 @@ else
         {
             ["en"] = new Dictionary<string, string> { { "ThisWeek", "This Week" }, { "ThisMonth", "This Month" }, { "LastMonth", "Last Month" }, { "LastYear", "Last Year" }, { "ThisYear", "ThisYear" } },
             ["fr-CH"] = new Dictionary<string, string> { { "ThisWeek", "Cette semaine" }, { "ThisMonth", "Ce mois-ci" }, { "LastMonth", "Le mois dernier" }, { "LastYear", "L'année dernière" }, { "ThisYear", "Cette année" } },
-            ["de-DE"] = new Dictionary<string, string> { { "ThisWeek", "Diese Woche" }, { "ThisMonth", "Diesen Monat" }, { "LastMonth", "Letzter Monat" }, { "LastYear", "Letztes Jahr" }, {"ThisYear", "Diese Jahr" } },
+            ["de-DE"] = new Dictionary<string, string> { { "ThisWeek", "Diese Woche" }, { "ThisMonth", "Diesen Monat" }, { "LastMonth", "Letzter Monat" }, { "LastYear", "Letztes Jahr" }, { "ThisYear", "Diese Jahr" } },
         };
         return localizedLabels.TryGetValue(culture.Name, out var labels) ? labels : localizedLabels["de-DE"];
     }
