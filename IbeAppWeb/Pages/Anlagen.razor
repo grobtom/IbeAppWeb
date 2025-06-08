@@ -70,9 +70,9 @@
 @code {
 
     // Change the type to AnlageWithMonteureDto to include Monteure
-    private List<AnlageWithMonteureDto> AnlagenData { get; set; } = new List<AnlageWithMonteureDto>();
+    private List<AnlageWithMonteureDto> AnlagenData { get; set; } = new ();
     private SfGrid<AnlageWithMonteureDto>? Grid;
-    private AnlageWithMonteureDto addedRecord { get; set; } = new AnlageWithMonteureDto();
+    private AnlageWithMonteureDto addedRecord { get; set; } = new ();
 
     protected override async Task OnInitializedAsync()
     {

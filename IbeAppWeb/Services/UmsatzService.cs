@@ -226,7 +226,7 @@ public class UmsatzService
     {
         try
         {
-            var queryParameters = new List<string>();
+            List<string> queryParameters = new List<string>();
             if (startDatum.HasValue) queryParameters.Add($"startDatum={startDatum.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
             if (endDatum.HasValue) queryParameters.Add($"endDatum={endDatum.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
             queryParameters.Add($"isSchacht={isSchacht.ToString().ToLowerInvariant()}");
