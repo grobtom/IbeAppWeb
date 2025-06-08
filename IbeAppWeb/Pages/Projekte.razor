@@ -196,10 +196,14 @@
     {
         try
         {
-            var result = await ProjectService.UpdateProjectAsync(SelectedData.ProjectId, SelectedData.DbActive, SelectedData.IsSchacht, SelectedData.BauleiterId ?? 0);
+            var result = await ProjectService.UpdateProjectAsync(
+                SelectedData.ProjectId,
+                SelectedData.DbActive,
+                SelectedData.IsSchacht,
+                SelectedData.BauleiterId ?? 0);
+
             if (result != null)
             {
-
                 var project = projects.FirstOrDefault(p => p.ProjectId == SelectedData.ProjectId);
                 if (project != null)
                 {
@@ -208,10 +212,11 @@
                     project.IsSchacht = SelectedData.IsSchacht;
                     project.DbChangedDate = DateTime.Now;
                     project.BauleiterId = SelectedData.BauleiterId;
+                    var bauleiterName = bauleiter.FirstOrDefault(b => b.BauleiterId == SelectedData.BauleiterId)?.FullName;
+                    project.BauleiterFullName = bauleiterName;
                 }
 
                 await grid.Refresh();
-
                 await ToastService.ShowToast("Projekt erfolgreich aktualisiert.", true);
             }
             else
