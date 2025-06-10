@@ -57,6 +57,7 @@ else
     private IEnumerable<MonteurResponse> Data { get; set; } = new List<MonteurResponse>();
     private SfGrid<MonteurResponse>? Grid;
     private bool isLoading = false;
+    private Dictionary<string, string> fieldErrors = new();
 
 
     protected override async Task OnInitializedAsync()
@@ -160,7 +161,7 @@ else
     {
         try
         {
-            var createdMonteur = await MonteurService.CreateMonteur(monteur);
+            var createdMonteur = await MonteurService.CreateMonteur(monteur, fieldErrors);
 
             if (createdMonteur != null)
             {

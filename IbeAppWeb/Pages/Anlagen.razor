@@ -69,10 +69,10 @@
 
 @code {
 
-    // Change the type to AnlageWithMonteureDto to include Monteure
     private List<AnlageWithMonteureDto> AnlagenData { get; set; } = new ();
     private SfGrid<AnlageWithMonteureDto>? Grid;
     private AnlageWithMonteureDto addedRecord { get; set; } = new ();
+    private Dictionary<string, string> fieldErrors = new();
 
     protected override async Task OnInitializedAsync()
     {
@@ -189,22 +189,25 @@
     {
         try
         {
-            if(addedRecord == null)
+            if (addedRecord == null)
             {
                 await ToastService.ShowToast("Bitte fügen Sie eine gültige Anlage hinzu.", false);
                 return;
-            };
-            var createdAnlage = await AnlagenService.CreateAnlage(new AnlageDto()
-            {
-                AnlageName = addedRecord.AnlageName?.Trim(),
-                Beschreibung = addedRecord.Beschreibung?.Trim(),
-                IsDeleted = addedRecord.IsDeleted
-            });
+            }
+
+            var createdAnlage = await AnlagenService.CreateAnlage(
+                new AnlageDto()
+                {
+                    AnlageName = addedRecord.AnlageName?.Trim(),
+                    Beschreibung = addedRecord.Beschreibung?.Trim(),
+                    IsDeleted = addedRecord.IsDeleted
+                },
+                fieldErrors 
+            );
 
             if (createdAnlage != null)
             {
                 await ToastService.ShowToast("Anlage erfolgreich hinzugefügt.", true);
-
                 await LoadData();
             }
             else

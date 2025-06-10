@@ -1,4 +1,5 @@
 ﻿using IbeAppWeb.DTOs;
+using IbeAppWeb.Validation;
 using System.Net.Http.Json;
 using System.Text.Json;
 
@@ -17,25 +18,20 @@ public class MonteurService
     {
         try
         {
-            // Send a GET request to the API
             var response = await _httpClient.GetAsync("api/monteur");
 
-            // Ensure the response is successful
             if (response.IsSuccessStatusCode)
             {
-                // Deserialize and return the list of AnlageDto
                 return await response.Content.ReadFromJsonAsync<IEnumerable<MonteurResponse>>() ?? Enumerable.Empty<MonteurResponse>();
             }
             else
             {
-                // Log or handle the error (optional)
                 var errorContent = await response.Content.ReadAsStringAsync();
                 throw new HttpRequestException($"Failed to fetch Monteure. Status: {response.StatusCode}, Error: {errorContent}");
             }
         }
         catch (Exception ex)
         {
-            // Log or rethrow the exception as needed
             Console.WriteLine($"Error in GetAllMonteure: {ex.Message}");
             return Enumerable.Empty<MonteurResponse>(); // Return an empty list on failure
         }
@@ -45,30 +41,25 @@ public class MonteurService
     {
         try
         {
-            // Send a GET request to the API
             var response = await _httpClient.GetAsync("api/monteur/with-anlagen");
-            // Ensure the response is successful
             if (response.IsSuccessStatusCode)
             {
-                // Deserialize and return the list of AnlageDto
                 return await response.Content.ReadFromJsonAsync<List<MonteurWithAnlageDto>>() ?? new List<MonteurWithAnlageDto>();
             }
             else
             {
-                // Log or handle the error (optional)
                 var errorContent = await response.Content.ReadAsStringAsync();
                 throw new HttpRequestException($"Failed to fetch Monteure with Anlage. Status: {response.StatusCode}, Error: {errorContent}");
             }
         }
         catch (Exception ex)
         {
-            // Log or rethrow the exception as needed
             Console.WriteLine($"Error in GetMonteurWithAnlage: {ex.Message}");
             return new List<MonteurWithAnlageDto>(); // Return an empty list on failure
         }
     }
 
-    public async Task<MonteurResponse?> CreateMonteur(MonteurResponse Dto)
+    public async Task<MonteurResponse?> CreateMonteur(MonteurResponse Dto, Dictionary<string, string> fieldErrors)
     {
         try
         {
@@ -77,6 +68,20 @@ public class MonteurService
             if (response.IsSuccessStatusCode)
             {
                 return await response.Content.ReadFromJsonAsync<MonteurResponse>();
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                var error = await response.Content.ReadFromJsonAsync<ValidationErrorResponse>();
+
+                if (error?.Errors != null)
+                {
+                    foreach (var item in error.Errors)
+                    {
+                        fieldErrors[item.PropertyName] = item.ErrorMessage;
+                    }
+                }
+
+                return null;
             }
             else
             {
