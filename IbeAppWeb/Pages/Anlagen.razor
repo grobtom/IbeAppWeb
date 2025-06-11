@@ -12,9 +12,9 @@
 <div class="col-lg-12 control-section">
     <div class="content-wrapper">
         <div class="row">
-            <SfGrid @ref="Grid" DataSource="@AnlagenData" AllowPaging="true" Toolbar="@(new List<string>() { "Add", "Edit", "Delete", "Update", "Cancel" })">
+            <SfGrid @ref="Grid" DataSource="@AnlagenData" AllowPaging="true" Toolbar="@(new List<string>() { "Edit", "Delete", "Update", "Cancel" })">
                 <GridPageSettings PageCount="5"></GridPageSettings>
-                <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog"></GridEditSettings>
+                <GridEditSettings AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog"></GridEditSettings>
                 <GridEvents TValue="AnlageWithMonteureDto" OnActionBegin="OnActionBegin" RowCreated="RowCreateHandler"></GridEvents>
                 <GridColumns>
                     <GridColumn Field=@nameof(AnlageWithMonteureDto.AnlageId) HeaderText="Anlage ID" TextAlign="TextAlign.Left" Width="60" IsPrimaryKey="true" AllowEditing="false"></GridColumn>
@@ -32,9 +32,9 @@
                                 }
                                 else
                                 {
-                                    @foreach (var mon in mont.Monteure)
+                                    @foreach (var mon in mont.Monteure.OrderBy(m => m.Sequence))
                                     {
-                                        <li>@mon.FullName</li>
+                                        <li>@mon.FullName (@mon.Sequence)</li>
                                     }
                                 }
                             </ul>

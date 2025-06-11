@@ -102,7 +102,6 @@ public class MonteurService
         {
             var response = await _httpClient.PutAsJsonAsync($"api/monteur/{Id}", Dto);
 
-            // Ensure the response is successful
             if (response.IsSuccessStatusCode)
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
@@ -143,51 +142,66 @@ public class MonteurService
             throw;
         }
     }
+
+    /// <summary>
+    /// Deletes a Monteur resource identified by the specified ID.
+    /// </summary>
+    /// <remarks>This method sends an HTTP DELETE request to the server to remove the specified Monteur.
+    /// Ensure the provided ID is valid and the server is reachable.</remarks>
+    /// <param name="Id">The unique identifier of the Monteur to delete. Must be a positive integer.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result is <see langword="true"/> if the deletion is
+    /// successful; otherwise, <see langword="false"/>.</returns>
+    /// <exception cref="HttpRequestException">Thrown if the HTTP request to delete the Monteur fails, including details about the status code and error
+    /// content.</exception>
+
     public async Task<bool> DeleteMonteur(int Id)
     {
         try
         {
-            // Send a DELETE request to the API
             var response = await _httpClient.DeleteAsync($"api/monteur/{Id}");
 
-            // Ensure the response is successful
             if (response.IsSuccessStatusCode)
             {
-                return true; // Indicate success
+                return true; 
             }
             else
             {
-                // Log or handle the error (optional)
                 var errorContent = await response.Content.ReadAsStringAsync();
                 throw new HttpRequestException($"Failed to delete Monteur. Status: {response.StatusCode}, Error: {errorContent}");
             }
         }
         catch (Exception ex)
         {
-            // Log or rethrow the exception as needed
             Console.WriteLine($"Error in DeleteMonteur: {ex.Message}");
             throw;
         }
     }
 
-    public async Task<MonteurWithAnlageDto?> AssignMonteurToAnlage(int monteurId, int anlageId)
+    /// <summary>
+    /// Assigns a Monteur to an Anlage based on the provided data transfer object (DTO).
+    /// </summary>
+    /// <remarks>This method sends an HTTP POST request to the endpoint <c>api/monteur/assign-to-anlage</c>
+    /// with the provided DTO as the request body. Ensure that the <see cref="AssignMonteurToAnlageDto"/> object is
+    /// properly populated before calling this method.</remarks>
+    /// <param name="dto">The data transfer object containing the details required to assign a Monteur to an Anlage.</param>
+    /// <returns>A <see cref="MonteurWithAnlageDto"/> object containing the details of the assigned Monteur and Anlage if the
+    /// operation is successful; otherwise, <see langword="null"/>.</returns>
+    /// <exception cref="HttpRequestException">Thrown if the HTTP request to assign the Monteur to the Anlage fails. The exception message includes the HTTP
+    /// status code and error details.</exception>
+
+    public async Task<MonteurWithAnlageDto?> AssignMonteurToAnlage(AssignMonteurToAnlageDto dto)
     {
         try
         {
-            // Format the URL with the MonteurId and AnlageId
-            var url = $"api/monteur/{monteurId}/assign-to-anlage/{anlageId}";
+            var content = JsonContent.Create(dto);
 
-            // Send a POST request to the API with the payload
-            var response = await _httpClient.PostAsync(url, null);
-            // Ensure the response is successful
+            var response = await _httpClient.PostAsync("api/monteur/assign-to-anlage", content);
             if (response.IsSuccessStatusCode)
             {
-                // Deserialize and return the response
                 return await response.Content.ReadFromJsonAsync<MonteurWithAnlageDto>();
             }
             else
             {
-                // Log or handle the error
                 var errorContent = await response.Content.ReadAsStringAsync();
                 throw new HttpRequestException($"Failed to assign Monteur to Anlage. Status: {response.StatusCode}, Error: {errorContent}");
             }
@@ -196,6 +210,28 @@ public class MonteurService
         {
             // Log or rethrow the exception as needed
             Console.WriteLine($"Error in AssignMonteurToAnlage: {ex.Message}");
+            throw;
+        }
+    }
+
+    public async Task<bool> RemoveAnlageFromMonteur(int monteurId)
+    {
+        try
+        {
+            var response = await _httpClient.DeleteAsync($"api/monteur/remove-assignment/{monteurId}");
+            if (response.IsSuccessStatusCode)
+            {
+                return true; 
+            }
+            else
+            {
+                var errorContent = await response.Content.ReadAsStringAsync();
+                throw new HttpRequestException($"Failed to remove Anlage from Monteur. Status: {response.StatusCode}, Error: {errorContent}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error in RemoveAnlageFromMonteur: {ex.Message}");
             throw;
         }
     }

@@ -20,6 +20,7 @@
                     <GridColumn Field=@nameof(MonteurWithAnlageDto.MonteurId) HeaderText="Monteur ID" TextAlign="TextAlign.Left" Width="80" IsPrimaryKey="true"></GridColumn>
                     <GridColumn Field=@nameof(MonteurWithAnlageDto.Vorname) HeaderText="Vorname" Width="150"></GridColumn>
                     <GridColumn Field=@nameof(MonteurWithAnlageDto.Nachname) HeaderText="Nachname" Width="150"></GridColumn>
+                    <GridColumn Field=@nameof(MonteurWithAnlageDto.Sequence) HeaderText="Reihenfolge" Width="40"></GridColumn>
                     <GridColumn Field=@nameof(MonteurWithAnlageDto.AnlageId) HeaderText="Anlage ID" Width="100"></GridColumn>
                     <GridColumn Field=@nameof(MonteurWithAnlageDto.AnlageName) HeaderText="Anlage Name" Width="200"></GridColumn>
                 </GridColumns>
@@ -29,19 +30,32 @@
         <div class="row mt-4">
             <h4>Assign/Reassign Monteur to Anlage</h4>
             <div class="form-group">
-                <label for="monteurSelect">Select Monteur:</label>
+                <label for="monteurSelect">Wähle Monteur:</label>
                 <SfDropDownList TItem="MonteurResponse" TValue="int" PopupHeight="230px" Placeholder="wähle Monteur" @bind-Value="@SelectedMonteurId" DataSource="@Monteure">
                     <DropDownListFieldSettings Text="FullName" Value="MonteurId" />
                 </SfDropDownList>
             </div>
-            <div class="form-group mt-3">
-                <label for="anlageSelect">Select Anlage:</label>
+            <div class="form-row d-flex align-items-baseline-end">
+                <div class="form-group mr-3">
+                <label for="anlageSelect">Wähle Anlage:</label>
                 <SfDropDownList TItem="AnlageDto" TValue="int" DataSource="@Anlagen" Placeholder="Wähle Anlage" @bind-Value="SelectedAnlageId"> 
                     <DropDownListFieldSettings Text = "AnlageName" Value = "AnlageId" />
                 </SfDropDownList>
             </div>
-            <div class="form-group mt-3">
-                <SfButton CssClass="e-primary" OnClick="AssignMonteurToAnlage">Assign/Reassign</SfButton>
+            <div class="form-group">
+                <label for="anlageSelect">Wähle Reihenfolge:</label>
+                <SfDropDownList TValue="int" TItem="int" DataSource="@Reihenfolge"
+                                Placeholder="Wähle eine Zahl" @bind-Value="SelectedSequence">
+                </SfDropDownList>
+            </div>
+            </div>
+            <div class="form-row d-flex align-items-end">
+                <div class="form-group me-3">
+                    <SfButton CssClass="e-primary" OnClick="AssignMonteurToAnlage">Assign/Reassign</SfButton>
+                </div>
+                <div class="form-group">
+                    <SfButton CssClass="e-primary" OnClick="RemoveAnlageFromMonteur">Anlage entfernen</SfButton>
+                </div>
             </div>
         </div>
     </div>
@@ -63,6 +77,8 @@
 
     private int SelectedMonteurId { get; set; }
     private int SelectedAnlageId { get; set; }
+    private int SelectedSequence { get; set; } = 1;
+    private List<int> Reihenfolge = new List<int>() { 1, 2, 3, 4};
 
     protected override async Task OnInitializedAsync()
     {
@@ -121,7 +137,7 @@
     {
         try
         {
-            if (SelectedMonteurId > 0 && SelectedAnlageId > 0)
+            if (SelectedMonteurId > 0 && SelectedAnlageId > 0 && SelectedSequence > 0)
             {
                 var alreadyAssigned = Data.Any(m => m.MonteurId == SelectedMonteurId && m.AnlageId == SelectedAnlageId);
                 if (alreadyAssigned)
@@ -129,7 +145,19 @@
                     await ToastService.ShowToast("Dieser Monteur ist bereits dieser Anlage zugeordnet.", false);
                     return;
                 }
-                await MonteurService.AssignMonteurToAnlage(SelectedMonteurId, SelectedAnlageId);
+                var sequenceExistsForAnlage = Data.Any(m => m.AnlageId == SelectedAnlageId && m.Sequence == SelectedSequence);
+                if (sequenceExistsForAnlage)
+                {
+                    await ToastService.ShowToast("Diese Reihenfolge ist für diese Anlage bereits vergeben.", false);
+                    return;
+                }
+                var dto = new AssignMonteurToAnlageDto
+                {
+                    MonteurId = SelectedMonteurId,
+                    AnlageId = SelectedAnlageId,
+                    Sequence = SelectedSequence
+                };
+                await MonteurService.AssignMonteurToAnlage(dto);
 
                 await LoadData();
 
@@ -161,6 +189,34 @@
         catch (Exception ex)
         {
             await ToastService.ShowToast($"Fehler beim Zuweisen des Monteurs zur Anlage: {ex.Message}", false);
+        }
+    }
+
+    private async Task RemoveAnlageFromMonteur()
+    {
+        try
+        {
+            if (SelectedMonteurId > 0)
+            {
+                await MonteurService.RemoveAnlageFromMonteur(SelectedMonteurId);
+                await LoadData();
+                var updatedMonteur = Data.FirstOrDefault(m => m.MonteurId == SelectedMonteurId);
+                if (updatedMonteur != null)
+                {
+                    updatedMonteur.AnlageId = 0;
+                    updatedMonteur.AnlageName = null;
+                }
+                StateHasChanged();
+                await ToastService.ShowToast("Anlage erfolgreich vom Monteur entfernt.", true);
+            }
+            else
+            {
+                await ToastService.ShowToast("Bitte wähle einen Monteur.", false);
+            }
+        }
+        catch (Exception ex)
+        {
+            await ToastService.ShowToast($"Fehler beim Entfernen der Anlage vom Monteur: {ex.Message}", false);
         }
     }
 }

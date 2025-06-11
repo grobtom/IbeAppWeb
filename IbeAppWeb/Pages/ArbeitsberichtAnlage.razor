@@ -200,7 +200,7 @@
         var module = await JS.InvokeAsync<IJSObjectReference>("import", "./js/imageHelper.js");
 
         // Funktion aufrufen
-        base64Image = await module.InvokeAsync<string>("getImageAsBase64", "images/logos/logo_oxid.png");
+        base64Image = await module.InvokeAsync<string>("getImageAsBase64", "images/logos/exrohrlogo.png");
     }
 
     public async Task ToolbarClickHandler(Syncfusion.Blazor.Navigations.ClickEventArgs args)

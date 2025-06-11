@@ -145,6 +145,7 @@ else
                 await ToastService.ShowToast("Monteur erfolgreich gelöscht.", true);
 
                 await LoadData();
+                StateHasChanged();  
             }
             else
             {

@@ -7,4 +7,5 @@ public class MonteurWithAnlageDto
     public string? Nachname { get; set; }
     public int? AnlageId { get; set; }
     public string? AnlageName { get; set; }
+    public int Sequence { get; set; } = 0; 
 }

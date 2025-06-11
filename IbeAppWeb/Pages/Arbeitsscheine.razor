@@ -312,18 +312,25 @@ else
 
     private async Task LoadImage()
     {
-        // JS-Modul laden
-        var module = await JS.InvokeAsync<IJSObjectReference>("import", "./js/imageHelper.js");
-
-        // Funktion aufrufen
-        base64Image = await module.InvokeAsync<string>("getImageAsBase64", "images/logos/logo_oxid.png");
+        try
+        {
+            var module = await JS.InvokeAsync<IJSObjectReference>("import", "./js/imageHelper.js");
+            base64Image = await module.InvokeAsync<string>("getImageAsBase64", "images/logos/exrohrlogo.png");
+            if (string.IsNullOrWhiteSpace(base64Image))
+            {
+                base64Image = null; 
+            }
+        }
+        catch
+        {
+            base64Image = null; 
+        }
     }
 
     private async Task LoadProjects()
     {
         try
         {
-            // Only fetch active projects if not already loaded
             if (projects == null || projects.Count == 0)
                 projects = await ProjectService.GetActiveProjectsAsync();
         }
@@ -471,7 +478,12 @@ else
             }
         };
 
-        pdfRows.Add(ProcessPdfRow("Monteure", data?.Monteur ?? "N/A", "Kurztext", data?.Kurztext ?? "N/A"));
+        pdfRows.Add(ProcessPdfRow(
+            "Monteure",
+            data?.Monteur ?? "N/A",
+            "Kurztext",
+            data?.Kurztext ?? "N/A"
+        ));
         pdfRows.Add(ProcessPdfRow("Preis", $"{preis.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE"))} €", "Positionspreis", $"{positionssumme.ToString("N2", System.Globalization.CultureInfo.GetCultureInfo("de-DE"))} €"));
         pdfRows.Add(ProcessPdfRow(
             "Anzahl Monteure", $"{monteurCount}",
