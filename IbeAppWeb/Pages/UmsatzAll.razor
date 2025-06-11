@@ -14,7 +14,7 @@
 
 
 <h3>Umsatz Management</h3>
-l
+
 <EditForm Model="@formModel" OnValidSubmit="FetchUmsatzData">
     <DataAnnotationsValidator />
     <ValidationSummary />
@@ -58,10 +58,11 @@ l
             @{
                 var project = (detailcontext as UmsatzFahrzeugMonteurProjectDto);
             }
-            <SfGrid DataSource="@project?.UmsatzProject" AllowPaging="true" AllowResizing="true" AllowSorting="true" Height="300px">
+            <SfGrid DataSource="@project?.UmsatzProject" AllowPaging="true" AllowResizing="true" AllowTextWrap="true" AllowSorting="true" Height="300px">
                 <GridPageSettings PageCount="5"></GridPageSettings>
                 <GridColumns>
-                    <GridColumn Field="@nameof(UmsatzFahrzeugMonteurDto.ProjectName)" HeaderText="Project Name" Width="150"></GridColumn>
+                    <GridColumn Field="@nameof(UmsatzFahrzeugMonteurDto.PkLvPos)" HeaderText="LV Position" Width="60"></GridColumn>
+                    <GridColumn Field="@nameof(UmsatzFahrzeugMonteurDto.Kurztext)" HeaderText="Kurztext" Width="150" AllowGrouping="false"></GridColumn>
                     <GridColumn Field="@nameof(UmsatzFahrzeugMonteurDto.Ausfuehrungsdatum)" HeaderText="Ausführungsdatum" Format="d" TextAlign="TextAlign.Center" Width="150"></GridColumn>
                     <GridColumn Field="@nameof(UmsatzFahrzeugMonteurDto.Fahrzeug)" HeaderText="Anlage" Width="150"></GridColumn>
                     <GridColumn Field="@nameof(UmsatzFahrzeugMonteurDto.Kolonnenfuehrer)" HeaderText="Kolonnenführer" Width="150"></GridColumn>
