@@ -1,4 +1,5 @@
 ﻿using IbeAppWeb.DTOs;
+using IbeAppWeb.DTOs.Monteur;
 using IbeAppWeb.Validation;
 using System.Net.Http.Json;
 using System.Text.Json;
@@ -233,6 +234,28 @@ public class MonteurService
         {
             Console.WriteLine($"Error in RemoveAnlageFromMonteur: {ex.Message}");
             throw;
+        }
+    }
+
+    public async Task<MonteurAnlageHistoryDto?> GetMonteurAnlageHistory(int monteurId)
+    {
+        try
+        {
+            var response = await _httpClient.GetAsync($"api/monteurhistory/{monteurId}");
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadFromJsonAsync<MonteurAnlageHistoryDto>();
+            }
+            else
+            {
+                var errorContent = await response.Content.ReadAsStringAsync();
+                throw new HttpRequestException($"Failed to fetch Monteur Anlage history. Status: {response.StatusCode}, Error: {errorContent}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error in GetMonteurAnlageHistory: {ex.Message}");
+            return null; // Return null on failure
         }
     }
 }
