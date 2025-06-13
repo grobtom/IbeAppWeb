@@ -1,4 +1,4 @@
-﻿namespace IbeAppWeb.DTOs
+﻿namespace IbeAppWeb.DTOs.Monteur
 {
     public class MonteurDto
     {
