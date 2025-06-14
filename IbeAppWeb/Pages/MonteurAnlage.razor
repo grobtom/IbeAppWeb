@@ -1,9 +1,10 @@
 ﻿@page "/monteuranlage"
-@using Syncfusion.Blazor.Grids
+@using IbeAppWeb.DTOs
+@using IbeAppWeb.DTOs.Monteur
+@using IbeAppWeb.Services
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor.DropDowns
-@using IbeAppWeb.DTOs
-@using IbeAppWeb.Services
+@using Syncfusion.Blazor.Grids
 @inject MonteurService MonteurService
 @inject AnlagenService AnlagenService
 @inject IbeToastService ToastService
@@ -16,6 +17,25 @@
             <SfGrid @ref="Grid" DataSource="@Data" AllowPaging="true">
                 <GridPageSettings PageCount="5"></GridPageSettings>
                 <GridEvents TValue="MonteurWithAnlageDto" RowSelected="OnRowSelected"></GridEvents>
+                <GridTemplates>
+                    <DetailTemplate Context="detailcontext">
+                        @{ 
+                            var data = (detailcontext as MonteurWithAnlageDto);
+                        }
+                        @if (data.History != null)
+                        {
+                            <SfGrid DataSource="@data.History" AllowPaging="true" AllowSorting="true" Height="300px">
+                                <GridPageSettings PageCount="5"></GridPageSettings>
+                                <GridColumns>
+                                    <GridColumn Field="@nameof(History.AnlageName)" HeaderText="Anlage Name" Width="80"></GridColumn>
+                                    <GridColumn Field="@nameof(History.MonteurName)" HeaderText="Monteur Name" Width="80"></GridColumn>
+                                    <GridColumn Field="@nameof(History.WechselDatum)" HeaderText="Wechseldatum" Width="60"></GridColumn>
+                                    <GridColumn Field="@nameof(History.Kommentar)" HeaderText="Kommentar" Width="200"></GridColumn>
+                                </GridColumns>
+                            </SfGrid>                            
+                        }
+                    </DetailTemplate>
+                </GridTemplates>
                 <GridColumns>
                     <GridColumn Field=@nameof(MonteurWithAnlageDto.MonteurId) HeaderText="Monteur ID" TextAlign="TextAlign.Left" Width="80" IsPrimaryKey="true"></GridColumn>
                     <GridColumn Field=@nameof(MonteurWithAnlageDto.Vorname) HeaderText="Vorname" Width="150"></GridColumn>
@@ -74,6 +94,7 @@
 
     private IEnumerable<MonteurResponse> Monteure { get; set; } = new List<MonteurResponse>();
     private IEnumerable<AnlageDto> Anlagen { get; set; } = new List<AnlageDto>();
+    private MonteurAnlageHistoryDto? History { get; set; }
 
     private int SelectedMonteurId { get; set; }
     private int SelectedAnlageId { get; set; }
