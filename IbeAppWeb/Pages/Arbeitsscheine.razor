@@ -542,7 +542,10 @@ else
             );
             arbeitsscheine = arbeitsscheinResultDto.Arbeitsscheine ?? new();
             gesamtSumme = GetSum();
-            LvSumme = GetLvSum();
+            LvSumme = await ArbeitsscheinService.GetArbeitsberichtSumme(
+                ComboBoxValue: ComboBoxValue,
+                projectDb: projectDb
+            );
 
             await grid.RefreshColumns();
             await grid.Refresh();

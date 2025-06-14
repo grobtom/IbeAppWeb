@@ -190,6 +190,32 @@ public class ArbeitsscheinService
         }
     }
 
+    public async Task<decimal> GetArbeitsberichtSumme(int ComboBoxValue, string projectDb = "defaultDb")
+    {
+        try
+        {
+            HttpRequestMessage request;
 
+            if (ComboBoxValue == 1)
+            {
+                request = new HttpRequestMessage(HttpMethod.Get, "api/lvkanal/summe");
+            }
+            else
+            {
+                request = new HttpRequestMessage(HttpMethod.Get, "api/lvschacht/summe");
+            }
+
+            request.Headers.Add("X-IbeProjectDB", projectDb);
+            var response = await _httpClient.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadFromJsonAsync<decimal>();
+            return result;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error calculating Arbeitsbericht sum");
+            return 0;
+        }
+    }
 }
 
