@@ -99,7 +99,7 @@
     private int SelectedMonteurId { get; set; }
     private int SelectedAnlageId { get; set; }
     private int SelectedSequence { get; set; } = 1;
-    private List<int> Reihenfolge = new List<int>() { 1, 2, 3, 4};
+    private List<int> Reihenfolge = new List<int>() { 0, 1, 2, 3, 4};
 
     protected override async Task OnInitializedAsync()
     {
@@ -158,7 +158,7 @@
     {
         try
         {
-            if (SelectedMonteurId > 0 && SelectedAnlageId > 0 && SelectedSequence > 0)
+            if (SelectedMonteurId > 0 && SelectedAnlageId > 0 && SelectedSequence >= 0)
             {
                 var alreadyAssigned = Data.Any(m => m.MonteurId == SelectedMonteurId && m.AnlageId == SelectedAnlageId);
                 if (alreadyAssigned)
@@ -166,10 +166,10 @@
                     await ToastService.ShowToast("Dieser Monteur ist bereits dieser Anlage zugeordnet.", false);
                     return;
                 }
-                var sequenceExistsForAnlage = Data.Any(m => m.AnlageId == SelectedAnlageId && m.Sequence == SelectedSequence);
+                var sequenceExistsForAnlage = Data.Any(m => m.AnlageId == SelectedAnlageId && m.Sequence == SelectedSequence && SelectedSequence > 0);
                 if (sequenceExistsForAnlage)
                 {
-                    await ToastService.ShowToast("Diese Reihenfolge ist für diese Anlage bereits vergeben.", false);
+                    await ToastService.ShowToast($"Diese Reihenfolge ist für diese Anlage bereits vergeben {sequenceExistsForAnlage.ToString()}.", false);
                     return;
                 }
                 var dto = new AssignMonteurToAnlageDto
