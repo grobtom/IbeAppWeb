@@ -97,39 +97,26 @@ public class MonteurService
         }
     }
 
-    public async Task<MonteurResponse?> UpdateMonteur(int Id, MonteurResponse Dto)
+    public async Task<MonteurResponse?> UpdateMonteur(MonteurResponse dto)
     {
         try
         {
-            var response = await _httpClient.PutAsJsonAsync($"api/monteur/{Id}", Dto);
+            UpdateMonteurDto monteurUpdateDto = new UpdateMonteurDto
+            {
+                MonteurId = dto.MonteurId,
+                Vorname = dto.Vorname,
+                Nachname = dto.Nachname,
+                Email = dto.Email,
+                IsDeleted = dto.IsDeleted,
+            };
+            var payload = new { monteur = monteurUpdateDto };
+            var response = await _httpClient.PutAsJsonAsync("api/monteur", payload);
 
             if (response.IsSuccessStatusCode)
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
-                Console.WriteLine($"Raw JSON response: {responseContent}");
-
-                if (!string.IsNullOrWhiteSpace(responseContent))
-                {
-                    try
-                    {
-                        var options = new JsonSerializerOptions
-                        {
-                            PropertyNameCaseInsensitive = true
-                        };
-                        return JsonSerializer.Deserialize<MonteurResponse>(responseContent, options);
-                    }
-                    catch (JsonException jsonEx)
-                    {
-                        Console.WriteLine($"Deserialization error: {jsonEx.Message}");
-                        Console.WriteLine($"Raw response content: {responseContent}");
-                        return null;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Empty or whitespace response from the server.");
-                    return null;
-                }
+                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+                return JsonSerializer.Deserialize<MonteurResponse>(responseContent, options);
             }
             else
             {

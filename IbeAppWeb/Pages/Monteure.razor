@@ -27,8 +27,9 @@ else
                     <GridEvents TValue="MonteurResponse" OnActionBegin="OnActionBegin"></GridEvents>
                     <GridColumns>
                         <GridColumn Field=@nameof(MonteurResponse.MonteurId) HeaderText="Monteur ID" TextAlign="TextAlign.Left" Width="60" IsPrimaryKey="true"></GridColumn>
-                        <GridColumn Field=@nameof(MonteurResponse.Vorname) HeaderText="Vorname" Width="150" ValidationRules="@(new ValidationRules { Required = true, MinLength = 5 })"></GridColumn>
+                        <GridColumn Field=@nameof(MonteurResponse.Vorname) HeaderText="Vorname" Width="150" ValidationRules="@(new ValidationRules { Required = true, MinLength = 3 })"></GridColumn>
                         <GridColumn Field=@nameof(MonteurResponse.Nachname) HeaderText="Nachname" Format="d" TextAlign="TextAlign.Left" Width="150"></GridColumn>
+                        <GridColumn Field=@nameof(MonteurResponse.Email) HeaderText="E-Mail" Width="200" ValidationRules="@(new ValidationRules { Required = true, Email = true })"></GridColumn>
                         <GridColumn Field=@nameof(MonteurResponse.IsDeleted) HeaderText="Aktiv" TextAlign="TextAlign.Left" Width="80" AllowEditing="false">
                             <Template>
                                 @{
@@ -106,23 +107,24 @@ else
                 await ToastService.ShowToast("Grid is not initialized.", false);
             }
 
-            await LoadData();
         }
         else if (args.RequestType == Syncfusion.Blazor.Grids.Action.Delete)
         {
             await CustomDelete(args.Data);
-        }
+        }        
     }
 
     private async Task CustomUpdate(MonteurResponse monteur)
     {
         try
         {
-            var updatedMonteur = await MonteurService.UpdateMonteur(monteur.MonteurId, monteur);
+            var updatedMonteur = await MonteurService.UpdateMonteur(monteur);
 
             if (updatedMonteur != null)
             {
                 await ToastService.ShowToast("Monteur erfolgreich aktualisiert.", true);
+                await LoadData();
+                StateHasChanged();
             }
             else
             {
@@ -170,6 +172,7 @@ else
                 await ToastService.ShowToast("Monteur erfolgreich hinzugefügt.", true);
 
                 await LoadData();
+                StateHasChanged();
             }
             else
             {

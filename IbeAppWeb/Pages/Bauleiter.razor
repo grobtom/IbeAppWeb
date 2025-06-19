@@ -92,6 +92,7 @@
                 <GridColumns>
                     <GridColumn Field=@nameof(BauleiterWithProjectsDto.Vorname) HeaderText="Vorname" Width="150" ValidationRules="@(new ValidationRules{ Required=true, MinLength=5 })"></GridColumn>
                     <GridColumn Field=@nameof(BauleiterWithProjectsDto.Nachname) HeaderText="Nachname" Format="d" TextAlign="TextAlign.Left" Width="150"></GridColumn>
+                    <GridColumn Field=@nameof(BauleiterWithProjectsDto.Email) HeaderText="E-Mail" TextAlign="TextAlign.Left" Width="200"></GridColumn>
                     <GridColumn Field=@nameof(BauleiterWithProjectsDto.IsDeleted) HeaderText="Aktiv" TextAlign="TextAlign.Left" Width="80" AllowEditing="false">
                         <Template>
                             @{
