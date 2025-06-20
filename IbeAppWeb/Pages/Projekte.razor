@@ -8,10 +8,13 @@
 @using IbeAppWeb.Services
 @using System.ComponentModel.DataAnnotations
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Microsoft.AspNetCore.Authorization
 @inject ProjectService ProjectService
 @inject IbeToastService ToastService
 @inject BauleiterService BauleiterService
 @inject AuthenticationStateProvider AuthenticationStateProvider
+
+@attribute [Authorize(Roles = "Bauleiter")]
 
 <h3>Projekte Management</h3>
 

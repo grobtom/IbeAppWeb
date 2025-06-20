@@ -71,4 +71,50 @@ public class BauleiterService
             return Enumerable.Empty<BauleiterWithProjectsDto>();
         }
     }
+
+    public async Task<BauleiterWithProjectsDto?> UpdateBauleiter(BauleiterWithProjectsDto dto)
+    {
+        try
+        {
+            var bauleiterDto = new BauleiterDto
+            {
+                BauleiterId = dto.BauleiterId,
+                Vorname = dto.Vorname,
+                Nachname = dto.Nachname,
+                Email = dto.Email,
+                IsDeleted = dto.IsDeleted
+            };
+            var payload = new { Bauleiter = bauleiterDto };
+
+
+            var response = await _httpClient.PutAsJsonAsync($"api/Bauleiter", payload);
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadFromJsonAsync<BauleiterWithProjectsDto>();
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            {
+                throw new AccessTokenNotAvailableException(
+                    _navigationManager,
+                    null,
+                    new[] { "api.write" }
+                );
+            }
+            else
+            {
+                var errorContent = await response.Content.ReadAsStringAsync();
+                throw new HttpRequestException($"Failed to update Bauleiter. Status: {response.StatusCode}, Error: {errorContent}");
+            }
+        }
+        catch (AccessTokenNotAvailableException ex)
+        {
+            ex.Redirect();
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error in UpdateBauleiter: {ex.Message}");
+            return null;
+        }
+    }
 }

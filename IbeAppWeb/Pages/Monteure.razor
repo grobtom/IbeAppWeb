@@ -21,9 +21,9 @@ else
     <div class="col-lg-12 control-section">
         <div class="content-wrapper">
             <div class="row">
-                <SfGrid @ref="Grid" DataSource="@Data" AllowPaging="true" Toolbar="@(new List<string>() { "Add", "Edit", "Delete", "Update", "Cancel" })">
-                    <GridPageSettings PageCount="5"></GridPageSettings>
-                    <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog"></GridEditSettings>
+                <SfGrid @ref="Grid" DataSource="@Data" AllowPaging="true" Toolbar="@(new List<string>() { "Edit", "Delete", "Cancel" })">
+                    <GridPageSettings PageCount="5" PageSizes="true" PageSize="10"></GridPageSettings>
+                    <GridEditSettings AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog"></GridEditSettings>
                     <GridEvents TValue="MonteurResponse" OnActionBegin="OnActionBegin"></GridEvents>
                     <GridColumns>
                         <GridColumn Field=@nameof(MonteurResponse.MonteurId) HeaderText="Monteur ID" TextAlign="TextAlign.Left" Width="60" IsPrimaryKey="true"></GridColumn>

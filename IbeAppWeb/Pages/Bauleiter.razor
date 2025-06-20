@@ -17,8 +17,10 @@
 <div class="col-lg-12 control-section">
     <div class="content-wrapper">
         <div class="row">
-            <SfGrid @ref="Grid" DataSource="@bauleiter" AllowPaging="true" >
+            <SfGrid @ref="Grid" DataSource="@bauleiter" AllowPaging="true" Toolbar="@(new List<string>() { "Edit", "Delete", "Cancel" })">
                 <GridPageSettings PageCount="5" PageSizes="true" PageSize="10"></GridPageSettings>
+                <GridEditSettings AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog"></GridEditSettings>
+                <GridEvents TValue="BauleiterWithProjectsDto" OnActionBegin="OnActionBegin"></GridEvents>
                 <GridTemplates>
                     <DetailTemplate Context="detailcontext">
                         @{
@@ -29,7 +31,7 @@
                             <SfGrid DataSource="@data.Projects"
                                     AllowPaging="true"
                                     AllowSorting="true"
-                                    Height="300px">
+                                    Height="200px">
                                 <GridPageSettings PageCount="5"></GridPageSettings>
                                 <GridColumns>
                                     <GridColumn Field="@nameof(Project.ProjectName)" HeaderText="Projekt Name" Width="150"></GridColumn>
@@ -131,6 +133,7 @@
         {
             isLoading = true;
             bauleiter = await BauleiterService.GetBauleiterWithProjects();
+            await ToastService.ShowToast("Bauleiter erfolgreich geladen.", true, 2000);
         }
         catch (Exception ex)
         {
@@ -139,6 +142,51 @@
         finally
         {
             isLoading = false;
+        }
+    }
+
+    private async Task OnActionBegin(ActionEventArgs<BauleiterWithProjectsDto> args)
+    {
+        if (args.RequestType == Syncfusion.Blazor.Grids.Action.Save)
+        {
+            args.Cancel = true;
+            if (args.Action == "Add")
+            {
+                //await CustomAdd(args.Data);
+            }
+            else if (args.Action == "Edit")
+            {
+                await CustomUpdate(args.Data);
+            }
+
+            if (Grid != null)
+            {
+                await Grid.CloseEditAsync();
+            }
+            else
+            {
+                await ToastService.ShowToast("Grid is not initialized.", false);
+            }
+
+        }
+        else if (args.RequestType == Syncfusion.Blazor.Grids.Action.Delete)
+        {
+            //await CustomDelete(args.Data);
+        }
+    }
+
+    private async Task CustomUpdate(BauleiterWithProjectsDto data)
+    {
+        try
+        {
+            await BauleiterService.UpdateBauleiter(data);
+            await ToastService.ShowToast("Bauleiter erfolgreich hinzugefügt.", true, 1000);
+            await LoadBauleiter();
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            await ToastService.ShowToast($"Fehler beim Hinzufügen des Bauleiters: {ex.Message}", false);
         }
     }
 }
