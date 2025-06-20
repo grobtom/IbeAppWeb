@@ -7,9 +7,11 @@
 @using Syncfusion.Blazor.DropDowns
 @using IbeAppWeb.Services
 @using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @inject ProjectService ProjectService
 @inject IbeToastService ToastService
 @inject BauleiterService BauleiterService
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
 <h3>Projekte Management</h3>
 
@@ -125,19 +127,39 @@
     protected override async Task OnInitializedAsync()
     {
         ProjectContext = new EditContext(new Project());
-        Task taskProject =  LoadProjects();
-        Task taskBauleiter = LoadBauleiter();
-        await Task.WhenAll(taskProject, taskBauleiter);
+        
+        await LoadBauleiter();
+        await LoadProjects();
     }
 
     private async Task LoadProjects()
     {
         try
         {
+            var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+            var user = authState.User;           
+
             isLoading = true;
+
             var fetchedProjects = await ProjectService.GetProjectsAsync();
-            projects = fetchedProjects ?? new List<Project>();
-            isLoading = false;  
+
+            var approle = user.Claims.FirstOrDefault(c => c.Type == "appRole")?.Value;
+
+
+            if (approle == "Bauleiter")
+            {
+                var loggedBauleiter = bauleiter.FirstOrDefault(b => b.Email == user.Claims.First(c => c.Type == "preferred_username").Value);
+
+                projects = fetchedProjects
+                    .Where(f => f.BauleiterId == loggedBauleiter?.BauleiterId)
+                    .ToList();
+            }
+            else
+            {
+                projects = fetchedProjects.ToList();
+            }
+
+            isLoading = false;
             if (projects.Count == 0)
             {
                 await ToastService.ShowToast("Keine Projekte gefunden.", false);
@@ -166,7 +188,7 @@
             }
             else
             {
-                await ToastService.ShowToast($"{bauleiter.ToList().Count} Bauleiter erfolgreich geladen.", true);
+                //await ToastService.ShowToast($"{bauleiter.ToList().Count} Bauleiter erfolgreich geladen.", true);
             }
         }
         catch (Exception ex)
