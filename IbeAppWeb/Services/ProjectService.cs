@@ -1,4 +1,6 @@
 using IbeAppWeb.DTOs;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 
 public class ProjectService
@@ -34,8 +36,7 @@ public class ProjectService
         try
         {
             var request = new HttpRequestMessage(HttpMethod.Get, $"api/IbeProject/activ");
-            request.Headers.Add("X-IbeProjectDB", "IbeProjects");
-            var response = await _httpClient.SendAsync(request);
+            request.Headers.Add("X-IbeProjectDB", "IbeProjects"); var response = await _httpClient.SendAsync(request);
             response.EnsureSuccessStatusCode();
 
             return await response.Content.ReadFromJsonAsync<List<Project>>();

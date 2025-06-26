@@ -14,7 +14,7 @@
 @inject BauleiterService BauleiterService
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
-@attribute [Authorize(Roles = "Bauleiter")]
+@attribute [Authorize(Roles = "Bauleiter, IbeUser,IbeAdmin")]
 
 <h3>Projekte Management</h3>
 

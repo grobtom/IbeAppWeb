@@ -37,7 +37,13 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState, CustomUserAcco
 
 builder.Services.AddScoped<IbeToastService>();
 builder.Services.AddScoped<ArbeitsscheinService>();
-builder.Services.AddScoped<ProjectService>();
+builder.Services.AddScoped<ProjectService>(sp =>
+{
+    var clientFactory = sp.GetRequiredService<IHttpClientFactory>();
+    var httpClient = clientFactory.CreateClient("AuthorizedAPI");
+    var logger = sp.GetRequiredService<ILogger<ProjectService>>();
+    return new ProjectService(httpClient, logger);
+});
 builder.Services.AddScoped<UmsatzService>();
 builder.Services.AddScoped<ProjectAnlageService>();
 builder.Services.AddScoped<AnlagenService>();
