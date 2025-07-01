@@ -86,7 +86,7 @@ else
     <SfGrid ID="Grid" @ref="grid" DataSource="@arbeitsberichtSummeDto" AllowPaging="true" 
         AllowSelection="true" AllowReordering="true" 
             AllowGrouping="true" AllowResizing="true" Height="500">
-        <GridPageSettings PageCount="5"></GridPageSettings>
+        <GridPageSettings PageCount="5" PageSizes="true" PageSize="8"></GridPageSettings>
         <GridTemplates>
             <DetailTemplate>
                 @{
@@ -94,6 +94,8 @@ else
                     <SfGrid TValue="ArbeitsscheinDto"
                             DataSource="arbeitsbericht?.Arbeitsscheine"
                             AllowPaging="true">
+                        <GridPageSettings PageCount="5" PageSizes="true" PageSize="8"></GridPageSettings>
+
                         <GridTemplates>
                             <DetailTemplate Context="ascontext">
                                 @{
@@ -175,6 +177,7 @@ else
         </GridTemplates>
         <GridColumns>
             <GridColumn Field=@nameof(ArbeitsberichtDbSummeDto.Projektname) HeaderText="Projekt" Width="80"></GridColumn>
+            <GridColumn Field=@nameof(ArbeitsberichtDbSummeDto.Summe) HeaderText="Summe" Width="80" Format="N2" TextAlign="TextAlign.Right"></GridColumn>
         </GridColumns>
     </SfGrid>
     <div class="row mt-3">
@@ -283,13 +286,13 @@ else
     {
         if (DateTime.TryParse(e.Value?.ToString(), out var date))
         {
-    formModel.SaniertAm = date;
-    formModel.SaniertAmVon = null;
-    formModel.SaniertAmBis = null;
+            formModel.SaniertAm = date;
+            formModel.SaniertAmVon = null;
+            formModel.SaniertAmBis = null;
         }
         else
         {
-    formModel.SaniertAm = null;
+            formModel.SaniertAm = null;
         }
     }
 
@@ -332,6 +335,7 @@ else
                     saniertAm: formModel.SaniertAm,
                     monteurname: monteurData.FirstOrDefault(m => m.MonteurId == formModel.SelectedMonteurId)?.Nachname ?? string.Empty
                 );
+                gesamtSumme = await GetSumAsync();
             }
             else if (formModel.SelectedAnlageId > 0)
             {
@@ -342,6 +346,7 @@ else
                     saniertAm: formModel.SaniertAm,
                     anlage: anlageData.FirstOrDefault(a => a.AnlageId == formModel.SelectedAnlageId)?.AnlageName ?? string.Empty
                 );
+                 gesamtSumme = await GetSumAsync();
             }
             else
             {
@@ -362,9 +367,9 @@ else
     private Task<decimal> GetSumAsync()
     {
         gesamtSumme = 0;
-        foreach (var item in arbeitsscheine)
+        foreach (var item in arbeitsberichtSummeDto)
         {
-            gesamtSumme += item.Positionssumme;
+            gesamtSumme += item.Summe;
         }
         return Task.FromResult(gesamtSumme);
     }
