@@ -132,7 +132,7 @@
     {
         try
         {
-            var activeProjects = await ProjectService.GetActiveProjectsAsync();
+            var activeProjects = await ProjectService.GetActiveProjectsSimpleAsync();
             projects = activeProjects ?? new List<Project>();
             await ToastService.ShowToast($"Daten erfolgreich geladen.", true);
         }

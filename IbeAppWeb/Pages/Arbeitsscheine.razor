@@ -333,7 +333,7 @@ else
         try
         {
             if (projects == null || projects.Count == 0)
-                projects = await ProjectService.GetActiveProjectsAsync();
+                projects = await ProjectService.GetActiveProjectsSimpleAsync();
         }
         catch
         {

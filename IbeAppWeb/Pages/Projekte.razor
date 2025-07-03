@@ -55,16 +55,119 @@
         <SfGrid @ref="grid" DataSource="@projects" AllowSorting="true" AllowPaging="true" AllowSelection="true">
             <GridPageSettings PageCount="5" PageSizes="true" PageSize="10"></GridPageSettings>
             <GridSelectionSettings Mode="Syncfusion.Blazor.Grids.SelectionMode.Row" Type="Syncfusion.Blazor.Grids.SelectionType.Single"></GridSelectionSettings>
-            <GridEvents RowSelected="RowSelectHandler" RowDeselected="RowDeSelectHandler" TValue="Project"></GridEvents>
+            <GridEvents RowSelected="@RowSelectHandler" RowDeselected="@RowDeSelectHandler" TValue="ProjectCustomerInvoiceDto"></GridEvents>
+            <GridTemplates>
+                <DetailTemplate Context="detailContext">
+                    @{
+                        var project = (detailContext as ProjectCustomerInvoiceDto);
+                    }
+                    <div class="detail-container" style="padding: 20px; background-color: #f8f9fa;">
+                        <!-- Customer Information Section -->
+                        @if (project?.Customer != null)
+                        {
+                            <div class="customer-section" style="margin-bottom: 20px;">
+                                <h5 style="color: #0a76ff; margin-bottom: 10px;">Kunde Informationen</h5>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <table class="table table-sm">
+                                            <tbody>
+                                                <tr>
+                                                    <td><strong>Kunde ID:</strong></td>
+                                                    <td>@project.Customer.CustomerId</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Typ:</strong></td>
+                                                    <td>@(project.Customer.CompanyPrivate ? "Firma" : "Privatperson")</td>
+                                                </tr>
+                                                @if (!project.Customer.CompanyPrivate)
+                                                {
+                                                    <tr>
+                                                        <td><strong>Name:</strong></td>
+                                                        <td>@project.Customer.FirstName @project.Customer.LastName</td>
+                                                    </tr>
+                                                }
+                                                else
+                                                {
+                                                    <tr>
+                                                        <td><strong>Firma:</strong></td>
+                                                        <td>@project.Customer.CompanyName</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <table class="table table-sm">
+                                            <tbody>
+                                                <tr>
+                                                    <td><strong>Telefon:</strong></td>
+                                                    <td>@project.Customer.Telephone</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Mobil:</strong></td>
+                                                    <td>@project.Customer.Mobile</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Email:</strong></td>
+                                                    <td>@project.Customer.Email</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        <!-- Invoices Section -->
+                        @if (project?.Invoices != null && project.Invoices.Any())
+                        {
+                            <div class="invoices-section">
+                                <h5 style="color: #0a76ff; margin-bottom: 10px;">Rechnungen</h5>
+                                <SfGrid DataSource="@project.Invoices" AllowPaging="true" AllowSorting="true" Height="250px">
+                                    <GridPageSettings PageCount="3" PageSize="5"></GridPageSettings>
+                                    <GridColumns>
+                                        <GridColumn Field="@nameof(XInvoice.XInvoiceId)" HeaderText="Rechnung ID" Width="120"></GridColumn>
+                                        <GridColumn Field="@nameof(XInvoice.InvoiceNumber)" HeaderText="Rechnungsnummer" Width="150"></GridColumn>
+                                        <GridColumn Field="@nameof(XInvoice.InvoiceDate)" HeaderText="Rechnungsdatum" Format="dd.MM.yyyy" Width="150"></GridColumn>
+                                        <GridColumn Field="@nameof(XInvoice.InvoiceAmount)" HeaderText="Betrag" Format="C2" TextAlign="TextAlign.Right" Width="120"></GridColumn>
+                                    </GridColumns>
+                                    <GridAggregates>
+                                        <GridAggregate>
+                                            <GridAggregateColumns>
+                                                <GridAggregateColumn Field="@nameof(XInvoice.InvoiceAmount)" Type="AggregateType.Sum" Format="C2">
+                                                    <FooterTemplate>
+                                                        @{
+                                                            var aggregate = (context as AggregateTemplateContext);
+                                                            <div>
+                                                                <strong>Gesamtsumme: @aggregate?.Sum</strong>
+                                                            </div>
+                                                        }
+                                                    </FooterTemplate>
+                                                </GridAggregateColumn>
+                                            </GridAggregateColumns>
+                                        </GridAggregate>
+                                    </GridAggregates>
+                                </SfGrid>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="no-invoices">
+                                <p style="color: #6c757d; font-style: italic;">Keine Rechnungen für dieses Projekt vorhanden.</p>
+                            </div>
+                        }
+                    </div>
+                </DetailTemplate>
+            </GridTemplates>
             <GridColumns>
-                <GridColumn Field=@nameof(Project.ProjectId) HeaderText="Projekt ID" Width="120" IsPrimaryKey="true"></GridColumn>
-                <GridColumn Field=@nameof(Project.ProjectName) HeaderText="Projekt Name" Width="150"></GridColumn>                
-                <GridColumn Field=@nameof(Project.BauleiterFullName) HeaderText="Bauleiter" Width="150"></GridColumn>
-                <GridColumn Field=@nameof(Project.CreatedOnUtc) HeaderText="Erstellt am:" Width="200"></GridColumn>
-                <GridColumn Field=@nameof(Project.DbActive) HeaderText="Aktiv" Format="d" Width="150">
+                <GridColumn Field=@nameof(ProjectCustomerInvoiceDto.ProjectId) HeaderText="Projekt ID" Width="120" IsPrimaryKey="true"></GridColumn>
+                <GridColumn Field=@nameof(ProjectCustomerInvoiceDto.ProjectName) HeaderText="Projekt Name" Width="150"></GridColumn>
+                <GridColumn Field=@nameof(ProjectCustomerInvoiceDto.BauleiterFullName) HeaderText="Bauleiter" Width="150"></GridColumn>
+                <GridColumn Field=@nameof(ProjectCustomerInvoiceDto.CreatedOnUtc) HeaderText="Erstellt am:" Width="200"></GridColumn>
+                <GridColumn Field=@nameof(ProjectCustomerInvoiceDto.DbActive) HeaderText="Aktiv" Format="d" Width="150">
                     <Template>
                         @{
-                            var changeData = (context as Project); 
+                            var changeData = (context as ProjectCustomerInvoiceDto);
                             if (changeData?.DbActive == true)
                             {
                                 <div class="image">
@@ -80,10 +183,10 @@
                         }
                     </Template>
                 </GridColumn>
-                <GridColumn Field=@nameof(Project.IsSchacht) HeaderText="Kanal/Schacht" Format="d" Width="150">
+                <GridColumn Field=@nameof(ProjectCustomerInvoiceDto.IsSchacht) HeaderText="Kanal/Schacht" Format="d" Width="150">
                     <Template>
                         @{
-                            var changeData = (context as Project); 
+                            var changeData = (context as ProjectCustomerInvoiceDto); 
                             if (changeData?.IsSchacht == true)
                             {
                                 <div class="image">
@@ -102,7 +205,7 @@
                 </GridColumn>
                 <GridColumn HeaderText="Arbeitsbericht"  Width="150">
                     <Template>
-                        <a href="@($"arbeitsscheine/{(context as Project)?.ProjectId}/{(context as Project)?.IsSchacht}")" >
+                        <a href="@($"arbeitsscheine/{(context as ProjectCustomerInvoiceDto)?.ProjectId}/{(context as ProjectCustomerInvoiceDto)?.IsSchacht}")">
                             <img src="images/arbeitsbericht.png" alt="Arbeitsbericht" width="24"/>
                         </a>
                     </Template>
@@ -120,16 +223,16 @@
 
 
 @code {
-    private SfGrid<Project> grid = new();
-    private List<Project> projects = new List<Project>();
+    private SfGrid<ProjectCustomerInvoiceDto> grid = new();
+    private List<ProjectCustomerInvoiceDto> projects = new List<ProjectCustomerInvoiceDto>();
     private IEnumerable<BauleiterDto> bauleiter = new List<BauleiterDto>();
     private bool isLoading = false;
     private EditContext? ProjectContext { get; set; }
-    public Project SelectedData = new Project();
+    public ProjectCustomerInvoiceDto SelectedData = new ProjectCustomerInvoiceDto();
 
     protected override async Task OnInitializedAsync()
     {
-        ProjectContext = new EditContext(new Project());
+        ProjectContext = new EditContext(new ProjectCustomerInvoiceDto());
         
         await LoadBauleiter();
         await LoadProjects();
@@ -200,21 +303,24 @@
         }
     }
 
-    public void RowSelectHandler(RowSelectEventArgs<Project> args)
+    public void RowSelectHandler(RowSelectEventArgs<ProjectCustomerInvoiceDto> args)
     {
-        SelectedData = new Project() { ProjectId = args.Data.ProjectId, 
+        SelectedData = new ProjectCustomerInvoiceDto()
+        {
+            ProjectId = args.Data.ProjectId,
             ProjectName = args.Data.ProjectName, 
             CreatedOnUtc = args.Data.CreatedOnUtc,
             DbActive = args.Data.DbActive,
             DbChangedDate = args.Data.DbChangedDate,
             IsSchacht = args.Data.IsSchacht,
             BauleiterId = args.Data.BauleiterId,
-            BauleiterFullName = args.Data.BauleiterFullName
+            Customer = args.Data.Customer,
+            Invoices = args.Data.Invoices
         };
     }
-    public void RowDeSelectHandler(RowDeselectEventArgs<Project> args)
+    public void RowDeSelectHandler(RowDeselectEventArgs<ProjectCustomerInvoiceDto> args)
     {
-        SelectedData = new Project();
+        SelectedData = new ProjectCustomerInvoiceDto();
     }
 
     private async Task UpdateProject()
@@ -225,7 +331,9 @@
                 SelectedData.ProjectId,
                 SelectedData.DbActive,
                 SelectedData.IsSchacht,
-                SelectedData.BauleiterId ?? 0);
+                SelectedData.BauleiterId ?? 0,
+                SelectedData.CustomerId ?? 0
+            );
 
             if (result != null)
             {
