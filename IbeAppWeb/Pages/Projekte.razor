@@ -163,7 +163,7 @@
                 <GridColumn Field=@nameof(ProjectCustomerInvoiceDto.ProjectId) HeaderText="Projekt ID" Width="120" IsPrimaryKey="true"></GridColumn>
                 <GridColumn Field=@nameof(ProjectCustomerInvoiceDto.ProjectName) HeaderText="Projekt Name" Width="150"></GridColumn>
                 <GridColumn Field=@nameof(ProjectCustomerInvoiceDto.BauleiterFullName) HeaderText="Bauleiter" Width="150"></GridColumn>
-                <GridColumn Field=@nameof(ProjectCustomerInvoiceDto.CreatedOnUtc) HeaderText="Erstellt am:" Width="200"></GridColumn>
+                <GridColumn Field=@nameof(ProjectCustomerInvoiceDto.CreatedOnUtc) HeaderText="Erstellt am: (UTC)" Width="200" Type="ColumnType.DateTime"></GridColumn>
                 <GridColumn Field=@nameof(ProjectCustomerInvoiceDto.DbActive) HeaderText="Aktiv" Format="d" Width="150">
                     <Template>
                         @{
