@@ -20,6 +20,13 @@
 
 <SfSpinner @bind-Visible="@isLoading" Label="Loading...." Type="@SpinnerType.Bootstrap"></SfSpinner>
 
+<!-- Custom Search Box -->
+<div class="mb-3" style="margin-bottom: 20px;">
+    <SfTextBox @bind-Value="@searchText" Placeholder="Suchen nach Projekt, Bauleiter, Kunde oder Rechnungsnummer..." 
+               @onkeyup="OnSearchKeyUp" ShowClearButton="true" Width="400px" ValueChange="OnSearchTextChanged" Input="OnSearchCleared">
+    </SfTextBox>
+</div>
+
 <div class="col-lg-12">
     <EditForm Model="@SelectedData" OnValidSubmit="@UpdateProject">
         <div style="padding-top: 20px; display: flex; flex-direction: row; gap: 24px; align-items: center;">
@@ -52,7 +59,7 @@
 @if (projects != null)
 {
     <div>
-        <SfGrid @ref="grid" DataSource="@projects" AllowSorting="true" AllowPaging="true" AllowSelection="true">
+        <SfGrid @ref="grid" DataSource="@filteredProjects" AllowSorting="true" AllowPaging="true" AllowSelection="true">
             <GridPageSettings PageCount="5" PageSizes="true" PageSize="10"></GridPageSettings>
             <GridSelectionSettings Mode="Syncfusion.Blazor.Grids.SelectionMode.Row" Type="Syncfusion.Blazor.Grids.SelectionType.Single"></GridSelectionSettings>
             <GridEvents RowSelected="@RowSelectHandler" RowDeselected="@RowDeSelectHandler" TValue="ProjectCustomerInvoiceDto"></GridEvents>
@@ -225,8 +232,10 @@
 @code {
     private SfGrid<ProjectCustomerInvoiceDto> grid = new();
     private List<ProjectCustomerInvoiceDto> projects = new List<ProjectCustomerInvoiceDto>();
+    private List<ProjectCustomerInvoiceDto> filteredProjects = new List<ProjectCustomerInvoiceDto>();
     private IEnumerable<BauleiterDto> bauleiter = new List<BauleiterDto>();
     private bool isLoading = false;
+    private string searchText = "";
     private EditContext? ProjectContext { get; set; }
     public ProjectCustomerInvoiceDto SelectedData = new ProjectCustomerInvoiceDto();
 
@@ -249,8 +258,16 @@
 
             var fetchedProjects = await ProjectService.GetProjectsAsync();
 
-            var approle = user.Claims.FirstOrDefault(c => c.Type == "appRole")?.Value;
+            if (fetchedProjects == null)
+            {
+                projects = new List<ProjectCustomerInvoiceDto>();
+                filteredProjects = new List<ProjectCustomerInvoiceDto>();
+                isLoading = false;
+                await ToastService.ShowToast("Keine Projekte gefunden.", false);
+                return;
+            }
 
+            var approle = user.Claims.FirstOrDefault(c => c.Type == "appRole")?.Value;
 
             if (approle == "Bauleiter")
             {
@@ -265,6 +282,8 @@
                 projects = fetchedProjects.ToList();
             }
 
+            filteredProjects = projects.ToList();
+
             isLoading = false;
             if (projects.Count == 0)
             {
@@ -277,6 +296,7 @@
         }
         catch (Exception ex)
         {
+            isLoading = false;
             await ToastService.ShowToast($"Fehler beim Laden der Projektaten: {ex.Message}", false);
         }
     }
@@ -292,13 +312,10 @@
             {
                 await ToastService.ShowToast("Keine Bauleiter gefunden.", false);
             }
-            else
-            {
-                //await ToastService.ShowToast($"{bauleiter.ToList().Count} Bauleiter erfolgreich geladen.", true);
-            }
         }
         catch (Exception ex)
         {
+            isLoading = false;
             await ToastService.ShowToast($"Fehler beim Laden der Bauleiter: {ex.Message}", false);
         }
     }
@@ -314,13 +331,55 @@
             DbChangedDate = args.Data.DbChangedDate,
             IsSchacht = args.Data.IsSchacht,
             BauleiterId = args.Data.BauleiterId,
+            CustomerId = args.Data.CustomerId,
             Customer = args.Data.Customer,
-            Invoices = args.Data.Invoices
+            Invoices = args.Data.Invoices,
+            BauleiterFullName = args.Data.BauleiterFullName
         };
     }
+
     public void RowDeSelectHandler(RowDeselectEventArgs<ProjectCustomerInvoiceDto> args)
     {
         SelectedData = new ProjectCustomerInvoiceDto();
+    }
+
+    private void OnSearchTextChanged(Syncfusion.Blazor.Inputs.ChangedEventArgs args)
+    {
+        searchText = args.Value ?? "";
+        PerformSearch();
+    }
+
+    private void OnSearchKeyUp(Microsoft.AspNetCore.Components.Web.KeyboardEventArgs e)
+    {
+        PerformSearch();
+    }
+
+    private void OnSearchCleared(Syncfusion.Blazor.Inputs args)
+    {
+        searchText = "";
+        PerformSearch();
+    }
+
+    private void PerformSearch()
+    {
+        if (string.IsNullOrWhiteSpace(searchText))
+        {
+            filteredProjects = projects.ToList();
+        }
+        else
+        {
+            var searchLower = searchText.ToLower();
+            filteredProjects = projects.Where(p => 
+                (p.ProjectName?.ToLower().Contains(searchLower) ?? false) ||
+                (p.BauleiterFullName?.ToLower().Contains(searchLower) ?? false) ||
+                (p.Customer?.CompanyName?.ToLower().Contains(searchLower) ?? false) ||
+                (p.Customer?.FirstName?.ToLower().Contains(searchLower) ?? false) ||
+                (p.Customer?.LastName?.ToLower().Contains(searchLower) ?? false) ||
+                (p.Invoices?.Any(i => i.InvoiceNumber?.ToString().Contains(searchLower) ?? false) ?? false)
+            ).ToList();
+        }
+        
+        StateHasChanged();
     }
 
     private async Task UpdateProject()
@@ -347,6 +406,18 @@
                     project.BauleiterId = SelectedData.BauleiterId;
                     var bauleiterName = bauleiter.FirstOrDefault(b => b.BauleiterId == SelectedData.BauleiterId)?.FullName;
                     project.BauleiterFullName = bauleiterName;
+                    
+                    // Update filtered projects as well
+                    var filteredProject = filteredProjects.FirstOrDefault(p => p.ProjectId == SelectedData.ProjectId);
+                    if (filteredProject != null)
+                    {
+                        filteredProject.ProjectName = SelectedData.ProjectName;
+                        filteredProject.DbActive = SelectedData.DbActive;
+                        filteredProject.IsSchacht = SelectedData.IsSchacht;
+                        filteredProject.DbChangedDate = DateTime.Now;
+                        filteredProject.BauleiterId = SelectedData.BauleiterId;
+                        filteredProject.BauleiterFullName = bauleiterName;
+                    }
                 }
 
                 await grid.Refresh();
