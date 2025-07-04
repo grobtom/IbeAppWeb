@@ -354,9 +354,9 @@
         PerformSearch();
     }
 
-    private void OnSearchCleared(Syncfusion.Blazor.Inputs args)
+    private void OnSearchCleared(InputEventArgs args)
     {
-        searchText = "";
+        if(string.IsNullOrWhiteSpace(searchText))
         PerformSearch();
     }
 
