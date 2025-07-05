@@ -120,7 +120,7 @@ else
         isLoading = true;
         try
         {
-            projects = await ProjectService.GetActiveProjectsAsync();
+            projects = await ProjectService.GetActiveProjectsSimpleAsync();
             anlagenList = await ProjectAnlageService.GetAllAnlagen();
             await GetAllProjectAnlagen();
             if (projects == null || !projects.Any())
