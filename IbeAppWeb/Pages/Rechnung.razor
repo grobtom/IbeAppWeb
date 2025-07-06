@@ -1,0 +1,387 @@
+﻿@page "/rechnung"
+@using IbeAppWeb.DTOs
+@using System.ComponentModel.DataAnnotations
+@using IbeAppWeb.Forms
+@using IbeAppWeb.Services
+@using Syncfusion.Blazor.Spinner
+@using Syncfusion.Blazor
+@inject ProjectService ProjectService
+@inject IbeToastService ToastService
+@inject RechnungService RechnungService
+
+
+<h3>Rechnung</h3>
+
+<div class="container mt-4">
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label for="projectDb" class="form-label">Projekt:</label>
+            <SfComboBox TValue="int?" TItem="Project" PopupHeight="230px"
+                        @bind-value="@projectFormModel.SelectedProjectId" DataSource="@projects">
+                <ComboBoxEvents TValue="int?" TItem="Project" ValueChange="OnProjectChange" />
+                <ComboBoxFieldSettings Text="ProjectName" Value="ProjectId" />
+            </SfComboBox>
+        </div>
+        <div class="col-md-2">
+            <label class="form-label">Bereich:</label>
+            <SfComboBox TValue="int" TItem="KanalSchacht" PopupHeight="230px"
+                        @bind-value="@ComboBoxValue" DataSource="@kanalSchachtList" Enabled="false">
+                <ComboBoxEvents TValue="int" TItem="KanalSchacht" />
+                <ComboBoxFieldSettings Text="Auswahl" Value="Id" />
+            </SfComboBox>
+        </div>
+        <div class="col-md-6 d-flex align-items-end">
+            <button class="btn btn-primary me-2" @onclick="LoadRechnung" disabled="@isLoading">Rechnung laden</button>
+            <button class="btn btn-secondary" type="button" @onclick="ResetFilterForm">Reset Filter</button>
+        </div>
+    </div>
+</div>@if (isProjectLoaded)
+{
+
+    <EditForm Model="@filterFormModel" OnValidSubmit="@Update">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="container mt-4">
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <label for="idFrom" class="form-label">ID ab:</label>
+                    <SfNumericTextBox TValue="int?" @bind-value="@filterFormModel.idFrom" Min="@SetMin"
+                                      Enabled="@(!filterFormModel.SaniertAmVon.HasValue && !filterFormModel.SaniertAmBis.HasValue)">
+                        <ValidationMessage For="@(() => filterFormModel.idFrom)"></ValidationMessage>
+                    </SfNumericTextBox>
+                </div>
+                <div class="col-md-3">
+                    <label for="idTo" class="form-label">ID bis:</label>
+                    <SfNumericTextBox TValue="int?" @bind-value="@filterFormModel.idTo" Min="@SetMin" Max="@SetMax"
+                                      Enabled="@(!filterFormModel.SaniertAmVon.HasValue && !filterFormModel.SaniertAmBis.HasValue)">
+                        <ValidationMessage For="@(() => filterFormModel.idTo)"></ValidationMessage>
+                    </SfNumericTextBox>
+                </div>
+                <div class="col-md-3">
+                    <label for="saniertAmVon" class="form-label">Ausgeführt ab:</label>
+                    <SfDatePicker TValue="DateTime?" @bind-value="@filterFormModel.SaniertAmVon"
+                                  Enabled="@(!filterFormModel.idFrom.HasValue && !filterFormModel.idTo.HasValue)">
+                        <ValidationMessage For="@(() => filterFormModel.SaniertAmVon)"></ValidationMessage>
+                    </SfDatePicker>
+                </div>
+                <div class="col-md-3">
+                    <label for="saniertAmBis" class="form-label">Ausgeführt bis:</label>
+                    <SfDatePicker TValue="DateTime?" @bind-value="@filterFormModel.SaniertAmBis"
+                                  Enabled="@(!filterFormModel.idFrom.HasValue && !filterFormModel.idTo.HasValue)">
+                        <ValidationMessage For="@(() => filterFormModel.SaniertAmBis)"></ValidationMessage>
+                    </SfDatePicker>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="abschlagsrechnung" class="form-label">Abschlagsrechnung:</label>
+                    <SfTextBox TValue="string" @bind-value="@filterFormModel.Abschlagrechnung">
+                        <ValidationMessage For="@(() => filterFormModel.Abschlagrechnung)"></ValidationMessage>
+                    </SfTextBox>
+                </div>
+                <div class="col-md-6 d-flex align-items-end">
+                    <button class="btn btn-warning me-2" type="submit">Abschlagsrechnung setzen</button>
+                    <button class="btn btn-secondary" type="button" @onclick="ResetForm">Reset</button>
+                </div>
+            </div>
+        </div>
+    </EditForm>
+}
+
+@if (isProjectLoaded)
+{
+     @if (isLoading)
+    {
+        <div id="container">
+            <SfSpinner @bind-Visible="@isLoading" Label="Loading...." Type="@SpinnerType.Bootstrap">
+            </SfSpinner>
+        </div>
+    }
+    else
+    {
+    <SfGrid ID="Grid" @ref="grid" DataSource="@rechnungen" AllowPaging="true"
+            AllowSorting="true" AllowGrouping="true">
+        <GridPageSettings PageCount="5" PageSizes="true" PageSize="10"></GridPageSettings>
+            <GridAggregates>
+            <GridAggregate>
+                <GridAggregateColumns>
+                    <GridAggregateColumn Field="@nameof(AbschlagsRechnungDto.Positionssumme)" Type="AggregateType.Sum" Format="C2">
+                        <FooterTemplate>
+                            @{
+                                var SumValue = (context as AggregateTemplateContext);
+                                <div>
+                                    Summe: @SumValue.Sum
+                                </div>
+                            }
+                        </FooterTemplate>
+                    </GridAggregateColumn>
+                </GridAggregateColumns>
+            </GridAggregate>
+            <GridAggregate>
+                <GridAggregateColumns>
+                    <GridAggregateColumn Field=@nameof(AbschlagsRechnungDto.Positionssumme) Type="AggregateType.Sum">
+                        <GroupFooterTemplate>
+                            @{
+                                var Unit = (context as AggregateTemplateContext);
+                                <div>
+                                    Gesamt: @Unit.Sum
+                                </div>
+                            }
+                        </GroupFooterTemplate>
+                    </GridAggregateColumn>
+                </GridAggregateColumns>
+            </GridAggregate>
+        </GridAggregates>
+        <GridColumns>
+                <GridColumn Field="@nameof(AbschlagsRechnungDto.PkHzlh)" HeaderText="Rechnung ID" AllowGrouping="false" TextAlign="TextAlign.Center" />
+                <GridColumn Field="@nameof(AbschlagsRechnungDto.Abschlagsrechnung)" HeaderText="Abschlagsrechnung" TextAlign="TextAlign.Center" />
+                <GridColumn Field="@nameof(AbschlagsRechnungDto.Position)" HeaderText="Position" AllowGrouping="false" />
+                <GridColumn Field="@nameof(AbschlagsRechnungDto.Kurztext)" HeaderText="Kurztext" Format="C2" TextAlign="TextAlign.Left" AllowGrouping="false" />
+                <GridColumn Field="@nameof(AbschlagsRechnungDto.SaniertAm)" HeaderText="Datum" Format="d" TextAlign="TextAlign.Center" />
+                <GridColumn Field="@nameof(AbschlagsRechnungDto.Menge)" HeaderText="Menge" Format="C2" TextAlign="TextAlign.Right" AllowGrouping="false" />
+                <GridColumn Field="@nameof(AbschlagsRechnungDto.Einheit)" HeaderText="Einheit" TextAlign="TextAlign.Left" AllowGrouping="false" />
+                <GridColumn Field="@nameof(AbschlagsRechnungDto.Einheitspreis)" HeaderText="Preis" Format="C2" TextAlign="TextAlign.Right" AllowGrouping="false" />
+                <GridColumn Field="@nameof(AbschlagsRechnungDto.Positionssumme)" HeaderText="Betrag" Format="C2" TextAlign="TextAlign.Right" AllowGrouping="false" />
+        </GridColumns>
+    </SfGrid>
+    }
+}
+
+@code {
+    private SfGrid<AbschlagsRechnungDto> grid;
+    private List<Project> projects = new();
+    private List<AbschlagsRechnungDto> rechnungen = new();
+    private ProjectFormModel projectFormModel = new();
+    private FilterFormModel filterFormModel = new();
+    private bool isLoadingProject = false;
+    private bool isLoading = false;
+    private bool isProjectLoaded = false;
+    private int? SetMin { get; set; } = 1;
+    private int? SetMax { get; set; }
+    private int? result = 0;
+
+    private List<KanalSchacht> kanalSchachtList = new List<KanalSchacht>
+    {
+        new KanalSchacht { Id = 1, Auswahl = "Kanal" },
+        new KanalSchacht { Id = 2, Auswahl = "Schacht" }
+    };
+    private int ComboBoxValue = 1;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadProjects();
+    }
+
+    private async Task LoadProjects()
+    {
+        try
+        {
+            isLoadingProject = true;
+            var activeProjects = await ProjectService.GetActiveProjectsSimpleAsync();
+            projects = activeProjects ?? new List<Project>();
+            isProjectLoaded = projects.Any();
+            await ToastService.ShowToast($"Projekte erfolgreich geladen.", true);
+        }
+        catch
+        {
+            await ToastService.ShowToast($"Fehler beim Laden der Projektdaten!", false);
+        }
+        finally
+        {
+            isLoadingProject = false;
+        }
+    }
+
+    private void OnProjectChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<int?, Project> args)
+    {
+        if (args.ItemData.IsSchacht)
+        { ComboBoxValue = 2; }
+        else
+        { ComboBoxValue = 1; }
+
+        projectFormModel.SelectedProjectId = args.Value;
+        projectFormModel.SelectedProjectName = args.ItemData.ProjectName;
+    }
+
+
+    private async Task LoadRechnung()
+    {
+        if (projectFormModel.SelectedProjectId.HasValue)
+        {
+            try
+            {
+                isLoading = true;
+                rechnungen = await RechnungService.GetAbschlagsRechnungenAsync(projectFormModel.SelectedProjectName, ComboBoxValue);
+                SetMax = rechnungen.Max(r => r.PkHzlh);
+                await ToastService.ShowToast($"Rechnung erfolgreich geladen.", true);
+            }
+            catch
+            {
+                await ToastService.ShowToast($"Fehler beim Laden der Rechnung!", false);
+            }
+            finally
+            {
+                isLoading = false;
+            }
+        }
+        else
+        {
+            await ToastService.ShowToast($"Bitte wählen Sie zuerst ein Projekt aus.", false);
+        }
+    }
+
+    private void ResetProjectForm()
+    {
+        projectFormModel = new();
+        isProjectLoaded = false;
+        rechnungen = new();
+        filterFormModel = new();
+    }
+
+    private void ResetFilterForm()
+    {
+        filterFormModel = new();
+        rechnungen = new();
+    }
+
+    private void ResetForm()
+    {
+        filterFormModel = new();
+        StateHasChanged();
+    }
+    private async Task Update()
+    {
+        // Validate that a project is selected
+        if (!projectFormModel.SelectedProjectId.HasValue)
+        {
+            await ToastService.ShowToast("Bitte wählen Sie ein Projekt aus.", false);
+            return;
+        }
+
+        try
+        {
+            if(filterFormModel == null)
+            {
+                await ToastService.ShowToast("Bitte füllen Sie das Formular aus.", false);
+                return;
+            }
+
+            if(filterFormModel.idFrom.HasValue && filterFormModel.idTo.HasValue)
+            {
+                result = await RechnungService.UpdateKanalAbschlagsrechnungByIdsAsync(
+                    projectFormModel.SelectedProjectName,
+                    filterFormModel.idFrom.Value,
+                    filterFormModel.idTo.Value,
+                    filterFormModel.Abschlagrechnung,
+                    ComboBoxValue);
+            }
+            else if (filterFormModel.SaniertAmVon.HasValue && filterFormModel.SaniertAmBis.HasValue)
+            {
+                result = await RechnungService.UpdateKanalAbschlagsrechnungByDateAsync(
+                    projectFormModel.SelectedProjectName,
+                    filterFormModel.SaniertAmVon.Value,
+                    filterFormModel.SaniertAmBis.Value,
+                    filterFormModel.Abschlagrechnung,
+                    ComboBoxValue);
+            }
+            
+            await ToastService.ShowToast($"Abschlagsrechnung wurde für {result} Positionen erfolgreich gesetzt.", true);
+
+            ResetForm();
+            await LoadRechnung();
+        }
+        catch (Exception ex)
+        {
+            await ToastService.ShowToast($"Fehler beim Setzen der Abschlagsrechnung: {ex.Message}", false);
+        }
+    }
+
+    public class ProjectFormModel
+    {
+        [Required]
+        public int? SelectedProjectId { get; set; }
+
+        public string SelectedProjectName { get; set; }
+    }
+
+    public class FilterFormModel : IValidatableObject
+    {
+        [DataType(DataType.Date)]
+        public DateTime? SaniertAmVon { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime? SaniertAmBis { get; set; }
+
+        [Range(1, int.MaxValue, ErrorMessage = "ID ab muss größer als 0 sein.")]
+        public int? idFrom { get; set; }
+
+        [Range(1, int.MaxValue, ErrorMessage = "ID bis muss größer als 0 sein.")]
+        public int? idTo { get; set; }
+
+        [StringLength(4)]
+        [Required]
+        public string Abschlagrechnung { get; set; } = string.Empty;
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            bool hasIdFields = idFrom.HasValue || idTo.HasValue;
+            bool hasDateFields = SaniertAmVon.HasValue || SaniertAmBis.HasValue;
+
+            if (!hasIdFields && !hasDateFields)
+            {
+                yield return new ValidationResult(
+                    "Bitte geben Sie entweder ID-Felder oder Datum-Felder an.",
+                    new[] { nameof(idFrom), nameof(SaniertAmVon) });
+            }
+
+            if (hasIdFields && hasDateFields)
+            {
+                yield return new ValidationResult(
+                    "Bitte verwenden Sie entweder ID-Felder oder Datum-Felder, aber nicht beide gleichzeitig.",
+                    new[] { nameof(idFrom), nameof(SaniertAmVon) });
+            }
+
+            if (idFrom.HasValue && idTo.HasValue && idTo < idFrom)
+            {
+                yield return new ValidationResult(
+                    "ID bis muss größer oder gleich ID ab sein.",
+                    new[] { nameof(idTo) });
+            }
+
+            if (idTo.HasValue && !idFrom.HasValue)
+            {
+                yield return new ValidationResult(
+                    "Wenn ID bis einen Wert hat, muss ID ab auch einen Wert haben.",
+                    new[] { nameof(idFrom) });
+            }
+
+            if (SaniertAmVon.HasValue && SaniertAmBis.HasValue && SaniertAmBis < SaniertAmVon)
+            {
+                yield return new ValidationResult(
+                    "Ausgeführt bis muss größer oder gleich Ausgeführt ab sein.",
+                    new[] { nameof(SaniertAmBis) });
+            }
+
+            // Validate Abschlagrechnung with regex
+            if (string.IsNullOrWhiteSpace(Abschlagrechnung))
+            {
+                yield return new ValidationResult(
+                    "Abschlagsrechnung ist erforderlich.",
+                    new[] { nameof(Abschlagrechnung) });
+            }
+            else if (Abschlagrechnung.Length > 4)
+            {
+                yield return new ValidationResult(
+                    "Abschlagsrechnung darf maximal 4 Zeichen lang sein.",
+                    new[] { nameof(Abschlagrechnung) });
+            }
+            else if (!System.Text.RegularExpressions.Regex.IsMatch(Abschlagrechnung, @"^(ar\d{1,2}|sr\d{0,2})$", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+            {
+                yield return new ValidationResult(
+                    "Abschlagsrechnung muss mit 'ar' gefolgt von 1-2 Ziffern oder 'sr' optional gefolgt von 0-2 Ziffern beginnen (z.B. ar1, ar12, sr, sr1, sr12).",
+                    new[] { nameof(Abschlagrechnung) });
+            }
+        }
+    }
+}

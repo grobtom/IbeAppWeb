@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.FluentUI.AspNetCore.Components;
+using Microsoft.JSInterop;
 using Syncfusion.Blazor;
+using System.Globalization;
 
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzkyMTMwOEAzMzMwMmUzMDJlMzAzYjMzMzAzYmtYZk91V2J1emthTWxveUF3OS9mNzZjRDlQWXJWR2lLOWZJNmFid0VCWms9");
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -34,7 +36,7 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState, CustomUserAcco
     options.UserOptions.RoleClaim = "appRole";
 }).AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, CustomUserAccount, CustomAccountFactory>();
 
-
+builder.Services.AddSingleton(typeof(ISyncfusionStringLocalizer), typeof(SyncfusionLocalizer));
 builder.Services.AddScoped<IbeToastService>();
 builder.Services.AddScoped<ArbeitsscheinService>();
 builder.Services.AddScoped<ProjectService>(sp =>
@@ -49,6 +51,26 @@ builder.Services.AddScoped<ProjectAnlageService>();
 builder.Services.AddScoped<AnlagenService>();
 builder.Services.AddScoped<MonteurService>();
 builder.Services.AddScoped<BauleiterService>();
+builder.Services.AddScoped<RechnungService>();
 
 builder.Services.AddSyncfusionBlazor();
-await builder.Build().RunAsync();
+
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources"); 
+
+var host = builder.Build();
+
+const string defaultCulture = "en-US";
+
+var js = host.Services.GetRequiredService<IJSRuntime>();
+var result = await js.InvokeAsync<string>("blazorCulture.get");
+var culture = CultureInfo.GetCultureInfo(result ?? defaultCulture);
+
+if (result == null)
+{
+    await js.InvokeVoidAsync("blazorCulture.set", defaultCulture);
+}
+
+CultureInfo.DefaultThreadCurrentCulture = culture;
+CultureInfo.DefaultThreadCurrentUICulture = culture;
+
+await host.RunAsync();

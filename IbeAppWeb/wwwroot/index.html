@@ -33,11 +33,12 @@
         <span class="dismiss">🗙</span>
     </div>
     <script src="_content/Microsoft.Authentication.WebAssembly.Msal/AuthenticationService.js"></script>
-    <script src="_framework/blazor.webassembly.js" autostart="false"></script>
+    <script src="_framework/blazor.webassembly.js" autostart="true"></script>
     <script>
-        Blazor.start({
-            applicationCulture: 'de'
-        });
+        window.blazorCulture = {
+            get: () => window.localStorage['BlazorCulture'],
+            set: (value) => window.localStorage['BlazorCulture'] = value
+        };
     </script>
     <script>navigator.serviceWorker.register('service-worker.js');</script>
 </body>
