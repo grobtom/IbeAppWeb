@@ -3,7 +3,7 @@
 
 @if (visible)
 {
-    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1100;">
+    <div class="toast-container position-fixed end-0 p-4" style="top: 30px; z-index: 1100;">
         <div class="toast show @toastClass" role="alert">
             <div class="toast-body">
                 @message
@@ -48,5 +48,6 @@
     public void Dispose()
     {
         ToastService.OnShow -= ShowToast;
+        ToastService.OnShowWithDuration -= ShowToast;
     }
 }

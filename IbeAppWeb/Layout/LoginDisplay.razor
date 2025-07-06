@@ -2,22 +2,73 @@
 @inject NavigationManager Navigation
 
 <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
-    <div style="display: flex; align-items: center;">
+    <!-- Logos -->
+    <div style="display: flex; align-items: center; width: max-content;">
         <img src="images/logos/exrohrlogo.png" alt="Exrohr Logo" style="height:28px; margin-right:10px;" />
         <img src="images/logos/ibelogo.png" alt="Ibe Logo" style="height:28px;" />
     </div>
-    <div>
+
+    <!-- Auth area with strict width -->
+    <div style="width: 300px; display: flex; justify-content: flex-end; align-items: center; overflow: hidden;">
         <AuthorizeView>
             <Authorized>
-                Moin, @context.User.Identity?.Name !
-                <button class="nav-link btn btn-link" @onclick="BeginLogOut">Log out</button>
+                <div style="display: flex; align-items: center; gap: 8px; width: 100%; justify-content: flex-end; overflow: hidden;">
+                    <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; display: inline-block;">
+                        Moin, @context.User.Identity?.Name!
+                    </span>
+                    <button class="nav-link btn btn-link" @onclick="BeginLogOut">Log out</button>
+                </div>
             </Authorized>
             <NotAuthorized>
-                <button class="btn btn-primary" @onclick="BeginLogIn">Log in</button>
+                <div style="display: flex; align-items: center; justify-content: flex-end; width: 100%;">
+                    <button class="btn btn-primary" @onclick="BeginLogIn" style="white-space: nowrap;">Log in</button>
+                </div>
             </NotAuthorized>
+            <Authorizing>
+                <div style="display: flex; justify-content: flex-end; align-items: center; width: 100%;">
+                    <div class="spinner"></div>
+                </div>
+            </Authorizing>
         </AuthorizeView>
     </div>
 </div>
+<style>
+    .auth-container {
+        width: 300px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .auth-content {
+        min-width: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+        white-space: nowrap;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .spinner {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #ccc;
+        border-top: 2px solid #007bff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @@keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
 
 @code{
     public void BeginLogOut()

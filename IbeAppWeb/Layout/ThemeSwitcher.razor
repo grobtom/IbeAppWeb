@@ -1,0 +1,36 @@
+﻿@inject IJSRuntime JS
+@using Syncfusion.Blazor.DropDowns
+
+<div class="p-3">
+  <SfDropDownList TValue="string"
+                  TItem="string"
+                  DataSource="@Themes"
+                  Placeholder="Select Theme"
+                  @bind-Value="CurrentTheme"
+                  Change="OnThemeChanged">
+  </SfDropDownList>
+</div>
+
+<fluent-design-system-provider appearance="light">
+  <p style="margin-top: 20px;">This is a Fluent UI Web Component area.</p>
+</fluent-design-system-provider>
+
+@code {
+    string CurrentTheme = "fluent";
+    List<string> Themes = new()
+    {
+        "fluent", "fluent-dark",
+        "bootstrap5", "bootstrap5-dark",
+        "material", "material-dark"
+    };
+
+    private async Task OnThemeChanged(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, string> args)
+    {
+        CurrentTheme = args.Value;
+        await JS.InvokeVoidAsync("setTheme", CurrentTheme);
+
+        // Handle Fluent UI token update (if applicable)
+        bool isDark = CurrentTheme.Contains("dark");
+        await JS.InvokeVoidAsync("updateFluentTokens", isDark);
+    }
+}

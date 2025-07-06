@@ -1,19 +1,15 @@
 ﻿@inherits LayoutComponentBase
-@inject IJSRuntime JSRuntime
 
 <div class="page">
     <div class="sidebar">
         <NavMenu />
     </div>
-    <div class="main-content">
+    <div style="width: 90%">
         <IbeAppWeb.Shared.Toast />
         <div class="top-row px-4 auth">
             <div class="d-flex justify-content-between align-items-center w-100" style="gap: 2rem;">
                 <LoginDisplay />
-@*                 <div style="margin: 0;">
-                    <CultureSelector />
-                </div>
- *@            </div>
+           </div>
         </div>
         <article class="content px-4">
             @Body
