@@ -36,10 +36,14 @@
             </div>
             <div class="form-group" style="display: flex; flex-direction: column;">
                 <label style="padding-bottom: 4px;">Bauleiter:</label>
-                    <SfComboBox TValue="int?" TItem="BauleiterDto" PopupHeight="230px" Placeholder="Bauleiter:" @bind-Value="@SelectedData.BauleiterId" DataSource="@bauleiter">
+                    <SfComboBox TValue="int?" TItem="BauleiterDto" PopupHeight="230px" Placeholder="Bauleiter" @bind-Value="@SelectedData.BauleiterId" DataSource="@bauleiter">
                         <ComboBoxEvents TValue="int?" TItem="BauleiterDto" />
                         <ComboBoxFieldSettings Text="FullName" Value="BauleiterId" />
                     </SfComboBox>            
+            </div>
+            <div class="form-group" style="display: flex; flex-direction: column;">
+                <label style="padding-bottom: 4px;">Projekt:</label>
+                <SfTextBox ID="FileUrl" @bind-Value="@SelectedData.FileUrl" Placeholder="Pfad"></SfTextBox>
             </div>
             <div class="form-group" style="display: flex; flex-direction: column;">
                 <label style="padding-bottom: 4px;">Aktiv</label>
@@ -167,10 +171,11 @@
                 </DetailTemplate>
             </GridTemplates>
             <GridColumns>
-                <GridColumn Field=@nameof(ProjectCustomerInvoiceDto.ProjectId) HeaderText="Projekt ID" Width="120" IsPrimaryKey="true"></GridColumn>
-                <GridColumn Field=@nameof(ProjectCustomerInvoiceDto.ProjectName) HeaderText="Projekt Name" Width="150"></GridColumn>
-                <GridColumn Field=@nameof(ProjectCustomerInvoiceDto.BauleiterFullName) HeaderText="Bauleiter" Width="150"></GridColumn>
-                <GridColumn Field=@nameof(ProjectCustomerInvoiceDto.CreatedOnUtc) HeaderText="Erstellt am: (UTC)" Width="200" Type="ColumnType.DateTime"></GridColumn>
+                <GridColumn Field=@nameof(ProjectCustomerInvoiceDto.ProjectId) HeaderText="Projekt ID" Width="60" IsPrimaryKey="true"></GridColumn>
+                <GridColumn Field=@nameof(ProjectCustomerInvoiceDto.ProjectName) HeaderText="Projekt Name" Width="120"></GridColumn>
+                <GridColumn Field=@nameof(ProjectCustomerInvoiceDto.BauleiterFullName) HeaderText="Bauleiter" Width="120"></GridColumn>
+                <GridColumn Field=@nameof(ProjectCustomerInvoiceDto.CreatedOnUtc) HeaderText="Erstellt am: (UTC)" Width="100" Type="ColumnType.DateTime"></GridColumn>
+                <GridColumn Field=@nameof(ProjectCustomerInvoiceDto.FileUrl) HeaderText="Pfad:" Width="200" ></GridColumn>
                 <GridColumn Field=@nameof(ProjectCustomerInvoiceDto.DbActive) HeaderText="Aktiv" Format="d" Width="150">
                     <Template>
                         @{
@@ -328,6 +333,7 @@
             ProjectName = args.Data.ProjectName, 
             CreatedOnUtc = args.Data.CreatedOnUtc,
             DbActive = args.Data.DbActive,
+            FileUrl = args.Data.FileUrl,
             DbChangedDate = args.Data.DbChangedDate,
             IsSchacht = args.Data.IsSchacht,
             BauleiterId = args.Data.BauleiterId,
@@ -391,7 +397,8 @@
                 SelectedData.DbActive,
                 SelectedData.IsSchacht,
                 SelectedData.BauleiterId ?? 0,
-                SelectedData.CustomerId ?? 0
+                SelectedData.CustomerId ?? 0,
+                SelectedData.FileUrl ?? ""
             );
 
             if (result != null)
@@ -402,6 +409,7 @@
                     project.ProjectName = SelectedData.ProjectName;
                     project.DbActive = SelectedData.DbActive;
                     project.IsSchacht = SelectedData.IsSchacht;
+                    project.FileUrl = SelectedData.FileUrl;
                     project.DbChangedDate = DateTime.Now;
                     project.BauleiterId = SelectedData.BauleiterId;
                     var bauleiterName = bauleiter.FirstOrDefault(b => b.BauleiterId == SelectedData.BauleiterId)?.FullName;
@@ -415,6 +423,7 @@
                         filteredProject.DbActive = SelectedData.DbActive;
                         filteredProject.IsSchacht = SelectedData.IsSchacht;
                         filteredProject.DbChangedDate = DateTime.Now;
+                        filteredProject.FileUrl = SelectedData.FileUrl;
                         filteredProject.BauleiterId = SelectedData.BauleiterId;
                         filteredProject.BauleiterFullName = bauleiterName;
                     }

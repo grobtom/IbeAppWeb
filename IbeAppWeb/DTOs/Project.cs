@@ -11,6 +11,7 @@ namespace IbeAppWeb.DTOs
         public DateTime? CreatedOnUtc { get; set; }
         public bool DbActive { get; set; }
         public bool IsSchacht { get; set; }
+        public string? FileUrl { get; set; } = string.Empty;
         public int? BauleiterId { get; set; }
         public Bauleiter? Bauleiter { get; set; }
         public string? BauleiterFullName { get; set; }

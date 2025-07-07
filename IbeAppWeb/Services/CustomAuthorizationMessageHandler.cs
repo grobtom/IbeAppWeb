@@ -15,7 +15,7 @@ public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
         : base(provider, navigation)
     {
         ConfigureHandler(
-            authorizedUrls: new[] { "https://localhost" }
+            authorizedUrls: new[] { "https://localhost", "https://192.168.1.183" }
             , scopes: new[] { "api://07d1f5eb-f995-4a62-8c28-084b579e01ed/ibeapp_api_all" }
         );
     }
