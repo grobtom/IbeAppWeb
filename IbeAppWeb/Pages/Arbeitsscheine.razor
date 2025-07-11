@@ -278,16 +278,18 @@ else
         { ComboBoxValue = 2; }
         else
         { ComboBoxValue = 1; }
+        var selectedProject = projects?.FirstOrDefault(p => p.ProjectId == formModel.SelectedProjectId);
+        projectDb = selectedProject?.ProjectName ?? "defaultDb";
+        LoadAnlagen(projectDb);
     }
 
     protected override async Task OnInitializedAsync()
     {
         var projectsTask = LoadProjects();
         var monteureTask = LoadMonteure();
-        var anlagenTask = LoadAnlagen();
         var imageTask = LoadImage();
 
-        await Task.WhenAll(projectsTask, monteureTask, anlagenTask, imageTask);
+        await Task.WhenAll(projectsTask, monteureTask, imageTask);
         if(idproject > 0)
         {
             formModel.SelectedProjectId = idproject;
@@ -354,12 +356,12 @@ else
         }
     }
 
-    private async Task LoadAnlagen()
+    private async Task LoadAnlagen(string projectDb)
     {
         try
         {
-            if (anlageData == null || !anlageData.Any())
-                anlageData = await AnlagenService.GetAllAnlagen();
+            anlageData = new List<AnlageDto>();
+            anlageData = await AnlagenService.GetProjectAnlagen(ComboBoxValue, projectDb);
         }
         catch
         {

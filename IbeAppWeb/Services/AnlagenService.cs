@@ -48,6 +48,39 @@ public class AnlagenService
         }
     }
 
+    public async Task<IEnumerable<AnlageDto>> GetProjectAnlagen(int comboboxValue, string projectDb)
+    {
+        try
+        {
+            HttpRequestMessage request;
+            if (comboboxValue == 1)
+                {
+                request = new HttpRequestMessage(HttpMethod.Get, "api/mhzlh/anlagen");
+            }
+            else
+            {
+                request = new HttpRequestMessage(HttpMethod.Get, $"api/mkzlh/anlagen");                }
+            request.Headers.Add("X-IbeProjectDB", projectDb);
+
+            var response = await _httpClient.SendAsync(request);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadFromJsonAsync<IEnumerable<AnlageDto>>() ?? Enumerable.Empty<AnlageDto>();
+            }
+            else
+            {
+                var errorContent = await response.Content.ReadAsStringAsync();
+                throw new HttpRequestException($"Failed to fetch Anlagen. Status: {response.StatusCode}, Error: {errorContent}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error in GetProjectAnlagen: {ex.Message}");
+            return Enumerable.Empty<AnlageDto>(); 
+        }
+    }
+
     public async Task<IEnumerable<AnlageWithMonteureDto>> GetAllAnlagenWithMonteure()
     {
         try
