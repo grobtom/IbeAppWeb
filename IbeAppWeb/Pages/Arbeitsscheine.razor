@@ -362,6 +362,7 @@ else
         {
             anlageData = new List<AnlageDto>();
             anlageData = await AnlagenService.GetProjectAnlagen(ComboBoxValue, projectDb);
+            StateHasChanged();
         }
         catch
         {
