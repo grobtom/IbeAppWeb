@@ -22,7 +22,7 @@ builder.Services.AddScoped<CustomAuthorizationMessageHandler>();
 
 builder.Services.AddHttpClient("AuthorizedAPI", client =>
 {
-    client.BaseAddress = new Uri("https://localhost/api");
+    client.BaseAddress = new Uri("https://ibeapp.gti-grobbauer.de/api");
 })
 .AddHttpMessageHandler<CustomAuthorizationMessageHandler>();
 
@@ -59,7 +59,7 @@ builder.Services.AddLocalization(options => options.ResourcesPath = "Resources")
 
 var host = builder.Build();
 
-const string defaultCulture = "en-US";
+const string defaultCulture = "de-DE";
 
 var js = host.Services.GetRequiredService<IJSRuntime>();
 var result = await js.InvokeAsync<string>("blazorCulture.get");

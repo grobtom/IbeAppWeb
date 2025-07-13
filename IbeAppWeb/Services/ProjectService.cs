@@ -24,7 +24,6 @@ public class ProjectService
             _logger.LogInformation($"API Base URL: {_httpClient.BaseAddress}");
 
             var request = new HttpRequestMessage(HttpMethod.Get, "api/IbeProject");
-            request.Headers.Add("X-IbeProjectDB", "IbeProjects");
 
             _logger.LogInformation($"Making request to: {request.RequestUri}");
 
@@ -42,14 +41,12 @@ public class ProjectService
             var contentString = await response.Content.ReadAsStringAsync();
             _logger.LogInformation($"Raw response content (first 500 chars): {contentString.Substring(0, Math.Min(500, contentString.Length))}");
 
-            // Check if response is valid JSON
             if (string.IsNullOrEmpty(contentString) || contentString.Trim().Length == 0)
             {
                 _logger.LogWarning("API returned empty response");
                 return new List<ProjectCustomerInvoiceDto>();
             }
 
-            // Try to parse JSON manually to get better error information
             try
             {
                 var result = System.Text.Json.JsonSerializer.Deserialize<List<ProjectCustomerInvoiceDto>>(contentString, new JsonSerializerOptions
@@ -91,7 +88,6 @@ public class ProjectService
             _logger.LogInformation("Attempting to fetch active projects from API");
 
             var request = new HttpRequestMessage(HttpMethod.Get, $"api/IbeProject/activ");
-            request.Headers.Add("X-IbeProjectDB", "IbeProjects");
 
             var response = await _httpClient.SendAsync(request);
 
@@ -123,7 +119,6 @@ public class ProjectService
         try
         {
             var request = new HttpRequestMessage(HttpMethod.Get, $"api/IbeProject/activesimple");
-            request.Headers.Add("X-IbeProjectDB", "IbeProjects");
             var response = await _httpClient.SendAsync(request);
 
             if (!response.IsSuccessStatusCode)
@@ -147,7 +142,6 @@ public class ProjectService
         try
         {
             var request = new HttpRequestMessage(HttpMethod.Get, $"api/IbeProject/simple");
-            request.Headers.Add("X-IbeProjectDB", "IbeProjects");
             var response = await _httpClient.SendAsync(request);
 
             if (!response.IsSuccessStatusCode)
@@ -188,7 +182,6 @@ public class ProjectService
             var queryString = string.Join("&", queryParameters);
 
             var request = new HttpRequestMessage(HttpMethod.Put, $"api/IbeProject/update/{projectId}?{queryString}");
-            request.Headers.Add("X-IbeProjectDB", "IbeProjects");
 
             _logger.LogInformation($"Updating project {projectId} with URL: {request.RequestUri}");
 
