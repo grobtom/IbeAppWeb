@@ -22,7 +22,7 @@ builder.Services.AddScoped<CustomAuthorizationMessageHandler>();
 
 builder.Services.AddHttpClient("AuthorizedAPI", client =>
 {
-    client.BaseAddress = new Uri("https://localhost/api");
+    client.BaseAddress = new Uri("https://ibeapp.gti-grobbauer.de/api");
 })
 .AddHttpMessageHandler<CustomAuthorizationMessageHandler>();
 
