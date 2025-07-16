@@ -267,6 +267,29 @@ else
         return false;
     }
 
+    private async Task UpdateLocalAnlagenForProject()
+    {
+        if (projectId.HasValue && allAnlagen != null)
+        {
+            var projectWithAnlagen = allAnlagen.FirstOrDefault(p => p.ProjectId == projectId.Value);
+            if (projectWithAnlagen != null)
+            {
+                anlagen = projectWithAnlagen.Anlagen.Select(a => new ProjectAnlageDto
+                {
+                    ProjectId = projectWithAnlagen.ProjectId,
+                    AnlageId = a.AnlageId,
+                    AnlageName = a.AnlageName
+                }).ToList();
+
+                if (oldAnlageId.HasValue && !anlagen.Any(a => a.AnlageId == oldAnlageId.Value))
+                {
+                    oldAnlageId = null;
+                }
+            }
+        }
+        await Task.CompletedTask;
+    }
+
     private async Task GetProjectAnlage()
     {
         if (projectId.HasValue)
@@ -276,7 +299,6 @@ else
                 var updatedAnlagen = await ProjectAnlageService.GetAnlagenForProject(projectId!.Value);
                 projectWithAnlagen = updatedAnlagen;
 
-                // Update the local anlagen list
                 if (updatedAnlagen?.Anlagen != null && updatedAnlagen.Anlagen.Any())
                 {
                     anlagen = updatedAnlagen.Anlagen.Select(a => new ProjectAnlageDto
@@ -303,6 +325,7 @@ else
             await ToastService.ShowToast("Projekt-ID ist nicht gesetzt.", false);
         }
     }
+
     private async Task GetAllProjectAnlagen()
     {
         allAnlagen = await ProjectAnlageService.GetAllProjectAnlagen();
@@ -375,25 +398,4 @@ else
         return Task.CompletedTask;
     }
 
-    private async Task UpdateLocalAnlagenForProject()
-    {
-        if (projectId.HasValue && allAnlagen != null)
-        {
-            var projectWithAnlagen = allAnlagen.FirstOrDefault(p => p.ProjectId == projectId.Value);
-            if (projectWithAnlagen != null)
-            {
-                anlagen = projectWithAnlagen.Anlagen.Select(a => new ProjectAnlageDto
-                {
-                    ProjectId = projectWithAnlagen.ProjectId,
-                    AnlageId = a.AnlageId,
-                    AnlageName = a.AnlageName
-                }).ToList();
-
-                if (oldAnlageId.HasValue && !anlagen.Any(a => a.AnlageId == oldAnlageId.Value))
-                {
-                    oldAnlageId = null;
-                }
-            }
-        }
-    }
 }
