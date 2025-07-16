@@ -25,6 +25,22 @@ else
                     <GridPageSettings PageCount="5" PageSizes="true" PageSize="10"></GridPageSettings>
                     <GridEditSettings AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog"></GridEditSettings>
                     <GridEvents TValue="MonteurResponse" OnActionBegin="OnActionBegin"></GridEvents>
+                    <GridTemplates>
+                        <DetailTemplate Context="context">
+                            @{
+                                var monteur = context as MonteurResponse;
+                                var filteredProjects = Projects.Where(p => p.MonteurId == monteur.MonteurId).ToList();
+                            }
+                             <SfGrid DataSource="@filteredProjects" AllowPaging="true" AllowResizing="true" AllowTextWrap="true" AllowSorting="true" Height="300px">
+                             <GridPageSettings PageCount="5"></GridPageSettings>
+                                <GridColumns>
+                                    <GridColumn Field="@nameof(ProjectMonteurDto.ProjectId)" HeaderText="ProjektId" Width="60"></GridColumn>
+                                    <GridColumn Field="@nameof(ProjectMonteurDto.ProjectName)" HeaderText="Projekt" Width="150" AllowGrouping="false"></GridColumn>
+                                    <GridColumn Field="@nameof(ProjectMonteurDto.BauleiterFullName)" HeaderText="Bauleiter" Format="d" TextAlign="TextAlign.Center" Width="150"></GridColumn>
+                                </GridColumns>
+                            </SfGrid>
+                        </DetailTemplate>
+                    </GridTemplates>
                     <GridColumns>
                         <GridColumn Field=@nameof(MonteurResponse.MonteurId) HeaderText="Monteur ID" TextAlign="TextAlign.Left" Width="60" IsPrimaryKey="true"></GridColumn>
                         <GridColumn Field=@nameof(MonteurResponse.Vorname) HeaderText="Vorname" Width="150" ValidationRules="@(new ValidationRules { Required = true, MinLength = 3 })"></GridColumn>
@@ -60,6 +76,7 @@ else
     private SfGrid<MonteurResponse>? Grid;
     private bool isLoading = false;
     private Dictionary<string, string> fieldErrors = new();
+    private List<ProjectMonteurDto> Projects = new List<ProjectMonteurDto>();
 
 
     protected override async Task OnInitializedAsync()
@@ -73,6 +90,7 @@ else
         try
         {
             Data = await MonteurService.GetAllMonteure();
+            Projects = await MonteurService.GetMonteurProjects();
         }
         catch (Exception ex)
         {

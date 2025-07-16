@@ -196,7 +196,6 @@ public class MonteurService
         }
         catch (Exception ex)
         {
-            // Log or rethrow the exception as needed
             Console.WriteLine($"Error in AssignMonteurToAnlage: {ex.Message}");
             throw;
         }
@@ -242,7 +241,29 @@ public class MonteurService
         catch (Exception ex)
         {
             Console.WriteLine($"Error in GetMonteurAnlageHistory: {ex.Message}");
-            return null; // Return null on failure
+            return null; 
+        }
+    }
+
+    public async Task<List<ProjectMonteurDto>> GetMonteurProjects()
+    {
+        try
+        {
+            var response = await _httpClient.GetAsync($"api/monteur/projects");
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadFromJsonAsync<List<ProjectMonteurDto>>() ?? new List<ProjectMonteurDto>();
+            }
+            else
+            {
+                var errorContent = await response.Content.ReadAsStringAsync();
+                throw new HttpRequestException($"Failed to fetch Monteur projects. Status: {response.StatusCode}, Error: {errorContent}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error in GetMonteurProjects: {ex.Message}");
+            return new List<ProjectMonteurDto>(); 
         }
     }
 }
