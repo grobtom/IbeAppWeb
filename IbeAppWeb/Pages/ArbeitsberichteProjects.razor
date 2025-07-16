@@ -242,34 +242,34 @@ else
 
     private void OnMonteurChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<int?, MonteurResponse> args)
     {
-        if (args.ItemData != null) // Check if a valid Monteur is selected
+        if (args.ItemData != null) 
         {
             formModel.SelectedMonteurId = args.ItemData.MonteurId;
-            formModel.SelectedAnlageId = null; // Reset Anlage selection
-            anlageSelected = false; // Disable Anlage ComboBox
+            formModel.SelectedAnlageId = null; 
+            anlageSelected = false; 
         }
         else
         {
             formModel.SelectedMonteurId = null;
-            anlageSelected = true; // Enable Anlage ComboBox if no Monteur is selected
+            anlageSelected = true; 
         }
-        StateHasChanged(); // Force UI update
+        StateHasChanged(); 
     }
 
     private void OnAnlageChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<int?, AnlageDto> args)
     {
-        if (args.ItemData != null) // Check if a valid Anlage is selected
+        if (args.ItemData != null) 
         {
             formModel.SelectedAnlageId = args.ItemData.AnlageId;
-            formModel.SelectedMonteurId = null; // Reset Monteur selection
-            monteurSelected = false; // Disable Monteur ComboBox
+            formModel.SelectedMonteurId = null; 
+            monteurSelected = false; 
         }
         else
         {
             formModel.SelectedAnlageId = null;
-            monteurSelected = true; // Enable Monteur ComboBox if no Anlage is selected
+            monteurSelected = true; 
         }
-        StateHasChanged(); // Force UI update
+        StateHasChanged(); 
     }
 
 
