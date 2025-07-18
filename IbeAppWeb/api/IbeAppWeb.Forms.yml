@@ -1,0 +1,23 @@
+### YamlMime:ManagedReference
+items:
+- uid: IbeAppWeb.Forms
+  commentId: N:IbeAppWeb.Forms
+  id: IbeAppWeb.Forms
+  children:
+  - IbeAppWeb.Forms.KanalSchacht
+  langs:
+  - csharp
+  - vb
+  name: IbeAppWeb.Forms
+  nameWithType: IbeAppWeb.Forms
+  fullName: IbeAppWeb.Forms
+  type: Namespace
+  assemblies:
+  - IbeAppWeb
+references:
+- uid: IbeAppWeb.Forms.KanalSchacht
+  commentId: T:IbeAppWeb.Forms.KanalSchacht
+  href: IbeAppWeb.Forms.KanalSchacht.html
+  name: KanalSchacht
+  nameWithType: KanalSchacht
+  fullName: IbeAppWeb.Forms.KanalSchacht

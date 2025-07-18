@@ -1,0 +1,1146 @@
+### YamlMime:ManagedReference
+items:
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto
+  commentId: T:IbeAppWeb.DTOs.ArbeitsscheinDto
+  id: ArbeitsscheinDto
+  parent: IbeAppWeb.DTOs
+  children:
+  - IbeAppWeb.DTOs.ArbeitsscheinDto.Abschlagsrechnung
+  - IbeAppWeb.DTOs.ArbeitsscheinDto.AnlageName
+  - IbeAppWeb.DTOs.ArbeitsscheinDto.ArbBerNr
+  - IbeAppWeb.DTOs.ArbeitsscheinDto.BauBerNr
+  - IbeAppWeb.DTOs.ArbeitsscheinDto.Einheit
+  - IbeAppWeb.DTOs.ArbeitsscheinDto.FahrzeugList
+  - IbeAppWeb.DTOs.ArbeitsscheinDto.Firma
+  - IbeAppWeb.DTOs.ArbeitsscheinDto.HALTUNG
+  - IbeAppWeb.DTOs.ArbeitsscheinDto.Kolonnenfuehrer
+  - IbeAppWeb.DTOs.ArbeitsscheinDto.Kurztext
+  - IbeAppWeb.DTOs.ArbeitsscheinDto.LVPosition
+  - IbeAppWeb.DTOs.ArbeitsscheinDto.Menge
+  - IbeAppWeb.DTOs.ArbeitsscheinDto.Monteur
+  - IbeAppWeb.DTOs.ArbeitsscheinDto.MonteurList
+  - IbeAppWeb.DTOs.ArbeitsscheinDto.Positionssumme
+  - IbeAppWeb.DTOs.ArbeitsscheinDto.Preis
+  - IbeAppWeb.DTOs.ArbeitsscheinDto.ProjectName
+  - IbeAppWeb.DTOs.ArbeitsscheinDto.SaniertAm
+  - IbeAppWeb.DTOs.ArbeitsscheinDto.StdBerNr
+  langs:
+  - csharp
+  - vb
+  name: ArbeitsscheinDto
+  nameWithType: ArbeitsscheinDto
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto
+  type: Class
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/ArbeitsscheinDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: ArbeitsscheinDto
+    path: DTOs/ArbeitsscheinDto.cs
+    startLine: 4
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public class ArbeitsscheinDto
+    content.vb: Public Class ArbeitsscheinDto
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.ProjectName
+  commentId: P:IbeAppWeb.DTOs.ArbeitsscheinDto.ProjectName
+  id: ProjectName
+  parent: IbeAppWeb.DTOs.ArbeitsscheinDto
+  langs:
+  - csharp
+  - vb
+  name: ProjectName
+  nameWithType: ArbeitsscheinDto.ProjectName
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.ProjectName
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/ArbeitsscheinDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: ProjectName
+    path: DTOs/ArbeitsscheinDto.cs
+    startLine: 6
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public string? ProjectName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ProjectName As String
+  overload: IbeAppWeb.DTOs.ArbeitsscheinDto.ProjectName*
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.HALTUNG
+  commentId: P:IbeAppWeb.DTOs.ArbeitsscheinDto.HALTUNG
+  id: HALTUNG
+  parent: IbeAppWeb.DTOs.ArbeitsscheinDto
+  langs:
+  - csharp
+  - vb
+  name: HALTUNG
+  nameWithType: ArbeitsscheinDto.HALTUNG
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.HALTUNG
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/ArbeitsscheinDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: HALTUNG
+    path: DTOs/ArbeitsscheinDto.cs
+    startLine: 7
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public string? HALTUNG { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property HALTUNG As String
+  overload: IbeAppWeb.DTOs.ArbeitsscheinDto.HALTUNG*
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.LVPosition
+  commentId: P:IbeAppWeb.DTOs.ArbeitsscheinDto.LVPosition
+  id: LVPosition
+  parent: IbeAppWeb.DTOs.ArbeitsscheinDto
+  langs:
+  - csharp
+  - vb
+  name: LVPosition
+  nameWithType: ArbeitsscheinDto.LVPosition
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.LVPosition
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/ArbeitsscheinDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: LVPosition
+    path: DTOs/ArbeitsscheinDto.cs
+    startLine: 8
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public string? LVPosition { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property LVPosition As String
+  overload: IbeAppWeb.DTOs.ArbeitsscheinDto.LVPosition*
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.Firma
+  commentId: P:IbeAppWeb.DTOs.ArbeitsscheinDto.Firma
+  id: Firma
+  parent: IbeAppWeb.DTOs.ArbeitsscheinDto
+  langs:
+  - csharp
+  - vb
+  name: Firma
+  nameWithType: ArbeitsscheinDto.Firma
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.Firma
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/ArbeitsscheinDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Firma
+    path: DTOs/ArbeitsscheinDto.cs
+    startLine: 9
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public string? Firma { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Firma As String
+  overload: IbeAppWeb.DTOs.ArbeitsscheinDto.Firma*
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.Kolonnenfuehrer
+  commentId: P:IbeAppWeb.DTOs.ArbeitsscheinDto.Kolonnenfuehrer
+  id: Kolonnenfuehrer
+  parent: IbeAppWeb.DTOs.ArbeitsscheinDto
+  langs:
+  - csharp
+  - vb
+  name: Kolonnenfuehrer
+  nameWithType: ArbeitsscheinDto.Kolonnenfuehrer
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.Kolonnenfuehrer
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/ArbeitsscheinDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Kolonnenfuehrer
+    path: DTOs/ArbeitsscheinDto.cs
+    startLine: 10
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public string? Kolonnenfuehrer { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Kolonnenfuehrer As String
+  overload: IbeAppWeb.DTOs.ArbeitsscheinDto.Kolonnenfuehrer*
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.Monteur
+  commentId: P:IbeAppWeb.DTOs.ArbeitsscheinDto.Monteur
+  id: Monteur
+  parent: IbeAppWeb.DTOs.ArbeitsscheinDto
+  langs:
+  - csharp
+  - vb
+  name: Monteur
+  nameWithType: ArbeitsscheinDto.Monteur
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.Monteur
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/ArbeitsscheinDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Monteur
+    path: DTOs/ArbeitsscheinDto.cs
+    startLine: 11
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public string? Monteur { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Monteur As String
+  overload: IbeAppWeb.DTOs.ArbeitsscheinDto.Monteur*
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.MonteurList
+  commentId: P:IbeAppWeb.DTOs.ArbeitsscheinDto.MonteurList
+  id: MonteurList
+  parent: IbeAppWeb.DTOs.ArbeitsscheinDto
+  langs:
+  - csharp
+  - vb
+  name: MonteurList
+  nameWithType: ArbeitsscheinDto.MonteurList
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.MonteurList
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/ArbeitsscheinDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: MonteurList
+    path: DTOs/ArbeitsscheinDto.cs
+    startLine: 12
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public List<MonteurDto> MonteurList { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{IbeAppWeb.DTOs.Monteur.MonteurDto}
+    content.vb: Public Property MonteurList As List(Of MonteurDto)
+  overload: IbeAppWeb.DTOs.ArbeitsscheinDto.MonteurList*
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.AnlageName
+  commentId: P:IbeAppWeb.DTOs.ArbeitsscheinDto.AnlageName
+  id: AnlageName
+  parent: IbeAppWeb.DTOs.ArbeitsscheinDto
+  langs:
+  - csharp
+  - vb
+  name: AnlageName
+  nameWithType: ArbeitsscheinDto.AnlageName
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.AnlageName
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/ArbeitsscheinDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: AnlageName
+    path: DTOs/ArbeitsscheinDto.cs
+    startLine: 13
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public string? AnlageName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property AnlageName As String
+  overload: IbeAppWeb.DTOs.ArbeitsscheinDto.AnlageName*
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.FahrzeugList
+  commentId: P:IbeAppWeb.DTOs.ArbeitsscheinDto.FahrzeugList
+  id: FahrzeugList
+  parent: IbeAppWeb.DTOs.ArbeitsscheinDto
+  langs:
+  - csharp
+  - vb
+  name: FahrzeugList
+  nameWithType: ArbeitsscheinDto.FahrzeugList
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.FahrzeugList
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/ArbeitsscheinDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: FahrzeugList
+    path: DTOs/ArbeitsscheinDto.cs
+    startLine: 14
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public List<FahrzeugDto> FahrzeugList { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{IbeAppWeb.DTOs.FahrzeugDto}
+    content.vb: Public Property FahrzeugList As List(Of FahrzeugDto)
+  overload: IbeAppWeb.DTOs.ArbeitsscheinDto.FahrzeugList*
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.Menge
+  commentId: P:IbeAppWeb.DTOs.ArbeitsscheinDto.Menge
+  id: Menge
+  parent: IbeAppWeb.DTOs.ArbeitsscheinDto
+  langs:
+  - csharp
+  - vb
+  name: Menge
+  nameWithType: ArbeitsscheinDto.Menge
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.Menge
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/ArbeitsscheinDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Menge
+    path: DTOs/ArbeitsscheinDto.cs
+    startLine: 15
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public decimal Menge { get; set; }
+    parameters: []
+    return:
+      type: System.Decimal
+    content.vb: Public Property Menge As Decimal
+  overload: IbeAppWeb.DTOs.ArbeitsscheinDto.Menge*
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.SaniertAm
+  commentId: P:IbeAppWeb.DTOs.ArbeitsscheinDto.SaniertAm
+  id: SaniertAm
+  parent: IbeAppWeb.DTOs.ArbeitsscheinDto
+  langs:
+  - csharp
+  - vb
+  name: SaniertAm
+  nameWithType: ArbeitsscheinDto.SaniertAm
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.SaniertAm
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/ArbeitsscheinDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: SaniertAm
+    path: DTOs/ArbeitsscheinDto.cs
+    startLine: 16
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public DateTime SaniertAm { get; set; }
+    parameters: []
+    return:
+      type: System.DateTime
+    content.vb: Public Property SaniertAm As Date
+  overload: IbeAppWeb.DTOs.ArbeitsscheinDto.SaniertAm*
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.Abschlagsrechnung
+  commentId: P:IbeAppWeb.DTOs.ArbeitsscheinDto.Abschlagsrechnung
+  id: Abschlagsrechnung
+  parent: IbeAppWeb.DTOs.ArbeitsscheinDto
+  langs:
+  - csharp
+  - vb
+  name: Abschlagsrechnung
+  nameWithType: ArbeitsscheinDto.Abschlagsrechnung
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.Abschlagsrechnung
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/ArbeitsscheinDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Abschlagsrechnung
+    path: DTOs/ArbeitsscheinDto.cs
+    startLine: 17
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public string? Abschlagsrechnung { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Abschlagsrechnung As String
+  overload: IbeAppWeb.DTOs.ArbeitsscheinDto.Abschlagsrechnung*
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.ArbBerNr
+  commentId: P:IbeAppWeb.DTOs.ArbeitsscheinDto.ArbBerNr
+  id: ArbBerNr
+  parent: IbeAppWeb.DTOs.ArbeitsscheinDto
+  langs:
+  - csharp
+  - vb
+  name: ArbBerNr
+  nameWithType: ArbeitsscheinDto.ArbBerNr
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.ArbBerNr
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/ArbeitsscheinDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: ArbBerNr
+    path: DTOs/ArbeitsscheinDto.cs
+    startLine: 18
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public string? ArbBerNr { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ArbBerNr As String
+  overload: IbeAppWeb.DTOs.ArbeitsscheinDto.ArbBerNr*
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.BauBerNr
+  commentId: P:IbeAppWeb.DTOs.ArbeitsscheinDto.BauBerNr
+  id: BauBerNr
+  parent: IbeAppWeb.DTOs.ArbeitsscheinDto
+  langs:
+  - csharp
+  - vb
+  name: BauBerNr
+  nameWithType: ArbeitsscheinDto.BauBerNr
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.BauBerNr
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/ArbeitsscheinDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: BauBerNr
+    path: DTOs/ArbeitsscheinDto.cs
+    startLine: 19
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public string? BauBerNr { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property BauBerNr As String
+  overload: IbeAppWeb.DTOs.ArbeitsscheinDto.BauBerNr*
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.StdBerNr
+  commentId: P:IbeAppWeb.DTOs.ArbeitsscheinDto.StdBerNr
+  id: StdBerNr
+  parent: IbeAppWeb.DTOs.ArbeitsscheinDto
+  langs:
+  - csharp
+  - vb
+  name: StdBerNr
+  nameWithType: ArbeitsscheinDto.StdBerNr
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.StdBerNr
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/ArbeitsscheinDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: StdBerNr
+    path: DTOs/ArbeitsscheinDto.cs
+    startLine: 20
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public string? StdBerNr { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property StdBerNr As String
+  overload: IbeAppWeb.DTOs.ArbeitsscheinDto.StdBerNr*
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.Kurztext
+  commentId: P:IbeAppWeb.DTOs.ArbeitsscheinDto.Kurztext
+  id: Kurztext
+  parent: IbeAppWeb.DTOs.ArbeitsscheinDto
+  langs:
+  - csharp
+  - vb
+  name: Kurztext
+  nameWithType: ArbeitsscheinDto.Kurztext
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.Kurztext
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/ArbeitsscheinDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Kurztext
+    path: DTOs/ArbeitsscheinDto.cs
+    startLine: 21
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public string? Kurztext { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Kurztext As String
+  overload: IbeAppWeb.DTOs.ArbeitsscheinDto.Kurztext*
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.Preis
+  commentId: P:IbeAppWeb.DTOs.ArbeitsscheinDto.Preis
+  id: Preis
+  parent: IbeAppWeb.DTOs.ArbeitsscheinDto
+  langs:
+  - csharp
+  - vb
+  name: Preis
+  nameWithType: ArbeitsscheinDto.Preis
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.Preis
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/ArbeitsscheinDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Preis
+    path: DTOs/ArbeitsscheinDto.cs
+    startLine: 22
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public decimal Preis { get; set; }
+    parameters: []
+    return:
+      type: System.Decimal
+    content.vb: Public Property Preis As Decimal
+  overload: IbeAppWeb.DTOs.ArbeitsscheinDto.Preis*
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.Einheit
+  commentId: P:IbeAppWeb.DTOs.ArbeitsscheinDto.Einheit
+  id: Einheit
+  parent: IbeAppWeb.DTOs.ArbeitsscheinDto
+  langs:
+  - csharp
+  - vb
+  name: Einheit
+  nameWithType: ArbeitsscheinDto.Einheit
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.Einheit
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/ArbeitsscheinDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Einheit
+    path: DTOs/ArbeitsscheinDto.cs
+    startLine: 23
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public string? Einheit { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Einheit As String
+  overload: IbeAppWeb.DTOs.ArbeitsscheinDto.Einheit*
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.Positionssumme
+  commentId: P:IbeAppWeb.DTOs.ArbeitsscheinDto.Positionssumme
+  id: Positionssumme
+  parent: IbeAppWeb.DTOs.ArbeitsscheinDto
+  langs:
+  - csharp
+  - vb
+  name: Positionssumme
+  nameWithType: ArbeitsscheinDto.Positionssumme
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.Positionssumme
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/ArbeitsscheinDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Positionssumme
+    path: DTOs/ArbeitsscheinDto.cs
+    startLine: 24
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public decimal Positionssumme { get; set; }
+    parameters: []
+    return:
+      type: System.Decimal
+    content.vb: Public Property Positionssumme As Decimal
+  overload: IbeAppWeb.DTOs.ArbeitsscheinDto.Positionssumme*
+references:
+- uid: IbeAppWeb.DTOs
+  commentId: N:IbeAppWeb.DTOs
+  href: IbeAppWeb.html
+  name: IbeAppWeb.DTOs
+  nameWithType: IbeAppWeb.DTOs
+  fullName: IbeAppWeb.DTOs
+  spec.csharp:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.DTOs
+    name: DTOs
+    href: IbeAppWeb.DTOs.html
+  spec.vb:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.DTOs
+    name: DTOs
+    href: IbeAppWeb.DTOs.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.ProjectName*
+  commentId: Overload:IbeAppWeb.DTOs.ArbeitsscheinDto.ProjectName
+  href: IbeAppWeb.DTOs.ArbeitsscheinDto.html#IbeAppWeb_DTOs_ArbeitsscheinDto_ProjectName
+  name: ProjectName
+  nameWithType: ArbeitsscheinDto.ProjectName
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.ProjectName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.HALTUNG*
+  commentId: Overload:IbeAppWeb.DTOs.ArbeitsscheinDto.HALTUNG
+  href: IbeAppWeb.DTOs.ArbeitsscheinDto.html#IbeAppWeb_DTOs_ArbeitsscheinDto_HALTUNG
+  name: HALTUNG
+  nameWithType: ArbeitsscheinDto.HALTUNG
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.HALTUNG
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.LVPosition*
+  commentId: Overload:IbeAppWeb.DTOs.ArbeitsscheinDto.LVPosition
+  href: IbeAppWeb.DTOs.ArbeitsscheinDto.html#IbeAppWeb_DTOs_ArbeitsscheinDto_LVPosition
+  name: LVPosition
+  nameWithType: ArbeitsscheinDto.LVPosition
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.LVPosition
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.Firma*
+  commentId: Overload:IbeAppWeb.DTOs.ArbeitsscheinDto.Firma
+  href: IbeAppWeb.DTOs.ArbeitsscheinDto.html#IbeAppWeb_DTOs_ArbeitsscheinDto_Firma
+  name: Firma
+  nameWithType: ArbeitsscheinDto.Firma
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.Firma
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.Kolonnenfuehrer*
+  commentId: Overload:IbeAppWeb.DTOs.ArbeitsscheinDto.Kolonnenfuehrer
+  href: IbeAppWeb.DTOs.ArbeitsscheinDto.html#IbeAppWeb_DTOs_ArbeitsscheinDto_Kolonnenfuehrer
+  name: Kolonnenfuehrer
+  nameWithType: ArbeitsscheinDto.Kolonnenfuehrer
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.Kolonnenfuehrer
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.Monteur*
+  commentId: Overload:IbeAppWeb.DTOs.ArbeitsscheinDto.Monteur
+  href: IbeAppWeb.DTOs.ArbeitsscheinDto.html#IbeAppWeb_DTOs_ArbeitsscheinDto_Monteur
+  name: Monteur
+  nameWithType: ArbeitsscheinDto.Monteur
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.Monteur
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.MonteurList*
+  commentId: Overload:IbeAppWeb.DTOs.ArbeitsscheinDto.MonteurList
+  href: IbeAppWeb.DTOs.ArbeitsscheinDto.html#IbeAppWeb_DTOs_ArbeitsscheinDto_MonteurList
+  name: MonteurList
+  nameWithType: ArbeitsscheinDto.MonteurList
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.MonteurList
+- uid: System.Collections.Generic.List{IbeAppWeb.DTOs.Monteur.MonteurDto}
+  commentId: T:System.Collections.Generic.List{IbeAppWeb.DTOs.Monteur.MonteurDto}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<MonteurDto>
+  nameWithType: List<MonteurDto>
+  fullName: System.Collections.Generic.List<IbeAppWeb.DTOs.Monteur.MonteurDto>
+  nameWithType.vb: List(Of MonteurDto)
+  fullName.vb: System.Collections.Generic.List(Of IbeAppWeb.DTOs.Monteur.MonteurDto)
+  name.vb: List(Of MonteurDto)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: IbeAppWeb.DTOs.Monteur.MonteurDto
+    name: MonteurDto
+    href: IbeAppWeb.DTOs.Monteur.MonteurDto.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: IbeAppWeb.DTOs.Monteur.MonteurDto
+    name: MonteurDto
+    href: IbeAppWeb.DTOs.Monteur.MonteurDto.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.AnlageName*
+  commentId: Overload:IbeAppWeb.DTOs.ArbeitsscheinDto.AnlageName
+  href: IbeAppWeb.DTOs.ArbeitsscheinDto.html#IbeAppWeb_DTOs_ArbeitsscheinDto_AnlageName
+  name: AnlageName
+  nameWithType: ArbeitsscheinDto.AnlageName
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.AnlageName
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.FahrzeugList*
+  commentId: Overload:IbeAppWeb.DTOs.ArbeitsscheinDto.FahrzeugList
+  href: IbeAppWeb.DTOs.ArbeitsscheinDto.html#IbeAppWeb_DTOs_ArbeitsscheinDto_FahrzeugList
+  name: FahrzeugList
+  nameWithType: ArbeitsscheinDto.FahrzeugList
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.FahrzeugList
+- uid: System.Collections.Generic.List{IbeAppWeb.DTOs.FahrzeugDto}
+  commentId: T:System.Collections.Generic.List{IbeAppWeb.DTOs.FahrzeugDto}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<FahrzeugDto>
+  nameWithType: List<FahrzeugDto>
+  fullName: System.Collections.Generic.List<IbeAppWeb.DTOs.FahrzeugDto>
+  nameWithType.vb: List(Of FahrzeugDto)
+  fullName.vb: System.Collections.Generic.List(Of IbeAppWeb.DTOs.FahrzeugDto)
+  name.vb: List(Of FahrzeugDto)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: IbeAppWeb.DTOs.FahrzeugDto
+    name: FahrzeugDto
+    href: IbeAppWeb.DTOs.FahrzeugDto.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: IbeAppWeb.DTOs.FahrzeugDto
+    name: FahrzeugDto
+    href: IbeAppWeb.DTOs.FahrzeugDto.html
+  - name: )
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.Menge*
+  commentId: Overload:IbeAppWeb.DTOs.ArbeitsscheinDto.Menge
+  href: IbeAppWeb.DTOs.ArbeitsscheinDto.html#IbeAppWeb_DTOs_ArbeitsscheinDto_Menge
+  name: Menge
+  nameWithType: ArbeitsscheinDto.Menge
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.Menge
+- uid: System.Decimal
+  commentId: T:System.Decimal
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.decimal
+  name: decimal
+  nameWithType: decimal
+  fullName: decimal
+  nameWithType.vb: Decimal
+  fullName.vb: Decimal
+  name.vb: Decimal
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.SaniertAm*
+  commentId: Overload:IbeAppWeb.DTOs.ArbeitsscheinDto.SaniertAm
+  href: IbeAppWeb.DTOs.ArbeitsscheinDto.html#IbeAppWeb_DTOs_ArbeitsscheinDto_SaniertAm
+  name: SaniertAm
+  nameWithType: ArbeitsscheinDto.SaniertAm
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.SaniertAm
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.Abschlagsrechnung*
+  commentId: Overload:IbeAppWeb.DTOs.ArbeitsscheinDto.Abschlagsrechnung
+  href: IbeAppWeb.DTOs.ArbeitsscheinDto.html#IbeAppWeb_DTOs_ArbeitsscheinDto_Abschlagsrechnung
+  name: Abschlagsrechnung
+  nameWithType: ArbeitsscheinDto.Abschlagsrechnung
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.Abschlagsrechnung
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.ArbBerNr*
+  commentId: Overload:IbeAppWeb.DTOs.ArbeitsscheinDto.ArbBerNr
+  href: IbeAppWeb.DTOs.ArbeitsscheinDto.html#IbeAppWeb_DTOs_ArbeitsscheinDto_ArbBerNr
+  name: ArbBerNr
+  nameWithType: ArbeitsscheinDto.ArbBerNr
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.ArbBerNr
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.BauBerNr*
+  commentId: Overload:IbeAppWeb.DTOs.ArbeitsscheinDto.BauBerNr
+  href: IbeAppWeb.DTOs.ArbeitsscheinDto.html#IbeAppWeb_DTOs_ArbeitsscheinDto_BauBerNr
+  name: BauBerNr
+  nameWithType: ArbeitsscheinDto.BauBerNr
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.BauBerNr
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.StdBerNr*
+  commentId: Overload:IbeAppWeb.DTOs.ArbeitsscheinDto.StdBerNr
+  href: IbeAppWeb.DTOs.ArbeitsscheinDto.html#IbeAppWeb_DTOs_ArbeitsscheinDto_StdBerNr
+  name: StdBerNr
+  nameWithType: ArbeitsscheinDto.StdBerNr
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.StdBerNr
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.Kurztext*
+  commentId: Overload:IbeAppWeb.DTOs.ArbeitsscheinDto.Kurztext
+  href: IbeAppWeb.DTOs.ArbeitsscheinDto.html#IbeAppWeb_DTOs_ArbeitsscheinDto_Kurztext
+  name: Kurztext
+  nameWithType: ArbeitsscheinDto.Kurztext
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.Kurztext
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.Preis*
+  commentId: Overload:IbeAppWeb.DTOs.ArbeitsscheinDto.Preis
+  href: IbeAppWeb.DTOs.ArbeitsscheinDto.html#IbeAppWeb_DTOs_ArbeitsscheinDto_Preis
+  name: Preis
+  nameWithType: ArbeitsscheinDto.Preis
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.Preis
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.Einheit*
+  commentId: Overload:IbeAppWeb.DTOs.ArbeitsscheinDto.Einheit
+  href: IbeAppWeb.DTOs.ArbeitsscheinDto.html#IbeAppWeb_DTOs_ArbeitsscheinDto_Einheit
+  name: Einheit
+  nameWithType: ArbeitsscheinDto.Einheit
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.Einheit
+- uid: IbeAppWeb.DTOs.ArbeitsscheinDto.Positionssumme*
+  commentId: Overload:IbeAppWeb.DTOs.ArbeitsscheinDto.Positionssumme
+  href: IbeAppWeb.DTOs.ArbeitsscheinDto.html#IbeAppWeb_DTOs_ArbeitsscheinDto_Positionssumme
+  name: Positionssumme
+  nameWithType: ArbeitsscheinDto.Positionssumme
+  fullName: IbeAppWeb.DTOs.ArbeitsscheinDto.Positionssumme

@@ -1,0 +1,714 @@
+### YamlMime:ManagedReference
+items:
+- uid: IbeAppWeb.DTOs.Monteur.MonteurResponse
+  commentId: T:IbeAppWeb.DTOs.Monteur.MonteurResponse
+  id: MonteurResponse
+  parent: IbeAppWeb.DTOs.Monteur
+  children:
+  - IbeAppWeb.DTOs.Monteur.MonteurResponse.AnlageId
+  - IbeAppWeb.DTOs.Monteur.MonteurResponse.Email
+  - IbeAppWeb.DTOs.Monteur.MonteurResponse.FullName
+  - IbeAppWeb.DTOs.Monteur.MonteurResponse.IsDeleted
+  - IbeAppWeb.DTOs.Monteur.MonteurResponse.MonteurId
+  - IbeAppWeb.DTOs.Monteur.MonteurResponse.Nachname
+  - IbeAppWeb.DTOs.Monteur.MonteurResponse.Order
+  - IbeAppWeb.DTOs.Monteur.MonteurResponse.Sequence
+  - IbeAppWeb.DTOs.Monteur.MonteurResponse.Vorname
+  langs:
+  - csharp
+  - vb
+  name: MonteurResponse
+  nameWithType: MonteurResponse
+  fullName: IbeAppWeb.DTOs.Monteur.MonteurResponse
+  type: Class
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/Monteur/MonteurResponse.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: MonteurResponse
+    path: DTOs/Monteur/MonteurResponse.cs
+    startLine: 2
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs.Monteur
+  syntax:
+    content: public class MonteurResponse
+    content.vb: Public Class MonteurResponse
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: IbeAppWeb.DTOs.Monteur.MonteurResponse.MonteurId
+  commentId: P:IbeAppWeb.DTOs.Monteur.MonteurResponse.MonteurId
+  id: MonteurId
+  parent: IbeAppWeb.DTOs.Monteur.MonteurResponse
+  langs:
+  - csharp
+  - vb
+  name: MonteurId
+  nameWithType: MonteurResponse.MonteurId
+  fullName: IbeAppWeb.DTOs.Monteur.MonteurResponse.MonteurId
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/Monteur/MonteurResponse.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: MonteurId
+    path: DTOs/Monteur/MonteurResponse.cs
+    startLine: 4
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs.Monteur
+  syntax:
+    content: public int MonteurId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property MonteurId As Integer
+  overload: IbeAppWeb.DTOs.Monteur.MonteurResponse.MonteurId*
+- uid: IbeAppWeb.DTOs.Monteur.MonteurResponse.Vorname
+  commentId: P:IbeAppWeb.DTOs.Monteur.MonteurResponse.Vorname
+  id: Vorname
+  parent: IbeAppWeb.DTOs.Monteur.MonteurResponse
+  langs:
+  - csharp
+  - vb
+  name: Vorname
+  nameWithType: MonteurResponse.Vorname
+  fullName: IbeAppWeb.DTOs.Monteur.MonteurResponse.Vorname
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/Monteur/MonteurResponse.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Vorname
+    path: DTOs/Monteur/MonteurResponse.cs
+    startLine: 5
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs.Monteur
+  syntax:
+    content: public string? Vorname { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Vorname As String
+  overload: IbeAppWeb.DTOs.Monteur.MonteurResponse.Vorname*
+- uid: IbeAppWeb.DTOs.Monteur.MonteurResponse.Nachname
+  commentId: P:IbeAppWeb.DTOs.Monteur.MonteurResponse.Nachname
+  id: Nachname
+  parent: IbeAppWeb.DTOs.Monteur.MonteurResponse
+  langs:
+  - csharp
+  - vb
+  name: Nachname
+  nameWithType: MonteurResponse.Nachname
+  fullName: IbeAppWeb.DTOs.Monteur.MonteurResponse.Nachname
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/Monteur/MonteurResponse.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Nachname
+    path: DTOs/Monteur/MonteurResponse.cs
+    startLine: 6
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs.Monteur
+  syntax:
+    content: public string? Nachname { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Nachname As String
+  overload: IbeAppWeb.DTOs.Monteur.MonteurResponse.Nachname*
+- uid: IbeAppWeb.DTOs.Monteur.MonteurResponse.Email
+  commentId: P:IbeAppWeb.DTOs.Monteur.MonteurResponse.Email
+  id: Email
+  parent: IbeAppWeb.DTOs.Monteur.MonteurResponse
+  langs:
+  - csharp
+  - vb
+  name: Email
+  nameWithType: MonteurResponse.Email
+  fullName: IbeAppWeb.DTOs.Monteur.MonteurResponse.Email
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/Monteur/MonteurResponse.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Email
+    path: DTOs/Monteur/MonteurResponse.cs
+    startLine: 7
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs.Monteur
+  syntax:
+    content: public string? Email { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Email As String
+  overload: IbeAppWeb.DTOs.Monteur.MonteurResponse.Email*
+- uid: IbeAppWeb.DTOs.Monteur.MonteurResponse.IsDeleted
+  commentId: P:IbeAppWeb.DTOs.Monteur.MonteurResponse.IsDeleted
+  id: IsDeleted
+  parent: IbeAppWeb.DTOs.Monteur.MonteurResponse
+  langs:
+  - csharp
+  - vb
+  name: IsDeleted
+  nameWithType: MonteurResponse.IsDeleted
+  fullName: IbeAppWeb.DTOs.Monteur.MonteurResponse.IsDeleted
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/Monteur/MonteurResponse.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: IsDeleted
+    path: DTOs/Monteur/MonteurResponse.cs
+    startLine: 8
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs.Monteur
+  syntax:
+    content: public bool IsDeleted { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsDeleted As Boolean
+  overload: IbeAppWeb.DTOs.Monteur.MonteurResponse.IsDeleted*
+- uid: IbeAppWeb.DTOs.Monteur.MonteurResponse.AnlageId
+  commentId: P:IbeAppWeb.DTOs.Monteur.MonteurResponse.AnlageId
+  id: AnlageId
+  parent: IbeAppWeb.DTOs.Monteur.MonteurResponse
+  langs:
+  - csharp
+  - vb
+  name: AnlageId
+  nameWithType: MonteurResponse.AnlageId
+  fullName: IbeAppWeb.DTOs.Monteur.MonteurResponse.AnlageId
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/Monteur/MonteurResponse.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: AnlageId
+    path: DTOs/Monteur/MonteurResponse.cs
+    startLine: 9
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs.Monteur
+  syntax:
+    content: public int? AnlageId { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property AnlageId As Integer?
+  overload: IbeAppWeb.DTOs.Monteur.MonteurResponse.AnlageId*
+- uid: IbeAppWeb.DTOs.Monteur.MonteurResponse.Order
+  commentId: P:IbeAppWeb.DTOs.Monteur.MonteurResponse.Order
+  id: Order
+  parent: IbeAppWeb.DTOs.Monteur.MonteurResponse
+  langs:
+  - csharp
+  - vb
+  name: Order
+  nameWithType: MonteurResponse.Order
+  fullName: IbeAppWeb.DTOs.Monteur.MonteurResponse.Order
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/Monteur/MonteurResponse.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Order
+    path: DTOs/Monteur/MonteurResponse.cs
+    startLine: 10
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs.Monteur
+  syntax:
+    content: public int Order { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Order As Integer
+  overload: IbeAppWeb.DTOs.Monteur.MonteurResponse.Order*
+- uid: IbeAppWeb.DTOs.Monteur.MonteurResponse.Sequence
+  commentId: P:IbeAppWeb.DTOs.Monteur.MonteurResponse.Sequence
+  id: Sequence
+  parent: IbeAppWeb.DTOs.Monteur.MonteurResponse
+  langs:
+  - csharp
+  - vb
+  name: Sequence
+  nameWithType: MonteurResponse.Sequence
+  fullName: IbeAppWeb.DTOs.Monteur.MonteurResponse.Sequence
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/Monteur/MonteurResponse.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Sequence
+    path: DTOs/Monteur/MonteurResponse.cs
+    startLine: 11
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs.Monteur
+  syntax:
+    content: public int Sequence { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Sequence As Integer
+  overload: IbeAppWeb.DTOs.Monteur.MonteurResponse.Sequence*
+- uid: IbeAppWeb.DTOs.Monteur.MonteurResponse.FullName
+  commentId: P:IbeAppWeb.DTOs.Monteur.MonteurResponse.FullName
+  id: FullName
+  parent: IbeAppWeb.DTOs.Monteur.MonteurResponse
+  langs:
+  - csharp
+  - vb
+  name: FullName
+  nameWithType: MonteurResponse.FullName
+  fullName: IbeAppWeb.DTOs.Monteur.MonteurResponse.FullName
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/Monteur/MonteurResponse.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: FullName
+    path: DTOs/Monteur/MonteurResponse.cs
+    startLine: 12
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs.Monteur
+  syntax:
+    content: public string FullName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property FullName As String
+  overload: IbeAppWeb.DTOs.Monteur.MonteurResponse.FullName*
+references:
+- uid: IbeAppWeb.DTOs.Monteur
+  commentId: N:IbeAppWeb.DTOs.Monteur
+  href: IbeAppWeb.html
+  name: IbeAppWeb.DTOs.Monteur
+  nameWithType: IbeAppWeb.DTOs.Monteur
+  fullName: IbeAppWeb.DTOs.Monteur
+  spec.csharp:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.DTOs
+    name: DTOs
+    href: IbeAppWeb.DTOs.html
+  - name: .
+  - uid: IbeAppWeb.DTOs.Monteur
+    name: Monteur
+    href: IbeAppWeb.DTOs.Monteur.html
+  spec.vb:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.DTOs
+    name: DTOs
+    href: IbeAppWeb.DTOs.html
+  - name: .
+  - uid: IbeAppWeb.DTOs.Monteur
+    name: Monteur
+    href: IbeAppWeb.DTOs.Monteur.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: IbeAppWeb.DTOs.Monteur.MonteurResponse.MonteurId*
+  commentId: Overload:IbeAppWeb.DTOs.Monteur.MonteurResponse.MonteurId
+  href: IbeAppWeb.DTOs.Monteur.MonteurResponse.html#IbeAppWeb_DTOs_Monteur_MonteurResponse_MonteurId
+  name: MonteurId
+  nameWithType: MonteurResponse.MonteurId
+  fullName: IbeAppWeb.DTOs.Monteur.MonteurResponse.MonteurId
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: IbeAppWeb.DTOs.Monteur.MonteurResponse.Vorname*
+  commentId: Overload:IbeAppWeb.DTOs.Monteur.MonteurResponse.Vorname
+  href: IbeAppWeb.DTOs.Monteur.MonteurResponse.html#IbeAppWeb_DTOs_Monteur_MonteurResponse_Vorname
+  name: Vorname
+  nameWithType: MonteurResponse.Vorname
+  fullName: IbeAppWeb.DTOs.Monteur.MonteurResponse.Vorname
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: IbeAppWeb.DTOs.Monteur.MonteurResponse.Nachname*
+  commentId: Overload:IbeAppWeb.DTOs.Monteur.MonteurResponse.Nachname
+  href: IbeAppWeb.DTOs.Monteur.MonteurResponse.html#IbeAppWeb_DTOs_Monteur_MonteurResponse_Nachname
+  name: Nachname
+  nameWithType: MonteurResponse.Nachname
+  fullName: IbeAppWeb.DTOs.Monteur.MonteurResponse.Nachname
+- uid: IbeAppWeb.DTOs.Monteur.MonteurResponse.Email*
+  commentId: Overload:IbeAppWeb.DTOs.Monteur.MonteurResponse.Email
+  href: IbeAppWeb.DTOs.Monteur.MonteurResponse.html#IbeAppWeb_DTOs_Monteur_MonteurResponse_Email
+  name: Email
+  nameWithType: MonteurResponse.Email
+  fullName: IbeAppWeb.DTOs.Monteur.MonteurResponse.Email
+- uid: IbeAppWeb.DTOs.Monteur.MonteurResponse.IsDeleted*
+  commentId: Overload:IbeAppWeb.DTOs.Monteur.MonteurResponse.IsDeleted
+  href: IbeAppWeb.DTOs.Monteur.MonteurResponse.html#IbeAppWeb_DTOs_Monteur_MonteurResponse_IsDeleted
+  name: IsDeleted
+  nameWithType: MonteurResponse.IsDeleted
+  fullName: IbeAppWeb.DTOs.Monteur.MonteurResponse.IsDeleted
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: IbeAppWeb.DTOs.Monteur.MonteurResponse.AnlageId*
+  commentId: Overload:IbeAppWeb.DTOs.Monteur.MonteurResponse.AnlageId
+  href: IbeAppWeb.DTOs.Monteur.MonteurResponse.html#IbeAppWeb_DTOs_Monteur_MonteurResponse_AnlageId
+  name: AnlageId
+  nameWithType: MonteurResponse.AnlageId
+  fullName: IbeAppWeb.DTOs.Monteur.MonteurResponse.AnlageId
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: IbeAppWeb.DTOs.Monteur.MonteurResponse.Order*
+  commentId: Overload:IbeAppWeb.DTOs.Monteur.MonteurResponse.Order
+  href: IbeAppWeb.DTOs.Monteur.MonteurResponse.html#IbeAppWeb_DTOs_Monteur_MonteurResponse_Order
+  name: Order
+  nameWithType: MonteurResponse.Order
+  fullName: IbeAppWeb.DTOs.Monteur.MonteurResponse.Order
+- uid: IbeAppWeb.DTOs.Monteur.MonteurResponse.Sequence*
+  commentId: Overload:IbeAppWeb.DTOs.Monteur.MonteurResponse.Sequence
+  href: IbeAppWeb.DTOs.Monteur.MonteurResponse.html#IbeAppWeb_DTOs_Monteur_MonteurResponse_Sequence
+  name: Sequence
+  nameWithType: MonteurResponse.Sequence
+  fullName: IbeAppWeb.DTOs.Monteur.MonteurResponse.Sequence
+- uid: IbeAppWeb.DTOs.Monteur.MonteurResponse.FullName*
+  commentId: Overload:IbeAppWeb.DTOs.Monteur.MonteurResponse.FullName
+  href: IbeAppWeb.DTOs.Monteur.MonteurResponse.html#IbeAppWeb_DTOs_Monteur_MonteurResponse_FullName
+  name: FullName
+  nameWithType: MonteurResponse.FullName
+  fullName: IbeAppWeb.DTOs.Monteur.MonteurResponse.FullName

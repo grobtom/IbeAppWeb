@@ -1,0 +1,761 @@
+### YamlMime:ManagedReference
+items:
+- uid: IbeAppWeb.Services.BauleiterService
+  commentId: T:IbeAppWeb.Services.BauleiterService
+  id: BauleiterService
+  parent: IbeAppWeb.Services
+  children:
+  - IbeAppWeb.Services.BauleiterService.#ctor(System.Net.Http.HttpClient,Microsoft.AspNetCore.Components.NavigationManager)
+  - IbeAppWeb.Services.BauleiterService.GetAllBauleiter
+  - IbeAppWeb.Services.BauleiterService.GetBauleiterWithProjects
+  - IbeAppWeb.Services.BauleiterService.UpdateBauleiter(IbeAppWeb.DTOs.BauleiterWithProjectsDto)
+  langs:
+  - csharp
+  - vb
+  name: BauleiterService
+  nameWithType: BauleiterService
+  fullName: IbeAppWeb.Services.BauleiterService
+  type: Class
+  source:
+    remote:
+      path: IbeAppWeb/Services/BauleiterService.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: BauleiterService
+    path: Services/BauleiterService.cs
+    startLine: 7
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Services
+  syntax:
+    content: public class BauleiterService
+    content.vb: Public Class BauleiterService
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: IbeAppWeb.Services.BauleiterService.#ctor(System.Net.Http.HttpClient,Microsoft.AspNetCore.Components.NavigationManager)
+  commentId: M:IbeAppWeb.Services.BauleiterService.#ctor(System.Net.Http.HttpClient,Microsoft.AspNetCore.Components.NavigationManager)
+  id: '#ctor(System.Net.Http.HttpClient,Microsoft.AspNetCore.Components.NavigationManager)'
+  parent: IbeAppWeb.Services.BauleiterService
+  langs:
+  - csharp
+  - vb
+  name: BauleiterService(HttpClient, NavigationManager)
+  nameWithType: BauleiterService.BauleiterService(HttpClient, NavigationManager)
+  fullName: IbeAppWeb.Services.BauleiterService.BauleiterService(System.Net.Http.HttpClient, Microsoft.AspNetCore.Components.NavigationManager)
+  type: Constructor
+  source:
+    remote:
+      path: IbeAppWeb/Services/BauleiterService.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: .ctor
+    path: Services/BauleiterService.cs
+    startLine: 12
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Services
+  syntax:
+    content: public BauleiterService(HttpClient httpClient, NavigationManager navigationManager)
+    parameters:
+    - id: httpClient
+      type: System.Net.Http.HttpClient
+    - id: navigationManager
+      type: Microsoft.AspNetCore.Components.NavigationManager
+    content.vb: Public Sub New(httpClient As HttpClient, navigationManager As NavigationManager)
+  overload: IbeAppWeb.Services.BauleiterService.#ctor*
+  nameWithType.vb: BauleiterService.New(HttpClient, NavigationManager)
+  fullName.vb: IbeAppWeb.Services.BauleiterService.New(System.Net.Http.HttpClient, Microsoft.AspNetCore.Components.NavigationManager)
+  name.vb: New(HttpClient, NavigationManager)
+- uid: IbeAppWeb.Services.BauleiterService.GetAllBauleiter
+  commentId: M:IbeAppWeb.Services.BauleiterService.GetAllBauleiter
+  id: GetAllBauleiter
+  parent: IbeAppWeb.Services.BauleiterService
+  langs:
+  - csharp
+  - vb
+  name: GetAllBauleiter()
+  nameWithType: BauleiterService.GetAllBauleiter()
+  fullName: IbeAppWeb.Services.BauleiterService.GetAllBauleiter()
+  type: Method
+  source:
+    remote:
+      path: IbeAppWeb/Services/BauleiterService.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: GetAllBauleiter
+    path: Services/BauleiterService.cs
+    startLine: 17
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Services
+  syntax:
+    content: public Task<IEnumerable<BauleiterDto>> GetAllBauleiter()
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{IbeAppWeb.DTOs.BauleiterDto}}
+    content.vb: Public Function GetAllBauleiter() As Task(Of IEnumerable(Of BauleiterDto))
+  overload: IbeAppWeb.Services.BauleiterService.GetAllBauleiter*
+- uid: IbeAppWeb.Services.BauleiterService.GetBauleiterWithProjects
+  commentId: M:IbeAppWeb.Services.BauleiterService.GetBauleiterWithProjects
+  id: GetBauleiterWithProjects
+  parent: IbeAppWeb.Services.BauleiterService
+  langs:
+  - csharp
+  - vb
+  name: GetBauleiterWithProjects()
+  nameWithType: BauleiterService.GetBauleiterWithProjects()
+  fullName: IbeAppWeb.Services.BauleiterService.GetBauleiterWithProjects()
+  type: Method
+  source:
+    remote:
+      path: IbeAppWeb/Services/BauleiterService.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: GetBauleiterWithProjects
+    path: Services/BauleiterService.cs
+    startLine: 39
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Services
+  syntax:
+    content: public Task<IEnumerable<BauleiterWithProjectsDto>> GetBauleiterWithProjects()
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{IbeAppWeb.DTOs.BauleiterWithProjectsDto}}
+    content.vb: Public Function GetBauleiterWithProjects() As Task(Of IEnumerable(Of BauleiterWithProjectsDto))
+  overload: IbeAppWeb.Services.BauleiterService.GetBauleiterWithProjects*
+- uid: IbeAppWeb.Services.BauleiterService.UpdateBauleiter(IbeAppWeb.DTOs.BauleiterWithProjectsDto)
+  commentId: M:IbeAppWeb.Services.BauleiterService.UpdateBauleiter(IbeAppWeb.DTOs.BauleiterWithProjectsDto)
+  id: UpdateBauleiter(IbeAppWeb.DTOs.BauleiterWithProjectsDto)
+  parent: IbeAppWeb.Services.BauleiterService
+  langs:
+  - csharp
+  - vb
+  name: UpdateBauleiter(BauleiterWithProjectsDto)
+  nameWithType: BauleiterService.UpdateBauleiter(BauleiterWithProjectsDto)
+  fullName: IbeAppWeb.Services.BauleiterService.UpdateBauleiter(IbeAppWeb.DTOs.BauleiterWithProjectsDto)
+  type: Method
+  source:
+    remote:
+      path: IbeAppWeb/Services/BauleiterService.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: UpdateBauleiter
+    path: Services/BauleiterService.cs
+    startLine: 74
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Services
+  syntax:
+    content: public Task<BauleiterWithProjectsDto?> UpdateBauleiter(BauleiterWithProjectsDto dto)
+    parameters:
+    - id: dto
+      type: IbeAppWeb.DTOs.BauleiterWithProjectsDto
+    return:
+      type: System.Threading.Tasks.Task{IbeAppWeb.DTOs.BauleiterWithProjectsDto}
+    content.vb: Public Function UpdateBauleiter(dto As BauleiterWithProjectsDto) As Task(Of BauleiterWithProjectsDto)
+  overload: IbeAppWeb.Services.BauleiterService.UpdateBauleiter*
+references:
+- uid: IbeAppWeb.Services
+  commentId: N:IbeAppWeb.Services
+  href: IbeAppWeb.html
+  name: IbeAppWeb.Services
+  nameWithType: IbeAppWeb.Services
+  fullName: IbeAppWeb.Services
+  spec.csharp:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.Services
+    name: Services
+    href: IbeAppWeb.Services.html
+  spec.vb:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.Services
+    name: Services
+    href: IbeAppWeb.Services.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: IbeAppWeb.Services.BauleiterService.#ctor*
+  commentId: Overload:IbeAppWeb.Services.BauleiterService.#ctor
+  href: IbeAppWeb.Services.BauleiterService.html#IbeAppWeb_Services_BauleiterService__ctor_System_Net_Http_HttpClient_Microsoft_AspNetCore_Components_NavigationManager_
+  name: BauleiterService
+  nameWithType: BauleiterService.BauleiterService
+  fullName: IbeAppWeb.Services.BauleiterService.BauleiterService
+  nameWithType.vb: BauleiterService.New
+  fullName.vb: IbeAppWeb.Services.BauleiterService.New
+  name.vb: New
+- uid: System.Net.Http.HttpClient
+  commentId: T:System.Net.Http.HttpClient
+  parent: System.Net.Http
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.net.http.httpclient
+  name: HttpClient
+  nameWithType: HttpClient
+  fullName: System.Net.Http.HttpClient
+- uid: Microsoft.AspNetCore.Components.NavigationManager
+  commentId: T:Microsoft.AspNetCore.Components.NavigationManager
+  parent: Microsoft.AspNetCore.Components
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.navigationmanager
+  name: NavigationManager
+  nameWithType: NavigationManager
+  fullName: Microsoft.AspNetCore.Components.NavigationManager
+- uid: System.Net.Http
+  commentId: N:System.Net.Http
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Net.Http
+  nameWithType: System.Net.Http
+  fullName: System.Net.Http
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Net
+    name: Net
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net
+  - name: .
+  - uid: System.Net.Http
+    name: Http
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net.http
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Net
+    name: Net
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net
+  - name: .
+  - uid: System.Net.Http
+    name: Http
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net.http
+- uid: Microsoft.AspNetCore.Components
+  commentId: N:Microsoft.AspNetCore.Components
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
+  name: Microsoft.AspNetCore.Components
+  nameWithType: Microsoft.AspNetCore.Components
+  fullName: Microsoft.AspNetCore.Components
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Components
+    name: Components
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Components
+    name: Components
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components
+- uid: IbeAppWeb.Services.BauleiterService.GetAllBauleiter*
+  commentId: Overload:IbeAppWeb.Services.BauleiterService.GetAllBauleiter
+  href: IbeAppWeb.Services.BauleiterService.html#IbeAppWeb_Services_BauleiterService_GetAllBauleiter
+  name: GetAllBauleiter
+  nameWithType: BauleiterService.GetAllBauleiter
+  fullName: IbeAppWeb.Services.BauleiterService.GetAllBauleiter
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{IbeAppWeb.DTOs.BauleiterDto}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{IbeAppWeb.DTOs.BauleiterDto}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<IEnumerable<BauleiterDto>>
+  nameWithType: Task<IEnumerable<BauleiterDto>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<IbeAppWeb.DTOs.BauleiterDto>>
+  nameWithType.vb: Task(Of IEnumerable(Of BauleiterDto))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.IEnumerable(Of IbeAppWeb.DTOs.BauleiterDto))
+  name.vb: Task(Of IEnumerable(Of BauleiterDto))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: IbeAppWeb.DTOs.BauleiterDto
+    name: BauleiterDto
+    href: IbeAppWeb.DTOs.BauleiterDto.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: IbeAppWeb.DTOs.BauleiterDto
+    name: BauleiterDto
+    href: IbeAppWeb.DTOs.BauleiterDto.html
+  - name: )
+  - name: )
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: IbeAppWeb.Services.BauleiterService.GetBauleiterWithProjects*
+  commentId: Overload:IbeAppWeb.Services.BauleiterService.GetBauleiterWithProjects
+  href: IbeAppWeb.Services.BauleiterService.html#IbeAppWeb_Services_BauleiterService_GetBauleiterWithProjects
+  name: GetBauleiterWithProjects
+  nameWithType: BauleiterService.GetBauleiterWithProjects
+  fullName: IbeAppWeb.Services.BauleiterService.GetBauleiterWithProjects
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{IbeAppWeb.DTOs.BauleiterWithProjectsDto}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{IbeAppWeb.DTOs.BauleiterWithProjectsDto}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<IEnumerable<BauleiterWithProjectsDto>>
+  nameWithType: Task<IEnumerable<BauleiterWithProjectsDto>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<IbeAppWeb.DTOs.BauleiterWithProjectsDto>>
+  nameWithType.vb: Task(Of IEnumerable(Of BauleiterWithProjectsDto))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.IEnumerable(Of IbeAppWeb.DTOs.BauleiterWithProjectsDto))
+  name.vb: Task(Of IEnumerable(Of BauleiterWithProjectsDto))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: IbeAppWeb.DTOs.BauleiterWithProjectsDto
+    name: BauleiterWithProjectsDto
+    href: IbeAppWeb.DTOs.BauleiterWithProjectsDto.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: IbeAppWeb.DTOs.BauleiterWithProjectsDto
+    name: BauleiterWithProjectsDto
+    href: IbeAppWeb.DTOs.BauleiterWithProjectsDto.html
+  - name: )
+  - name: )
+- uid: IbeAppWeb.Services.BauleiterService.UpdateBauleiter*
+  commentId: Overload:IbeAppWeb.Services.BauleiterService.UpdateBauleiter
+  href: IbeAppWeb.Services.BauleiterService.html#IbeAppWeb_Services_BauleiterService_UpdateBauleiter_IbeAppWeb_DTOs_BauleiterWithProjectsDto_
+  name: UpdateBauleiter
+  nameWithType: BauleiterService.UpdateBauleiter
+  fullName: IbeAppWeb.Services.BauleiterService.UpdateBauleiter
+- uid: IbeAppWeb.DTOs.BauleiterWithProjectsDto
+  commentId: T:IbeAppWeb.DTOs.BauleiterWithProjectsDto
+  parent: IbeAppWeb.DTOs
+  href: IbeAppWeb.DTOs.BauleiterWithProjectsDto.html
+  name: BauleiterWithProjectsDto
+  nameWithType: BauleiterWithProjectsDto
+  fullName: IbeAppWeb.DTOs.BauleiterWithProjectsDto
+- uid: System.Threading.Tasks.Task{IbeAppWeb.DTOs.BauleiterWithProjectsDto}
+  commentId: T:System.Threading.Tasks.Task{IbeAppWeb.DTOs.BauleiterWithProjectsDto}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<BauleiterWithProjectsDto>
+  nameWithType: Task<BauleiterWithProjectsDto>
+  fullName: System.Threading.Tasks.Task<IbeAppWeb.DTOs.BauleiterWithProjectsDto>
+  nameWithType.vb: Task(Of BauleiterWithProjectsDto)
+  fullName.vb: System.Threading.Tasks.Task(Of IbeAppWeb.DTOs.BauleiterWithProjectsDto)
+  name.vb: Task(Of BauleiterWithProjectsDto)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: IbeAppWeb.DTOs.BauleiterWithProjectsDto
+    name: BauleiterWithProjectsDto
+    href: IbeAppWeb.DTOs.BauleiterWithProjectsDto.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: IbeAppWeb.DTOs.BauleiterWithProjectsDto
+    name: BauleiterWithProjectsDto
+    href: IbeAppWeb.DTOs.BauleiterWithProjectsDto.html
+  - name: )
+- uid: IbeAppWeb.DTOs
+  commentId: N:IbeAppWeb.DTOs
+  href: IbeAppWeb.html
+  name: IbeAppWeb.DTOs
+  nameWithType: IbeAppWeb.DTOs
+  fullName: IbeAppWeb.DTOs
+  spec.csharp:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.DTOs
+    name: DTOs
+    href: IbeAppWeb.DTOs.html
+  spec.vb:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.DTOs
+    name: DTOs
+    href: IbeAppWeb.DTOs.html

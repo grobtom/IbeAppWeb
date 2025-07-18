@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class MonteurService | IBE Application Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class MonteurService | IBE Application Documentation ">
+      
+      <meta name="description" content="Provides services for managing Monteur resources, including retrieval, creation, updating, and deletion operations.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="IbeAppWeb">
+            IbeAppWeb
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="IbeAppWeb.Services.MonteurService">
+
+
+
+  <h1 id="IbeAppWeb_Services_MonteurService" data-uid="IbeAppWeb.Services.MonteurService" class="text-break">
+Class MonteurService  <a class="header-action link-secondary" title="View source" href="https://github.com/grobtom/IbeAppWeb/blob/main/IbeAppWeb/Services/MonteurService.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="IbeAppWeb.html">IbeAppWeb</a>.<a class="xref" href="IbeAppWeb.Services.html">Services</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>IbeAppWeb.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Provides services for managing Monteur resources, including retrieval, creation, updating, and deletion operations.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class MonteurService</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">MonteurService</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="IbeAppWeb_Services_MonteurService_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>This service interacts with a backend API to perform operations related to Monteur entities. It
+handles HTTP requests and responses, including error handling and data serialization. Ensure that the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> is properly configured and the API endpoints are accessible.</p>
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="IbeAppWeb_Services_MonteurService__ctor_" data-uid="IbeAppWeb.Services.MonteurService.#ctor*"></a>
+
+  <h3 id="IbeAppWeb_Services_MonteurService__ctor_System_Net_Http_HttpClient_" data-uid="IbeAppWeb.Services.MonteurService.#ctor(System.Net.Http.HttpClient)">
+  MonteurService(HttpClient)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/grobtom/IbeAppWeb/blob/main/IbeAppWeb/Services/MonteurService.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MonteurService(HttpClient httpClient)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>httpClient</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="IbeAppWeb_Services_MonteurService_AssignMonteurToAnlage_" data-uid="IbeAppWeb.Services.MonteurService.AssignMonteurToAnlage*"></a>
+
+  <h3 id="IbeAppWeb_Services_MonteurService_AssignMonteurToAnlage_IbeAppWeb_DTOs_Monteur_AssignMonteurToAnlageDto_" data-uid="IbeAppWeb.Services.MonteurService.AssignMonteurToAnlage(IbeAppWeb.DTOs.Monteur.AssignMonteurToAnlageDto)">
+  AssignMonteurToAnlage(AssignMonteurToAnlageDto)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/grobtom/IbeAppWeb/blob/main/IbeAppWeb/Services/MonteurService.cs/#L224"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Assigns a Monteur to an Anlage based on the provided data transfer object (DTO).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;MonteurWithAnlageDto?&gt; AssignMonteurToAnlage(AssignMonteurToAnlageDto dto)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dto</code> <a class="xref" href="IbeAppWeb.DTOs.Monteur.AssignMonteurToAnlageDto.html">AssignMonteurToAnlageDto</a></dt>
+    <dd><p>The data transfer object containing the details required to assign a Monteur to an Anlage.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="IbeAppWeb.DTOs.MonteurWithAnlageDto.html">MonteurWithAnlageDto</a>&gt;</dt>
+    <dd><p>A <a class="xref" href="IbeAppWeb.DTOs.MonteurWithAnlageDto.html">MonteurWithAnlageDto</a> object containing the details of the assigned Monteur and Anlage if the
+operation is successful; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="IbeAppWeb_Services_MonteurService_AssignMonteurToAnlage_IbeAppWeb_DTOs_Monteur_AssignMonteurToAnlageDto__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method sends an HTTP POST request to the endpoint <code>api/monteur/assign-to-anlage</code>
+with the provided DTO as the request body. Ensure that the <a class="xref" href="IbeAppWeb.DTOs.Monteur.AssignMonteurToAnlageDto.html">AssignMonteurToAnlageDto</a> object is
+properly populated before calling this method.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httprequestexception">HttpRequestException</a></dt>
+    <dd><p>Thrown if the HTTP request to assign the Monteur to the Anlage fails. The exception message includes the HTTP
+status code and error details.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="IbeAppWeb_Services_MonteurService_CreateMonteur_" data-uid="IbeAppWeb.Services.MonteurService.CreateMonteur*"></a>
+
+  <h3 id="IbeAppWeb_Services_MonteurService_CreateMonteur_IbeAppWeb_DTOs_Monteur_MonteurResponse_System_Collections_Generic_Dictionary_System_String_System_String__" data-uid="IbeAppWeb.Services.MonteurService.CreateMonteur(IbeAppWeb.DTOs.Monteur.MonteurResponse,System.Collections.Generic.Dictionary{System.String,System.String})">
+  CreateMonteur(MonteurResponse, Dictionary&lt;string, string&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/grobtom/IbeAppWeb/blob/main/IbeAppWeb/Services/MonteurService.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Asynchronously creates a new Monteur by sending the provided data to the server.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;MonteurResponse?&gt; CreateMonteur(MonteurResponse Dto, Dictionary&lt;string, string&gt; fieldErrors)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>Dto</code> <a class="xref" href="IbeAppWeb.DTOs.Monteur.MonteurResponse.html">MonteurResponse</a></dt>
+    <dd><p>The <a class="xref" href="IbeAppWeb.DTOs.Monteur.MonteurResponse.html">MonteurResponse</a> object containing the data to be sent for creating a new Monteur.</p>
+</dd>
+    <dt><code>fieldErrors</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>A dictionary to store validation errors, if any, returned by the server. The keys are the field names, and the
+values are the corresponding error messages.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="IbeAppWeb.DTOs.Monteur.MonteurResponse.html">MonteurResponse</a>&gt;</dt>
+    <dd><p>A task representing the asynchronous operation. The task result contains the created <a class="xref" href="IbeAppWeb.DTOs.Monteur.MonteurResponse.html">MonteurResponse</a> if the operation is successful; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if there are
+validation errors.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="IbeAppWeb_Services_MonteurService_CreateMonteur_IbeAppWeb_DTOs_Monteur_MonteurResponse_System_Collections_Generic_Dictionary_System_String_System_String___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>If the server returns a Bad Request status, any validation errors are added to the <code class="paramref">fieldErrors</code> dictionary.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httprequestexception">HttpRequestException</a></dt>
+    <dd><p>Thrown if the request fails due to server errors or network issues.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="IbeAppWeb_Services_MonteurService_DeleteMonteur_" data-uid="IbeAppWeb.Services.MonteurService.DeleteMonteur*"></a>
+
+  <h3 id="IbeAppWeb_Services_MonteurService_DeleteMonteur_System_Int32_" data-uid="IbeAppWeb.Services.MonteurService.DeleteMonteur(System.Int32)">
+  DeleteMonteur(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/grobtom/IbeAppWeb/blob/main/IbeAppWeb/Services/MonteurService.cs/#L190"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Deletes a Monteur resource identified by the specified ID.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; DeleteMonteur(int Id)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>Id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The unique identifier of the Monteur to delete. Must be a positive integer.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>A task that represents the asynchronous operation. The task result is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the deletion is
+successful; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="IbeAppWeb_Services_MonteurService_DeleteMonteur_System_Int32__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method sends an HTTP DELETE request to the server to remove the specified Monteur.
+Ensure the provided ID is valid and the server is reachable.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httprequestexception">HttpRequestException</a></dt>
+    <dd><p>Thrown if the HTTP request to delete the Monteur fails, including details about the status code and error
+content.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="IbeAppWeb_Services_MonteurService_GetAllMonteure_" data-uid="IbeAppWeb.Services.MonteurService.GetAllMonteure*"></a>
+
+  <h3 id="IbeAppWeb_Services_MonteurService_GetAllMonteure" data-uid="IbeAppWeb.Services.MonteurService.GetAllMonteure">
+  GetAllMonteure()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/grobtom/IbeAppWeb/blob/main/IbeAppWeb/Services/MonteurService.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Asynchronously retrieves a collection of all Monteure.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;IEnumerable&lt;MonteurResponse&gt;&gt; GetAllMonteure()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="IbeAppWeb.DTOs.Monteur.MonteurResponse.html">MonteurResponse</a>&gt;&gt;</dt>
+    <dd><p>A task representing the asynchronous operation. The task result contains an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable&lt;T&gt;</a> of <a class="xref" href="IbeAppWeb.DTOs.Monteur.MonteurResponse.html">MonteurResponse</a> objects representing the Monteure. Returns an empty collection if the request fails.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="IbeAppWeb_Services_MonteurService_GetAllMonteure_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method sends an HTTP GET request to the &quot;api/monteur&quot; endpoint to fetch the data. If the
+request is successful, it returns a collection of <a class="xref" href="IbeAppWeb.DTOs.Monteur.MonteurResponse.html">MonteurResponse</a> objects. In case of a failure,
+an empty collection is returned.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httprequestexception">HttpRequestException</a></dt>
+    <dd><p>Thrown if the HTTP request to fetch Monteure fails with a non-success status code.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="IbeAppWeb_Services_MonteurService_GetMonteurAnlageHistory_" data-uid="IbeAppWeb.Services.MonteurService.GetMonteurAnlageHistory*"></a>
+
+  <h3 id="IbeAppWeb_Services_MonteurService_GetMonteurAnlageHistory_System_Int32_" data-uid="IbeAppWeb.Services.MonteurService.GetMonteurAnlageHistory(System.Int32)">
+  GetMonteurAnlageHistory(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/grobtom/IbeAppWeb/blob/main/IbeAppWeb/Services/MonteurService.cs/#L287"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves the history of a specific Monteur Anlage based on the provided Monteur ID.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;MonteurAnlageHistoryDto?&gt; GetMonteurAnlageHistory(int monteurId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>monteurId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The unique identifier of the Monteur whose Anlage history is to be retrieved.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="IbeAppWeb.DTOs.Monteur.MonteurAnlageHistoryDto.html">MonteurAnlageHistoryDto</a>&gt;</dt>
+    <dd><p>A <a class="xref" href="IbeAppWeb.DTOs.Monteur.MonteurAnlageHistoryDto.html">MonteurAnlageHistoryDto</a> containing the history details if the request is successful; otherwise,
+<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="IbeAppWeb_Services_MonteurService_GetMonteurAnlageHistory_System_Int32__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method sends an asynchronous HTTP GET request to the specified API endpoint to retrieve
+the Monteur Anlage history. If the request is unsuccessful, an exception is thrown with details of the
+failure.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httprequestexception">HttpRequestException</a></dt>
+    <dd><p>Thrown if the HTTP request to fetch the Monteur Anlage history fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="IbeAppWeb_Services_MonteurService_GetMonteurProjects_" data-uid="IbeAppWeb.Services.MonteurService.GetMonteurProjects*"></a>
+
+  <h3 id="IbeAppWeb_Services_MonteurService_GetMonteurProjects" data-uid="IbeAppWeb.Services.MonteurService.GetMonteurProjects">
+  GetMonteurProjects()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/grobtom/IbeAppWeb/blob/main/IbeAppWeb/Services/MonteurService.cs/#L319"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Asynchronously retrieves a list of Monteur projects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;List&lt;ProjectMonteurDto&gt;&gt; GetMonteurProjects()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="IbeAppWeb.DTOs.Monteur.ProjectMonteurDto.html">ProjectMonteurDto</a>&gt;&gt;</dt>
+    <dd><p>A task representing the asynchronous operation. The task result contains a list of  <a class="xref" href="IbeAppWeb.DTOs.Monteur.ProjectMonteurDto.html">ProjectMonteurDto</a> objects representing the Monteur projects. Returns an empty list if the request
+fails.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="IbeAppWeb_Services_MonteurService_GetMonteurProjects_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method sends an HTTP GET request to the specified API endpoint to fetch Monteur
+projects. If the request is successful, it returns a list of <a class="xref" href="IbeAppWeb.DTOs.Monteur.ProjectMonteurDto.html">ProjectMonteurDto</a> objects. In case of
+an error, an empty list is returned, and the error is logged to the console.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httprequestexception">HttpRequestException</a></dt>
+    <dd><p>Thrown if the HTTP request to fetch Monteur projects fails with a non-success status code.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="IbeAppWeb_Services_MonteurService_GetMonteurWithAnlage_" data-uid="IbeAppWeb.Services.MonteurService.GetMonteurWithAnlage*"></a>
+
+  <h3 id="IbeAppWeb_Services_MonteurService_GetMonteurWithAnlage" data-uid="IbeAppWeb.Services.MonteurService.GetMonteurWithAnlage">
+  GetMonteurWithAnlage()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/grobtom/IbeAppWeb/blob/main/IbeAppWeb/Services/MonteurService.cs/#L66"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Asynchronously retrieves a list of Monteur with their associated Anlage data.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;List&lt;MonteurWithAnlageDto&gt;&gt; GetMonteurWithAnlage()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="IbeAppWeb.DTOs.MonteurWithAnlageDto.html">MonteurWithAnlageDto</a>&gt;&gt;</dt>
+    <dd><p>A task that represents the asynchronous operation. The task result contains a list of <a class="xref" href="IbeAppWeb.DTOs.MonteurWithAnlageDto.html">MonteurWithAnlageDto</a> objects. If the request fails, the list will be empty.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="IbeAppWeb_Services_MonteurService_GetMonteurWithAnlage_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method sends an HTTP GET request to the &quot;api/monteur/with-anlagen&quot; endpoint. If the
+request is successful, it returns a list of <a class="xref" href="IbeAppWeb.DTOs.MonteurWithAnlageDto.html">MonteurWithAnlageDto</a> objects. If the request fails, it
+logs the error and returns an empty list.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httprequestexception">HttpRequestException</a></dt>
+    <dd><p>Thrown if the HTTP request to fetch Monteure with Anlage fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="IbeAppWeb_Services_MonteurService_RemoveAnlageFromMonteur_" data-uid="IbeAppWeb.Services.MonteurService.RemoveAnlageFromMonteur*"></a>
+
+  <h3 id="IbeAppWeb_Services_MonteurService_RemoveAnlageFromMonteur_System_Int32_" data-uid="IbeAppWeb.Services.MonteurService.RemoveAnlageFromMonteur(System.Int32)">
+  RemoveAnlageFromMonteur(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/grobtom/IbeAppWeb/blob/main/IbeAppWeb/Services/MonteurService.cs/#L255"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes the assignment of an &quot;Anlage&quot; from a specified &quot;Monteur&quot;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; RemoveAnlageFromMonteur(int monteurId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>monteurId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The unique identifier of the &quot;Monteur&quot; from whom the &quot;Anlage&quot; assignment is to be removed.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the assignment was successfully removed; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httprequestexception">HttpRequestException</a></dt>
+    <dd><p>Thrown if the HTTP request to remove the assignment fails, including details of the status code and error
+message.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="IbeAppWeb_Services_MonteurService_UpdateMonteur_" data-uid="IbeAppWeb.Services.MonteurService.UpdateMonteur*"></a>
+
+  <h3 id="IbeAppWeb_Services_MonteurService_UpdateMonteur_IbeAppWeb_DTOs_Monteur_MonteurResponse_" data-uid="IbeAppWeb.Services.MonteurService.UpdateMonteur(IbeAppWeb.DTOs.Monteur.MonteurResponse)">
+  UpdateMonteur(MonteurResponse)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/grobtom/IbeAppWeb/blob/main/IbeAppWeb/Services/MonteurService.cs/#L146"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Updates the details of a specified Monteur using the provided data transfer object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;MonteurResponse?&gt; UpdateMonteur(MonteurResponse dto)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dto</code> <a class="xref" href="IbeAppWeb.DTOs.Monteur.MonteurResponse.html">MonteurResponse</a></dt>
+    <dd><p>The <a class="xref" href="IbeAppWeb.DTOs.Monteur.MonteurResponse.html">MonteurResponse</a> object containing the updated details of the Monteur.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="IbeAppWeb.DTOs.Monteur.MonteurResponse.html">MonteurResponse</a>&gt;</dt>
+    <dd><p>A task that represents the asynchronous operation. The task result contains the updated <a class="xref" href="IbeAppWeb.DTOs.Monteur.MonteurResponse.html">MonteurResponse</a> if the update is successful; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="IbeAppWeb_Services_MonteurService_UpdateMonteur_IbeAppWeb_DTOs_Monteur_MonteurResponse__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method sends an HTTP PUT request to update the Monteur's details on the server. Ensure
+that the <code class="paramref">dto</code> contains valid and complete information for the Monteur to be updated.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httprequestexception">HttpRequestException</a></dt>
+    <dd><p>Thrown if the HTTP request to update the Monteur fails.</p>
+</dd>
+  </dl>
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/grobtom/IbeAppWeb/blob/main/IbeAppWeb/Services/MonteurService.cs/#L16" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          IBE Application - Blazor WebAssembly Documentation
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

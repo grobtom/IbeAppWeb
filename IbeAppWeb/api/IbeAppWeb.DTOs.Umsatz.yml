@@ -1,0 +1,72 @@
+### YamlMime:ManagedReference
+items:
+- uid: IbeAppWeb.DTOs.Umsatz
+  commentId: N:IbeAppWeb.DTOs.Umsatz
+  id: IbeAppWeb.DTOs.Umsatz
+  children:
+  - IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto
+  - IbeAppWeb.DTOs.Umsatz.FahrzeugUmsatzDto
+  - IbeAppWeb.DTOs.Umsatz.MonteurUmsatzDto
+  - IbeAppWeb.DTOs.Umsatz.ProjektUmsatzDto
+  - IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurDto
+  - IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectDto
+  - IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto
+  - IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurResultDto
+  langs:
+  - csharp
+  - vb
+  name: IbeAppWeb.DTOs.Umsatz
+  nameWithType: IbeAppWeb.DTOs.Umsatz
+  fullName: IbeAppWeb.DTOs.Umsatz
+  type: Namespace
+  assemblies:
+  - IbeAppWeb
+references:
+- uid: IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto
+  commentId: T:IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto
+  href: IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto.html
+  name: AllProjectsUmsatzSplitDto
+  nameWithType: AllProjectsUmsatzSplitDto
+  fullName: IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto
+- uid: IbeAppWeb.DTOs.Umsatz.FahrzeugUmsatzDto
+  commentId: T:IbeAppWeb.DTOs.Umsatz.FahrzeugUmsatzDto
+  href: IbeAppWeb.DTOs.Umsatz.FahrzeugUmsatzDto.html
+  name: FahrzeugUmsatzDto
+  nameWithType: FahrzeugUmsatzDto
+  fullName: IbeAppWeb.DTOs.Umsatz.FahrzeugUmsatzDto
+- uid: IbeAppWeb.DTOs.Umsatz.MonteurUmsatzDto
+  commentId: T:IbeAppWeb.DTOs.Umsatz.MonteurUmsatzDto
+  href: IbeAppWeb.DTOs.Umsatz.MonteurUmsatzDto.html
+  name: MonteurUmsatzDto
+  nameWithType: MonteurUmsatzDto
+  fullName: IbeAppWeb.DTOs.Umsatz.MonteurUmsatzDto
+- uid: IbeAppWeb.DTOs.Umsatz.ProjektUmsatzDto
+  commentId: T:IbeAppWeb.DTOs.Umsatz.ProjektUmsatzDto
+  href: IbeAppWeb.DTOs.Umsatz.ProjektUmsatzDto.html
+  name: ProjektUmsatzDto
+  nameWithType: ProjektUmsatzDto
+  fullName: IbeAppWeb.DTOs.Umsatz.ProjektUmsatzDto
+- uid: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurDto
+  commentId: T:IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurDto
+  href: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurDto.html
+  name: UmsatzFahrzeugMonteurDto
+  nameWithType: UmsatzFahrzeugMonteurDto
+  fullName: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurDto
+- uid: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectDto
+  commentId: T:IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectDto
+  href: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectDto.html
+  name: UmsatzFahrzeugMonteurProjectDto
+  nameWithType: UmsatzFahrzeugMonteurProjectDto
+  fullName: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectDto
+- uid: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto
+  commentId: T:IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto
+  href: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto.html
+  name: UmsatzFahrzeugMonteurProjectResultDto
+  nameWithType: UmsatzFahrzeugMonteurProjectResultDto
+  fullName: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto
+- uid: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurResultDto
+  commentId: T:IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurResultDto
+  href: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurResultDto.html
+  name: UmsatzFahrzeugMonteurResultDto
+  nameWithType: UmsatzFahrzeugMonteurResultDto
+  fullName: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurResultDto

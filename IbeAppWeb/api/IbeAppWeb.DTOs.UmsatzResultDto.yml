@@ -1,0 +1,501 @@
+### YamlMime:ManagedReference
+items:
+- uid: IbeAppWeb.DTOs.UmsatzResultDto
+  commentId: T:IbeAppWeb.DTOs.UmsatzResultDto
+  id: UmsatzResultDto
+  parent: IbeAppWeb.DTOs
+  children:
+  - IbeAppWeb.DTOs.UmsatzResultDto.Links
+  - IbeAppWeb.DTOs.UmsatzResultDto.UmsatzFahrzeugDatum
+  langs:
+  - csharp
+  - vb
+  name: UmsatzResultDto
+  nameWithType: UmsatzResultDto
+  fullName: IbeAppWeb.DTOs.UmsatzResultDto
+  type: Class
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/UmsatzResultDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: UmsatzResultDto
+    path: DTOs/UmsatzResultDto.cs
+    startLine: 2
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public class UmsatzResultDto
+    content.vb: Public Class UmsatzResultDto
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: IbeAppWeb.DTOs.UmsatzResultDto.UmsatzFahrzeugDatum
+  commentId: P:IbeAppWeb.DTOs.UmsatzResultDto.UmsatzFahrzeugDatum
+  id: UmsatzFahrzeugDatum
+  parent: IbeAppWeb.DTOs.UmsatzResultDto
+  langs:
+  - csharp
+  - vb
+  name: UmsatzFahrzeugDatum
+  nameWithType: UmsatzResultDto.UmsatzFahrzeugDatum
+  fullName: IbeAppWeb.DTOs.UmsatzResultDto.UmsatzFahrzeugDatum
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/UmsatzResultDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: UmsatzFahrzeugDatum
+    path: DTOs/UmsatzResultDto.cs
+    startLine: 4
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public List<UmsatzDto> UmsatzFahrzeugDatum { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{IbeAppWeb.DTOs.UmsatzDto}
+    content.vb: Public Property UmsatzFahrzeugDatum As List(Of UmsatzDto)
+  overload: IbeAppWeb.DTOs.UmsatzResultDto.UmsatzFahrzeugDatum*
+- uid: IbeAppWeb.DTOs.UmsatzResultDto.Links
+  commentId: P:IbeAppWeb.DTOs.UmsatzResultDto.Links
+  id: Links
+  parent: IbeAppWeb.DTOs.UmsatzResultDto
+  langs:
+  - csharp
+  - vb
+  name: Links
+  nameWithType: UmsatzResultDto.Links
+  fullName: IbeAppWeb.DTOs.UmsatzResultDto.Links
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/UmsatzResultDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Links
+    path: DTOs/UmsatzResultDto.cs
+    startLine: 5
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public List<LinkDto> Links { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{IbeAppWeb.DTOs.LinkDto}
+    content.vb: Public Property Links As List(Of LinkDto)
+  overload: IbeAppWeb.DTOs.UmsatzResultDto.Links*
+references:
+- uid: IbeAppWeb.DTOs
+  commentId: N:IbeAppWeb.DTOs
+  href: IbeAppWeb.html
+  name: IbeAppWeb.DTOs
+  nameWithType: IbeAppWeb.DTOs
+  fullName: IbeAppWeb.DTOs
+  spec.csharp:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.DTOs
+    name: DTOs
+    href: IbeAppWeb.DTOs.html
+  spec.vb:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.DTOs
+    name: DTOs
+    href: IbeAppWeb.DTOs.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: IbeAppWeb.DTOs.UmsatzResultDto.UmsatzFahrzeugDatum*
+  commentId: Overload:IbeAppWeb.DTOs.UmsatzResultDto.UmsatzFahrzeugDatum
+  href: IbeAppWeb.DTOs.UmsatzResultDto.html#IbeAppWeb_DTOs_UmsatzResultDto_UmsatzFahrzeugDatum
+  name: UmsatzFahrzeugDatum
+  nameWithType: UmsatzResultDto.UmsatzFahrzeugDatum
+  fullName: IbeAppWeb.DTOs.UmsatzResultDto.UmsatzFahrzeugDatum
+- uid: System.Collections.Generic.List{IbeAppWeb.DTOs.UmsatzDto}
+  commentId: T:System.Collections.Generic.List{IbeAppWeb.DTOs.UmsatzDto}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<UmsatzDto>
+  nameWithType: List<UmsatzDto>
+  fullName: System.Collections.Generic.List<IbeAppWeb.DTOs.UmsatzDto>
+  nameWithType.vb: List(Of UmsatzDto)
+  fullName.vb: System.Collections.Generic.List(Of IbeAppWeb.DTOs.UmsatzDto)
+  name.vb: List(Of UmsatzDto)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: IbeAppWeb.DTOs.UmsatzDto
+    name: UmsatzDto
+    href: IbeAppWeb.DTOs.UmsatzDto.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: IbeAppWeb.DTOs.UmsatzDto
+    name: UmsatzDto
+    href: IbeAppWeb.DTOs.UmsatzDto.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: IbeAppWeb.DTOs.UmsatzResultDto.Links*
+  commentId: Overload:IbeAppWeb.DTOs.UmsatzResultDto.Links
+  href: IbeAppWeb.DTOs.UmsatzResultDto.html#IbeAppWeb_DTOs_UmsatzResultDto_Links
+  name: Links
+  nameWithType: UmsatzResultDto.Links
+  fullName: IbeAppWeb.DTOs.UmsatzResultDto.Links
+- uid: System.Collections.Generic.List{IbeAppWeb.DTOs.LinkDto}
+  commentId: T:System.Collections.Generic.List{IbeAppWeb.DTOs.LinkDto}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<LinkDto>
+  nameWithType: List<LinkDto>
+  fullName: System.Collections.Generic.List<IbeAppWeb.DTOs.LinkDto>
+  nameWithType.vb: List(Of LinkDto)
+  fullName.vb: System.Collections.Generic.List(Of IbeAppWeb.DTOs.LinkDto)
+  name.vb: List(Of LinkDto)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: IbeAppWeb.DTOs.LinkDto
+    name: LinkDto
+    href: IbeAppWeb.DTOs.LinkDto.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: IbeAppWeb.DTOs.LinkDto
+    name: LinkDto
+    href: IbeAppWeb.DTOs.LinkDto.html
+  - name: )

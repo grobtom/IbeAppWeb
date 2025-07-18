@@ -1,0 +1,202 @@
+### YamlMime:TableOfContent
+items:
+- uid: IbeAppWeb.Abstractions
+  name: IbeAppWeb.Abstractions
+  type: Namespace
+  items:
+  - uid: IbeAppWeb.Abstractions.Decimal3Converter
+    name: Decimal3Converter
+    type: Class
+- uid: IbeAppWeb.DTOs
+  name: IbeAppWeb.DTOs
+  type: Namespace
+  items:
+  - uid: IbeAppWeb.DTOs.AbschlagsRechnungDto
+    name: AbschlagsRechnungDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.Address
+    name: Address
+    type: Class
+  - uid: IbeAppWeb.DTOs.AnlageDto
+    name: AnlageDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.AnlageWithMonteureDto
+    name: AnlageWithMonteureDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.ArbeitsberichtDbSummeDto
+    name: ArbeitsberichtDbSummeDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.ArbeitsberichtDbSummeResultDto
+    name: ArbeitsberichtDbSummeResultDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.ArbeitsberichtProjectsDto
+    name: ArbeitsberichtProjectsDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.ArbeitsscheinDto
+    name: ArbeitsscheinDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.ArbeitsscheinResultDto
+    name: ArbeitsscheinResultDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.AssignAnlageToProjectDto
+    name: AssignAnlageToProjectDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.BauleiterDto
+    name: BauleiterDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.BauleiterWithProjectsDto
+    name: BauleiterWithProjectsDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.FahrzeugDto
+    name: FahrzeugDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.LinkDto
+    name: LinkDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.MonteurWithAnlageDto
+    name: MonteurWithAnlageDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.Project
+    name: Project
+    type: Class
+  - uid: IbeAppWeb.DTOs.ProjectAnlageDto
+    name: ProjectAnlageDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.ProjectCustomerInvoiceDto
+    name: ProjectCustomerInvoiceDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.ProjectWithAnlagenDto
+    name: ProjectWithAnlagenDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.UmsatzDto
+    name: UmsatzDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.UmsatzResultDto
+    name: UmsatzResultDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.UpdateProjectAnlageDto
+    name: UpdateProjectAnlageDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.XInvoice
+    name: XInvoice
+    type: Class
+- uid: IbeAppWeb.DTOs.Monteur
+  name: IbeAppWeb.DTOs.Monteur
+  type: Namespace
+  items:
+  - uid: IbeAppWeb.DTOs.Monteur.AssignMonteurToAnlageDto
+    name: AssignMonteurToAnlageDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.Monteur.MonteurAnlageHistoryDto
+    name: MonteurAnlageHistoryDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.Monteur.MonteurDto
+    name: MonteurDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.Monteur.MonteurResponse
+    name: MonteurResponse
+    type: Class
+  - uid: IbeAppWeb.DTOs.Monteur.ProjectMonteurDto
+    name: ProjectMonteurDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.Monteur.UpdateMonteurDto
+    name: UpdateMonteurDto
+    type: Class
+- uid: IbeAppWeb.DTOs.Umsatz
+  name: IbeAppWeb.DTOs.Umsatz
+  type: Namespace
+  items:
+  - uid: IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto
+    name: AllProjectsUmsatzSplitDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.Umsatz.FahrzeugUmsatzDto
+    name: FahrzeugUmsatzDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.Umsatz.MonteurUmsatzDto
+    name: MonteurUmsatzDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.Umsatz.ProjektUmsatzDto
+    name: ProjektUmsatzDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurDto
+    name: UmsatzFahrzeugMonteurDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectDto
+    name: UmsatzFahrzeugMonteurProjectDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto
+    name: UmsatzFahrzeugMonteurProjectResultDto
+    type: Class
+  - uid: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurResultDto
+    name: UmsatzFahrzeugMonteurResultDto
+    type: Class
+- uid: IbeAppWeb.Forms
+  name: IbeAppWeb.Forms
+  type: Namespace
+  items:
+  - uid: IbeAppWeb.Forms.KanalSchacht
+    name: KanalSchacht
+    type: Class
+- uid: IbeAppWeb.Models
+  name: IbeAppWeb.Models
+  type: Namespace
+  items:
+  - uid: IbeAppWeb.Models.CustomAccountFactory
+    name: CustomAccountFactory
+    type: Class
+  - uid: IbeAppWeb.Models.CustomUserAccount
+    name: CustomUserAccount
+    type: Class
+- uid: IbeAppWeb.Services
+  name: IbeAppWeb.Services
+  type: Namespace
+  items:
+  - uid: IbeAppWeb.Services.AnlagenService
+    name: AnlagenService
+    type: Class
+  - uid: IbeAppWeb.Services.BauleiterService
+    name: BauleiterService
+    type: Class
+  - uid: IbeAppWeb.Services.CustomAuthorizationMessageHandler
+    name: CustomAuthorizationMessageHandler
+    type: Class
+  - uid: IbeAppWeb.Services.IbeToastService
+    name: IbeToastService
+    type: Class
+  - uid: IbeAppWeb.Services.MonteurService
+    name: MonteurService
+    type: Class
+  - uid: IbeAppWeb.Services.ProjectAnlageService
+    name: ProjectAnlageService
+    type: Class
+  - uid: IbeAppWeb.Services.RechnungService
+    name: RechnungService
+    type: Class
+  - uid: IbeAppWeb.Services.UmsatzService
+    name: UmsatzService
+    type: Class
+- uid: IbeAppWeb.Shared
+  name: IbeAppWeb.Shared
+  type: Namespace
+  items:
+  - uid: IbeAppWeb.Shared.SfResources
+    name: SfResources
+    type: Class
+- uid: IbeAppWeb.Validation
+  name: IbeAppWeb.Validation
+  type: Namespace
+  items:
+  - uid: IbeAppWeb.Validation.ValidationErrorItem
+    name: ValidationErrorItem
+    type: Class
+  - uid: IbeAppWeb.Validation.ValidationErrorResponse
+    name: ValidationErrorResponse
+    type: Class
+- uid: IneAppWeb.DTOs
+  name: IneAppWeb.DTOs
+  type: Namespace
+  items:
+  - uid: IneAppWeb.DTOs.XCustomer
+    name: XCustomer
+    type: Class
+memberLayout: SamePage

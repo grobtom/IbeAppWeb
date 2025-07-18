@@ -1,0 +1,547 @@
+### YamlMime:ManagedReference
+items:
+- uid: IbeAppWeb.DTOs.UmsatzDto
+  commentId: T:IbeAppWeb.DTOs.UmsatzDto
+  id: UmsatzDto
+  parent: IbeAppWeb.DTOs
+  children:
+  - IbeAppWeb.DTOs.UmsatzDto.Fahrzeug
+  - IbeAppWeb.DTOs.UmsatzDto.Kolonnenfuehrer
+  - IbeAppWeb.DTOs.UmsatzDto.Kurztext
+  - IbeAppWeb.DTOs.UmsatzDto.PkLvPos
+  - IbeAppWeb.DTOs.UmsatzDto.SaniertAm
+  - IbeAppWeb.DTOs.UmsatzDto.Umsatz
+  langs:
+  - csharp
+  - vb
+  name: UmsatzDto
+  nameWithType: UmsatzDto
+  fullName: IbeAppWeb.DTOs.UmsatzDto
+  type: Class
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/UmsatzDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: UmsatzDto
+    path: DTOs/UmsatzDto.cs
+    startLine: 2
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public class UmsatzDto
+    content.vb: Public Class UmsatzDto
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: IbeAppWeb.DTOs.UmsatzDto.PkLvPos
+  commentId: P:IbeAppWeb.DTOs.UmsatzDto.PkLvPos
+  id: PkLvPos
+  parent: IbeAppWeb.DTOs.UmsatzDto
+  langs:
+  - csharp
+  - vb
+  name: PkLvPos
+  nameWithType: UmsatzDto.PkLvPos
+  fullName: IbeAppWeb.DTOs.UmsatzDto.PkLvPos
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/UmsatzDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: PkLvPos
+    path: DTOs/UmsatzDto.cs
+    startLine: 4
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public string PkLvPos { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property PkLvPos As String
+  overload: IbeAppWeb.DTOs.UmsatzDto.PkLvPos*
+- uid: IbeAppWeb.DTOs.UmsatzDto.Kurztext
+  commentId: P:IbeAppWeb.DTOs.UmsatzDto.Kurztext
+  id: Kurztext
+  parent: IbeAppWeb.DTOs.UmsatzDto
+  langs:
+  - csharp
+  - vb
+  name: Kurztext
+  nameWithType: UmsatzDto.Kurztext
+  fullName: IbeAppWeb.DTOs.UmsatzDto.Kurztext
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/UmsatzDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Kurztext
+    path: DTOs/UmsatzDto.cs
+    startLine: 5
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public string Kurztext { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Kurztext As String
+  overload: IbeAppWeb.DTOs.UmsatzDto.Kurztext*
+- uid: IbeAppWeb.DTOs.UmsatzDto.SaniertAm
+  commentId: P:IbeAppWeb.DTOs.UmsatzDto.SaniertAm
+  id: SaniertAm
+  parent: IbeAppWeb.DTOs.UmsatzDto
+  langs:
+  - csharp
+  - vb
+  name: SaniertAm
+  nameWithType: UmsatzDto.SaniertAm
+  fullName: IbeAppWeb.DTOs.UmsatzDto.SaniertAm
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/UmsatzDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: SaniertAm
+    path: DTOs/UmsatzDto.cs
+    startLine: 6
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public DateTime SaniertAm { get; set; }
+    parameters: []
+    return:
+      type: System.DateTime
+    content.vb: Public Property SaniertAm As Date
+  overload: IbeAppWeb.DTOs.UmsatzDto.SaniertAm*
+- uid: IbeAppWeb.DTOs.UmsatzDto.Fahrzeug
+  commentId: P:IbeAppWeb.DTOs.UmsatzDto.Fahrzeug
+  id: Fahrzeug
+  parent: IbeAppWeb.DTOs.UmsatzDto
+  langs:
+  - csharp
+  - vb
+  name: Fahrzeug
+  nameWithType: UmsatzDto.Fahrzeug
+  fullName: IbeAppWeb.DTOs.UmsatzDto.Fahrzeug
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/UmsatzDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Fahrzeug
+    path: DTOs/UmsatzDto.cs
+    startLine: 7
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public string Fahrzeug { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Fahrzeug As String
+  overload: IbeAppWeb.DTOs.UmsatzDto.Fahrzeug*
+- uid: IbeAppWeb.DTOs.UmsatzDto.Kolonnenfuehrer
+  commentId: P:IbeAppWeb.DTOs.UmsatzDto.Kolonnenfuehrer
+  id: Kolonnenfuehrer
+  parent: IbeAppWeb.DTOs.UmsatzDto
+  langs:
+  - csharp
+  - vb
+  name: Kolonnenfuehrer
+  nameWithType: UmsatzDto.Kolonnenfuehrer
+  fullName: IbeAppWeb.DTOs.UmsatzDto.Kolonnenfuehrer
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/UmsatzDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Kolonnenfuehrer
+    path: DTOs/UmsatzDto.cs
+    startLine: 8
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public string Kolonnenfuehrer { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Kolonnenfuehrer As String
+  overload: IbeAppWeb.DTOs.UmsatzDto.Kolonnenfuehrer*
+- uid: IbeAppWeb.DTOs.UmsatzDto.Umsatz
+  commentId: P:IbeAppWeb.DTOs.UmsatzDto.Umsatz
+  id: Umsatz
+  parent: IbeAppWeb.DTOs.UmsatzDto
+  langs:
+  - csharp
+  - vb
+  name: Umsatz
+  nameWithType: UmsatzDto.Umsatz
+  fullName: IbeAppWeb.DTOs.UmsatzDto.Umsatz
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/UmsatzDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Umsatz
+    path: DTOs/UmsatzDto.cs
+    startLine: 9
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public decimal Umsatz { get; set; }
+    parameters: []
+    return:
+      type: System.Decimal
+    content.vb: Public Property Umsatz As Decimal
+  overload: IbeAppWeb.DTOs.UmsatzDto.Umsatz*
+references:
+- uid: IbeAppWeb.DTOs
+  commentId: N:IbeAppWeb.DTOs
+  href: IbeAppWeb.html
+  name: IbeAppWeb.DTOs
+  nameWithType: IbeAppWeb.DTOs
+  fullName: IbeAppWeb.DTOs
+  spec.csharp:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.DTOs
+    name: DTOs
+    href: IbeAppWeb.DTOs.html
+  spec.vb:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.DTOs
+    name: DTOs
+    href: IbeAppWeb.DTOs.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: IbeAppWeb.DTOs.UmsatzDto.PkLvPos*
+  commentId: Overload:IbeAppWeb.DTOs.UmsatzDto.PkLvPos
+  href: IbeAppWeb.DTOs.UmsatzDto.html#IbeAppWeb_DTOs_UmsatzDto_PkLvPos
+  name: PkLvPos
+  nameWithType: UmsatzDto.PkLvPos
+  fullName: IbeAppWeb.DTOs.UmsatzDto.PkLvPos
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: IbeAppWeb.DTOs.UmsatzDto.Kurztext*
+  commentId: Overload:IbeAppWeb.DTOs.UmsatzDto.Kurztext
+  href: IbeAppWeb.DTOs.UmsatzDto.html#IbeAppWeb_DTOs_UmsatzDto_Kurztext
+  name: Kurztext
+  nameWithType: UmsatzDto.Kurztext
+  fullName: IbeAppWeb.DTOs.UmsatzDto.Kurztext
+- uid: IbeAppWeb.DTOs.UmsatzDto.SaniertAm*
+  commentId: Overload:IbeAppWeb.DTOs.UmsatzDto.SaniertAm
+  href: IbeAppWeb.DTOs.UmsatzDto.html#IbeAppWeb_DTOs_UmsatzDto_SaniertAm
+  name: SaniertAm
+  nameWithType: UmsatzDto.SaniertAm
+  fullName: IbeAppWeb.DTOs.UmsatzDto.SaniertAm
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
+- uid: IbeAppWeb.DTOs.UmsatzDto.Fahrzeug*
+  commentId: Overload:IbeAppWeb.DTOs.UmsatzDto.Fahrzeug
+  href: IbeAppWeb.DTOs.UmsatzDto.html#IbeAppWeb_DTOs_UmsatzDto_Fahrzeug
+  name: Fahrzeug
+  nameWithType: UmsatzDto.Fahrzeug
+  fullName: IbeAppWeb.DTOs.UmsatzDto.Fahrzeug
+- uid: IbeAppWeb.DTOs.UmsatzDto.Kolonnenfuehrer*
+  commentId: Overload:IbeAppWeb.DTOs.UmsatzDto.Kolonnenfuehrer
+  href: IbeAppWeb.DTOs.UmsatzDto.html#IbeAppWeb_DTOs_UmsatzDto_Kolonnenfuehrer
+  name: Kolonnenfuehrer
+  nameWithType: UmsatzDto.Kolonnenfuehrer
+  fullName: IbeAppWeb.DTOs.UmsatzDto.Kolonnenfuehrer
+- uid: IbeAppWeb.DTOs.UmsatzDto.Umsatz*
+  commentId: Overload:IbeAppWeb.DTOs.UmsatzDto.Umsatz
+  href: IbeAppWeb.DTOs.UmsatzDto.html#IbeAppWeb_DTOs_UmsatzDto_Umsatz
+  name: Umsatz
+  nameWithType: UmsatzDto.Umsatz
+  fullName: IbeAppWeb.DTOs.UmsatzDto.Umsatz
+- uid: System.Decimal
+  commentId: T:System.Decimal
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.decimal
+  name: decimal
+  nameWithType: decimal
+  fullName: decimal
+  nameWithType.vb: Decimal
+  fullName.vb: Decimal
+  name.vb: Decimal

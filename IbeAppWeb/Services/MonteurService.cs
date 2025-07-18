@@ -6,6 +6,13 @@ using System.Text.Json;
 
 namespace IbeAppWeb.Services;
 
+/// <summary>
+/// Provides services for managing Monteur resources, including retrieval, creation, updating, and deletion operations.
+/// </summary>
+/// <remarks>This service interacts with a backend API to perform operations related to Monteur entities. It
+/// handles HTTP requests and responses, including error handling and data serialization. Ensure that the <see
+/// cref="HttpClient"/> is properly configured and the API endpoints are accessible.</remarks>
+
 public class MonteurService
 {
     private readonly HttpClient _httpClient;
@@ -15,6 +22,15 @@ public class MonteurService
         _httpClient = httpClient;
     }
 
+    /// <summary>
+    /// Asynchronously retrieves a collection of all Monteure.
+    /// </summary>
+    /// <remarks>This method sends an HTTP GET request to the "api/monteur" endpoint to fetch the data. If the
+    /// request is successful, it returns a collection of <see cref="MonteurResponse"/> objects. In case of a failure,
+    /// an empty collection is returned.</remarks>
+    /// <returns>A task representing the asynchronous operation. The task result contains an <see cref="IEnumerable{T}"/> of <see
+    /// cref="MonteurResponse"/> objects representing the Monteure. Returns an empty collection if the request fails.</returns>
+    /// <exception cref="HttpRequestException">Thrown if the HTTP request to fetch Monteure fails with a non-success status code.</exception>
     public async Task<IEnumerable<MonteurResponse>> GetAllMonteure()
     {
         try
@@ -38,6 +54,15 @@ public class MonteurService
         }
     }
 
+    /// <summary>
+    /// Asynchronously retrieves a list of Monteur with their associated Anlage data.
+    /// </summary>
+    /// <remarks>This method sends an HTTP GET request to the "api/monteur/with-anlagen" endpoint. If the
+    /// request is successful, it returns a list of <see cref="MonteurWithAnlageDto"/> objects. If the request fails, it
+    /// logs the error and returns an empty list.</remarks>
+    /// <returns>A task that represents the asynchronous operation. The task result contains a list of <see
+    /// cref="MonteurWithAnlageDto"/> objects. If the request fails, the list will be empty.</returns>
+    /// <exception cref="HttpRequestException">Thrown if the HTTP request to fetch Monteure with Anlage fails.</exception>
     public async Task<List<MonteurWithAnlageDto>> GetMonteurWithAnlage()
     {
         try
@@ -60,6 +85,18 @@ public class MonteurService
         }
     }
 
+    /// <summary>
+    /// Asynchronously creates a new Monteur by sending the provided data to the server.
+    /// </summary>
+    /// <remarks>If the server returns a Bad Request status, any validation errors are added to the <paramref
+    /// name="fieldErrors"/> dictionary.</remarks>
+    /// <param name="Dto">The <see cref="MonteurResponse"/> object containing the data to be sent for creating a new Monteur.</param>
+    /// <param name="fieldErrors">A dictionary to store validation errors, if any, returned by the server. The keys are the field names, and the
+    /// values are the corresponding error messages.</param>
+    /// <returns>A task representing the asynchronous operation. The task result contains the created <see
+    /// cref="MonteurResponse"/> if the operation is successful; otherwise, <see langword="null"/> if there are
+    /// validation errors.</returns>
+    /// <exception cref="HttpRequestException">Thrown if the request fails due to server errors or network issues.</exception>
     public async Task<MonteurResponse?> CreateMonteur(MonteurResponse Dto, Dictionary<string, string> fieldErrors)
     {
         try
@@ -97,6 +134,15 @@ public class MonteurService
         }
     }
 
+    /// <summary>
+    /// Updates the details of a specified Monteur using the provided data transfer object.
+    /// </summary>
+    /// <remarks>This method sends an HTTP PUT request to update the Monteur's details on the server. Ensure
+    /// that the <paramref name="dto"/> contains valid and complete information for the Monteur to be updated.</remarks>
+    /// <param name="dto">The <see cref="MonteurResponse"/> object containing the updated details of the Monteur.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains the updated <see
+    /// cref="MonteurResponse"/> if the update is successful; otherwise, <see langword="null"/>.</returns>
+    /// <exception cref="HttpRequestException">Thrown if the HTTP request to update the Monteur fails.</exception>
     public async Task<MonteurResponse?> UpdateMonteur(MonteurResponse dto)
     {
         try
@@ -141,7 +187,6 @@ public class MonteurService
     /// successful; otherwise, <see langword="false"/>.</returns>
     /// <exception cref="HttpRequestException">Thrown if the HTTP request to delete the Monteur fails, including details about the status code and error
     /// content.</exception>
-
     public async Task<bool> DeleteMonteur(int Id)
     {
         try
@@ -176,7 +221,6 @@ public class MonteurService
     /// operation is successful; otherwise, <see langword="null"/>.</returns>
     /// <exception cref="HttpRequestException">Thrown if the HTTP request to assign the Monteur to the Anlage fails. The exception message includes the HTTP
     /// status code and error details.</exception>
-
     public async Task<MonteurWithAnlageDto?> AssignMonteurToAnlage(AssignMonteurToAnlageDto dto)
     {
         try
@@ -201,6 +245,13 @@ public class MonteurService
         }
     }
 
+    /// <summary>
+    /// Removes the assignment of an "Anlage" from a specified "Monteur".
+    /// </summary>
+    /// <param name="monteurId">The unique identifier of the "Monteur" from whom the "Anlage" assignment is to be removed.</param>
+    /// <returns><see langword="true"/> if the assignment was successfully removed; otherwise, <see langword="false"/>.</returns>
+    /// <exception cref="HttpRequestException">Thrown if the HTTP request to remove the assignment fails, including details of the status code and error
+    /// message.</exception>
     public async Task<bool> RemoveAnlageFromMonteur(int monteurId)
     {
         try
@@ -223,6 +274,16 @@ public class MonteurService
         }
     }
 
+    /// <summary>
+    /// Retrieves the history of a specific Monteur Anlage based on the provided Monteur ID.
+    /// </summary>
+    /// <remarks>This method sends an asynchronous HTTP GET request to the specified API endpoint to retrieve
+    /// the Monteur Anlage history. If the request is unsuccessful, an exception is thrown with details of the
+    /// failure.</remarks>
+    /// <param name="monteurId">The unique identifier of the Monteur whose Anlage history is to be retrieved.</param>
+    /// <returns>A <see cref="MonteurAnlageHistoryDto"/> containing the history details if the request is successful; otherwise,
+    /// <see langword="null"/>.</returns>
+    /// <exception cref="HttpRequestException">Thrown if the HTTP request to fetch the Monteur Anlage history fails.</exception>
     public async Task<MonteurAnlageHistoryDto?> GetMonteurAnlageHistory(int monteurId)
     {
         try
@@ -245,6 +306,16 @@ public class MonteurService
         }
     }
 
+    /// <summary>
+    /// Asynchronously retrieves a list of Monteur projects.
+    /// </summary>
+    /// <remarks>This method sends an HTTP GET request to the specified API endpoint to fetch Monteur
+    /// projects. If the request is successful, it returns a list of <see cref="ProjectMonteurDto"/> objects. In case of
+    /// an error, an empty list is returned, and the error is logged to the console.</remarks>
+    /// <returns>A task representing the asynchronous operation. The task result contains a list of  <see
+    /// cref="ProjectMonteurDto"/> objects representing the Monteur projects. Returns an empty list if the request
+    /// fails.</returns>
+    /// <exception cref="HttpRequestException">Thrown if the HTTP request to fetch Monteur projects fails with a non-success status code.</exception>
     public async Task<List<ProjectMonteurDto>> GetMonteurProjects()
     {
         try

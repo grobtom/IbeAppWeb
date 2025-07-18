@@ -1,0 +1,889 @@
+### YamlMime:ManagedReference
+items:
+- uid: IbeAppWeb.Services.ProjectAnlageService
+  commentId: T:IbeAppWeb.Services.ProjectAnlageService
+  id: ProjectAnlageService
+  parent: IbeAppWeb.Services
+  children:
+  - IbeAppWeb.Services.ProjectAnlageService.#ctor(System.Net.Http.HttpClient)
+  - IbeAppWeb.Services.ProjectAnlageService.AssignAnlageToProject(IbeAppWeb.DTOs.AssignAnlageToProjectDto)
+  - IbeAppWeb.Services.ProjectAnlageService.GetAllAnlagen
+  - IbeAppWeb.Services.ProjectAnlageService.GetAllProjectAnlagen
+  - IbeAppWeb.Services.ProjectAnlageService.GetAnlagenForProject(System.Int32)
+  - IbeAppWeb.Services.ProjectAnlageService.RemoveAssignment(System.Int32,System.Int32)
+  - IbeAppWeb.Services.ProjectAnlageService.UpdateAssignment(IbeAppWeb.DTOs.UpdateProjectAnlageDto)
+  langs:
+  - csharp
+  - vb
+  name: ProjectAnlageService
+  nameWithType: ProjectAnlageService
+  fullName: IbeAppWeb.Services.ProjectAnlageService
+  type: Class
+  source:
+    remote:
+      path: IbeAppWeb/Services/ProjectAnlageService.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: ProjectAnlageService
+    path: Services/ProjectAnlageService.cs
+    startLine: 5
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Services
+  syntax:
+    content: public class ProjectAnlageService
+    content.vb: Public Class ProjectAnlageService
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: IbeAppWeb.Services.ProjectAnlageService.#ctor(System.Net.Http.HttpClient)
+  commentId: M:IbeAppWeb.Services.ProjectAnlageService.#ctor(System.Net.Http.HttpClient)
+  id: '#ctor(System.Net.Http.HttpClient)'
+  parent: IbeAppWeb.Services.ProjectAnlageService
+  langs:
+  - csharp
+  - vb
+  name: ProjectAnlageService(HttpClient)
+  nameWithType: ProjectAnlageService.ProjectAnlageService(HttpClient)
+  fullName: IbeAppWeb.Services.ProjectAnlageService.ProjectAnlageService(System.Net.Http.HttpClient)
+  type: Constructor
+  source:
+    remote:
+      path: IbeAppWeb/Services/ProjectAnlageService.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: .ctor
+    path: Services/ProjectAnlageService.cs
+    startLine: 9
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Services
+  syntax:
+    content: public ProjectAnlageService(HttpClient httpClient)
+    parameters:
+    - id: httpClient
+      type: System.Net.Http.HttpClient
+    content.vb: Public Sub New(httpClient As HttpClient)
+  overload: IbeAppWeb.Services.ProjectAnlageService.#ctor*
+  nameWithType.vb: ProjectAnlageService.New(HttpClient)
+  fullName.vb: IbeAppWeb.Services.ProjectAnlageService.New(System.Net.Http.HttpClient)
+  name.vb: New(HttpClient)
+- uid: IbeAppWeb.Services.ProjectAnlageService.AssignAnlageToProject(IbeAppWeb.DTOs.AssignAnlageToProjectDto)
+  commentId: M:IbeAppWeb.Services.ProjectAnlageService.AssignAnlageToProject(IbeAppWeb.DTOs.AssignAnlageToProjectDto)
+  id: AssignAnlageToProject(IbeAppWeb.DTOs.AssignAnlageToProjectDto)
+  parent: IbeAppWeb.Services.ProjectAnlageService
+  langs:
+  - csharp
+  - vb
+  name: AssignAnlageToProject(AssignAnlageToProjectDto)
+  nameWithType: ProjectAnlageService.AssignAnlageToProject(AssignAnlageToProjectDto)
+  fullName: IbeAppWeb.Services.ProjectAnlageService.AssignAnlageToProject(IbeAppWeb.DTOs.AssignAnlageToProjectDto)
+  type: Method
+  source:
+    remote:
+      path: IbeAppWeb/Services/ProjectAnlageService.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: AssignAnlageToProject
+    path: Services/ProjectAnlageService.cs
+    startLine: 14
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Services
+  syntax:
+    content: public Task<bool> AssignAnlageToProject(AssignAnlageToProjectDto dto)
+    parameters:
+    - id: dto
+      type: IbeAppWeb.DTOs.AssignAnlageToProjectDto
+    return:
+      type: System.Threading.Tasks.Task{System.Boolean}
+    content.vb: Public Function AssignAnlageToProject(dto As AssignAnlageToProjectDto) As Task(Of Boolean)
+  overload: IbeAppWeb.Services.ProjectAnlageService.AssignAnlageToProject*
+- uid: IbeAppWeb.Services.ProjectAnlageService.GetAnlagenForProject(System.Int32)
+  commentId: M:IbeAppWeb.Services.ProjectAnlageService.GetAnlagenForProject(System.Int32)
+  id: GetAnlagenForProject(System.Int32)
+  parent: IbeAppWeb.Services.ProjectAnlageService
+  langs:
+  - csharp
+  - vb
+  name: GetAnlagenForProject(int)
+  nameWithType: ProjectAnlageService.GetAnlagenForProject(int)
+  fullName: IbeAppWeb.Services.ProjectAnlageService.GetAnlagenForProject(int)
+  type: Method
+  source:
+    remote:
+      path: IbeAppWeb/Services/ProjectAnlageService.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: GetAnlagenForProject
+    path: Services/ProjectAnlageService.cs
+    startLine: 28
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Services
+  syntax:
+    content: public Task<ProjectWithAnlagenDto> GetAnlagenForProject(int projectId)
+    parameters:
+    - id: projectId
+      type: System.Int32
+    return:
+      type: System.Threading.Tasks.Task{IbeAppWeb.DTOs.ProjectWithAnlagenDto}
+    content.vb: Public Function GetAnlagenForProject(projectId As Integer) As Task(Of ProjectWithAnlagenDto)
+  overload: IbeAppWeb.Services.ProjectAnlageService.GetAnlagenForProject*
+  nameWithType.vb: ProjectAnlageService.GetAnlagenForProject(Integer)
+  fullName.vb: IbeAppWeb.Services.ProjectAnlageService.GetAnlagenForProject(Integer)
+  name.vb: GetAnlagenForProject(Integer)
+- uid: IbeAppWeb.Services.ProjectAnlageService.GetAllProjectAnlagen
+  commentId: M:IbeAppWeb.Services.ProjectAnlageService.GetAllProjectAnlagen
+  id: GetAllProjectAnlagen
+  parent: IbeAppWeb.Services.ProjectAnlageService
+  langs:
+  - csharp
+  - vb
+  name: GetAllProjectAnlagen()
+  nameWithType: ProjectAnlageService.GetAllProjectAnlagen()
+  fullName: IbeAppWeb.Services.ProjectAnlageService.GetAllProjectAnlagen()
+  type: Method
+  source:
+    remote:
+      path: IbeAppWeb/Services/ProjectAnlageService.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: GetAllProjectAnlagen
+    path: Services/ProjectAnlageService.cs
+    startLine: 71
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Services
+  syntax:
+    content: public Task<IEnumerable<ProjectWithAnlagenDto>> GetAllProjectAnlagen()
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{IbeAppWeb.DTOs.ProjectWithAnlagenDto}}
+    content.vb: Public Function GetAllProjectAnlagen() As Task(Of IEnumerable(Of ProjectWithAnlagenDto))
+  overload: IbeAppWeb.Services.ProjectAnlageService.GetAllProjectAnlagen*
+- uid: IbeAppWeb.Services.ProjectAnlageService.UpdateAssignment(IbeAppWeb.DTOs.UpdateProjectAnlageDto)
+  commentId: M:IbeAppWeb.Services.ProjectAnlageService.UpdateAssignment(IbeAppWeb.DTOs.UpdateProjectAnlageDto)
+  id: UpdateAssignment(IbeAppWeb.DTOs.UpdateProjectAnlageDto)
+  parent: IbeAppWeb.Services.ProjectAnlageService
+  langs:
+  - csharp
+  - vb
+  name: UpdateAssignment(UpdateProjectAnlageDto)
+  nameWithType: ProjectAnlageService.UpdateAssignment(UpdateProjectAnlageDto)
+  fullName: IbeAppWeb.Services.ProjectAnlageService.UpdateAssignment(IbeAppWeb.DTOs.UpdateProjectAnlageDto)
+  type: Method
+  source:
+    remote:
+      path: IbeAppWeb/Services/ProjectAnlageService.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: UpdateAssignment
+    path: Services/ProjectAnlageService.cs
+    startLine: 81
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Services
+  syntax:
+    content: public Task<bool> UpdateAssignment(UpdateProjectAnlageDto dto)
+    parameters:
+    - id: dto
+      type: IbeAppWeb.DTOs.UpdateProjectAnlageDto
+    return:
+      type: System.Threading.Tasks.Task{System.Boolean}
+    content.vb: Public Function UpdateAssignment(dto As UpdateProjectAnlageDto) As Task(Of Boolean)
+  overload: IbeAppWeb.Services.ProjectAnlageService.UpdateAssignment*
+- uid: IbeAppWeb.Services.ProjectAnlageService.RemoveAssignment(System.Int32,System.Int32)
+  commentId: M:IbeAppWeb.Services.ProjectAnlageService.RemoveAssignment(System.Int32,System.Int32)
+  id: RemoveAssignment(System.Int32,System.Int32)
+  parent: IbeAppWeb.Services.ProjectAnlageService
+  langs:
+  - csharp
+  - vb
+  name: RemoveAssignment(int, int)
+  nameWithType: ProjectAnlageService.RemoveAssignment(int, int)
+  fullName: IbeAppWeb.Services.ProjectAnlageService.RemoveAssignment(int, int)
+  type: Method
+  source:
+    remote:
+      path: IbeAppWeb/Services/ProjectAnlageService.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: RemoveAssignment
+    path: Services/ProjectAnlageService.cs
+    startLine: 96
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Services
+  syntax:
+    content: public Task<bool> RemoveAssignment(int projectId, int anlageId)
+    parameters:
+    - id: projectId
+      type: System.Int32
+    - id: anlageId
+      type: System.Int32
+    return:
+      type: System.Threading.Tasks.Task{System.Boolean}
+    content.vb: Public Function RemoveAssignment(projectId As Integer, anlageId As Integer) As Task(Of Boolean)
+  overload: IbeAppWeb.Services.ProjectAnlageService.RemoveAssignment*
+  nameWithType.vb: ProjectAnlageService.RemoveAssignment(Integer, Integer)
+  fullName.vb: IbeAppWeb.Services.ProjectAnlageService.RemoveAssignment(Integer, Integer)
+  name.vb: RemoveAssignment(Integer, Integer)
+- uid: IbeAppWeb.Services.ProjectAnlageService.GetAllAnlagen
+  commentId: M:IbeAppWeb.Services.ProjectAnlageService.GetAllAnlagen
+  id: GetAllAnlagen
+  parent: IbeAppWeb.Services.ProjectAnlageService
+  langs:
+  - csharp
+  - vb
+  name: GetAllAnlagen()
+  nameWithType: ProjectAnlageService.GetAllAnlagen()
+  fullName: IbeAppWeb.Services.ProjectAnlageService.GetAllAnlagen()
+  type: Method
+  source:
+    remote:
+      path: IbeAppWeb/Services/ProjectAnlageService.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: GetAllAnlagen
+    path: Services/ProjectAnlageService.cs
+    startLine: 126
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Services
+  syntax:
+    content: public Task<List<AnlageDto>> GetAllAnlagen()
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.List{IbeAppWeb.DTOs.AnlageDto}}
+    content.vb: Public Function GetAllAnlagen() As Task(Of List(Of AnlageDto))
+  overload: IbeAppWeb.Services.ProjectAnlageService.GetAllAnlagen*
+references:
+- uid: IbeAppWeb.Services
+  commentId: N:IbeAppWeb.Services
+  href: IbeAppWeb.html
+  name: IbeAppWeb.Services
+  nameWithType: IbeAppWeb.Services
+  fullName: IbeAppWeb.Services
+  spec.csharp:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.Services
+    name: Services
+    href: IbeAppWeb.Services.html
+  spec.vb:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.Services
+    name: Services
+    href: IbeAppWeb.Services.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: IbeAppWeb.Services.ProjectAnlageService.#ctor*
+  commentId: Overload:IbeAppWeb.Services.ProjectAnlageService.#ctor
+  href: IbeAppWeb.Services.ProjectAnlageService.html#IbeAppWeb_Services_ProjectAnlageService__ctor_System_Net_Http_HttpClient_
+  name: ProjectAnlageService
+  nameWithType: ProjectAnlageService.ProjectAnlageService
+  fullName: IbeAppWeb.Services.ProjectAnlageService.ProjectAnlageService
+  nameWithType.vb: ProjectAnlageService.New
+  fullName.vb: IbeAppWeb.Services.ProjectAnlageService.New
+  name.vb: New
+- uid: System.Net.Http.HttpClient
+  commentId: T:System.Net.Http.HttpClient
+  parent: System.Net.Http
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.net.http.httpclient
+  name: HttpClient
+  nameWithType: HttpClient
+  fullName: System.Net.Http.HttpClient
+- uid: System.Net.Http
+  commentId: N:System.Net.Http
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Net.Http
+  nameWithType: System.Net.Http
+  fullName: System.Net.Http
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Net
+    name: Net
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net
+  - name: .
+  - uid: System.Net.Http
+    name: Http
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net.http
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Net
+    name: Net
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net
+  - name: .
+  - uid: System.Net.Http
+    name: Http
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net.http
+- uid: IbeAppWeb.Services.ProjectAnlageService.AssignAnlageToProject*
+  commentId: Overload:IbeAppWeb.Services.ProjectAnlageService.AssignAnlageToProject
+  href: IbeAppWeb.Services.ProjectAnlageService.html#IbeAppWeb_Services_ProjectAnlageService_AssignAnlageToProject_IbeAppWeb_DTOs_AssignAnlageToProjectDto_
+  name: AssignAnlageToProject
+  nameWithType: ProjectAnlageService.AssignAnlageToProject
+  fullName: IbeAppWeb.Services.ProjectAnlageService.AssignAnlageToProject
+- uid: IbeAppWeb.DTOs.AssignAnlageToProjectDto
+  commentId: T:IbeAppWeb.DTOs.AssignAnlageToProjectDto
+  parent: IbeAppWeb.DTOs
+  href: IbeAppWeb.DTOs.AssignAnlageToProjectDto.html
+  name: AssignAnlageToProjectDto
+  nameWithType: AssignAnlageToProjectDto
+  fullName: IbeAppWeb.DTOs.AssignAnlageToProjectDto
+- uid: System.Threading.Tasks.Task{System.Boolean}
+  commentId: T:System.Threading.Tasks.Task{System.Boolean}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<bool>
+  nameWithType: Task<bool>
+  fullName: System.Threading.Tasks.Task<bool>
+  nameWithType.vb: Task(Of Boolean)
+  fullName.vb: System.Threading.Tasks.Task(Of Boolean)
+  name.vb: Task(Of Boolean)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: IbeAppWeb.DTOs
+  commentId: N:IbeAppWeb.DTOs
+  href: IbeAppWeb.html
+  name: IbeAppWeb.DTOs
+  nameWithType: IbeAppWeb.DTOs
+  fullName: IbeAppWeb.DTOs
+  spec.csharp:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.DTOs
+    name: DTOs
+    href: IbeAppWeb.DTOs.html
+  spec.vb:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.DTOs
+    name: DTOs
+    href: IbeAppWeb.DTOs.html
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: IbeAppWeb.Services.ProjectAnlageService.GetAnlagenForProject*
+  commentId: Overload:IbeAppWeb.Services.ProjectAnlageService.GetAnlagenForProject
+  href: IbeAppWeb.Services.ProjectAnlageService.html#IbeAppWeb_Services_ProjectAnlageService_GetAnlagenForProject_System_Int32_
+  name: GetAnlagenForProject
+  nameWithType: ProjectAnlageService.GetAnlagenForProject
+  fullName: IbeAppWeb.Services.ProjectAnlageService.GetAnlagenForProject
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Threading.Tasks.Task{IbeAppWeb.DTOs.ProjectWithAnlagenDto}
+  commentId: T:System.Threading.Tasks.Task{IbeAppWeb.DTOs.ProjectWithAnlagenDto}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<ProjectWithAnlagenDto>
+  nameWithType: Task<ProjectWithAnlagenDto>
+  fullName: System.Threading.Tasks.Task<IbeAppWeb.DTOs.ProjectWithAnlagenDto>
+  nameWithType.vb: Task(Of ProjectWithAnlagenDto)
+  fullName.vb: System.Threading.Tasks.Task(Of IbeAppWeb.DTOs.ProjectWithAnlagenDto)
+  name.vb: Task(Of ProjectWithAnlagenDto)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: IbeAppWeb.DTOs.ProjectWithAnlagenDto
+    name: ProjectWithAnlagenDto
+    href: IbeAppWeb.DTOs.ProjectWithAnlagenDto.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: IbeAppWeb.DTOs.ProjectWithAnlagenDto
+    name: ProjectWithAnlagenDto
+    href: IbeAppWeb.DTOs.ProjectWithAnlagenDto.html
+  - name: )
+- uid: IbeAppWeb.Services.ProjectAnlageService.GetAllProjectAnlagen*
+  commentId: Overload:IbeAppWeb.Services.ProjectAnlageService.GetAllProjectAnlagen
+  href: IbeAppWeb.Services.ProjectAnlageService.html#IbeAppWeb_Services_ProjectAnlageService_GetAllProjectAnlagen
+  name: GetAllProjectAnlagen
+  nameWithType: ProjectAnlageService.GetAllProjectAnlagen
+  fullName: IbeAppWeb.Services.ProjectAnlageService.GetAllProjectAnlagen
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{IbeAppWeb.DTOs.ProjectWithAnlagenDto}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{IbeAppWeb.DTOs.ProjectWithAnlagenDto}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<IEnumerable<ProjectWithAnlagenDto>>
+  nameWithType: Task<IEnumerable<ProjectWithAnlagenDto>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<IbeAppWeb.DTOs.ProjectWithAnlagenDto>>
+  nameWithType.vb: Task(Of IEnumerable(Of ProjectWithAnlagenDto))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.IEnumerable(Of IbeAppWeb.DTOs.ProjectWithAnlagenDto))
+  name.vb: Task(Of IEnumerable(Of ProjectWithAnlagenDto))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: IbeAppWeb.DTOs.ProjectWithAnlagenDto
+    name: ProjectWithAnlagenDto
+    href: IbeAppWeb.DTOs.ProjectWithAnlagenDto.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: IbeAppWeb.DTOs.ProjectWithAnlagenDto
+    name: ProjectWithAnlagenDto
+    href: IbeAppWeb.DTOs.ProjectWithAnlagenDto.html
+  - name: )
+  - name: )
+- uid: IbeAppWeb.Services.ProjectAnlageService.UpdateAssignment*
+  commentId: Overload:IbeAppWeb.Services.ProjectAnlageService.UpdateAssignment
+  href: IbeAppWeb.Services.ProjectAnlageService.html#IbeAppWeb_Services_ProjectAnlageService_UpdateAssignment_IbeAppWeb_DTOs_UpdateProjectAnlageDto_
+  name: UpdateAssignment
+  nameWithType: ProjectAnlageService.UpdateAssignment
+  fullName: IbeAppWeb.Services.ProjectAnlageService.UpdateAssignment
+- uid: IbeAppWeb.DTOs.UpdateProjectAnlageDto
+  commentId: T:IbeAppWeb.DTOs.UpdateProjectAnlageDto
+  parent: IbeAppWeb.DTOs
+  href: IbeAppWeb.DTOs.UpdateProjectAnlageDto.html
+  name: UpdateProjectAnlageDto
+  nameWithType: UpdateProjectAnlageDto
+  fullName: IbeAppWeb.DTOs.UpdateProjectAnlageDto
+- uid: IbeAppWeb.Services.ProjectAnlageService.RemoveAssignment*
+  commentId: Overload:IbeAppWeb.Services.ProjectAnlageService.RemoveAssignment
+  href: IbeAppWeb.Services.ProjectAnlageService.html#IbeAppWeb_Services_ProjectAnlageService_RemoveAssignment_System_Int32_System_Int32_
+  name: RemoveAssignment
+  nameWithType: ProjectAnlageService.RemoveAssignment
+  fullName: IbeAppWeb.Services.ProjectAnlageService.RemoveAssignment
+- uid: IbeAppWeb.Services.ProjectAnlageService.GetAllAnlagen*
+  commentId: Overload:IbeAppWeb.Services.ProjectAnlageService.GetAllAnlagen
+  href: IbeAppWeb.Services.ProjectAnlageService.html#IbeAppWeb_Services_ProjectAnlageService_GetAllAnlagen
+  name: GetAllAnlagen
+  nameWithType: ProjectAnlageService.GetAllAnlagen
+  fullName: IbeAppWeb.Services.ProjectAnlageService.GetAllAnlagen
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.List{IbeAppWeb.DTOs.AnlageDto}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.List{IbeAppWeb.DTOs.AnlageDto}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<List<AnlageDto>>
+  nameWithType: Task<List<AnlageDto>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.List<IbeAppWeb.DTOs.AnlageDto>>
+  nameWithType.vb: Task(Of List(Of AnlageDto))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.List(Of IbeAppWeb.DTOs.AnlageDto))
+  name.vb: Task(Of List(Of AnlageDto))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: IbeAppWeb.DTOs.AnlageDto
+    name: AnlageDto
+    href: IbeAppWeb.DTOs.AnlageDto.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: IbeAppWeb.DTOs.AnlageDto
+    name: AnlageDto
+    href: IbeAppWeb.DTOs.AnlageDto.html
+  - name: )
+  - name: )

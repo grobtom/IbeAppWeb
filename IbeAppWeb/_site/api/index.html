@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>API Reference | IBE Application Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="API Reference | IBE Application Documentation ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="IbeAppWeb">
+            IbeAppWeb
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="api-reference">API Reference</h1>
+
+<p>Welcome to the IBE Application API Reference. This documentation provides comprehensive information about all the services, DTOs (Data Transfer Objects), and other types in the IBE Blazor WebAssembly application.</p>
+<h2 id="services">Services</h2>
+<p>The application includes several service classes that handle communication with backend APIs:</p>
+<h3 id="core-services">Core Services</h3>
+<ul>
+<li><p><strong><a href="IbeAppWeb.Services.MonteurService.html">MonteurService</a></strong> - Complete CRUD operations for technician (Monteur) management</p>
+<ul>
+<li>Retrieve, create, update, and delete Monteure</li>
+<li>Assign Monteure to Anlagen (facilities)</li>
+<li>Track Monteur history and project assignments</li>
+</ul>
+</li>
+<li><p><strong><a href="IbeAppWeb.Services.AnlagenService.html">AnlagenService</a></strong> - Management of Anlage (facility) entities</p>
+<ul>
+<li>Full CRUD operations for facilities</li>
+<li>Retrieve facilities with associated Monteure</li>
+<li>Project-specific facility management</li>
+<li>Soft delete and restoration capabilities</li>
+</ul>
+</li>
+<li><p><strong><a href="IbeAppWeb.Services.BauleiterService.html">BauleiterService</a></strong> - Site manager (Bauleiter) operations</p>
+<ul>
+<li>Manage site managers and their project assignments</li>
+<li>Retrieve Bauleiter with associated projects</li>
+</ul>
+</li>
+<li><p><strong><a href="IbeAppWeb.Services.ProjectService.html">ProjectService</a></strong> - Project management functionality</p>
+<ul>
+<li>Handle project lifecycle operations</li>
+<li>Customer and invoice associations</li>
+<li>Active project filtering</li>
+</ul>
+</li>
+<li><p><strong><a href="IbeAppWeb.Services.ArbeitsscheinService.html">ArbeitsscheinService</a></strong> - Work report management</p>
+<ul>
+<li>Generate detailed work reports</li>
+<li>Filter by facility, technician, and date ranges</li>
+<li>Export capabilities for reports</li>
+</ul>
+</li>
+</ul>
+<h2 id="data-transfer-objects-dtos">Data Transfer Objects (DTOs)</h2>
+<h3 id="core-entity-dtos">Core Entity DTOs</h3>
+<ul>
+<li><strong><a href="IbeAppWeb.DTOs.Project.html">Project</a></strong> - Main project entity with customer and Bauleiter associations</li>
+<li><strong><a href="IbeAppWeb.DTOs.BauleiterDto.html">BauleiterDto</a></strong> - Site manager information</li>
+<li><strong><a href="IbeAppWeb.DTOs.AnlageDto.html">AnlageDto</a></strong> - Facility entity details</li>
+<li><strong><a href="IbeAppWeb.DTOs.XCustomer.html">XCustomer</a></strong> - Customer entity with contact and address information</li>
+<li><strong><a href="IbeAppWeb.DTOs.Address.html">Address</a></strong> - Physical address representation</li>
+</ul>
+<h3 id="monteur-dtos">Monteur DTOs</h3>
+<ul>
+<li><strong><a href="IbeAppWeb.DTOs.Monteur.MonteurResponse.html">MonteurResponse</a></strong> - Technician entity with full details</li>
+<li><strong><a href="IbeAppWeb.DTOs.MonteurWithAnlageDto.html">MonteurWithAnlageDto</a></strong> - Technician with assigned facility</li>
+<li><strong><a href="IbeAppWeb.DTOs.Monteur.ProjectMonteurDto.html">ProjectMonteurDto</a></strong> - Project-technician relationship data</li>
+</ul>
+<h3 id="composite-dtos">Composite DTOs</h3>
+<ul>
+<li><strong><a href="IbeAppWeb.DTOs.BauleiterWithProjectsDto.html">BauleiterWithProjectsDto</a></strong> - Site manager with associated projects</li>
+<li><strong><a href="IbeAppWeb.DTOs.ProjectCustomerInvoiceDto.html">ProjectCustomerInvoiceDto</a></strong> - Project with customer and invoice data</li>
+<li><strong><a href="IbeAppWeb.DTOs.AnlageWithMonteureDto.html">AnlageWithMonteureDto</a></strong> - Facility with assigned technicians</li>
+<li><strong><a href="IbeAppWeb.DTOs.ProjectWithAnlagenDto.html">ProjectWithAnlagenDto</a></strong> - Project with associated facilities</li>
+</ul>
+<h3 id="work-report-dtos">Work Report DTOs</h3>
+<ul>
+<li><strong><a href="IbeAppWeb.DTOs.ArbeitsscheinDto.html">ArbeitsscheinDto</a></strong> - Individual work sheet details</li>
+<li><strong><a href="IbeAppWeb.DTOs.ArbeitsberichtDbSummeDto.html">ArbeitsberichtDbSummeDto</a></strong> - Work report summary data</li>
+<li><strong><a href="IbeAppWeb.DTOs.UmsatzDto.html">UmsatzDto</a></strong> - Revenue calculation data</li>
+</ul>
+<h3 id="assignment-dtos">Assignment DTOs</h3>
+<ul>
+<li><strong><a href="IbeAppWeb.DTOs.AssignMonteurToAnlageDto.html">AssignMonteurToAnlageDto</a></strong> - Technician-facility assignment</li>
+<li><strong><a href="IbeAppWeb.DTOs.AssignAnlageToProjectDto.html">AssignAnlageToProjectDto</a></strong> - Facility-project assignment</li>
+<li><strong><a href="IbeAppWeb.DTOs.UpdateProjectAnlageDto.html">UpdateProjectAnlageDto</a></strong> - Project facility update operations</li>
+</ul>
+<h3 id="history-and-tracking">History and Tracking</h3>
+<ul>
+<li><strong><a href="IbeAppWeb.DTOs.MonteurAnlageHistoryDto.html">MonteurAnlageHistoryDto</a></strong> - Historical tracking of technician assignments</li>
+<li><strong><a href="IbeAppWeb.DTOs.XInvoice.html">XInvoice</a></strong> - Invoice tracking with project associations</li>
+</ul>
+<h2 id="validation">Validation</h2>
+<ul>
+<li><strong><a href="IbeAppWeb.Validation.ValidationErrorResponse.html">ValidationErrorResponse</a></strong> - API validation error handling</li>
+<li><strong><a href="IbeAppWeb.Validation.ValidationError.html">ValidationError</a></strong> - Individual validation error details</li>
+</ul>
+<h2 id="key-features">Key Features</h2>
+<h3 id="http-client-services">HTTP Client Services</h3>
+<p>All services use <code>HttpClient</code> for RESTful API communication with comprehensive error handling and response processing.</p>
+<h3 id="validation-support">Validation Support</h3>
+<p>Services include built-in validation error handling with detailed field-level error reporting.</p>
+<h3 id="asyncawait-pattern">Async/Await Pattern</h3>
+<p>All service methods are asynchronous, following modern .NET patterns for non-blocking operations.</p>
+<h3 id="error-handling">Error Handling</h3>
+<p>Comprehensive exception handling with logging and user-friendly error messages.</p>
+<h3 id="json-serialization">JSON Serialization</h3>
+<p>Full support for JSON serialization/deserialization with nullable reference types and proper attribute handling.</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>To use these services in your Blazor components:</p>
+<ol>
+<li>Inject the required service using <code>@inject</code></li>
+<li>Call service methods from component lifecycle methods or event handlers</li>
+<li>Handle the returned data and any potential exceptions</li>
+<li>Update component state and UI accordingly</li>
+</ol>
+<p>Example:</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          IBE Application - Blazor WebAssembly Documentation
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

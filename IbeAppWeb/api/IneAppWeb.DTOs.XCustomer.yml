@@ -1,0 +1,815 @@
+### YamlMime:ManagedReference
+items:
+- uid: IneAppWeb.DTOs.XCustomer
+  commentId: T:IneAppWeb.DTOs.XCustomer
+  id: XCustomer
+  parent: IneAppWeb.DTOs
+  children:
+  - IneAppWeb.DTOs.XCustomer.Address
+  - IneAppWeb.DTOs.XCustomer.AddressId
+  - IneAppWeb.DTOs.XCustomer.CompanyName
+  - IneAppWeb.DTOs.XCustomer.CompanyPrivate
+  - IneAppWeb.DTOs.XCustomer.CustomerId
+  - IneAppWeb.DTOs.XCustomer.CustomerXId
+  - IneAppWeb.DTOs.XCustomer.Email
+  - IneAppWeb.DTOs.XCustomer.FirstName
+  - IneAppWeb.DTOs.XCustomer.LastName
+  - IneAppWeb.DTOs.XCustomer.Mobile
+  - IneAppWeb.DTOs.XCustomer.Telephone
+  langs:
+  - csharp
+  - vb
+  name: XCustomer
+  nameWithType: XCustomer
+  fullName: IneAppWeb.DTOs.XCustomer
+  type: Class
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/XCustomer.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: XCustomer
+    path: DTOs/XCustomer.cs
+    startLine: 16
+  assemblies:
+  - IbeAppWeb
+  namespace: IneAppWeb.DTOs
+  summary: >-
+    Represents a consumer entity with personal and contact information,  as well as optional company and address
+
+    details.
+  remarks: >-
+    This class is typically used to store and manage information about an individual or a company 
+        consumer, including their contact details, company affiliation, and associated address.
+  example: []
+  syntax:
+    content: public class XCustomer
+    content.vb: Public Class XCustomer
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: IneAppWeb.DTOs.XCustomer.CustomerId
+  commentId: P:IneAppWeb.DTOs.XCustomer.CustomerId
+  id: CustomerId
+  parent: IneAppWeb.DTOs.XCustomer
+  langs:
+  - csharp
+  - vb
+  name: CustomerId
+  nameWithType: XCustomer.CustomerId
+  fullName: IneAppWeb.DTOs.XCustomer.CustomerId
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/XCustomer.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: CustomerId
+    path: DTOs/XCustomer.cs
+    startLine: 18
+  assemblies:
+  - IbeAppWeb
+  namespace: IneAppWeb.DTOs
+  syntax:
+    content: public int CustomerId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property CustomerId As Integer
+  overload: IneAppWeb.DTOs.XCustomer.CustomerId*
+- uid: IneAppWeb.DTOs.XCustomer.CustomerXId
+  commentId: P:IneAppWeb.DTOs.XCustomer.CustomerXId
+  id: CustomerXId
+  parent: IneAppWeb.DTOs.XCustomer
+  langs:
+  - csharp
+  - vb
+  name: CustomerXId
+  nameWithType: XCustomer.CustomerXId
+  fullName: IneAppWeb.DTOs.XCustomer.CustomerXId
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/XCustomer.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: CustomerXId
+    path: DTOs/XCustomer.cs
+    startLine: 19
+  assemblies:
+  - IbeAppWeb
+  namespace: IneAppWeb.DTOs
+  syntax:
+    content: public int? CustomerXId { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property CustomerXId As Integer?
+  overload: IneAppWeb.DTOs.XCustomer.CustomerXId*
+- uid: IneAppWeb.DTOs.XCustomer.CompanyPrivate
+  commentId: P:IneAppWeb.DTOs.XCustomer.CompanyPrivate
+  id: CompanyPrivate
+  parent: IneAppWeb.DTOs.XCustomer
+  langs:
+  - csharp
+  - vb
+  name: CompanyPrivate
+  nameWithType: XCustomer.CompanyPrivate
+  fullName: IneAppWeb.DTOs.XCustomer.CompanyPrivate
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/XCustomer.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: CompanyPrivate
+    path: DTOs/XCustomer.cs
+    startLine: 20
+  assemblies:
+  - IbeAppWeb
+  namespace: IneAppWeb.DTOs
+  syntax:
+    content: public bool CompanyPrivate { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property CompanyPrivate As Boolean
+  overload: IneAppWeb.DTOs.XCustomer.CompanyPrivate*
+- uid: IneAppWeb.DTOs.XCustomer.FirstName
+  commentId: P:IneAppWeb.DTOs.XCustomer.FirstName
+  id: FirstName
+  parent: IneAppWeb.DTOs.XCustomer
+  langs:
+  - csharp
+  - vb
+  name: FirstName
+  nameWithType: XCustomer.FirstName
+  fullName: IneAppWeb.DTOs.XCustomer.FirstName
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/XCustomer.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: FirstName
+    path: DTOs/XCustomer.cs
+    startLine: 21
+  assemblies:
+  - IbeAppWeb
+  namespace: IneAppWeb.DTOs
+  syntax:
+    content: public string? FirstName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property FirstName As String
+  overload: IneAppWeb.DTOs.XCustomer.FirstName*
+- uid: IneAppWeb.DTOs.XCustomer.LastName
+  commentId: P:IneAppWeb.DTOs.XCustomer.LastName
+  id: LastName
+  parent: IneAppWeb.DTOs.XCustomer
+  langs:
+  - csharp
+  - vb
+  name: LastName
+  nameWithType: XCustomer.LastName
+  fullName: IneAppWeb.DTOs.XCustomer.LastName
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/XCustomer.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: LastName
+    path: DTOs/XCustomer.cs
+    startLine: 22
+  assemblies:
+  - IbeAppWeb
+  namespace: IneAppWeb.DTOs
+  syntax:
+    content: public string? LastName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property LastName As String
+  overload: IneAppWeb.DTOs.XCustomer.LastName*
+- uid: IneAppWeb.DTOs.XCustomer.Telephone
+  commentId: P:IneAppWeb.DTOs.XCustomer.Telephone
+  id: Telephone
+  parent: IneAppWeb.DTOs.XCustomer
+  langs:
+  - csharp
+  - vb
+  name: Telephone
+  nameWithType: XCustomer.Telephone
+  fullName: IneAppWeb.DTOs.XCustomer.Telephone
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/XCustomer.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Telephone
+    path: DTOs/XCustomer.cs
+    startLine: 23
+  assemblies:
+  - IbeAppWeb
+  namespace: IneAppWeb.DTOs
+  syntax:
+    content: public string? Telephone { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Telephone As String
+  overload: IneAppWeb.DTOs.XCustomer.Telephone*
+- uid: IneAppWeb.DTOs.XCustomer.Mobile
+  commentId: P:IneAppWeb.DTOs.XCustomer.Mobile
+  id: Mobile
+  parent: IneAppWeb.DTOs.XCustomer
+  langs:
+  - csharp
+  - vb
+  name: Mobile
+  nameWithType: XCustomer.Mobile
+  fullName: IneAppWeb.DTOs.XCustomer.Mobile
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/XCustomer.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Mobile
+    path: DTOs/XCustomer.cs
+    startLine: 24
+  assemblies:
+  - IbeAppWeb
+  namespace: IneAppWeb.DTOs
+  syntax:
+    content: public string? Mobile { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Mobile As String
+  overload: IneAppWeb.DTOs.XCustomer.Mobile*
+- uid: IneAppWeb.DTOs.XCustomer.Email
+  commentId: P:IneAppWeb.DTOs.XCustomer.Email
+  id: Email
+  parent: IneAppWeb.DTOs.XCustomer
+  langs:
+  - csharp
+  - vb
+  name: Email
+  nameWithType: XCustomer.Email
+  fullName: IneAppWeb.DTOs.XCustomer.Email
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/XCustomer.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Email
+    path: DTOs/XCustomer.cs
+    startLine: 25
+  assemblies:
+  - IbeAppWeb
+  namespace: IneAppWeb.DTOs
+  syntax:
+    content: public string? Email { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Email As String
+  overload: IneAppWeb.DTOs.XCustomer.Email*
+- uid: IneAppWeb.DTOs.XCustomer.CompanyName
+  commentId: P:IneAppWeb.DTOs.XCustomer.CompanyName
+  id: CompanyName
+  parent: IneAppWeb.DTOs.XCustomer
+  langs:
+  - csharp
+  - vb
+  name: CompanyName
+  nameWithType: XCustomer.CompanyName
+  fullName: IneAppWeb.DTOs.XCustomer.CompanyName
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/XCustomer.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: CompanyName
+    path: DTOs/XCustomer.cs
+    startLine: 26
+  assemblies:
+  - IbeAppWeb
+  namespace: IneAppWeb.DTOs
+  syntax:
+    content: public string? CompanyName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property CompanyName As String
+  overload: IneAppWeb.DTOs.XCustomer.CompanyName*
+- uid: IneAppWeb.DTOs.XCustomer.AddressId
+  commentId: P:IneAppWeb.DTOs.XCustomer.AddressId
+  id: AddressId
+  parent: IneAppWeb.DTOs.XCustomer
+  langs:
+  - csharp
+  - vb
+  name: AddressId
+  nameWithType: XCustomer.AddressId
+  fullName: IneAppWeb.DTOs.XCustomer.AddressId
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/XCustomer.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: AddressId
+    path: DTOs/XCustomer.cs
+    startLine: 27
+  assemblies:
+  - IbeAppWeb
+  namespace: IneAppWeb.DTOs
+  syntax:
+    content: public int? AddressId { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property AddressId As Integer?
+  overload: IneAppWeb.DTOs.XCustomer.AddressId*
+- uid: IneAppWeb.DTOs.XCustomer.Address
+  commentId: P:IneAppWeb.DTOs.XCustomer.Address
+  id: Address
+  parent: IneAppWeb.DTOs.XCustomer
+  langs:
+  - csharp
+  - vb
+  name: Address
+  nameWithType: XCustomer.Address
+  fullName: IneAppWeb.DTOs.XCustomer.Address
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/XCustomer.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Address
+    path: DTOs/XCustomer.cs
+    startLine: 28
+  assemblies:
+  - IbeAppWeb
+  namespace: IneAppWeb.DTOs
+  syntax:
+    content: public Address? Address { get; set; }
+    parameters: []
+    return:
+      type: IbeAppWeb.DTOs.Address
+    content.vb: Public Property Address As Address
+  overload: IneAppWeb.DTOs.XCustomer.Address*
+references:
+- uid: IneAppWeb.DTOs
+  commentId: N:IneAppWeb.DTOs
+  href: IneAppWeb.html
+  name: IneAppWeb.DTOs
+  nameWithType: IneAppWeb.DTOs
+  fullName: IneAppWeb.DTOs
+  spec.csharp:
+  - uid: IneAppWeb
+    name: IneAppWeb
+    href: IneAppWeb.html
+  - name: .
+  - uid: IneAppWeb.DTOs
+    name: DTOs
+    href: IneAppWeb.DTOs.html
+  spec.vb:
+  - uid: IneAppWeb
+    name: IneAppWeb
+    href: IneAppWeb.html
+  - name: .
+  - uid: IneAppWeb.DTOs
+    name: DTOs
+    href: IneAppWeb.DTOs.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: IneAppWeb.DTOs.XCustomer.CustomerId*
+  commentId: Overload:IneAppWeb.DTOs.XCustomer.CustomerId
+  href: IneAppWeb.DTOs.XCustomer.html#IneAppWeb_DTOs_XCustomer_CustomerId
+  name: CustomerId
+  nameWithType: XCustomer.CustomerId
+  fullName: IneAppWeb.DTOs.XCustomer.CustomerId
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: IneAppWeb.DTOs.XCustomer.CustomerXId*
+  commentId: Overload:IneAppWeb.DTOs.XCustomer.CustomerXId
+  href: IneAppWeb.DTOs.XCustomer.html#IneAppWeb_DTOs_XCustomer_CustomerXId
+  name: CustomerXId
+  nameWithType: XCustomer.CustomerXId
+  fullName: IneAppWeb.DTOs.XCustomer.CustomerXId
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: IneAppWeb.DTOs.XCustomer.CompanyPrivate*
+  commentId: Overload:IneAppWeb.DTOs.XCustomer.CompanyPrivate
+  href: IneAppWeb.DTOs.XCustomer.html#IneAppWeb_DTOs_XCustomer_CompanyPrivate
+  name: CompanyPrivate
+  nameWithType: XCustomer.CompanyPrivate
+  fullName: IneAppWeb.DTOs.XCustomer.CompanyPrivate
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: IneAppWeb.DTOs.XCustomer.FirstName*
+  commentId: Overload:IneAppWeb.DTOs.XCustomer.FirstName
+  href: IneAppWeb.DTOs.XCustomer.html#IneAppWeb_DTOs_XCustomer_FirstName
+  name: FirstName
+  nameWithType: XCustomer.FirstName
+  fullName: IneAppWeb.DTOs.XCustomer.FirstName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: IneAppWeb.DTOs.XCustomer.LastName*
+  commentId: Overload:IneAppWeb.DTOs.XCustomer.LastName
+  href: IneAppWeb.DTOs.XCustomer.html#IneAppWeb_DTOs_XCustomer_LastName
+  name: LastName
+  nameWithType: XCustomer.LastName
+  fullName: IneAppWeb.DTOs.XCustomer.LastName
+- uid: IneAppWeb.DTOs.XCustomer.Telephone*
+  commentId: Overload:IneAppWeb.DTOs.XCustomer.Telephone
+  href: IneAppWeb.DTOs.XCustomer.html#IneAppWeb_DTOs_XCustomer_Telephone
+  name: Telephone
+  nameWithType: XCustomer.Telephone
+  fullName: IneAppWeb.DTOs.XCustomer.Telephone
+- uid: IneAppWeb.DTOs.XCustomer.Mobile*
+  commentId: Overload:IneAppWeb.DTOs.XCustomer.Mobile
+  href: IneAppWeb.DTOs.XCustomer.html#IneAppWeb_DTOs_XCustomer_Mobile
+  name: Mobile
+  nameWithType: XCustomer.Mobile
+  fullName: IneAppWeb.DTOs.XCustomer.Mobile
+- uid: IneAppWeb.DTOs.XCustomer.Email*
+  commentId: Overload:IneAppWeb.DTOs.XCustomer.Email
+  href: IneAppWeb.DTOs.XCustomer.html#IneAppWeb_DTOs_XCustomer_Email
+  name: Email
+  nameWithType: XCustomer.Email
+  fullName: IneAppWeb.DTOs.XCustomer.Email
+- uid: IneAppWeb.DTOs.XCustomer.CompanyName*
+  commentId: Overload:IneAppWeb.DTOs.XCustomer.CompanyName
+  href: IneAppWeb.DTOs.XCustomer.html#IneAppWeb_DTOs_XCustomer_CompanyName
+  name: CompanyName
+  nameWithType: XCustomer.CompanyName
+  fullName: IneAppWeb.DTOs.XCustomer.CompanyName
+- uid: IneAppWeb.DTOs.XCustomer.AddressId*
+  commentId: Overload:IneAppWeb.DTOs.XCustomer.AddressId
+  href: IneAppWeb.DTOs.XCustomer.html#IneAppWeb_DTOs_XCustomer_AddressId
+  name: AddressId
+  nameWithType: XCustomer.AddressId
+  fullName: IneAppWeb.DTOs.XCustomer.AddressId
+- uid: IneAppWeb.DTOs.XCustomer.Address*
+  commentId: Overload:IneAppWeb.DTOs.XCustomer.Address
+  href: IneAppWeb.DTOs.XCustomer.html#IneAppWeb_DTOs_XCustomer_Address
+  name: Address
+  nameWithType: XCustomer.Address
+  fullName: IneAppWeb.DTOs.XCustomer.Address
+- uid: IbeAppWeb.DTOs.Address
+  commentId: T:IbeAppWeb.DTOs.Address
+  parent: IbeAppWeb.DTOs
+  href: IbeAppWeb.DTOs.Address.html
+  name: Address
+  nameWithType: Address
+  fullName: IbeAppWeb.DTOs.Address
+- uid: IbeAppWeb.DTOs
+  commentId: N:IbeAppWeb.DTOs
+  href: IbeAppWeb.html
+  name: IbeAppWeb.DTOs
+  nameWithType: IbeAppWeb.DTOs
+  fullName: IbeAppWeb.DTOs
+  spec.csharp:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.DTOs
+    name: DTOs
+    href: IbeAppWeb.DTOs.html
+  spec.vb:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.DTOs
+    name: DTOs
+    href: IbeAppWeb.DTOs.html

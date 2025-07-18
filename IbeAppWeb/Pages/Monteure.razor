@@ -141,6 +141,7 @@ else
             if (updatedMonteur != null)
             {
                 await ToastService.ShowToast("Monteur erfolgreich aktualisiert.", true);
+                Data = Enumerable.Empty<MonteurResponse>();
                 await LoadData();
                 StateHasChanged();
             }
@@ -164,7 +165,7 @@ else
             if (isDeleted)
             {
                 await ToastService.ShowToast("Monteur erfolgreich gelöscht.", true);
-
+                Data = Enumerable.Empty<MonteurResponse>();
                 await LoadData();
                 StateHasChanged();  
             }
@@ -188,7 +189,7 @@ else
             if (createdMonteur != null)
             {
                 await ToastService.ShowToast("Monteur erfolgreich hinzugefügt.", true);
-
+                Data = Enumerable.Empty<MonteurResponse>();
                 await LoadData();
                 StateHasChanged();
             }

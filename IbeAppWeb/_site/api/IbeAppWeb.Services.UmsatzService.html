@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class UmsatzService | IBE Application Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class UmsatzService | IBE Application Documentation ">
+      
+      <meta name="description" content="Provides methods for retrieving revenue data (Umsatz) based on various criteria, such as vehicle,  date ranges, and project database context.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="IbeAppWeb">
+            IbeAppWeb
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="IbeAppWeb.Services.UmsatzService">
+
+
+
+  <h1 id="IbeAppWeb_Services_UmsatzService" data-uid="IbeAppWeb.Services.UmsatzService" class="text-break">
+Class UmsatzService  <a class="header-action link-secondary" title="View source" href="https://github.com/grobtom/IbeAppWeb/blob/main/IbeAppWeb/Services/UmsatzService.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="IbeAppWeb.html">IbeAppWeb</a>.<a class="xref" href="IbeAppWeb.Services.html">Services</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>IbeAppWeb.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Provides methods for retrieving revenue data (Umsatz) based on various criteria, such as vehicle,  date ranges, and
+project database context.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class UmsatzService</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">UmsatzService</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="IbeAppWeb_Services_UmsatzService_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>This service interacts with an external API to fetch revenue-related data. It supports multiple
+query scenarios, including filtering by vehicle, date ranges, and project-specific contexts.  The service handles
+HTTP requests and responses, ensuring proper error logging and default  fallback values in case of
+failures.</p>
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="IbeAppWeb_Services_UmsatzService__ctor_" data-uid="IbeAppWeb.Services.UmsatzService.#ctor*"></a>
+
+  <h3 id="IbeAppWeb_Services_UmsatzService__ctor_System_Net_Http_HttpClient_Microsoft_Extensions_Logging_ILogger_IbeAppWeb_Services_UmsatzService__" data-uid="IbeAppWeb.Services.UmsatzService.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Logging.ILogger{IbeAppWeb.Services.UmsatzService})">
+  UmsatzService(HttpClient, ILogger&lt;UmsatzService&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/grobtom/IbeAppWeb/blob/main/IbeAppWeb/Services/UmsatzService.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="IbeAppWeb.Services.UmsatzService.html">UmsatzService</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UmsatzService(HttpClient httpClient, ILogger&lt;UmsatzService&gt; logger)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>httpClient</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a></dt>
+    <dd><p>The <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> instance used to send HTTP requests.</p>
+</dd>
+    <dt><code>logger</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1">ILogger</a>&lt;<a class="xref" href="IbeAppWeb.Services.UmsatzService.html">UmsatzService</a>&gt;</dt>
+    <dd><p>The <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1">ILogger&lt;TCategoryName&gt;</a> instance used for logging operations.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="IbeAppWeb_Services_UmsatzService_GetProjectsUmsatzSplit_" data-uid="IbeAppWeb.Services.UmsatzService.GetProjectsUmsatzSplit*"></a>
+
+  <h3 id="IbeAppWeb_Services_UmsatzService_GetProjectsUmsatzSplit_System_Nullable_System_DateTime__System_Nullable_System_DateTime__System_Boolean_System_Boolean_" data-uid="IbeAppWeb.Services.UmsatzService.GetProjectsUmsatzSplit(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Boolean,System.Boolean)">
+  GetProjectsUmsatzSplit(DateTime?, DateTime?, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/grobtom/IbeAppWeb/blob/main/IbeAppWeb/Services/UmsatzService.cs/#L225"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves the revenue split for all projects within the specified date range.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;AllProjectsUmsatzSplitDto&gt; GetProjectsUmsatzSplit(DateTime? startDatum, DateTime? endDatum, bool isSchacht, bool dbActive)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>startDatum</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</dt>
+    <dd><p>The start date of the range for which the revenue split is calculated. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, no start date
+filter is applied.</p>
+</dd>
+    <dt><code>endDatum</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</dt>
+    <dd><p>The end date of the range for which the revenue split is calculated. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, no end date
+filter is applied.</p>
+</dd>
+    <dt><code>isSchacht</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>dbActive</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto.html">AllProjectsUmsatzSplitDto</a>&gt;</dt>
+    <dd><p>An <a class="xref" href="IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto.html">AllProjectsUmsatzSplitDto</a> object containing the revenue split data for all projects. If an
+error occurs, an empty <a class="xref" href="IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto.html">AllProjectsUmsatzSplitDto</a> is returned.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="IbeAppWeb_Services_UmsatzService_GetProjectsUmsatzSplit_System_Nullable_System_DateTime__System_Nullable_System_DateTime__System_Boolean_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method sends an HTTP GET request to the API endpoint to fetch the revenue split data.
+Ensure that the HTTP client is properly configured and the API endpoint is accessible.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>Thrown if the response content is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="IbeAppWeb_Services_UmsatzService_GetUmsatzByFahrzeugAndDateAsync_" data-uid="IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugAndDateAsync*"></a>
+
+  <h3 id="IbeAppWeb_Services_UmsatzService_GetUmsatzByFahrzeugAndDateAsync_System_Nullable_System_DateTime__System_Int32_System_String_" data-uid="IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugAndDateAsync(System.Nullable{System.DateTime},System.Int32,System.String)">
+  GetUmsatzByFahrzeugAndDateAsync(DateTime?, int, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/grobtom/IbeAppWeb/blob/main/IbeAppWeb/Services/UmsatzService.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves revenue data for a vehicle based on the specified date and context.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;UmsatzResultDto&gt; GetUmsatzByFahrzeugAndDateAsync(DateTime? saniertAm = null, int ComboBoxValue = 1, string projectDb = &quot;defaultDb&quot;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>saniertAm</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</dt>
+    <dd><p>The date to filter the revenue data. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, no date filter is applied.</p>
+</dd>
+    <dt><code>ComboBoxValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Determines the context for the query. Use <code>1</code> for &quot;kanal&quot; context and any other value for
+&quot;schacht&quot; context.</p>
+</dd>
+    <dt><code>projectDb</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the project database to use for the query. Defaults to &quot;defaultDb&quot; if not specified.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="IbeAppWeb.DTOs.UmsatzResultDto.html">UmsatzResultDto</a>&gt;</dt>
+    <dd><p>An <a class="xref" href="IbeAppWeb.DTOs.UmsatzResultDto.html">UmsatzResultDto</a> containing the revenue data for the specified vehicle and date. Returns an
+empty <a class="xref" href="IbeAppWeb.DTOs.UmsatzResultDto.html">UmsatzResultDto</a> if an error occurs during the operation.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="IbeAppWeb_Services_UmsatzService_GetUmsatzByFahrzeugAndDateAsync_System_Nullable_System_DateTime__System_Int32_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method sends an HTTP request to fetch revenue data for a vehicle. The context of the
+query is determined by the <code class="paramref">ComboBoxValue</code> parameter. Ensure that the <code class="paramref">projectDb</code> parameter matches the name of a valid project database.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>Thrown if the response content is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="IbeAppWeb_Services_UmsatzService_GetUmsatzByFahrzeugAndMonteurAllAsync_" data-uid="IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugAndMonteurAllAsync*"></a>
+
+  <h3 id="IbeAppWeb_Services_UmsatzService_GetUmsatzByFahrzeugAndMonteurAllAsync_System_Nullable_System_DateTime__System_Nullable_System_DateTime__System_Int32_System_String_" data-uid="IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugAndMonteurAllAsync(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.String)">
+  GetUmsatzByFahrzeugAndMonteurAllAsync(DateTime?, DateTime?, int, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/grobtom/IbeAppWeb/blob/main/IbeAppWeb/Services/UmsatzService.cs/#L166"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves revenue data for vehicles and mechanics within a specified date range and project context.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;UmsatzFahrzeugMonteurProjectResultDto&gt; GetUmsatzByFahrzeugAndMonteurAllAsync(DateTime? start = null, DateTime? end = null, int ComboboxValue = 1, string projectDb = &quot;defaultDb&quot;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>start</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</dt>
+    <dd><p>The start date of the revenue data range. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, no start date filter is applied.</p>
+</dd>
+    <dt><code>end</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</dt>
+    <dd><p>The end date of the revenue data range. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, no end date filter is applied.</p>
+</dd>
+    <dt><code>ComboboxValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Determines the type of query to execute. A value of 1 retrieves data for &quot;kanal&quot; (channel), while other values
+retrieve data for &quot;schacht&quot; (shaft).</p>
+</dd>
+    <dt><code>projectDb</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the project database to query. Defaults to &quot;defaultDb&quot; if not specified.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto.html">UmsatzFahrzeugMonteurProjectResultDto</a>&gt;</dt>
+    <dd><p>A <a class="xref" href="IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto.html">UmsatzFahrzeugMonteurProjectResultDto</a> object containing the revenue data for vehicles and
+mechanics. Returns an empty result if an error occurs during the API call.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="IbeAppWeb_Services_UmsatzService_GetUmsatzByFahrzeugAndMonteurAllAsync_System_Nullable_System_DateTime__System_Nullable_System_DateTime__System_Int32_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method fetches revenue data based on the provided parameters, including the date range,
+project database, and a combobox value that determines the type of query. The data is retrieved from an external
+API and returned as a <a class="xref" href="IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto.html">UmsatzFahrzeugMonteurProjectResultDto</a> object. If no date range is specified,
+the method retrieves data for all available dates.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>Thrown if the response content from the API is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="IbeAppWeb_Services_UmsatzService_GetUmsatzByFahrzeugMonteurAsync_" data-uid="IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugMonteurAsync*"></a>
+
+  <h3 id="IbeAppWeb_Services_UmsatzService_GetUmsatzByFahrzeugMonteurAsync_System_Nullable_System_DateTime__System_Nullable_System_DateTime__System_Int32_System_String_" data-uid="IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugMonteurAsync(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.String)">
+  GetUmsatzByFahrzeugMonteurAsync(DateTime?, DateTime?, int, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/grobtom/IbeAppWeb/blob/main/IbeAppWeb/Services/UmsatzService.cs/#L108"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves revenue data for a vehicle mechanic based on the specified date range, category, and project database.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;UmsatzFahrzeugMonteurResultDto&gt; GetUmsatzByFahrzeugMonteurAsync(DateTime? SaniertAmVon = null, DateTime? SaniertAmBis = null, int ComboBoxValue = 1, string projectDb = &quot;defaultDb&quot;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>SaniertAmVon</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</dt>
+    <dd><p>The start date of the date range filter. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, no start date filter is applied.</p>
+</dd>
+    <dt><code>SaniertAmBis</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</dt>
+    <dd><p>The end date of the date range filter. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, no end date filter is applied.</p>
+</dd>
+    <dt><code>ComboBoxValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The category selector. Use 1 for &quot;kanal&quot; and any other value for &quot;schacht&quot;. Defaults to 1.</p>
+</dd>
+    <dt><code>projectDb</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the project database to query. Defaults to &quot;defaultDb&quot;.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurResultDto.html">UmsatzFahrzeugMonteurResultDto</a>&gt;</dt>
+    <dd><p>An <a class="xref" href="IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurResultDto.html">UmsatzFahrzeugMonteurResultDto</a> containing the revenue data for the specified filters. If an
+error occurs or the response content is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, an empty result is returned.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="IbeAppWeb_Services_UmsatzService_GetUmsatzByFahrzeugMonteurAsync_System_Nullable_System_DateTime__System_Nullable_System_DateTime__System_Int32_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method sends an HTTP request to fetch revenue data for a vehicle mechanic. The data can
+be filtered by a date range and category, and the target database can be specified. If no date range is
+provided, the method retrieves all available data. The category is determined by the <code class="paramref">ComboBoxValue</code> parameter, which selects between &quot;kanal&quot; (value 1) and &quot;schacht&quot; (other
+values).</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>Thrown if the response content is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> after a successful HTTP request.</p>
+</dd>
+  </dl>
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/grobtom/IbeAppWeb/blob/main/IbeAppWeb/Services/UmsatzService.cs/#L17" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          IBE Application - Blazor WebAssembly Documentation
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+### YamlMime:ManagedReference
+items:
+- uid: IbeAppWeb.Validation
+  commentId: N:IbeAppWeb.Validation
+  id: IbeAppWeb.Validation
+  children:
+  - IbeAppWeb.Validation.ValidationErrorItem
+  - IbeAppWeb.Validation.ValidationErrorResponse
+  langs:
+  - csharp
+  - vb
+  name: IbeAppWeb.Validation
+  nameWithType: IbeAppWeb.Validation
+  fullName: IbeAppWeb.Validation
+  type: Namespace
+  assemblies:
+  - IbeAppWeb
+references:
+- uid: IbeAppWeb.Validation.ValidationErrorItem
+  commentId: T:IbeAppWeb.Validation.ValidationErrorItem
+  href: IbeAppWeb.Validation.ValidationErrorItem.html
+  name: ValidationErrorItem
+  nameWithType: ValidationErrorItem
+  fullName: IbeAppWeb.Validation.ValidationErrorItem
+- uid: IbeAppWeb.Validation.ValidationErrorResponse
+  commentId: T:IbeAppWeb.Validation.ValidationErrorResponse
+  href: IbeAppWeb.Validation.ValidationErrorResponse.html
+  name: ValidationErrorResponse
+  nameWithType: ValidationErrorResponse
+  fullName: IbeAppWeb.Validation.ValidationErrorResponse

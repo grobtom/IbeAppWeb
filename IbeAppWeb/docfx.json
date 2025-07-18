@@ -1,0 +1,65 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [
+            "**/*.csproj"
+          ],
+          "src": "."
+        }
+      ],
+      "dest": "api",
+      "properties": {
+        "TargetFramework": "net9.0"
+      },
+      "disableGitFeatures": false,
+      "disableDefaultFilter": false
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "api/**.yml",
+          "api/index.md"
+        ]
+      },
+      {
+        "files": [
+          "articles/**.md",
+          "articles/**/toc.yml",
+          "toc.yml",
+          "*.md"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "images/**"
+        ]
+      }
+    ],
+    "output": "_site",
+    "globalMetadataFiles": [],
+    "fileMetadataFiles": [],
+    "template": [
+      "default",
+      "modern"
+    ],
+    "postProcessors": [],
+    "keepFileLink": false,
+    "disableGitFeatures": false,
+    "globalMetadata": {
+      "_appTitle": "IBE Application Documentation",
+      "_appName": "IbeAppWeb",
+      "_appFooter": "IBE Application - Blazor WebAssembly Documentation",
+      "_enableSearch": true,
+      "_gitContribute": {
+        "repo": "your-repo-url",
+        "branch": "main"
+      }
+    }
+  }
+}

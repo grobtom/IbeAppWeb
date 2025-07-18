@@ -1,0 +1,749 @@
+### YamlMime:ManagedReference
+items:
+- uid: IbeAppWeb.DTOs.AbschlagsRechnungDto
+  commentId: T:IbeAppWeb.DTOs.AbschlagsRechnungDto
+  id: AbschlagsRechnungDto
+  parent: IbeAppWeb.DTOs
+  children:
+  - IbeAppWeb.DTOs.AbschlagsRechnungDto.Abschlagsrechnung
+  - IbeAppWeb.DTOs.AbschlagsRechnungDto.Einheit
+  - IbeAppWeb.DTOs.AbschlagsRechnungDto.Einheitspreis
+  - IbeAppWeb.DTOs.AbschlagsRechnungDto.Kurztext
+  - IbeAppWeb.DTOs.AbschlagsRechnungDto.Menge
+  - IbeAppWeb.DTOs.AbschlagsRechnungDto.PkHzlh
+  - IbeAppWeb.DTOs.AbschlagsRechnungDto.Position
+  - IbeAppWeb.DTOs.AbschlagsRechnungDto.Positionssumme
+  - IbeAppWeb.DTOs.AbschlagsRechnungDto.SaniertAm
+  langs:
+  - csharp
+  - vb
+  name: AbschlagsRechnungDto
+  nameWithType: AbschlagsRechnungDto
+  fullName: IbeAppWeb.DTOs.AbschlagsRechnungDto
+  type: Class
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/AbschlagsRechnungDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: AbschlagsRechnungDto
+    path: DTOs/AbschlagsRechnungDto.cs
+    startLine: 17
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  summary: >-
+    Represents a data transfer object (DTO) for an installment invoice, containing details about the invoice,  its
+
+    position, associated text, and financial information such as quantity, unit price, and total position sum.
+  remarks: >-
+    This DTO is typically used to transfer data related to installment invoices between application
+        layers.  It includes optional and required fields for invoice details, such as the position description,  quantity,
+        and calculated financial values.
+  example: []
+  syntax:
+    content: public sealed class AbschlagsRechnungDto
+    content.vb: Public NotInheritable Class AbschlagsRechnungDto
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: IbeAppWeb.DTOs.AbschlagsRechnungDto.PkHzlh
+  commentId: P:IbeAppWeb.DTOs.AbschlagsRechnungDto.PkHzlh
+  id: PkHzlh
+  parent: IbeAppWeb.DTOs.AbschlagsRechnungDto
+  langs:
+  - csharp
+  - vb
+  name: PkHzlh
+  nameWithType: AbschlagsRechnungDto.PkHzlh
+  fullName: IbeAppWeb.DTOs.AbschlagsRechnungDto.PkHzlh
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/AbschlagsRechnungDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: PkHzlh
+    path: DTOs/AbschlagsRechnungDto.cs
+    startLine: 19
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public int PkHzlh { get; init; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property PkHzlh As Integer
+  overload: IbeAppWeb.DTOs.AbschlagsRechnungDto.PkHzlh*
+- uid: IbeAppWeb.DTOs.AbschlagsRechnungDto.Abschlagsrechnung
+  commentId: P:IbeAppWeb.DTOs.AbschlagsRechnungDto.Abschlagsrechnung
+  id: Abschlagsrechnung
+  parent: IbeAppWeb.DTOs.AbschlagsRechnungDto
+  langs:
+  - csharp
+  - vb
+  name: Abschlagsrechnung
+  nameWithType: AbschlagsRechnungDto.Abschlagsrechnung
+  fullName: IbeAppWeb.DTOs.AbschlagsRechnungDto.Abschlagsrechnung
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/AbschlagsRechnungDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Abschlagsrechnung
+    path: DTOs/AbschlagsRechnungDto.cs
+    startLine: 20
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public string? Abschlagsrechnung { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Abschlagsrechnung As String
+  overload: IbeAppWeb.DTOs.AbschlagsRechnungDto.Abschlagsrechnung*
+- uid: IbeAppWeb.DTOs.AbschlagsRechnungDto.Position
+  commentId: P:IbeAppWeb.DTOs.AbschlagsRechnungDto.Position
+  id: Position
+  parent: IbeAppWeb.DTOs.AbschlagsRechnungDto
+  langs:
+  - csharp
+  - vb
+  name: Position
+  nameWithType: AbschlagsRechnungDto.Position
+  fullName: IbeAppWeb.DTOs.AbschlagsRechnungDto.Position
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/AbschlagsRechnungDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Position
+    path: DTOs/AbschlagsRechnungDto.cs
+    startLine: 21
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public string? Position { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Position As String
+  overload: IbeAppWeb.DTOs.AbschlagsRechnungDto.Position*
+- uid: IbeAppWeb.DTOs.AbschlagsRechnungDto.Kurztext
+  commentId: P:IbeAppWeb.DTOs.AbschlagsRechnungDto.Kurztext
+  id: Kurztext
+  parent: IbeAppWeb.DTOs.AbschlagsRechnungDto
+  langs:
+  - csharp
+  - vb
+  name: Kurztext
+  nameWithType: AbschlagsRechnungDto.Kurztext
+  fullName: IbeAppWeb.DTOs.AbschlagsRechnungDto.Kurztext
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/AbschlagsRechnungDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Kurztext
+    path: DTOs/AbschlagsRechnungDto.cs
+    startLine: 22
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public string? Kurztext { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Kurztext As String
+  overload: IbeAppWeb.DTOs.AbschlagsRechnungDto.Kurztext*
+- uid: IbeAppWeb.DTOs.AbschlagsRechnungDto.SaniertAm
+  commentId: P:IbeAppWeb.DTOs.AbschlagsRechnungDto.SaniertAm
+  id: SaniertAm
+  parent: IbeAppWeb.DTOs.AbschlagsRechnungDto
+  langs:
+  - csharp
+  - vb
+  name: SaniertAm
+  nameWithType: AbschlagsRechnungDto.SaniertAm
+  fullName: IbeAppWeb.DTOs.AbschlagsRechnungDto.SaniertAm
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/AbschlagsRechnungDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: SaniertAm
+    path: DTOs/AbschlagsRechnungDto.cs
+    startLine: 23
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public DateTime? SaniertAm { get; init; }
+    parameters: []
+    return:
+      type: System.Nullable{System.DateTime}
+    content.vb: Public Property SaniertAm As Date?
+  overload: IbeAppWeb.DTOs.AbschlagsRechnungDto.SaniertAm*
+- uid: IbeAppWeb.DTOs.AbschlagsRechnungDto.Menge
+  commentId: P:IbeAppWeb.DTOs.AbschlagsRechnungDto.Menge
+  id: Menge
+  parent: IbeAppWeb.DTOs.AbschlagsRechnungDto
+  langs:
+  - csharp
+  - vb
+  name: Menge
+  nameWithType: AbschlagsRechnungDto.Menge
+  fullName: IbeAppWeb.DTOs.AbschlagsRechnungDto.Menge
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/AbschlagsRechnungDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Menge
+    path: DTOs/AbschlagsRechnungDto.cs
+    startLine: 24
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: >-
+      [JsonConverter(typeof(Decimal3Converter))]
+
+      public decimal? Menge { get; init; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Decimal}
+    content.vb: >-
+      <JsonConverter(GetType(Decimal3Converter))>
+
+      Public Property Menge As Decimal?
+  overload: IbeAppWeb.DTOs.AbschlagsRechnungDto.Menge*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonConverterAttribute
+    ctor: System.Text.Json.Serialization.JsonConverterAttribute.#ctor(System.Type)
+    arguments:
+    - type: System.Type
+      value: IbeAppWeb.Abstractions.Decimal3Converter
+- uid: IbeAppWeb.DTOs.AbschlagsRechnungDto.Einheit
+  commentId: P:IbeAppWeb.DTOs.AbschlagsRechnungDto.Einheit
+  id: Einheit
+  parent: IbeAppWeb.DTOs.AbschlagsRechnungDto
+  langs:
+  - csharp
+  - vb
+  name: Einheit
+  nameWithType: AbschlagsRechnungDto.Einheit
+  fullName: IbeAppWeb.DTOs.AbschlagsRechnungDto.Einheit
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/AbschlagsRechnungDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Einheit
+    path: DTOs/AbschlagsRechnungDto.cs
+    startLine: 26
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: public string? Einheit { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Einheit As String
+  overload: IbeAppWeb.DTOs.AbschlagsRechnungDto.Einheit*
+- uid: IbeAppWeb.DTOs.AbschlagsRechnungDto.Einheitspreis
+  commentId: P:IbeAppWeb.DTOs.AbschlagsRechnungDto.Einheitspreis
+  id: Einheitspreis
+  parent: IbeAppWeb.DTOs.AbschlagsRechnungDto
+  langs:
+  - csharp
+  - vb
+  name: Einheitspreis
+  nameWithType: AbschlagsRechnungDto.Einheitspreis
+  fullName: IbeAppWeb.DTOs.AbschlagsRechnungDto.Einheitspreis
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/AbschlagsRechnungDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Einheitspreis
+    path: DTOs/AbschlagsRechnungDto.cs
+    startLine: 27
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: >-
+      [JsonConverter(typeof(Decimal3Converter))]
+
+      public decimal Einheitspreis { get; init; }
+    parameters: []
+    return:
+      type: System.Decimal
+    content.vb: >-
+      <JsonConverter(GetType(Decimal3Converter))>
+
+      Public Property Einheitspreis As Decimal
+  overload: IbeAppWeb.DTOs.AbschlagsRechnungDto.Einheitspreis*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonConverterAttribute
+    ctor: System.Text.Json.Serialization.JsonConverterAttribute.#ctor(System.Type)
+    arguments:
+    - type: System.Type
+      value: IbeAppWeb.Abstractions.Decimal3Converter
+- uid: IbeAppWeb.DTOs.AbschlagsRechnungDto.Positionssumme
+  commentId: P:IbeAppWeb.DTOs.AbschlagsRechnungDto.Positionssumme
+  id: Positionssumme
+  parent: IbeAppWeb.DTOs.AbschlagsRechnungDto
+  langs:
+  - csharp
+  - vb
+  name: Positionssumme
+  nameWithType: AbschlagsRechnungDto.Positionssumme
+  fullName: IbeAppWeb.DTOs.AbschlagsRechnungDto.Positionssumme
+  type: Property
+  source:
+    remote:
+      path: IbeAppWeb/DTOs/AbschlagsRechnungDto.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: Positionssumme
+    path: DTOs/AbschlagsRechnungDto.cs
+    startLine: 29
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.DTOs
+  syntax:
+    content: >-
+      [JsonConverter(typeof(Decimal3Converter))]
+
+      public decimal Positionssumme { get; init; }
+    parameters: []
+    return:
+      type: System.Decimal
+    content.vb: >-
+      <JsonConverter(GetType(Decimal3Converter))>
+
+      Public Property Positionssumme As Decimal
+  overload: IbeAppWeb.DTOs.AbschlagsRechnungDto.Positionssumme*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonConverterAttribute
+    ctor: System.Text.Json.Serialization.JsonConverterAttribute.#ctor(System.Type)
+    arguments:
+    - type: System.Type
+      value: IbeAppWeb.Abstractions.Decimal3Converter
+references:
+- uid: IbeAppWeb.DTOs
+  commentId: N:IbeAppWeb.DTOs
+  href: IbeAppWeb.html
+  name: IbeAppWeb.DTOs
+  nameWithType: IbeAppWeb.DTOs
+  fullName: IbeAppWeb.DTOs
+  spec.csharp:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.DTOs
+    name: DTOs
+    href: IbeAppWeb.DTOs.html
+  spec.vb:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.DTOs
+    name: DTOs
+    href: IbeAppWeb.DTOs.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: IbeAppWeb.DTOs.AbschlagsRechnungDto.PkHzlh*
+  commentId: Overload:IbeAppWeb.DTOs.AbschlagsRechnungDto.PkHzlh
+  href: IbeAppWeb.DTOs.AbschlagsRechnungDto.html#IbeAppWeb_DTOs_AbschlagsRechnungDto_PkHzlh
+  name: PkHzlh
+  nameWithType: AbschlagsRechnungDto.PkHzlh
+  fullName: IbeAppWeb.DTOs.AbschlagsRechnungDto.PkHzlh
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: IbeAppWeb.DTOs.AbschlagsRechnungDto.Abschlagsrechnung*
+  commentId: Overload:IbeAppWeb.DTOs.AbschlagsRechnungDto.Abschlagsrechnung
+  href: IbeAppWeb.DTOs.AbschlagsRechnungDto.html#IbeAppWeb_DTOs_AbschlagsRechnungDto_Abschlagsrechnung
+  name: Abschlagsrechnung
+  nameWithType: AbschlagsRechnungDto.Abschlagsrechnung
+  fullName: IbeAppWeb.DTOs.AbschlagsRechnungDto.Abschlagsrechnung
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: IbeAppWeb.DTOs.AbschlagsRechnungDto.Position*
+  commentId: Overload:IbeAppWeb.DTOs.AbschlagsRechnungDto.Position
+  href: IbeAppWeb.DTOs.AbschlagsRechnungDto.html#IbeAppWeb_DTOs_AbschlagsRechnungDto_Position
+  name: Position
+  nameWithType: AbschlagsRechnungDto.Position
+  fullName: IbeAppWeb.DTOs.AbschlagsRechnungDto.Position
+- uid: IbeAppWeb.DTOs.AbschlagsRechnungDto.Kurztext*
+  commentId: Overload:IbeAppWeb.DTOs.AbschlagsRechnungDto.Kurztext
+  href: IbeAppWeb.DTOs.AbschlagsRechnungDto.html#IbeAppWeb_DTOs_AbschlagsRechnungDto_Kurztext
+  name: Kurztext
+  nameWithType: AbschlagsRechnungDto.Kurztext
+  fullName: IbeAppWeb.DTOs.AbschlagsRechnungDto.Kurztext
+- uid: IbeAppWeb.DTOs.AbschlagsRechnungDto.SaniertAm*
+  commentId: Overload:IbeAppWeb.DTOs.AbschlagsRechnungDto.SaniertAm
+  href: IbeAppWeb.DTOs.AbschlagsRechnungDto.html#IbeAppWeb_DTOs_AbschlagsRechnungDto_SaniertAm
+  name: SaniertAm
+  nameWithType: AbschlagsRechnungDto.SaniertAm
+  fullName: IbeAppWeb.DTOs.AbschlagsRechnungDto.SaniertAm
+- uid: System.Nullable{System.DateTime}
+  commentId: T:System.Nullable{System.DateTime}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime?
+  nameWithType: DateTime?
+  fullName: System.DateTime?
+  nameWithType.vb: Date?
+  fullName.vb: Date?
+  name.vb: Date?
+  spec.csharp:
+  - uid: System.DateTime
+    name: DateTime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+  spec.vb:
+  - uid: System.DateTime
+    name: Date
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: IbeAppWeb.DTOs.AbschlagsRechnungDto.Menge*
+  commentId: Overload:IbeAppWeb.DTOs.AbschlagsRechnungDto.Menge
+  href: IbeAppWeb.DTOs.AbschlagsRechnungDto.html#IbeAppWeb_DTOs_AbschlagsRechnungDto_Menge
+  name: Menge
+  nameWithType: AbschlagsRechnungDto.Menge
+  fullName: IbeAppWeb.DTOs.AbschlagsRechnungDto.Menge
+- uid: System.Nullable{System.Decimal}
+  commentId: T:System.Nullable{System.Decimal}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.decimal
+  name: decimal?
+  nameWithType: decimal?
+  fullName: decimal?
+  nameWithType.vb: Decimal?
+  fullName.vb: Decimal?
+  name.vb: Decimal?
+  spec.csharp:
+  - uid: System.Decimal
+    name: decimal
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.decimal
+  - name: '?'
+  spec.vb:
+  - uid: System.Decimal
+    name: Decimal
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.decimal
+  - name: '?'
+- uid: IbeAppWeb.DTOs.AbschlagsRechnungDto.Einheit*
+  commentId: Overload:IbeAppWeb.DTOs.AbschlagsRechnungDto.Einheit
+  href: IbeAppWeb.DTOs.AbschlagsRechnungDto.html#IbeAppWeb_DTOs_AbschlagsRechnungDto_Einheit
+  name: Einheit
+  nameWithType: AbschlagsRechnungDto.Einheit
+  fullName: IbeAppWeb.DTOs.AbschlagsRechnungDto.Einheit
+- uid: IbeAppWeb.DTOs.AbschlagsRechnungDto.Einheitspreis*
+  commentId: Overload:IbeAppWeb.DTOs.AbschlagsRechnungDto.Einheitspreis
+  href: IbeAppWeb.DTOs.AbschlagsRechnungDto.html#IbeAppWeb_DTOs_AbschlagsRechnungDto_Einheitspreis
+  name: Einheitspreis
+  nameWithType: AbschlagsRechnungDto.Einheitspreis
+  fullName: IbeAppWeb.DTOs.AbschlagsRechnungDto.Einheitspreis
+- uid: System.Decimal
+  commentId: T:System.Decimal
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.decimal
+  name: decimal
+  nameWithType: decimal
+  fullName: decimal
+  nameWithType.vb: Decimal
+  fullName.vb: Decimal
+  name.vb: Decimal
+- uid: IbeAppWeb.DTOs.AbschlagsRechnungDto.Positionssumme*
+  commentId: Overload:IbeAppWeb.DTOs.AbschlagsRechnungDto.Positionssumme
+  href: IbeAppWeb.DTOs.AbschlagsRechnungDto.html#IbeAppWeb_DTOs_AbschlagsRechnungDto_Positionssumme
+  name: Positionssumme
+  nameWithType: AbschlagsRechnungDto.Positionssumme
+  fullName: IbeAppWeb.DTOs.AbschlagsRechnungDto.Positionssumme

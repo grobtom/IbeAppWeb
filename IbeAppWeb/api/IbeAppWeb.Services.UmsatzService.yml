@@ -1,0 +1,1076 @@
+### YamlMime:ManagedReference
+items:
+- uid: IbeAppWeb.Services.UmsatzService
+  commentId: T:IbeAppWeb.Services.UmsatzService
+  id: UmsatzService
+  parent: IbeAppWeb.Services
+  children:
+  - IbeAppWeb.Services.UmsatzService.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Logging.ILogger{IbeAppWeb.Services.UmsatzService})
+  - IbeAppWeb.Services.UmsatzService.GetProjectsUmsatzSplit(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Boolean,System.Boolean)
+  - IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugAndDateAsync(System.Nullable{System.DateTime},System.Int32,System.String)
+  - IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugAndMonteurAllAsync(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.String)
+  - IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugMonteurAsync(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.String)
+  langs:
+  - csharp
+  - vb
+  name: UmsatzService
+  nameWithType: UmsatzService
+  fullName: IbeAppWeb.Services.UmsatzService
+  type: Class
+  source:
+    remote:
+      path: IbeAppWeb/Services/UmsatzService.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: UmsatzService
+    path: Services/UmsatzService.cs
+    startLine: 16
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Services
+  summary: >-
+    Provides methods for retrieving revenue data (Umsatz) based on various criteria, such as vehicle,  date ranges, and
+
+    project database context.
+  remarks: >-
+    This service interacts with an external API to fetch revenue-related data. It supports multiple 
+        query scenarios, including filtering by vehicle, date ranges, and project-specific contexts.  The service handles
+        HTTP requests and responses, ensuring proper error logging and default  fallback values in case of
+        failures.
+  example: []
+  syntax:
+    content: public class UmsatzService
+    content.vb: Public Class UmsatzService
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: IbeAppWeb.Services.UmsatzService.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Logging.ILogger{IbeAppWeb.Services.UmsatzService})
+  commentId: M:IbeAppWeb.Services.UmsatzService.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Logging.ILogger{IbeAppWeb.Services.UmsatzService})
+  id: '#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Logging.ILogger{IbeAppWeb.Services.UmsatzService})'
+  parent: IbeAppWeb.Services.UmsatzService
+  langs:
+  - csharp
+  - vb
+  name: UmsatzService(HttpClient, ILogger<UmsatzService>)
+  nameWithType: UmsatzService.UmsatzService(HttpClient, ILogger<UmsatzService>)
+  fullName: IbeAppWeb.Services.UmsatzService.UmsatzService(System.Net.Http.HttpClient, Microsoft.Extensions.Logging.ILogger<IbeAppWeb.Services.UmsatzService>)
+  type: Constructor
+  source:
+    remote:
+      path: IbeAppWeb/Services/UmsatzService.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: .ctor
+    path: Services/UmsatzService.cs
+    startLine: 27
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Services
+  summary: Initializes a new instance of the <xref href="IbeAppWeb.Services.UmsatzService" data-throw-if-not-resolved="false"></xref> class.
+  example: []
+  syntax:
+    content: public UmsatzService(HttpClient httpClient, ILogger<UmsatzService> logger)
+    parameters:
+    - id: httpClient
+      type: System.Net.Http.HttpClient
+      description: The <xref href="System.Net.Http.HttpClient" data-throw-if-not-resolved="false"></xref> instance used to send HTTP requests.
+    - id: logger
+      type: Microsoft.Extensions.Logging.ILogger{IbeAppWeb.Services.UmsatzService}
+      description: The <xref href="Microsoft.Extensions.Logging.ILogger%601" data-throw-if-not-resolved="false"></xref> instance used for logging operations.
+    content.vb: Public Sub New(httpClient As HttpClient, logger As ILogger(Of UmsatzService))
+  overload: IbeAppWeb.Services.UmsatzService.#ctor*
+  nameWithType.vb: UmsatzService.New(HttpClient, ILogger(Of UmsatzService))
+  fullName.vb: IbeAppWeb.Services.UmsatzService.New(System.Net.Http.HttpClient, Microsoft.Extensions.Logging.ILogger(Of IbeAppWeb.Services.UmsatzService))
+  name.vb: New(HttpClient, ILogger(Of UmsatzService))
+- uid: IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugAndDateAsync(System.Nullable{System.DateTime},System.Int32,System.String)
+  commentId: M:IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugAndDateAsync(System.Nullable{System.DateTime},System.Int32,System.String)
+  id: GetUmsatzByFahrzeugAndDateAsync(System.Nullable{System.DateTime},System.Int32,System.String)
+  parent: IbeAppWeb.Services.UmsatzService
+  langs:
+  - csharp
+  - vb
+  name: GetUmsatzByFahrzeugAndDateAsync(DateTime?, int, string)
+  nameWithType: UmsatzService.GetUmsatzByFahrzeugAndDateAsync(DateTime?, int, string)
+  fullName: IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugAndDateAsync(System.DateTime?, int, string)
+  type: Method
+  source:
+    remote:
+      path: IbeAppWeb/Services/UmsatzService.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: GetUmsatzByFahrzeugAndDateAsync
+    path: Services/UmsatzService.cs
+    startLine: 47
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Services
+  summary: Retrieves revenue data for a vehicle based on the specified date and context.
+  remarks: >-
+    This method sends an HTTP request to fetch revenue data for a vehicle. The context of the
+        query is determined by the <code class="paramref">ComboBoxValue</code> parameter. Ensure that the <code class="paramref">projectDb</code> parameter matches the name of a valid project database.
+  example: []
+  syntax:
+    content: public Task<UmsatzResultDto> GetUmsatzByFahrzeugAndDateAsync(DateTime? saniertAm = null, int ComboBoxValue = 1, string projectDb = "defaultDb")
+    parameters:
+    - id: saniertAm
+      type: System.Nullable{System.DateTime}
+      description: The date to filter the revenue data. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, no date filter is applied.
+    - id: ComboBoxValue
+      type: System.Int32
+      description: >-
+        Determines the context for the query. Use <code>1</code> for "kanal" context and any other value for
+            "schacht" context.
+    - id: projectDb
+      type: System.String
+      description: The name of the project database to use for the query. Defaults to "defaultDb" if not specified.
+    return:
+      type: System.Threading.Tasks.Task{IbeAppWeb.DTOs.UmsatzResultDto}
+      description: >-
+        An <xref href="IbeAppWeb.DTOs.UmsatzResultDto" data-throw-if-not-resolved="false"></xref> containing the revenue data for the specified vehicle and date. Returns an
+            empty <xref href="IbeAppWeb.DTOs.UmsatzResultDto" data-throw-if-not-resolved="false"></xref> if an error occurs during the operation.
+    content.vb: Public Function GetUmsatzByFahrzeugAndDateAsync(saniertAm As Date? = Nothing, ComboBoxValue As Integer = 1, projectDb As String = "defaultDb") As Task(Of UmsatzResultDto)
+  overload: IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugAndDateAsync*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if the response content is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+  nameWithType.vb: UmsatzService.GetUmsatzByFahrzeugAndDateAsync(Date?, Integer, String)
+  fullName.vb: IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugAndDateAsync(Date?, Integer, String)
+  name.vb: GetUmsatzByFahrzeugAndDateAsync(Date?, Integer, String)
+- uid: IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugMonteurAsync(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.String)
+  commentId: M:IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugMonteurAsync(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.String)
+  id: GetUmsatzByFahrzeugMonteurAsync(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.String)
+  parent: IbeAppWeb.Services.UmsatzService
+  langs:
+  - csharp
+  - vb
+  name: GetUmsatzByFahrzeugMonteurAsync(DateTime?, DateTime?, int, string)
+  nameWithType: UmsatzService.GetUmsatzByFahrzeugMonteurAsync(DateTime?, DateTime?, int, string)
+  fullName: IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugMonteurAsync(System.DateTime?, System.DateTime?, int, string)
+  type: Method
+  source:
+    remote:
+      path: IbeAppWeb/Services/UmsatzService.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: GetUmsatzByFahrzeugMonteurAsync
+    path: Services/UmsatzService.cs
+    startLine: 107
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Services
+  summary: Retrieves revenue data for a vehicle mechanic based on the specified date range, category, and project database.
+  remarks: >-
+    This method sends an HTTP request to fetch revenue data for a vehicle mechanic. The data can
+        be filtered by a date range and category, and the target database can be specified. If no date range is
+        provided, the method retrieves all available data. The category is determined by the <code class="paramref">ComboBoxValue</code> parameter, which selects between "kanal" (value 1) and "schacht" (other
+        values).
+  example: []
+  syntax:
+    content: public Task<UmsatzFahrzeugMonteurResultDto> GetUmsatzByFahrzeugMonteurAsync(DateTime? SaniertAmVon = null, DateTime? SaniertAmBis = null, int ComboBoxValue = 1, string projectDb = "defaultDb")
+    parameters:
+    - id: SaniertAmVon
+      type: System.Nullable{System.DateTime}
+      description: The start date of the date range filter. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, no start date filter is applied.
+    - id: SaniertAmBis
+      type: System.Nullable{System.DateTime}
+      description: The end date of the date range filter. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, no end date filter is applied.
+    - id: ComboBoxValue
+      type: System.Int32
+      description: The category selector. Use 1 for "kanal" and any other value for "schacht". Defaults to 1.
+    - id: projectDb
+      type: System.String
+      description: The name of the project database to query. Defaults to "defaultDb".
+    return:
+      type: System.Threading.Tasks.Task{IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurResultDto}
+      description: >-
+        An <xref href="IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurResultDto" data-throw-if-not-resolved="false"></xref> containing the revenue data for the specified filters. If an
+            error occurs or the response content is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, an empty result is returned.
+    content.vb: Public Function GetUmsatzByFahrzeugMonteurAsync(SaniertAmVon As Date? = Nothing, SaniertAmBis As Date? = Nothing, ComboBoxValue As Integer = 1, projectDb As String = "defaultDb") As Task(Of UmsatzFahrzeugMonteurResultDto)
+  overload: IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugMonteurAsync*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if the response content is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> after a successful HTTP request.
+  nameWithType.vb: UmsatzService.GetUmsatzByFahrzeugMonteurAsync(Date?, Date?, Integer, String)
+  fullName.vb: IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugMonteurAsync(Date?, Date?, Integer, String)
+  name.vb: GetUmsatzByFahrzeugMonteurAsync(Date?, Date?, Integer, String)
+- uid: IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugAndMonteurAllAsync(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.String)
+  commentId: M:IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugAndMonteurAllAsync(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.String)
+  id: GetUmsatzByFahrzeugAndMonteurAllAsync(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.String)
+  parent: IbeAppWeb.Services.UmsatzService
+  langs:
+  - csharp
+  - vb
+  name: GetUmsatzByFahrzeugAndMonteurAllAsync(DateTime?, DateTime?, int, string)
+  nameWithType: UmsatzService.GetUmsatzByFahrzeugAndMonteurAllAsync(DateTime?, DateTime?, int, string)
+  fullName: IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugAndMonteurAllAsync(System.DateTime?, System.DateTime?, int, string)
+  type: Method
+  source:
+    remote:
+      path: IbeAppWeb/Services/UmsatzService.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: GetUmsatzByFahrzeugAndMonteurAllAsync
+    path: Services/UmsatzService.cs
+    startLine: 165
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Services
+  summary: Retrieves revenue data for vehicles and mechanics within a specified date range and project context.
+  remarks: >-
+    This method fetches revenue data based on the provided parameters, including the date range,
+        project database, and a combobox value that determines the type of query. The data is retrieved from an external
+        API and returned as a <xref href="IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto" data-throw-if-not-resolved="false"></xref> object. If no date range is specified,
+        the method retrieves data for all available dates.
+  example: []
+  syntax:
+    content: public Task<UmsatzFahrzeugMonteurProjectResultDto> GetUmsatzByFahrzeugAndMonteurAllAsync(DateTime? start = null, DateTime? end = null, int ComboboxValue = 1, string projectDb = "defaultDb")
+    parameters:
+    - id: start
+      type: System.Nullable{System.DateTime}
+      description: The start date of the revenue data range. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, no start date filter is applied.
+    - id: end
+      type: System.Nullable{System.DateTime}
+      description: The end date of the revenue data range. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, no end date filter is applied.
+    - id: ComboboxValue
+      type: System.Int32
+      description: >-
+        Determines the type of query to execute. A value of 1 retrieves data for "kanal" (channel), while other values
+            retrieve data for "schacht" (shaft).
+    - id: projectDb
+      type: System.String
+      description: The name of the project database to query. Defaults to "defaultDb" if not specified.
+    return:
+      type: System.Threading.Tasks.Task{IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto}
+      description: >-
+        A <xref href="IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto" data-throw-if-not-resolved="false"></xref> object containing the revenue data for vehicles and
+            mechanics. Returns an empty result if an error occurs during the API call.
+    content.vb: Public Function GetUmsatzByFahrzeugAndMonteurAllAsync(start As Date? = Nothing, [end] As Date? = Nothing, ComboboxValue As Integer = 1, projectDb As String = "defaultDb") As Task(Of UmsatzFahrzeugMonteurProjectResultDto)
+  overload: IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugAndMonteurAllAsync*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if the response content from the API is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+  nameWithType.vb: UmsatzService.GetUmsatzByFahrzeugAndMonteurAllAsync(Date?, Date?, Integer, String)
+  fullName.vb: IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugAndMonteurAllAsync(Date?, Date?, Integer, String)
+  name.vb: GetUmsatzByFahrzeugAndMonteurAllAsync(Date?, Date?, Integer, String)
+- uid: IbeAppWeb.Services.UmsatzService.GetProjectsUmsatzSplit(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Boolean,System.Boolean)
+  commentId: M:IbeAppWeb.Services.UmsatzService.GetProjectsUmsatzSplit(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Boolean,System.Boolean)
+  id: GetProjectsUmsatzSplit(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Boolean,System.Boolean)
+  parent: IbeAppWeb.Services.UmsatzService
+  langs:
+  - csharp
+  - vb
+  name: GetProjectsUmsatzSplit(DateTime?, DateTime?, bool, bool)
+  nameWithType: UmsatzService.GetProjectsUmsatzSplit(DateTime?, DateTime?, bool, bool)
+  fullName: IbeAppWeb.Services.UmsatzService.GetProjectsUmsatzSplit(System.DateTime?, System.DateTime?, bool, bool)
+  type: Method
+  source:
+    remote:
+      path: IbeAppWeb/Services/UmsatzService.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: GetProjectsUmsatzSplit
+    path: Services/UmsatzService.cs
+    startLine: 224
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Services
+  summary: Retrieves the revenue split for all projects within the specified date range.
+  remarks: >-
+    This method sends an HTTP GET request to the API endpoint to fetch the revenue split data.
+        Ensure that the HTTP client is properly configured and the API endpoint is accessible.
+  example: []
+  syntax:
+    content: public Task<AllProjectsUmsatzSplitDto> GetProjectsUmsatzSplit(DateTime? startDatum, DateTime? endDatum, bool isSchacht, bool dbActive)
+    parameters:
+    - id: startDatum
+      type: System.Nullable{System.DateTime}
+      description: >-
+        The start date of the range for which the revenue split is calculated. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, no start date
+            filter is applied.
+    - id: endDatum
+      type: System.Nullable{System.DateTime}
+      description: >-
+        The end date of the range for which the revenue split is calculated. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, no end date
+            filter is applied.
+    - id: isSchacht
+      type: System.Boolean
+    - id: dbActive
+      type: System.Boolean
+    return:
+      type: System.Threading.Tasks.Task{IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto}
+      description: >-
+        An <xref href="IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto" data-throw-if-not-resolved="false"></xref> object containing the revenue split data for all projects. If an
+            error occurs, an empty <xref href="IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto" data-throw-if-not-resolved="false"></xref> is returned.
+    content.vb: Public Function GetProjectsUmsatzSplit(startDatum As Date?, endDatum As Date?, isSchacht As Boolean, dbActive As Boolean) As Task(Of AllProjectsUmsatzSplitDto)
+  overload: IbeAppWeb.Services.UmsatzService.GetProjectsUmsatzSplit*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if the response content is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+  nameWithType.vb: UmsatzService.GetProjectsUmsatzSplit(Date?, Date?, Boolean, Boolean)
+  fullName.vb: IbeAppWeb.Services.UmsatzService.GetProjectsUmsatzSplit(Date?, Date?, Boolean, Boolean)
+  name.vb: GetProjectsUmsatzSplit(Date?, Date?, Boolean, Boolean)
+references:
+- uid: IbeAppWeb.Services
+  commentId: N:IbeAppWeb.Services
+  href: IbeAppWeb.html
+  name: IbeAppWeb.Services
+  nameWithType: IbeAppWeb.Services
+  fullName: IbeAppWeb.Services
+  spec.csharp:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.Services
+    name: Services
+    href: IbeAppWeb.Services.html
+  spec.vb:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.Services
+    name: Services
+    href: IbeAppWeb.Services.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: IbeAppWeb.Services.UmsatzService
+  commentId: T:IbeAppWeb.Services.UmsatzService
+  href: IbeAppWeb.Services.UmsatzService.html
+  name: UmsatzService
+  nameWithType: UmsatzService
+  fullName: IbeAppWeb.Services.UmsatzService
+- uid: System.Net.Http.HttpClient
+  commentId: T:System.Net.Http.HttpClient
+  parent: System.Net.Http
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.net.http.httpclient
+  name: HttpClient
+  nameWithType: HttpClient
+  fullName: System.Net.Http.HttpClient
+- uid: Microsoft.Extensions.Logging.ILogger`1
+  commentId: T:Microsoft.Extensions.Logging.ILogger`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  name: ILogger<TCategoryName>
+  nameWithType: ILogger<TCategoryName>
+  fullName: Microsoft.Extensions.Logging.ILogger<TCategoryName>
+  nameWithType.vb: ILogger(Of TCategoryName)
+  fullName.vb: Microsoft.Extensions.Logging.ILogger(Of TCategoryName)
+  name.vb: ILogger(Of TCategoryName)
+  spec.csharp:
+  - uid: Microsoft.Extensions.Logging.ILogger`1
+    name: ILogger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  - name: <
+  - name: TCategoryName
+  - name: '>'
+  spec.vb:
+  - uid: Microsoft.Extensions.Logging.ILogger`1
+    name: ILogger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TCategoryName
+  - name: )
+- uid: IbeAppWeb.Services.UmsatzService.#ctor*
+  commentId: Overload:IbeAppWeb.Services.UmsatzService.#ctor
+  href: IbeAppWeb.Services.UmsatzService.html#IbeAppWeb_Services_UmsatzService__ctor_System_Net_Http_HttpClient_Microsoft_Extensions_Logging_ILogger_IbeAppWeb_Services_UmsatzService__
+  name: UmsatzService
+  nameWithType: UmsatzService.UmsatzService
+  fullName: IbeAppWeb.Services.UmsatzService.UmsatzService
+  nameWithType.vb: UmsatzService.New
+  fullName.vb: IbeAppWeb.Services.UmsatzService.New
+  name.vb: New
+- uid: Microsoft.Extensions.Logging.ILogger{IbeAppWeb.Services.UmsatzService}
+  commentId: T:Microsoft.Extensions.Logging.ILogger{IbeAppWeb.Services.UmsatzService}
+  parent: Microsoft.Extensions.Logging
+  definition: Microsoft.Extensions.Logging.ILogger`1
+  href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  name: ILogger<UmsatzService>
+  nameWithType: ILogger<UmsatzService>
+  fullName: Microsoft.Extensions.Logging.ILogger<IbeAppWeb.Services.UmsatzService>
+  nameWithType.vb: ILogger(Of UmsatzService)
+  fullName.vb: Microsoft.Extensions.Logging.ILogger(Of IbeAppWeb.Services.UmsatzService)
+  name.vb: ILogger(Of UmsatzService)
+  spec.csharp:
+  - uid: Microsoft.Extensions.Logging.ILogger`1
+    name: ILogger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  - name: <
+  - uid: IbeAppWeb.Services.UmsatzService
+    name: UmsatzService
+    href: IbeAppWeb.Services.UmsatzService.html
+  - name: '>'
+  spec.vb:
+  - uid: Microsoft.Extensions.Logging.ILogger`1
+    name: ILogger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: IbeAppWeb.Services.UmsatzService
+    name: UmsatzService
+    href: IbeAppWeb.Services.UmsatzService.html
+  - name: )
+- uid: System.Net.Http
+  commentId: N:System.Net.Http
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Net.Http
+  nameWithType: System.Net.Http
+  fullName: System.Net.Http
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Net
+    name: Net
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net
+  - name: .
+  - uid: System.Net.Http
+    name: Http
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net.http
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Net
+    name: Net
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net
+  - name: .
+  - uid: System.Net.Http
+    name: Http
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net.http
+- uid: Microsoft.Extensions.Logging
+  commentId: N:Microsoft.Extensions.Logging
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
+  name: Microsoft.Extensions.Logging
+  nameWithType: Microsoft.Extensions.Logging
+  fullName: Microsoft.Extensions.Logging
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.Logging
+    name: Logging
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.Logging
+    name: Logging
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging
+- uid: IbeAppWeb.DTOs.UmsatzResultDto
+  commentId: T:IbeAppWeb.DTOs.UmsatzResultDto
+  href: IbeAppWeb.DTOs.UmsatzResultDto.html
+  name: UmsatzResultDto
+  nameWithType: UmsatzResultDto
+  fullName: IbeAppWeb.DTOs.UmsatzResultDto
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugAndDateAsync*
+  commentId: Overload:IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugAndDateAsync
+  href: IbeAppWeb.Services.UmsatzService.html#IbeAppWeb_Services_UmsatzService_GetUmsatzByFahrzeugAndDateAsync_System_Nullable_System_DateTime__System_Int32_System_String_
+  name: GetUmsatzByFahrzeugAndDateAsync
+  nameWithType: UmsatzService.GetUmsatzByFahrzeugAndDateAsync
+  fullName: IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugAndDateAsync
+- uid: System.Nullable{System.DateTime}
+  commentId: T:System.Nullable{System.DateTime}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime?
+  nameWithType: DateTime?
+  fullName: System.DateTime?
+  nameWithType.vb: Date?
+  fullName.vb: Date?
+  name.vb: Date?
+  spec.csharp:
+  - uid: System.DateTime
+    name: DateTime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+  spec.vb:
+  - uid: System.DateTime
+    name: Date
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Threading.Tasks.Task{IbeAppWeb.DTOs.UmsatzResultDto}
+  commentId: T:System.Threading.Tasks.Task{IbeAppWeb.DTOs.UmsatzResultDto}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<UmsatzResultDto>
+  nameWithType: Task<UmsatzResultDto>
+  fullName: System.Threading.Tasks.Task<IbeAppWeb.DTOs.UmsatzResultDto>
+  nameWithType.vb: Task(Of UmsatzResultDto)
+  fullName.vb: System.Threading.Tasks.Task(Of IbeAppWeb.DTOs.UmsatzResultDto)
+  name.vb: Task(Of UmsatzResultDto)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: IbeAppWeb.DTOs.UmsatzResultDto
+    name: UmsatzResultDto
+    href: IbeAppWeb.DTOs.UmsatzResultDto.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: IbeAppWeb.DTOs.UmsatzResultDto
+    name: UmsatzResultDto
+    href: IbeAppWeb.DTOs.UmsatzResultDto.html
+  - name: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurResultDto
+  commentId: T:IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurResultDto
+  href: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurResultDto.html
+  name: UmsatzFahrzeugMonteurResultDto
+  nameWithType: UmsatzFahrzeugMonteurResultDto
+  fullName: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurResultDto
+- uid: IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugMonteurAsync*
+  commentId: Overload:IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugMonteurAsync
+  href: IbeAppWeb.Services.UmsatzService.html#IbeAppWeb_Services_UmsatzService_GetUmsatzByFahrzeugMonteurAsync_System_Nullable_System_DateTime__System_Nullable_System_DateTime__System_Int32_System_String_
+  name: GetUmsatzByFahrzeugMonteurAsync
+  nameWithType: UmsatzService.GetUmsatzByFahrzeugMonteurAsync
+  fullName: IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugMonteurAsync
+- uid: System.Threading.Tasks.Task{IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurResultDto}
+  commentId: T:System.Threading.Tasks.Task{IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurResultDto}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<UmsatzFahrzeugMonteurResultDto>
+  nameWithType: Task<UmsatzFahrzeugMonteurResultDto>
+  fullName: System.Threading.Tasks.Task<IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurResultDto>
+  nameWithType.vb: Task(Of UmsatzFahrzeugMonteurResultDto)
+  fullName.vb: System.Threading.Tasks.Task(Of IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurResultDto)
+  name.vb: Task(Of UmsatzFahrzeugMonteurResultDto)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurResultDto
+    name: UmsatzFahrzeugMonteurResultDto
+    href: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurResultDto.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurResultDto
+    name: UmsatzFahrzeugMonteurResultDto
+    href: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurResultDto.html
+  - name: )
+- uid: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto
+  commentId: T:IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto
+  href: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto.html
+  name: UmsatzFahrzeugMonteurProjectResultDto
+  nameWithType: UmsatzFahrzeugMonteurProjectResultDto
+  fullName: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto
+- uid: IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugAndMonteurAllAsync*
+  commentId: Overload:IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugAndMonteurAllAsync
+  href: IbeAppWeb.Services.UmsatzService.html#IbeAppWeb_Services_UmsatzService_GetUmsatzByFahrzeugAndMonteurAllAsync_System_Nullable_System_DateTime__System_Nullable_System_DateTime__System_Int32_System_String_
+  name: GetUmsatzByFahrzeugAndMonteurAllAsync
+  nameWithType: UmsatzService.GetUmsatzByFahrzeugAndMonteurAllAsync
+  fullName: IbeAppWeb.Services.UmsatzService.GetUmsatzByFahrzeugAndMonteurAllAsync
+- uid: System.Threading.Tasks.Task{IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto}
+  commentId: T:System.Threading.Tasks.Task{IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<UmsatzFahrzeugMonteurProjectResultDto>
+  nameWithType: Task<UmsatzFahrzeugMonteurProjectResultDto>
+  fullName: System.Threading.Tasks.Task<IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto>
+  nameWithType.vb: Task(Of UmsatzFahrzeugMonteurProjectResultDto)
+  fullName.vb: System.Threading.Tasks.Task(Of IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto)
+  name.vb: Task(Of UmsatzFahrzeugMonteurProjectResultDto)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto
+    name: UmsatzFahrzeugMonteurProjectResultDto
+    href: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto
+    name: UmsatzFahrzeugMonteurProjectResultDto
+    href: IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto.html
+  - name: )
+- uid: IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto
+  commentId: T:IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto
+  href: IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto.html
+  name: AllProjectsUmsatzSplitDto
+  nameWithType: AllProjectsUmsatzSplitDto
+  fullName: IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto
+- uid: IbeAppWeb.Services.UmsatzService.GetProjectsUmsatzSplit*
+  commentId: Overload:IbeAppWeb.Services.UmsatzService.GetProjectsUmsatzSplit
+  href: IbeAppWeb.Services.UmsatzService.html#IbeAppWeb_Services_UmsatzService_GetProjectsUmsatzSplit_System_Nullable_System_DateTime__System_Nullable_System_DateTime__System_Boolean_System_Boolean_
+  name: GetProjectsUmsatzSplit
+  nameWithType: UmsatzService.GetProjectsUmsatzSplit
+  fullName: IbeAppWeb.Services.UmsatzService.GetProjectsUmsatzSplit
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Threading.Tasks.Task{IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto}
+  commentId: T:System.Threading.Tasks.Task{IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<AllProjectsUmsatzSplitDto>
+  nameWithType: Task<AllProjectsUmsatzSplitDto>
+  fullName: System.Threading.Tasks.Task<IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto>
+  nameWithType.vb: Task(Of AllProjectsUmsatzSplitDto)
+  fullName.vb: System.Threading.Tasks.Task(Of IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto)
+  name.vb: Task(Of AllProjectsUmsatzSplitDto)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto
+    name: AllProjectsUmsatzSplitDto
+    href: IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto
+    name: AllProjectsUmsatzSplitDto
+    href: IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto.html
+  - name: )

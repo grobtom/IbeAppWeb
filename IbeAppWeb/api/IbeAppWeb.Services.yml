@@ -1,0 +1,72 @@
+### YamlMime:ManagedReference
+items:
+- uid: IbeAppWeb.Services
+  commentId: N:IbeAppWeb.Services
+  id: IbeAppWeb.Services
+  children:
+  - IbeAppWeb.Services.AnlagenService
+  - IbeAppWeb.Services.BauleiterService
+  - IbeAppWeb.Services.CustomAuthorizationMessageHandler
+  - IbeAppWeb.Services.IbeToastService
+  - IbeAppWeb.Services.MonteurService
+  - IbeAppWeb.Services.ProjectAnlageService
+  - IbeAppWeb.Services.RechnungService
+  - IbeAppWeb.Services.UmsatzService
+  langs:
+  - csharp
+  - vb
+  name: IbeAppWeb.Services
+  nameWithType: IbeAppWeb.Services
+  fullName: IbeAppWeb.Services
+  type: Namespace
+  assemblies:
+  - IbeAppWeb
+references:
+- uid: IbeAppWeb.Services.AnlagenService
+  commentId: T:IbeAppWeb.Services.AnlagenService
+  href: IbeAppWeb.Services.AnlagenService.html
+  name: AnlagenService
+  nameWithType: AnlagenService
+  fullName: IbeAppWeb.Services.AnlagenService
+- uid: IbeAppWeb.Services.BauleiterService
+  commentId: T:IbeAppWeb.Services.BauleiterService
+  href: IbeAppWeb.Services.BauleiterService.html
+  name: BauleiterService
+  nameWithType: BauleiterService
+  fullName: IbeAppWeb.Services.BauleiterService
+- uid: IbeAppWeb.Services.CustomAuthorizationMessageHandler
+  commentId: T:IbeAppWeb.Services.CustomAuthorizationMessageHandler
+  href: IbeAppWeb.Services.CustomAuthorizationMessageHandler.html
+  name: CustomAuthorizationMessageHandler
+  nameWithType: CustomAuthorizationMessageHandler
+  fullName: IbeAppWeb.Services.CustomAuthorizationMessageHandler
+- uid: IbeAppWeb.Services.IbeToastService
+  commentId: T:IbeAppWeb.Services.IbeToastService
+  href: IbeAppWeb.Services.IbeToastService.html
+  name: IbeToastService
+  nameWithType: IbeToastService
+  fullName: IbeAppWeb.Services.IbeToastService
+- uid: IbeAppWeb.Services.MonteurService
+  commentId: T:IbeAppWeb.Services.MonteurService
+  href: IbeAppWeb.Services.MonteurService.html
+  name: MonteurService
+  nameWithType: MonteurService
+  fullName: IbeAppWeb.Services.MonteurService
+- uid: IbeAppWeb.Services.ProjectAnlageService
+  commentId: T:IbeAppWeb.Services.ProjectAnlageService
+  href: IbeAppWeb.Services.ProjectAnlageService.html
+  name: ProjectAnlageService
+  nameWithType: ProjectAnlageService
+  fullName: IbeAppWeb.Services.ProjectAnlageService
+- uid: IbeAppWeb.Services.RechnungService
+  commentId: T:IbeAppWeb.Services.RechnungService
+  href: IbeAppWeb.Services.RechnungService.html
+  name: RechnungService
+  nameWithType: RechnungService
+  fullName: IbeAppWeb.Services.RechnungService
+- uid: IbeAppWeb.Services.UmsatzService
+  commentId: T:IbeAppWeb.Services.UmsatzService
+  href: IbeAppWeb.Services.UmsatzService.html
+  name: UmsatzService
+  nameWithType: UmsatzService
+  fullName: IbeAppWeb.Services.UmsatzService

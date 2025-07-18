@@ -1,0 +1,858 @@
+### YamlMime:ManagedReference
+items:
+- uid: IbeAppWeb.Services.RechnungService
+  commentId: T:IbeAppWeb.Services.RechnungService
+  id: RechnungService
+  parent: IbeAppWeb.Services
+  children:
+  - IbeAppWeb.Services.RechnungService.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Logging.ILogger{ProjectService})
+  - IbeAppWeb.Services.RechnungService.GetAbschlagsRechnungenAsync(System.String,System.Int32)
+  - IbeAppWeb.Services.RechnungService.UpdateKanalAbschlagsrechnungByDateAsync(System.String,System.DateTime,System.DateTime,System.String,System.Int32)
+  - IbeAppWeb.Services.RechnungService.UpdateKanalAbschlagsrechnungByIdsAsync(System.String,System.Int32,System.Int32,System.String,System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: RechnungService
+  nameWithType: RechnungService
+  fullName: IbeAppWeb.Services.RechnungService
+  type: Class
+  source:
+    remote:
+      path: IbeAppWeb/Services/RechnungService.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: RechnungService
+    path: Services/RechnungService.cs
+    startLine: 11
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Services
+  summary: Provides functionality for retrieving invoice data related to projects.
+  remarks: >-
+    This service is designed to interact with an external API to fetch invoice information. It supports
+        fetching invoices for different project types, such as "kanal" or "schacht".
+  example: []
+  syntax:
+    content: public class RechnungService
+    content.vb: Public Class RechnungService
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: IbeAppWeb.Services.RechnungService.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Logging.ILogger{ProjectService})
+  commentId: M:IbeAppWeb.Services.RechnungService.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Logging.ILogger{ProjectService})
+  id: '#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Logging.ILogger{ProjectService})'
+  parent: IbeAppWeb.Services.RechnungService
+  langs:
+  - csharp
+  - vb
+  name: RechnungService(HttpClient, ILogger<ProjectService>)
+  nameWithType: RechnungService.RechnungService(HttpClient, ILogger<ProjectService>)
+  fullName: IbeAppWeb.Services.RechnungService.RechnungService(System.Net.Http.HttpClient, Microsoft.Extensions.Logging.ILogger<ProjectService>)
+  type: Constructor
+  source:
+    remote:
+      path: IbeAppWeb/Services/RechnungService.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: .ctor
+    path: Services/RechnungService.cs
+    startLine: 16
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Services
+  syntax:
+    content: public RechnungService(HttpClient httpClient, ILogger<ProjectService> logger)
+    parameters:
+    - id: httpClient
+      type: System.Net.Http.HttpClient
+    - id: logger
+      type: Microsoft.Extensions.Logging.ILogger{ProjectService}
+    content.vb: Public Sub New(httpClient As HttpClient, logger As ILogger(Of ProjectService))
+  overload: IbeAppWeb.Services.RechnungService.#ctor*
+  nameWithType.vb: RechnungService.New(HttpClient, ILogger(Of ProjectService))
+  fullName.vb: IbeAppWeb.Services.RechnungService.New(System.Net.Http.HttpClient, Microsoft.Extensions.Logging.ILogger(Of ProjectService))
+  name.vb: New(HttpClient, ILogger(Of ProjectService))
+- uid: IbeAppWeb.Services.RechnungService.GetAbschlagsRechnungenAsync(System.String,System.Int32)
+  commentId: M:IbeAppWeb.Services.RechnungService.GetAbschlagsRechnungenAsync(System.String,System.Int32)
+  id: GetAbschlagsRechnungenAsync(System.String,System.Int32)
+  parent: IbeAppWeb.Services.RechnungService
+  langs:
+  - csharp
+  - vb
+  name: GetAbschlagsRechnungenAsync(string, int)
+  nameWithType: RechnungService.GetAbschlagsRechnungenAsync(string, int)
+  fullName: IbeAppWeb.Services.RechnungService.GetAbschlagsRechnungenAsync(string, int)
+  type: Method
+  source:
+    remote:
+      path: IbeAppWeb/Services/RechnungService.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: GetAbschlagsRechnungenAsync
+    path: Services/RechnungService.cs
+    startLine: 34
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Services
+  summary: Retrieves a list of AbschlagsRechnungDto objects from the specified project database.
+  remarks: >-
+    This method sends an HTTP GET request to the appropriate API endpoint based on the value of
+        <code class="paramref">isSchacht</code>.  The <code class="paramref">projectDb</code> parameter is included as a custom header
+        ("X-IbeProjectDB") in the request. If the request fails or an exception is thrown, the method logs the error and
+        returns an empty list.
+  example: []
+  syntax:
+    content: public Task<List<AbschlagsRechnungDto>?> GetAbschlagsRechnungenAsync(string projectDb, int comboBoxValue)
+    parameters:
+    - id: projectDb
+      type: System.String
+      description: The name of the project database to query. This value is sent as a header in the request.
+    - id: comboBoxValue
+      type: System.Int32
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.List{IbeAppWeb.DTOs.AbschlagsRechnungDto}}
+      description: >-
+        A task representing the asynchronous operation. The result contains a list of <xref href="IbeAppWeb.DTOs.AbschlagsRechnungDto" data-throw-if-not-resolved="false"></xref>
+            objects  if the request is successful, or an empty list if an error occurs.
+    content.vb: Public Function GetAbschlagsRechnungenAsync(projectDb As String, comboBoxValue As Integer) As Task(Of List(Of AbschlagsRechnungDto))
+  overload: IbeAppWeb.Services.RechnungService.GetAbschlagsRechnungenAsync*
+  nameWithType.vb: RechnungService.GetAbschlagsRechnungenAsync(String, Integer)
+  fullName.vb: IbeAppWeb.Services.RechnungService.GetAbschlagsRechnungenAsync(String, Integer)
+  name.vb: GetAbschlagsRechnungenAsync(String, Integer)
+- uid: IbeAppWeb.Services.RechnungService.UpdateKanalAbschlagsrechnungByDateAsync(System.String,System.DateTime,System.DateTime,System.String,System.Int32)
+  commentId: M:IbeAppWeb.Services.RechnungService.UpdateKanalAbschlagsrechnungByDateAsync(System.String,System.DateTime,System.DateTime,System.String,System.Int32)
+  id: UpdateKanalAbschlagsrechnungByDateAsync(System.String,System.DateTime,System.DateTime,System.String,System.Int32)
+  parent: IbeAppWeb.Services.RechnungService
+  langs:
+  - csharp
+  - vb
+  name: UpdateKanalAbschlagsrechnungByDateAsync(string, DateTime, DateTime, string, int)
+  nameWithType: RechnungService.UpdateKanalAbschlagsrechnungByDateAsync(string, DateTime, DateTime, string, int)
+  fullName: IbeAppWeb.Services.RechnungService.UpdateKanalAbschlagsrechnungByDateAsync(string, System.DateTime, System.DateTime, string, int)
+  type: Method
+  source:
+    remote:
+      path: IbeAppWeb/Services/RechnungService.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: UpdateKanalAbschlagsrechnungByDateAsync
+    path: Services/RechnungService.cs
+    startLine: 73
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Services
+  summary: Updates the Kanal Abschlagsrechnung or Schacht Abschlagsrechnung for a specified date range.
+  remarks: >-
+    This method sends an HTTP POST request to update Abschlagsrechnung data based on the
+        specified parameters. Ensure that the <code class="paramref">projectDb</code> and <code class="paramref">abschlagsrechnung</code>
+        values are valid.
+  example: []
+  syntax:
+    content: public Task<int> UpdateKanalAbschlagsrechnungByDateAsync(string projectDb, DateTime startDate, DateTime endDate, string abschlagsrechnung, int comboBoxValue)
+    parameters:
+    - id: projectDb
+      type: System.String
+      description: The name of the project database to use for the operation. Cannot be null or empty.
+    - id: startDate
+      type: System.DateTime
+      description: The start date of the range for which the Abschlagsrechnung should be updated.
+    - id: endDate
+      type: System.DateTime
+      description: The end date of the range for which the Abschlagsrechnung should be updated.
+    - id: abschlagsrechnung
+      type: System.String
+      description: The identifier or type of the Abschlagsrechnung to update. Cannot be null or empty.
+    - id: comboBoxValue
+      type: System.Int32
+      description: >-
+        Determines the type of Abschlagsrechnung to update.  Use <code>1</code> for Kanal Abschlagsrechnung and any
+            other value for Schacht Abschlagsrechnung.
+    return:
+      type: System.Threading.Tasks.Task{System.Int32}
+      description: >-
+        The number of records updated as an integer. Returns <code>-1</code> if an error occurs during the
+            operation.
+    content.vb: Public Function UpdateKanalAbschlagsrechnungByDateAsync(projectDb As String, startDate As Date, endDate As Date, abschlagsrechnung As String, comboBoxValue As Integer) As Task(Of Integer)
+  overload: IbeAppWeb.Services.RechnungService.UpdateKanalAbschlagsrechnungByDateAsync*
+  nameWithType.vb: RechnungService.UpdateKanalAbschlagsrechnungByDateAsync(String, Date, Date, String, Integer)
+  fullName.vb: IbeAppWeb.Services.RechnungService.UpdateKanalAbschlagsrechnungByDateAsync(String, Date, Date, String, Integer)
+  name.vb: UpdateKanalAbschlagsrechnungByDateAsync(String, Date, Date, String, Integer)
+- uid: IbeAppWeb.Services.RechnungService.UpdateKanalAbschlagsrechnungByIdsAsync(System.String,System.Int32,System.Int32,System.String,System.Int32)
+  commentId: M:IbeAppWeb.Services.RechnungService.UpdateKanalAbschlagsrechnungByIdsAsync(System.String,System.Int32,System.Int32,System.String,System.Int32)
+  id: UpdateKanalAbschlagsrechnungByIdsAsync(System.String,System.Int32,System.Int32,System.String,System.Int32)
+  parent: IbeAppWeb.Services.RechnungService
+  langs:
+  - csharp
+  - vb
+  name: UpdateKanalAbschlagsrechnungByIdsAsync(string, int, int, string, int)
+  nameWithType: RechnungService.UpdateKanalAbschlagsrechnungByIdsAsync(string, int, int, string, int)
+  fullName: IbeAppWeb.Services.RechnungService.UpdateKanalAbschlagsrechnungByIdsAsync(string, int, int, string, int)
+  type: Method
+  source:
+    remote:
+      path: IbeAppWeb/Services/RechnungService.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: UpdateKanalAbschlagsrechnungByIdsAsync
+    path: Services/RechnungService.cs
+    startLine: 125
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Services
+  summary: Updates the Kanal Abschlagsrechnung or Schacht Abschlagsrechnung for a specified date range.
+  remarks: >-
+    This method sends an HTTP POST request to update Abschlagsrechnung data based on the
+        specified parameters. Ensure that the <code class="paramref">projectDb</code> and <code class="paramref">abschlagsrechnung</code>
+        values are valid.
+  example: []
+  syntax:
+    content: public Task<int> UpdateKanalAbschlagsrechnungByIdsAsync(string projectDb, int idFrom, int idTo, string abschlagsrechnung, int comboBoxValue)
+    parameters:
+    - id: projectDb
+      type: System.String
+      description: The name of the project database to use for the operation. Cannot be null or empty.
+    - id: idFrom
+      type: System.Int32
+    - id: idTo
+      type: System.Int32
+    - id: abschlagsrechnung
+      type: System.String
+      description: The identifier or type of the Abschlagsrechnung to update. Cannot be null or empty.
+    - id: comboBoxValue
+      type: System.Int32
+      description: >-
+        Determines the type of Abschlagsrechnung to update.  Use <code>1</code> for Kanal Abschlagsrechnung and any
+            other value for Schacht Abschlagsrechnung.
+    return:
+      type: System.Threading.Tasks.Task{System.Int32}
+      description: >-
+        The number of records updated as an integer. Returns <code>-1</code> if an error occurs during the
+            operation.
+    content.vb: Public Function UpdateKanalAbschlagsrechnungByIdsAsync(projectDb As String, idFrom As Integer, idTo As Integer, abschlagsrechnung As String, comboBoxValue As Integer) As Task(Of Integer)
+  overload: IbeAppWeb.Services.RechnungService.UpdateKanalAbschlagsrechnungByIdsAsync*
+  nameWithType.vb: RechnungService.UpdateKanalAbschlagsrechnungByIdsAsync(String, Integer, Integer, String, Integer)
+  fullName.vb: IbeAppWeb.Services.RechnungService.UpdateKanalAbschlagsrechnungByIdsAsync(String, Integer, Integer, String, Integer)
+  name.vb: UpdateKanalAbschlagsrechnungByIdsAsync(String, Integer, Integer, String, Integer)
+references:
+- uid: IbeAppWeb.Services
+  commentId: N:IbeAppWeb.Services
+  href: IbeAppWeb.html
+  name: IbeAppWeb.Services
+  nameWithType: IbeAppWeb.Services
+  fullName: IbeAppWeb.Services
+  spec.csharp:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.Services
+    name: Services
+    href: IbeAppWeb.Services.html
+  spec.vb:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.Services
+    name: Services
+    href: IbeAppWeb.Services.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: IbeAppWeb.Services.RechnungService.#ctor*
+  commentId: Overload:IbeAppWeb.Services.RechnungService.#ctor
+  href: IbeAppWeb.Services.RechnungService.html#IbeAppWeb_Services_RechnungService__ctor_System_Net_Http_HttpClient_Microsoft_Extensions_Logging_ILogger_ProjectService__
+  name: RechnungService
+  nameWithType: RechnungService.RechnungService
+  fullName: IbeAppWeb.Services.RechnungService.RechnungService
+  nameWithType.vb: RechnungService.New
+  fullName.vb: IbeAppWeb.Services.RechnungService.New
+  name.vb: New
+- uid: System.Net.Http.HttpClient
+  commentId: T:System.Net.Http.HttpClient
+  parent: System.Net.Http
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.net.http.httpclient
+  name: HttpClient
+  nameWithType: HttpClient
+  fullName: System.Net.Http.HttpClient
+- uid: Microsoft.Extensions.Logging.ILogger{ProjectService}
+  commentId: T:Microsoft.Extensions.Logging.ILogger{ProjectService}
+  parent: Microsoft.Extensions.Logging
+  definition: Microsoft.Extensions.Logging.ILogger`1
+  href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  name: ILogger<ProjectService>
+  nameWithType: ILogger<ProjectService>
+  fullName: Microsoft.Extensions.Logging.ILogger<ProjectService>
+  nameWithType.vb: ILogger(Of ProjectService)
+  fullName.vb: Microsoft.Extensions.Logging.ILogger(Of ProjectService)
+  name.vb: ILogger(Of ProjectService)
+  spec.csharp:
+  - uid: Microsoft.Extensions.Logging.ILogger`1
+    name: ILogger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  - name: <
+  - uid: ProjectService
+    name: ProjectService
+    href: ProjectService.html
+  - name: '>'
+  spec.vb:
+  - uid: Microsoft.Extensions.Logging.ILogger`1
+    name: ILogger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: ProjectService
+    name: ProjectService
+    href: ProjectService.html
+  - name: )
+- uid: System.Net.Http
+  commentId: N:System.Net.Http
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Net.Http
+  nameWithType: System.Net.Http
+  fullName: System.Net.Http
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Net
+    name: Net
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net
+  - name: .
+  - uid: System.Net.Http
+    name: Http
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net.http
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Net
+    name: Net
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net
+  - name: .
+  - uid: System.Net.Http
+    name: Http
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net.http
+- uid: Microsoft.Extensions.Logging.ILogger`1
+  commentId: T:Microsoft.Extensions.Logging.ILogger`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  name: ILogger<TCategoryName>
+  nameWithType: ILogger<TCategoryName>
+  fullName: Microsoft.Extensions.Logging.ILogger<TCategoryName>
+  nameWithType.vb: ILogger(Of TCategoryName)
+  fullName.vb: Microsoft.Extensions.Logging.ILogger(Of TCategoryName)
+  name.vb: ILogger(Of TCategoryName)
+  spec.csharp:
+  - uid: Microsoft.Extensions.Logging.ILogger`1
+    name: ILogger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  - name: <
+  - name: TCategoryName
+  - name: '>'
+  spec.vb:
+  - uid: Microsoft.Extensions.Logging.ILogger`1
+    name: ILogger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TCategoryName
+  - name: )
+- uid: Microsoft.Extensions.Logging
+  commentId: N:Microsoft.Extensions.Logging
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
+  name: Microsoft.Extensions.Logging
+  nameWithType: Microsoft.Extensions.Logging
+  fullName: Microsoft.Extensions.Logging
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.Logging
+    name: Logging
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.Extensions
+    name: Extensions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions
+  - name: .
+  - uid: Microsoft.Extensions.Logging
+    name: Logging
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging
+- uid: IbeAppWeb.DTOs.AbschlagsRechnungDto
+  commentId: T:IbeAppWeb.DTOs.AbschlagsRechnungDto
+  href: IbeAppWeb.DTOs.AbschlagsRechnungDto.html
+  name: AbschlagsRechnungDto
+  nameWithType: AbschlagsRechnungDto
+  fullName: IbeAppWeb.DTOs.AbschlagsRechnungDto
+- uid: IbeAppWeb.Services.RechnungService.GetAbschlagsRechnungenAsync*
+  commentId: Overload:IbeAppWeb.Services.RechnungService.GetAbschlagsRechnungenAsync
+  href: IbeAppWeb.Services.RechnungService.html#IbeAppWeb_Services_RechnungService_GetAbschlagsRechnungenAsync_System_String_System_Int32_
+  name: GetAbschlagsRechnungenAsync
+  nameWithType: RechnungService.GetAbschlagsRechnungenAsync
+  fullName: IbeAppWeb.Services.RechnungService.GetAbschlagsRechnungenAsync
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.List{IbeAppWeb.DTOs.AbschlagsRechnungDto}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.List{IbeAppWeb.DTOs.AbschlagsRechnungDto}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<List<AbschlagsRechnungDto>>
+  nameWithType: Task<List<AbschlagsRechnungDto>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.List<IbeAppWeb.DTOs.AbschlagsRechnungDto>>
+  nameWithType.vb: Task(Of List(Of AbschlagsRechnungDto))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.List(Of IbeAppWeb.DTOs.AbschlagsRechnungDto))
+  name.vb: Task(Of List(Of AbschlagsRechnungDto))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: IbeAppWeb.DTOs.AbschlagsRechnungDto
+    name: AbschlagsRechnungDto
+    href: IbeAppWeb.DTOs.AbschlagsRechnungDto.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: IbeAppWeb.DTOs.AbschlagsRechnungDto
+    name: AbschlagsRechnungDto
+    href: IbeAppWeb.DTOs.AbschlagsRechnungDto.html
+  - name: )
+  - name: )
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: IbeAppWeb.Services.RechnungService.UpdateKanalAbschlagsrechnungByDateAsync*
+  commentId: Overload:IbeAppWeb.Services.RechnungService.UpdateKanalAbschlagsrechnungByDateAsync
+  href: IbeAppWeb.Services.RechnungService.html#IbeAppWeb_Services_RechnungService_UpdateKanalAbschlagsrechnungByDateAsync_System_String_System_DateTime_System_DateTime_System_String_System_Int32_
+  name: UpdateKanalAbschlagsrechnungByDateAsync
+  nameWithType: RechnungService.UpdateKanalAbschlagsrechnungByDateAsync
+  fullName: IbeAppWeb.Services.RechnungService.UpdateKanalAbschlagsrechnungByDateAsync
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
+- uid: System.Threading.Tasks.Task{System.Int32}
+  commentId: T:System.Threading.Tasks.Task{System.Int32}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<int>
+  nameWithType: Task<int>
+  fullName: System.Threading.Tasks.Task<int>
+  nameWithType.vb: Task(Of Integer)
+  fullName.vb: System.Threading.Tasks.Task(Of Integer)
+  name.vb: Task(Of Integer)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: IbeAppWeb.Services.RechnungService.UpdateKanalAbschlagsrechnungByIdsAsync*
+  commentId: Overload:IbeAppWeb.Services.RechnungService.UpdateKanalAbschlagsrechnungByIdsAsync
+  href: IbeAppWeb.Services.RechnungService.html#IbeAppWeb_Services_RechnungService_UpdateKanalAbschlagsrechnungByIdsAsync_System_String_System_Int32_System_Int32_System_String_System_Int32_
+  name: UpdateKanalAbschlagsrechnungByIdsAsync
+  nameWithType: RechnungService.UpdateKanalAbschlagsrechnungByIdsAsync
+  fullName: IbeAppWeb.Services.RechnungService.UpdateKanalAbschlagsrechnungByIdsAsync

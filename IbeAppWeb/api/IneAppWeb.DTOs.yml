@@ -1,0 +1,46 @@
+### YamlMime:ManagedReference
+items:
+- uid: IneAppWeb.DTOs
+  commentId: N:IneAppWeb.DTOs
+  id: IneAppWeb.DTOs
+  children:
+  - IneAppWeb.DTOs.XCustomer
+  langs:
+  - csharp
+  - vb
+  name: IneAppWeb.DTOs
+  nameWithType: IneAppWeb.DTOs
+  fullName: IneAppWeb.DTOs
+  type: Namespace
+  assemblies:
+  - IbeAppWeb
+references:
+- uid: IneAppWeb.DTOs.XCustomer
+  commentId: T:IneAppWeb.DTOs.XCustomer
+  parent: IneAppWeb.DTOs
+  href: IneAppWeb.DTOs.XCustomer.html
+  name: XCustomer
+  nameWithType: XCustomer
+  fullName: IneAppWeb.DTOs.XCustomer
+- uid: IneAppWeb.DTOs
+  commentId: N:IneAppWeb.DTOs
+  href: IneAppWeb.html
+  name: IneAppWeb.DTOs
+  nameWithType: IneAppWeb.DTOs
+  fullName: IneAppWeb.DTOs
+  spec.csharp:
+  - uid: IneAppWeb
+    name: IneAppWeb
+    href: IneAppWeb.html
+  - name: .
+  - uid: IneAppWeb.DTOs
+    name: DTOs
+    href: IneAppWeb.DTOs.html
+  spec.vb:
+  - uid: IneAppWeb
+    name: IneAppWeb
+    href: IneAppWeb.html
+  - name: .
+  - uid: IneAppWeb.DTOs
+    name: DTOs
+    href: IneAppWeb.DTOs.html

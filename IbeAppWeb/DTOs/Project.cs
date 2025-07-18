@@ -1,5 +1,4 @@
-﻿using IbeAppWeb.Pages;
-using IneAppWeb.DTOs;
+﻿using IneAppWeb.DTOs;
 using System.Text.Json.Serialization;
 
 namespace IbeAppWeb.DTOs
@@ -13,7 +12,7 @@ namespace IbeAppWeb.DTOs
         public bool IsSchacht { get; set; }
         public string? FileUrl { get; set; } = string.Empty;
         public int? BauleiterId { get; set; }
-        public Bauleiter? Bauleiter { get; set; }
+        public BauleiterDto? Bauleiter { get; set; }
         public string? BauleiterFullName { get; set; }
         public DateTime? DbChangedDate { get; set; }
         [JsonIgnore]

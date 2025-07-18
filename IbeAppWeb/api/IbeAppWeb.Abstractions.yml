@@ -1,0 +1,46 @@
+### YamlMime:ManagedReference
+items:
+- uid: IbeAppWeb.Abstractions
+  commentId: N:IbeAppWeb.Abstractions
+  id: IbeAppWeb.Abstractions
+  children:
+  - IbeAppWeb.Abstractions.Decimal3Converter
+  langs:
+  - csharp
+  - vb
+  name: IbeAppWeb.Abstractions
+  nameWithType: IbeAppWeb.Abstractions
+  fullName: IbeAppWeb.Abstractions
+  type: Namespace
+  assemblies:
+  - IbeAppWeb
+references:
+- uid: IbeAppWeb.Abstractions.Decimal3Converter
+  commentId: T:IbeAppWeb.Abstractions.Decimal3Converter
+  parent: IbeAppWeb.Abstractions
+  href: IbeAppWeb.Abstractions.Decimal3Converter.html
+  name: Decimal3Converter
+  nameWithType: Decimal3Converter
+  fullName: IbeAppWeb.Abstractions.Decimal3Converter
+- uid: IbeAppWeb.Abstractions
+  commentId: N:IbeAppWeb.Abstractions
+  href: IbeAppWeb.html
+  name: IbeAppWeb.Abstractions
+  nameWithType: IbeAppWeb.Abstractions
+  fullName: IbeAppWeb.Abstractions
+  spec.csharp:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.Abstractions
+    name: Abstractions
+    href: IbeAppWeb.Abstractions.html
+  spec.vb:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.Abstractions
+    name: Abstractions
+    href: IbeAppWeb.Abstractions.html

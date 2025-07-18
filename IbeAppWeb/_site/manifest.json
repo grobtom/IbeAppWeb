@@ -1,0 +1,977 @@
+{
+  "source_base_path": "C:/Projects/IbeAppWeb/IbeAppWeb",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.Abstractions.Decimal3Converter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.Abstractions.Decimal3Converter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.Abstractions.Decimal3Converter",
+      "Summary": "<p sourcefile=\"api/IbeAppWeb.Abstractions.Decimal3Converter.yml\" sourcestartlinenumber=\"1\">Converts <xref href=\"System.Decimal\" data-throw-if-not-resolved=\"false\"></xref> values to and from JSON, ensuring that values are rounded to three decimal places\nwhen written.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.Abstractions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.Abstractions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.Abstractions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.AbschlagsRechnungDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.AbschlagsRechnungDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.AbschlagsRechnungDto",
+      "Summary": "<p sourcefile=\"api/IbeAppWeb.DTOs.AbschlagsRechnungDto.yml\" sourcestartlinenumber=\"1\">Represents a data transfer object (DTO) for an installment invoice, containing details about the invoice,  its\nposition, associated text, and financial information such as quantity, unit price, and total position sum.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.Address.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.Address.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.Address",
+      "Summary": "<p sourcefile=\"api/IbeAppWeb.DTOs.Address.yml\" sourcestartlinenumber=\"1\">Represents a physical address, including street, house number, postal code, and city.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.AnlageDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.AnlageDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.AnlageDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.AnlageWithMonteureDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.AnlageWithMonteureDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.AnlageWithMonteureDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.ArbeitsberichtDbSummeDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.ArbeitsberichtDbSummeDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.ArbeitsberichtDbSummeDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.ArbeitsberichtDbSummeResultDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.ArbeitsberichtDbSummeResultDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.ArbeitsberichtDbSummeResultDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.ArbeitsberichtProjectsDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.ArbeitsberichtProjectsDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.ArbeitsberichtProjectsDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.ArbeitsscheinDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.ArbeitsscheinDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.ArbeitsscheinDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.ArbeitsscheinResultDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.ArbeitsscheinResultDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.ArbeitsscheinResultDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.AssignAnlageToProjectDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.AssignAnlageToProjectDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.AssignAnlageToProjectDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.BauleiterDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.BauleiterDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.BauleiterDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.BauleiterWithProjectsDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.BauleiterWithProjectsDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.BauleiterWithProjectsDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.FahrzeugDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.FahrzeugDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.FahrzeugDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.LinkDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.LinkDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.LinkDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.Monteur.AssignMonteurToAnlageDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.Monteur.AssignMonteurToAnlageDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.Monteur.AssignMonteurToAnlageDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.Monteur.MonteurAnlageHistoryDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.Monteur.MonteurAnlageHistoryDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.Monteur.MonteurAnlageHistoryDto",
+      "Summary": "<p sourcefile=\"api/IbeAppWeb.DTOs.Monteur.MonteurAnlageHistoryDto.yml\" sourcestartlinenumber=\"1\">Represents the history of assignments between a technician (Monteur) and a facility (Anlage).</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.Monteur.MonteurDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.Monteur.MonteurDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.Monteur.MonteurDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.Monteur.MonteurResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.Monteur.MonteurResponse.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.Monteur.MonteurResponse",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.Monteur.ProjectMonteurDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.Monteur.ProjectMonteurDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.Monteur.ProjectMonteurDto",
+      "Summary": "<p sourcefile=\"api/IbeAppWeb.DTOs.Monteur.ProjectMonteurDto.yml\" sourcestartlinenumber=\"1\">Represents a data transfer object for a project monteur, containing details about the project and its associated\nmonteur.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.Monteur.UpdateMonteurDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.Monteur.UpdateMonteurDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.Monteur.UpdateMonteurDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.Monteur.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.Monteur.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.Monteur",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.MonteurWithAnlageDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.MonteurWithAnlageDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.MonteurWithAnlageDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.Project.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.Project.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.Project",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.ProjectAnlageDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.ProjectAnlageDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.ProjectAnlageDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.ProjectCustomerInvoiceDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.ProjectCustomerInvoiceDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.ProjectCustomerInvoiceDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.ProjectWithAnlagenDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.ProjectWithAnlagenDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.ProjectWithAnlagenDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.Umsatz.AllProjectsUmsatzSplitDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.Umsatz.FahrzeugUmsatzDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.Umsatz.FahrzeugUmsatzDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.Umsatz.FahrzeugUmsatzDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.Umsatz.MonteurUmsatzDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.Umsatz.MonteurUmsatzDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.Umsatz.MonteurUmsatzDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.Umsatz.ProjektUmsatzDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.Umsatz.ProjektUmsatzDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.Umsatz.ProjektUmsatzDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurProjectResultDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurResultDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurResultDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.Umsatz.UmsatzFahrzeugMonteurResultDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.Umsatz.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.Umsatz.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.Umsatz",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.UmsatzDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.UmsatzDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.UmsatzDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.UmsatzResultDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.UmsatzResultDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.UmsatzResultDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.UpdateProjectAnlageDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.UpdateProjectAnlageDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.UpdateProjectAnlageDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.XInvoice.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.XInvoice.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs.XInvoice",
+      "Summary": "<p sourcefile=\"api/IbeAppWeb.DTOs.XInvoice.yml\" sourcestartlinenumber=\"1\">Represents an invoice associated with a project, including details such as invoice number, date, amount, and project\ninformation.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.DTOs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.DTOs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.DTOs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.Forms.KanalSchacht.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.Forms.KanalSchacht.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.Forms.KanalSchacht",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.Forms.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.Forms.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.Forms",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.Models.CustomAccountFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.Models.CustomAccountFactory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.Models.CustomAccountFactory",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.Models.CustomUserAccount.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.Models.CustomUserAccount.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.Models.CustomUserAccount",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.Models.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.Models.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.Models",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.Services.AnlagenService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.Services.AnlagenService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.Services.AnlagenService",
+      "Summary": "<p sourcefile=\"api/IbeAppWeb.Services.AnlagenService.yml\" sourcestartlinenumber=\"1\">Provides methods for managing &quot;Anlage&quot; entities, including retrieval, creation, updating, deletion,  and\nrestoration. This service communicates with a backend API to perform operations on &quot;Anlage&quot; data.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.Services.BauleiterService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.Services.BauleiterService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.Services.BauleiterService",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.Services.CustomAuthorizationMessageHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.Services.CustomAuthorizationMessageHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.Services.CustomAuthorizationMessageHandler",
+      "Summary": "<p sourcefile=\"api/IbeAppWeb.Services.CustomAuthorizationMessageHandler.yml\" sourcestartlinenumber=\"1\">A custom message handler that integrates authorization functionality for HTTP requests.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.Services.IbeToastService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.Services.IbeToastService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.Services.IbeToastService",
+      "Summary": "<p sourcefile=\"api/IbeAppWeb.Services.IbeToastService.yml\" sourcestartlinenumber=\"1\">Service to show toast notifications.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.Services.MonteurService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.Services.MonteurService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.Services.MonteurService",
+      "Summary": "<p sourcefile=\"api/IbeAppWeb.Services.MonteurService.yml\" sourcestartlinenumber=\"1\">Provides services for managing Monteur resources, including retrieval, creation, updating, and deletion operations.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.Services.ProjectAnlageService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.Services.ProjectAnlageService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.Services.ProjectAnlageService",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.Services.RechnungService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.Services.RechnungService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.Services.RechnungService",
+      "Summary": "<p sourcefile=\"api/IbeAppWeb.Services.RechnungService.yml\" sourcestartlinenumber=\"1\">Provides functionality for retrieving invoice data related to projects.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.Services.UmsatzService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.Services.UmsatzService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.Services.UmsatzService",
+      "Summary": "<p sourcefile=\"api/IbeAppWeb.Services.UmsatzService.yml\" sourcestartlinenumber=\"1\">Provides methods for retrieving revenue data (Umsatz) based on various criteria, such as vehicle,  date ranges, and\nproject database context.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.Services.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.Services.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.Services",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.Shared.SfResources.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.Shared.SfResources.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.Shared.SfResources",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.Shared.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.Shared.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.Shared",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.Validation.ValidationErrorItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.Validation.ValidationErrorItem.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.Validation.ValidationErrorItem",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.Validation.ValidationErrorResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.Validation.ValidationErrorResponse.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.Validation.ValidationErrorResponse",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IbeAppWeb.Validation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IbeAppWeb.Validation.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IbeAppWeb.Validation",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IneAppWeb.DTOs.XCustomer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IneAppWeb.DTOs.XCustomer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IneAppWeb.DTOs.XCustomer",
+      "Summary": "<p sourcefile=\"api/IneAppWeb.DTOs.XCustomer.yml\" sourcestartlinenumber=\"1\">Represents a consumer entity with personal and contact information,  as well as optional company and address\ndetails.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/IneAppWeb.DTOs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/IneAppWeb.DTOs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "IneAppWeb.DTOs",
+      "Summary": null
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/components.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/components.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/services.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/services.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

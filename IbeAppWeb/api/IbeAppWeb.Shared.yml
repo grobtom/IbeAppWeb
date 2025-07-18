@@ -1,0 +1,23 @@
+### YamlMime:ManagedReference
+items:
+- uid: IbeAppWeb.Shared
+  commentId: N:IbeAppWeb.Shared
+  id: IbeAppWeb.Shared
+  children:
+  - IbeAppWeb.Shared.SfResources
+  langs:
+  - csharp
+  - vb
+  name: IbeAppWeb.Shared
+  nameWithType: IbeAppWeb.Shared
+  fullName: IbeAppWeb.Shared
+  type: Namespace
+  assemblies:
+  - IbeAppWeb
+references:
+- uid: IbeAppWeb.Shared.SfResources
+  commentId: T:IbeAppWeb.Shared.SfResources
+  href: IbeAppWeb.Shared.SfResources.html
+  name: SfResources
+  nameWithType: SfResources
+  fullName: IbeAppWeb.Shared.SfResources

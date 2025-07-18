@@ -1,0 +1,801 @@
+### YamlMime:ManagedReference
+items:
+- uid: IbeAppWeb.Models.CustomAccountFactory
+  commentId: T:IbeAppWeb.Models.CustomAccountFactory
+  id: CustomAccountFactory
+  parent: IbeAppWeb.Models
+  children:
+  - IbeAppWeb.Models.CustomAccountFactory.#ctor(Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal.IAccessTokenProviderAccessor)
+  - IbeAppWeb.Models.CustomAccountFactory.CreateUserAsync(IbeAppWeb.Models.CustomUserAccount,Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions)
+  langs:
+  - csharp
+  - vb
+  name: CustomAccountFactory
+  nameWithType: CustomAccountFactory
+  fullName: IbeAppWeb.Models.CustomAccountFactory
+  type: Class
+  source:
+    remote:
+      path: IbeAppWeb/Models/CustomAccountFactory.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: CustomAccountFactory
+    path: Models/CustomAccountFactory.cs
+    startLine: 6
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Models
+  syntax:
+    content: 'public class CustomAccountFactory : AccountClaimsPrincipalFactory<CustomUserAccount>'
+    content.vb: Public Class CustomAccountFactory Inherits AccountClaimsPrincipalFactory(Of CustomUserAccount)
+  inheritance:
+  - System.Object
+  - Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory{IbeAppWeb.Models.CustomUserAccount}
+  inheritedMembers:
+  - Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory{IbeAppWeb.Models.CustomUserAccount}.TokenProvider
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: IbeAppWeb.Models.CustomAccountFactory.#ctor(Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal.IAccessTokenProviderAccessor)
+  commentId: M:IbeAppWeb.Models.CustomAccountFactory.#ctor(Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal.IAccessTokenProviderAccessor)
+  id: '#ctor(Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal.IAccessTokenProviderAccessor)'
+  parent: IbeAppWeb.Models.CustomAccountFactory
+  langs:
+  - csharp
+  - vb
+  name: CustomAccountFactory(IAccessTokenProviderAccessor)
+  nameWithType: CustomAccountFactory.CustomAccountFactory(IAccessTokenProviderAccessor)
+  fullName: IbeAppWeb.Models.CustomAccountFactory.CustomAccountFactory(Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal.IAccessTokenProviderAccessor)
+  type: Constructor
+  source:
+    remote:
+      path: IbeAppWeb/Models/CustomAccountFactory.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: .ctor
+    path: Models/CustomAccountFactory.cs
+    startLine: 8
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Models
+  syntax:
+    content: public CustomAccountFactory(IAccessTokenProviderAccessor accessor)
+    parameters:
+    - id: accessor
+      type: Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal.IAccessTokenProviderAccessor
+    content.vb: Public Sub New(accessor As IAccessTokenProviderAccessor)
+  overload: IbeAppWeb.Models.CustomAccountFactory.#ctor*
+  nameWithType.vb: CustomAccountFactory.New(IAccessTokenProviderAccessor)
+  fullName.vb: IbeAppWeb.Models.CustomAccountFactory.New(Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal.IAccessTokenProviderAccessor)
+  name.vb: New(IAccessTokenProviderAccessor)
+- uid: IbeAppWeb.Models.CustomAccountFactory.CreateUserAsync(IbeAppWeb.Models.CustomUserAccount,Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions)
+  commentId: M:IbeAppWeb.Models.CustomAccountFactory.CreateUserAsync(IbeAppWeb.Models.CustomUserAccount,Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions)
+  id: CreateUserAsync(IbeAppWeb.Models.CustomUserAccount,Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions)
+  parent: IbeAppWeb.Models.CustomAccountFactory
+  langs:
+  - csharp
+  - vb
+  name: CreateUserAsync(CustomUserAccount, RemoteAuthenticationUserOptions)
+  nameWithType: CustomAccountFactory.CreateUserAsync(CustomUserAccount, RemoteAuthenticationUserOptions)
+  fullName: IbeAppWeb.Models.CustomAccountFactory.CreateUserAsync(IbeAppWeb.Models.CustomUserAccount, Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions)
+  type: Method
+  source:
+    remote:
+      path: IbeAppWeb/Models/CustomAccountFactory.cs
+      branch: main
+      repo: https://github.com/grobtom/IbeAppWeb.git
+    id: CreateUserAsync
+    path: Models/CustomAccountFactory.cs
+    startLine: 14
+  assemblies:
+  - IbeAppWeb
+  namespace: IbeAppWeb.Models
+  summary: Converts the <code class="paramref">account</code> into the final <xref href="System.Security.Claims.ClaimsPrincipal" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public override ValueTask<ClaimsPrincipal> CreateUserAsync(CustomUserAccount account, RemoteAuthenticationUserOptions options)
+    parameters:
+    - id: account
+      type: IbeAppWeb.Models.CustomUserAccount
+      description: The account.
+    - id: options
+      type: Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions
+      description: The <xref href="Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions" data-throw-if-not-resolved="false"></xref> to configure the <xref href="System.Security.Claims.ClaimsPrincipal" data-throw-if-not-resolved="false"></xref> with.
+    return:
+      type: System.Threading.Tasks.ValueTask{System.Security.Claims.ClaimsPrincipal}
+      description: A <xref href="System.Threading.Tasks.ValueTask%601" data-throw-if-not-resolved="false"></xref>that will contain the <xref href="System.Security.Claims.ClaimsPrincipal" data-throw-if-not-resolved="false"></xref> user when completed.
+    content.vb: Public Overrides Function CreateUserAsync(account As CustomUserAccount, options As RemoteAuthenticationUserOptions) As ValueTask(Of ClaimsPrincipal)
+  overridden: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory{IbeAppWeb.Models.CustomUserAccount}.CreateUserAsync(IbeAppWeb.Models.CustomUserAccount,Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions)
+  overload: IbeAppWeb.Models.CustomAccountFactory.CreateUserAsync*
+references:
+- uid: IbeAppWeb.Models
+  commentId: N:IbeAppWeb.Models
+  href: IbeAppWeb.html
+  name: IbeAppWeb.Models
+  nameWithType: IbeAppWeb.Models
+  fullName: IbeAppWeb.Models
+  spec.csharp:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.Models
+    name: Models
+    href: IbeAppWeb.Models.html
+  spec.vb:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.Models
+    name: Models
+    href: IbeAppWeb.Models.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory{IbeAppWeb.Models.CustomUserAccount}
+  commentId: T:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory{IbeAppWeb.Models.CustomUserAccount}
+  parent: Microsoft.AspNetCore.Components.WebAssembly.Authentication
+  definition: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory`1
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication.accountclaimsprincipalfactory-1
+  name: AccountClaimsPrincipalFactory<CustomUserAccount>
+  nameWithType: AccountClaimsPrincipalFactory<CustomUserAccount>
+  fullName: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory<IbeAppWeb.Models.CustomUserAccount>
+  nameWithType.vb: AccountClaimsPrincipalFactory(Of CustomUserAccount)
+  fullName.vb: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory(Of IbeAppWeb.Models.CustomUserAccount)
+  name.vb: AccountClaimsPrincipalFactory(Of CustomUserAccount)
+  spec.csharp:
+  - uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory`1
+    name: AccountClaimsPrincipalFactory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication.accountclaimsprincipalfactory-1
+  - name: <
+  - uid: IbeAppWeb.Models.CustomUserAccount
+    name: CustomUserAccount
+    href: IbeAppWeb.Models.CustomUserAccount.html
+  - name: '>'
+  spec.vb:
+  - uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory`1
+    name: AccountClaimsPrincipalFactory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication.accountclaimsprincipalfactory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: IbeAppWeb.Models.CustomUserAccount
+    name: CustomUserAccount
+    href: IbeAppWeb.Models.CustomUserAccount.html
+  - name: )
+- uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory{IbeAppWeb.Models.CustomUserAccount}.TokenProvider
+  commentId: P:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory{IbeAppWeb.Models.CustomUserAccount}.TokenProvider
+  parent: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory{IbeAppWeb.Models.CustomUserAccount}
+  definition: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory`1.TokenProvider
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication.accountclaimsprincipalfactory-1.tokenprovider
+  name: TokenProvider
+  nameWithType: AccountClaimsPrincipalFactory<CustomUserAccount>.TokenProvider
+  fullName: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory<IbeAppWeb.Models.CustomUserAccount>.TokenProvider
+  nameWithType.vb: AccountClaimsPrincipalFactory(Of CustomUserAccount).TokenProvider
+  fullName.vb: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory(Of IbeAppWeb.Models.CustomUserAccount).TokenProvider
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory`1
+  commentId: T:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication.accountclaimsprincipalfactory-1
+  name: AccountClaimsPrincipalFactory<TAccount>
+  nameWithType: AccountClaimsPrincipalFactory<TAccount>
+  fullName: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory<TAccount>
+  nameWithType.vb: AccountClaimsPrincipalFactory(Of TAccount)
+  fullName.vb: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory(Of TAccount)
+  name.vb: AccountClaimsPrincipalFactory(Of TAccount)
+  spec.csharp:
+  - uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory`1
+    name: AccountClaimsPrincipalFactory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication.accountclaimsprincipalfactory-1
+  - name: <
+  - name: TAccount
+  - name: '>'
+  spec.vb:
+  - uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory`1
+    name: AccountClaimsPrincipalFactory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication.accountclaimsprincipalfactory-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TAccount
+  - name: )
+- uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication
+  commentId: N:Microsoft.AspNetCore.Components.WebAssembly.Authentication
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
+  name: Microsoft.AspNetCore.Components.WebAssembly.Authentication
+  nameWithType: Microsoft.AspNetCore.Components.WebAssembly.Authentication
+  fullName: Microsoft.AspNetCore.Components.WebAssembly.Authentication
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Components
+    name: Components
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components
+  - name: .
+  - uid: Microsoft.AspNetCore.Components.WebAssembly
+    name: WebAssembly
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly
+  - name: .
+  - uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication
+    name: Authentication
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Components
+    name: Components
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components
+  - name: .
+  - uid: Microsoft.AspNetCore.Components.WebAssembly
+    name: WebAssembly
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly
+  - name: .
+  - uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication
+    name: Authentication
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication
+- uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory`1.TokenProvider
+  commentId: P:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory`1.TokenProvider
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication.accountclaimsprincipalfactory-1.tokenprovider
+  name: TokenProvider
+  nameWithType: AccountClaimsPrincipalFactory<TAccount>.TokenProvider
+  fullName: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory<TAccount>.TokenProvider
+  nameWithType.vb: AccountClaimsPrincipalFactory(Of TAccount).TokenProvider
+  fullName.vb: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory(Of TAccount).TokenProvider
+- uid: IbeAppWeb.Models.CustomAccountFactory.#ctor*
+  commentId: Overload:IbeAppWeb.Models.CustomAccountFactory.#ctor
+  href: IbeAppWeb.Models.CustomAccountFactory.html#IbeAppWeb_Models_CustomAccountFactory__ctor_Microsoft_AspNetCore_Components_WebAssembly_Authentication_Internal_IAccessTokenProviderAccessor_
+  name: CustomAccountFactory
+  nameWithType: CustomAccountFactory.CustomAccountFactory
+  fullName: IbeAppWeb.Models.CustomAccountFactory.CustomAccountFactory
+  nameWithType.vb: CustomAccountFactory.New
+  fullName.vb: IbeAppWeb.Models.CustomAccountFactory.New
+  name.vb: New
+- uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal.IAccessTokenProviderAccessor
+  commentId: T:Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal.IAccessTokenProviderAccessor
+  parent: Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication.internal.iaccesstokenprovideraccessor
+  name: IAccessTokenProviderAccessor
+  nameWithType: IAccessTokenProviderAccessor
+  fullName: Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal.IAccessTokenProviderAccessor
+- uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal
+  commentId: N:Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
+  name: Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal
+  nameWithType: Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal
+  fullName: Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Components
+    name: Components
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components
+  - name: .
+  - uid: Microsoft.AspNetCore.Components.WebAssembly
+    name: WebAssembly
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly
+  - name: .
+  - uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication
+    name: Authentication
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication
+  - name: .
+  - uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal
+    name: Internal
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication.internal
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Components
+    name: Components
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components
+  - name: .
+  - uid: Microsoft.AspNetCore.Components.WebAssembly
+    name: WebAssembly
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly
+  - name: .
+  - uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication
+    name: Authentication
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication
+  - name: .
+  - uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal
+    name: Internal
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication.internal
+- uid: System.Security.Claims.ClaimsPrincipal
+  commentId: T:System.Security.Claims.ClaimsPrincipal
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.security.claims.claimsprincipal
+  name: ClaimsPrincipal
+  nameWithType: ClaimsPrincipal
+  fullName: System.Security.Claims.ClaimsPrincipal
+- uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions
+  commentId: T:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions
+  parent: Microsoft.AspNetCore.Components.WebAssembly.Authentication
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication.remoteauthenticationuseroptions
+  name: RemoteAuthenticationUserOptions
+  nameWithType: RemoteAuthenticationUserOptions
+  fullName: Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions
+- uid: System.Threading.Tasks.ValueTask`1
+  commentId: T:System.Threading.Tasks.ValueTask`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  name: ValueTask<TResult>
+  nameWithType: ValueTask<TResult>
+  fullName: System.Threading.Tasks.ValueTask<TResult>
+  nameWithType.vb: ValueTask(Of TResult)
+  fullName.vb: System.Threading.Tasks.ValueTask(Of TResult)
+  name.vb: ValueTask(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory{IbeAppWeb.Models.CustomUserAccount}.CreateUserAsync(IbeAppWeb.Models.CustomUserAccount,Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions)
+  commentId: M:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory{IbeAppWeb.Models.CustomUserAccount}.CreateUserAsync(IbeAppWeb.Models.CustomUserAccount,Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions)
+  parent: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory{IbeAppWeb.Models.CustomUserAccount}
+  definition: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory`1.CreateUserAsync(`0,Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions)
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication.accountclaimsprincipalfactory-1.createuserasync
+  name: CreateUserAsync(CustomUserAccount, RemoteAuthenticationUserOptions)
+  nameWithType: AccountClaimsPrincipalFactory<CustomUserAccount>.CreateUserAsync(CustomUserAccount, RemoteAuthenticationUserOptions)
+  fullName: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory<IbeAppWeb.Models.CustomUserAccount>.CreateUserAsync(IbeAppWeb.Models.CustomUserAccount, Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions)
+  nameWithType.vb: AccountClaimsPrincipalFactory(Of CustomUserAccount).CreateUserAsync(CustomUserAccount, RemoteAuthenticationUserOptions)
+  fullName.vb: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory(Of IbeAppWeb.Models.CustomUserAccount).CreateUserAsync(IbeAppWeb.Models.CustomUserAccount, Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions)
+  spec.csharp:
+  - uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory{IbeAppWeb.Models.CustomUserAccount}.CreateUserAsync(IbeAppWeb.Models.CustomUserAccount,Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions)
+    name: CreateUserAsync
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication.accountclaimsprincipalfactory-1.createuserasync
+  - name: (
+  - uid: IbeAppWeb.Models.CustomUserAccount
+    name: CustomUserAccount
+    href: IbeAppWeb.Models.CustomUserAccount.html
+  - name: ','
+  - name: " "
+  - uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions
+    name: RemoteAuthenticationUserOptions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication.remoteauthenticationuseroptions
+  - name: )
+  spec.vb:
+  - uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory{IbeAppWeb.Models.CustomUserAccount}.CreateUserAsync(IbeAppWeb.Models.CustomUserAccount,Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions)
+    name: CreateUserAsync
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication.accountclaimsprincipalfactory-1.createuserasync
+  - name: (
+  - uid: IbeAppWeb.Models.CustomUserAccount
+    name: CustomUserAccount
+    href: IbeAppWeb.Models.CustomUserAccount.html
+  - name: ','
+  - name: " "
+  - uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions
+    name: RemoteAuthenticationUserOptions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication.remoteauthenticationuseroptions
+  - name: )
+- uid: IbeAppWeb.Models.CustomAccountFactory.CreateUserAsync*
+  commentId: Overload:IbeAppWeb.Models.CustomAccountFactory.CreateUserAsync
+  href: IbeAppWeb.Models.CustomAccountFactory.html#IbeAppWeb_Models_CustomAccountFactory_CreateUserAsync_IbeAppWeb_Models_CustomUserAccount_Microsoft_AspNetCore_Components_WebAssembly_Authentication_RemoteAuthenticationUserOptions_
+  name: CreateUserAsync
+  nameWithType: CustomAccountFactory.CreateUserAsync
+  fullName: IbeAppWeb.Models.CustomAccountFactory.CreateUserAsync
+- uid: IbeAppWeb.Models.CustomUserAccount
+  commentId: T:IbeAppWeb.Models.CustomUserAccount
+  parent: IbeAppWeb.Models
+  href: IbeAppWeb.Models.CustomUserAccount.html
+  name: CustomUserAccount
+  nameWithType: CustomUserAccount
+  fullName: IbeAppWeb.Models.CustomUserAccount
+- uid: System.Threading.Tasks.ValueTask{System.Security.Claims.ClaimsPrincipal}
+  commentId: T:System.Threading.Tasks.ValueTask{System.Security.Claims.ClaimsPrincipal}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.ValueTask`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  name: ValueTask<ClaimsPrincipal>
+  nameWithType: ValueTask<ClaimsPrincipal>
+  fullName: System.Threading.Tasks.ValueTask<System.Security.Claims.ClaimsPrincipal>
+  nameWithType.vb: ValueTask(Of ClaimsPrincipal)
+  fullName.vb: System.Threading.Tasks.ValueTask(Of System.Security.Claims.ClaimsPrincipal)
+  name.vb: ValueTask(Of ClaimsPrincipal)
+  spec.csharp:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  - name: <
+  - uid: System.Security.Claims.ClaimsPrincipal
+    name: ClaimsPrincipal
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.claims.claimsprincipal
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Security.Claims.ClaimsPrincipal
+    name: ClaimsPrincipal
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.security.claims.claimsprincipal
+  - name: )
+- uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory`1.CreateUserAsync(`0,Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions)
+  commentId: M:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory`1.CreateUserAsync(`0,Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication.accountclaimsprincipalfactory-1.createuserasync
+  name: CreateUserAsync(TAccount, RemoteAuthenticationUserOptions)
+  nameWithType: AccountClaimsPrincipalFactory<TAccount>.CreateUserAsync(TAccount, RemoteAuthenticationUserOptions)
+  fullName: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory<TAccount>.CreateUserAsync(TAccount, Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions)
+  nameWithType.vb: AccountClaimsPrincipalFactory(Of TAccount).CreateUserAsync(TAccount, RemoteAuthenticationUserOptions)
+  fullName.vb: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory(Of TAccount).CreateUserAsync(TAccount, Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions)
+  spec.csharp:
+  - uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory`1.CreateUserAsync(`0,Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions)
+    name: CreateUserAsync
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication.accountclaimsprincipalfactory-1.createuserasync
+  - name: (
+  - name: TAccount
+  - name: ','
+  - name: " "
+  - uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions
+    name: RemoteAuthenticationUserOptions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication.remoteauthenticationuseroptions
+  - name: )
+  spec.vb:
+  - uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory`1.CreateUserAsync(`0,Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions)
+    name: CreateUserAsync
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication.accountclaimsprincipalfactory-1.createuserasync
+  - name: (
+  - name: TAccount
+  - name: ','
+  - name: " "
+  - uid: Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions
+    name: RemoteAuthenticationUserOptions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.authentication.remoteauthenticationuseroptions
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks

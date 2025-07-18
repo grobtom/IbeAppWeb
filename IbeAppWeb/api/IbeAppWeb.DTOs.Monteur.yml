@@ -1,0 +1,90 @@
+### YamlMime:ManagedReference
+items:
+- uid: IbeAppWeb.DTOs.Monteur
+  commentId: N:IbeAppWeb.DTOs.Monteur
+  id: IbeAppWeb.DTOs.Monteur
+  children:
+  - IbeAppWeb.DTOs.Monteur.AssignMonteurToAnlageDto
+  - IbeAppWeb.DTOs.Monteur.MonteurAnlageHistoryDto
+  - IbeAppWeb.DTOs.Monteur.MonteurDto
+  - IbeAppWeb.DTOs.Monteur.MonteurResponse
+  - IbeAppWeb.DTOs.Monteur.ProjectMonteurDto
+  - IbeAppWeb.DTOs.Monteur.UpdateMonteurDto
+  langs:
+  - csharp
+  - vb
+  name: IbeAppWeb.DTOs.Monteur
+  nameWithType: IbeAppWeb.DTOs.Monteur
+  fullName: IbeAppWeb.DTOs.Monteur
+  type: Namespace
+  assemblies:
+  - IbeAppWeb
+references:
+- uid: IbeAppWeb.DTOs.Monteur.AssignMonteurToAnlageDto
+  commentId: T:IbeAppWeb.DTOs.Monteur.AssignMonteurToAnlageDto
+  parent: IbeAppWeb.DTOs.Monteur
+  href: IbeAppWeb.DTOs.Monteur.AssignMonteurToAnlageDto.html
+  name: AssignMonteurToAnlageDto
+  nameWithType: AssignMonteurToAnlageDto
+  fullName: IbeAppWeb.DTOs.Monteur.AssignMonteurToAnlageDto
+- uid: IbeAppWeb.DTOs.Monteur.MonteurAnlageHistoryDto
+  commentId: T:IbeAppWeb.DTOs.Monteur.MonteurAnlageHistoryDto
+  href: IbeAppWeb.DTOs.Monteur.MonteurAnlageHistoryDto.html
+  name: MonteurAnlageHistoryDto
+  nameWithType: MonteurAnlageHistoryDto
+  fullName: IbeAppWeb.DTOs.Monteur.MonteurAnlageHistoryDto
+- uid: IbeAppWeb.DTOs.Monteur.MonteurDto
+  commentId: T:IbeAppWeb.DTOs.Monteur.MonteurDto
+  href: IbeAppWeb.DTOs.Monteur.MonteurDto.html
+  name: MonteurDto
+  nameWithType: MonteurDto
+  fullName: IbeAppWeb.DTOs.Monteur.MonteurDto
+- uid: IbeAppWeb.DTOs.Monteur.MonteurResponse
+  commentId: T:IbeAppWeb.DTOs.Monteur.MonteurResponse
+  parent: IbeAppWeb.DTOs.Monteur
+  href: IbeAppWeb.DTOs.Monteur.MonteurResponse.html
+  name: MonteurResponse
+  nameWithType: MonteurResponse
+  fullName: IbeAppWeb.DTOs.Monteur.MonteurResponse
+- uid: IbeAppWeb.DTOs.Monteur.ProjectMonteurDto
+  commentId: T:IbeAppWeb.DTOs.Monteur.ProjectMonteurDto
+  href: IbeAppWeb.DTOs.Monteur.ProjectMonteurDto.html
+  name: ProjectMonteurDto
+  nameWithType: ProjectMonteurDto
+  fullName: IbeAppWeb.DTOs.Monteur.ProjectMonteurDto
+- uid: IbeAppWeb.DTOs.Monteur.UpdateMonteurDto
+  commentId: T:IbeAppWeb.DTOs.Monteur.UpdateMonteurDto
+  href: IbeAppWeb.DTOs.Monteur.UpdateMonteurDto.html
+  name: UpdateMonteurDto
+  nameWithType: UpdateMonteurDto
+  fullName: IbeAppWeb.DTOs.Monteur.UpdateMonteurDto
+- uid: IbeAppWeb.DTOs.Monteur
+  commentId: N:IbeAppWeb.DTOs.Monteur
+  href: IbeAppWeb.html
+  name: IbeAppWeb.DTOs.Monteur
+  nameWithType: IbeAppWeb.DTOs.Monteur
+  fullName: IbeAppWeb.DTOs.Monteur
+  spec.csharp:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.DTOs
+    name: DTOs
+    href: IbeAppWeb.DTOs.html
+  - name: .
+  - uid: IbeAppWeb.DTOs.Monteur
+    name: Monteur
+    href: IbeAppWeb.DTOs.Monteur.html
+  spec.vb:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.DTOs
+    name: DTOs
+    href: IbeAppWeb.DTOs.html
+  - name: .
+  - uid: IbeAppWeb.DTOs.Monteur
+    name: Monteur
+    href: IbeAppWeb.DTOs.Monteur.html

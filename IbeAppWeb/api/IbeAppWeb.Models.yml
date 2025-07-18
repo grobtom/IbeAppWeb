@@ -1,0 +1,53 @@
+### YamlMime:ManagedReference
+items:
+- uid: IbeAppWeb.Models
+  commentId: N:IbeAppWeb.Models
+  id: IbeAppWeb.Models
+  children:
+  - IbeAppWeb.Models.CustomAccountFactory
+  - IbeAppWeb.Models.CustomUserAccount
+  langs:
+  - csharp
+  - vb
+  name: IbeAppWeb.Models
+  nameWithType: IbeAppWeb.Models
+  fullName: IbeAppWeb.Models
+  type: Namespace
+  assemblies:
+  - IbeAppWeb
+references:
+- uid: IbeAppWeb.Models.CustomAccountFactory
+  commentId: T:IbeAppWeb.Models.CustomAccountFactory
+  href: IbeAppWeb.Models.CustomAccountFactory.html
+  name: CustomAccountFactory
+  nameWithType: CustomAccountFactory
+  fullName: IbeAppWeb.Models.CustomAccountFactory
+- uid: IbeAppWeb.Models.CustomUserAccount
+  commentId: T:IbeAppWeb.Models.CustomUserAccount
+  parent: IbeAppWeb.Models
+  href: IbeAppWeb.Models.CustomUserAccount.html
+  name: CustomUserAccount
+  nameWithType: CustomUserAccount
+  fullName: IbeAppWeb.Models.CustomUserAccount
+- uid: IbeAppWeb.Models
+  commentId: N:IbeAppWeb.Models
+  href: IbeAppWeb.html
+  name: IbeAppWeb.Models
+  nameWithType: IbeAppWeb.Models
+  fullName: IbeAppWeb.Models
+  spec.csharp:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.Models
+    name: Models
+    href: IbeAppWeb.Models.html
+  spec.vb:
+  - uid: IbeAppWeb
+    name: IbeAppWeb
+    href: IbeAppWeb.html
+  - name: .
+  - uid: IbeAppWeb.Models
+    name: Models
+    href: IbeAppWeb.Models.html
